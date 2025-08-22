@@ -512,7 +512,7 @@ return {
                     ""
                 }
             },
-            j_fg_fist = {
+            j_fg_raised_fist = {
                 name = 'Raised Fist?',
                 text = {
                     "Gains {C:attention}half{} the rank",

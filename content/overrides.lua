@@ -121,3 +121,25 @@ end
 		return card
 	end
 --end
+
+
+
+
+
+---
+--- ONLY FOR THE TRAINER
+---
+
+if false then
+function create_UIBox_main_menu_buttons()
+	local text_scale = 0.45
+
+	local t = {
+		n=G.UIT.ROOT, config = {align = "cm",colour = G.C.CLEAR}, nodes={ 
+		{n=G.UIT.C, config={align = "bm"}, nodes={      
+			{n=G.UIT.R, config={align = "cm", padding = 0.2, r = 0.1, emboss = 0.1, colour = G.C.L_BLACK, mid = true}, nodes={
+			UIBox_button{id = 'main_menu_play', button = "setup_run", colour = G.C.PURPLE, minw = 3.65, minh = 1.55, label = {"Main menu"}, scale = text_scale*2, col = true},
+		}}}}}}
+	return t
+end
+end

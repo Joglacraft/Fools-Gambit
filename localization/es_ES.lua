@@ -496,7 +496,7 @@ return {
                     ""
                 }
             },
-            j_fg_fist = {
+            j_fg_raised_fist = {
                 name = '¿Puño en alto?',
                 text = {
                     "Añade {C:attention}la mitad{} del rango",

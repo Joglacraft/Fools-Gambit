@@ -1772,8 +1772,9 @@ SMODS.Joker {
 			for _,v in ipairs(G.hand.cards) do
 				if not rank then rank = FG.FUNCS.get_card_info(v).id end
 				if rank > FG.FUNCS.get_card_info(v).id then rank = FG.FUNCS.get_card_info(v).id end
+				if FG.FUNCS.get_card_info(v).rank == "Ace" then rank = 1 end
 			end
-			card.ability.extra.mult = card.ability.extra.mult + math.ceil(rank/2)
+			card.ability.extra.mult = card.ability.extra.mult + (rank/2)
     	end
 		if context.joker_main then return {mult = card.ability.extra.mult} end
 	end
