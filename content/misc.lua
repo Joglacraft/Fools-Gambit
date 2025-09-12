@@ -30,7 +30,7 @@ SMODS.Sticker{
         end
     end,
 }
---[[
+
 SMODS.Sticker{
     key = "alternate_mark",
     hide_badge = true,
@@ -45,31 +45,7 @@ SMODS.Sticker{
         }
     }
 }
-]]
---[[
-SMODS.JimboQuip{
-    key = 'fg_goldenleaf_wq',
-    type = 'win',
-    extra = { center = 'j_fg_goldenleaf', particle_colours = { G.C.PURPLE, G.C.YELLOW, G.C.GOLD } },
-    filter = function()
-        if next(SMODS.find_card('j_fg_goldenleaf')) or next(SMODS.find_card('j_fg_goldenleafalt')) then
-            return true, { weight = 100 }
-        end
-        return false
-    end
-}
-SMODS.JimboQuip{
-    key = 'fg_goldenleaf_lq',
-    type = 'loss',
-    extra = { center = 'j_fg_goldenleaf', particle_colours = { G.C.PURPLE, G.C.YELLOW, G.C.GOLD } },
-    filter = function()
-        if next(SMODS.find_card('j_fg_goldenleaf')) or next(SMODS.find_card('j_fg_goldenleafalt')) then
-            return true, { weight = 100 }
-        end
-        return false
-    end
-}
-]]
+
 
 SMODS.Stake{
     key = "pink",
@@ -118,6 +94,7 @@ SMODS.Joker{
     set = "aberration",
     atlas = "logo_small",
     yes_pool_flag = "i_want_to_see_the_fg_logo_in_my_runs",
+    in_pool = function (self, args) return false end,
     unlocked = true,
     discovered = true,
     no_collection = true,
@@ -134,14 +111,60 @@ SMODS.Joker{
 ---
 --- Quips
 ---
---[[
+
 SMODS.JimboQuip{
     key = 'fg_jogla_w1',
     type = 'win',
 	extra = {center = 'j_fg_jogla'},
-	filter = function () return true, {weight = 512} end,
+	filter = function () if next(SMODS.find_card('j_fg_jogla')) or next(SMODS.find_card('j_fg_joglalt')) then return true, {weight = 8e256} end end,
 }
-]]
+
+SMODS.JimboQuip{
+    key = 'fg_jogla_w2',
+    type = 'loss',
+	extra = {center = 'j_fg_jogla'},
+	filter = function () if next(SMODS.find_card('j_fg_jogla')) or next(SMODS.find_card('j_fg_joglalt')) then return true, {weight = 8e256} end end,
+}
+
+SMODS.JimboQuip{
+    key = 'fg_jogla_l1',
+    type = 'loss',
+	extra = {center = 'j_fg_jogla'},
+	filter = function () if next(SMODS.find_card('j_fg_jogla')) or next(SMODS.find_card('j_fg_joglalt')) then return true, {weight = 8e256} end end,
+}
+
+SMODS.JimboQuip{
+    key = 'fg_jogla_l2',
+    type = 'loss',
+	extra = {center = 'j_fg_jogla'},
+	filter = function () if next(SMODS.find_card('j_fg_jogla')) or next(SMODS.find_card('j_fg_joglalt')) then return true, {weight = 8e256} end end,
+}
+
+
+
+SMODS.JimboQuip{
+    key = 'fg_goldenleaf_wq',
+    type = 'win',
+    extra = { center = 'j_fg_goldenleaf', particle_colours = { G.C.PURPLE, G.C.YELLOW, G.C.GOLD } },
+    filter = function()
+        if next(SMODS.find_card('j_fg_goldenleaf')) or next(SMODS.find_card('j_fg_goldenleafalt')) then
+            return true, { weight = 100 }
+        end
+        return false
+    end
+}
+
+SMODS.JimboQuip{
+    key = 'fg_goldenleaf_lq',
+    type = 'loss',
+    extra = { center = 'j_fg_goldenleaf', particle_colours = { G.C.PURPLE, G.C.YELLOW, G.C.GOLD } },
+    filter = function()
+        if next(SMODS.find_card('j_fg_goldenleaf')) or next(SMODS.find_card('j_fg_goldenleafalt')) then
+            return true, { weight = 100 }
+        end
+        return false
+    end
+}
 --- 
 --- Sound replacer
 --- 

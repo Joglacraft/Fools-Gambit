@@ -106,7 +106,7 @@ local function bulk_loc (param,extra)
         local can = false
         for _,vv in ipairs(extra.rarity) do if FG.FUNCS.get_card_info(v).rarity == vv then can = true end end
         for _,vv in ipairs(extra.rarity) do if FG.FUNCS.get_card_info(v).rarity == vv then can = true end end
-        if not FG.FUNCS.get_card_info(v).stickers.unchangeable and can then
+        if not FG.FUNCS.get_card_info(v).stickers.unchangeable and can and v.ability.fg_data then
             info_queue[#info_queue+1] = G.P_CENTERS[v.ability.fg_data.alternate_card]
         end
     end

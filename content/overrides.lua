@@ -6,7 +6,7 @@
 local main_menu_ref = Game.main_menu
 
 function Game:main_menu(change_context)
-	main_menu_ref(self,change_context)
+	local ret = main_menu_ref(self,change_context)
 	local SC_scale = 1.1*(G.debug_splash_size_toggle and 0.8 or 1)
 	local CAI = {
         TITLE_TOP_W = G.CARD_W,
@@ -38,6 +38,7 @@ function Game:main_menu(change_context)
     local replace_card = Card(self.fg_title.T.x, self.fg_title.T.y, 1.2*G.CARD_W*SC_scale*1.8, 1.2*G.CARD_H*SC_scale*0.5, G.P_CENTERS.j_fg_logo, G.P_CENTERS.j_fg_logo)
     replace_card.no_ui = true
 	self.fg_title:emplace(replace_card)
+	return ret
 end
 
 

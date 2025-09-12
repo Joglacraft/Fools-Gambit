@@ -796,11 +796,10 @@ return {
             j_fg_ancient = {
                 name = "Ancient Joker",
                 text = {
-                    "Gains {C:white,X:mult}X#2#{} Mult when",
-                    "all playing cards are {V:#1#}#3#{}",
+                    "Gains {C:white,X:mult}X#3#{} Mult when all",
+                    "playing cards are {V:1}#1#",
                     "Suit changes every round",
-                    "{C:inactive}(Currently{C:white,X:mult}#1#{C:inactive} Mult)",
-                    "{C:inactive}(Can't go below X0.75 Mult)"
+                    "{C:inactive}(Currently{C:white,X:mult}X#2#{C:inactive} Mult)",
                 }
             },
             j_fg_campfire = {
@@ -1554,9 +1553,25 @@ return {
         poker_hand_descriptions = {},
         poker_hands = {},
         quips = {
+            -- Jogla
             fg_jogla_w1 = {
-                "WIZ"
+                "I'd say it's",
+                "{C:attention}showtime{}"
             },
+            fg_jogla_w2 = {
+                "So, what's your",
+                "next move?"
+            },
+            fg_jogla_l1 = {
+                "I am sorry I",
+                "couldn't aid you."
+            },
+            fg_jogla_l2 = {
+                "What a terrible",
+                "fate you've met"
+            },
+
+            -- GoldenLeaf
             fg_goldenleaf_wq = {
                 "Travis scott, lock into a stud",
                 "NOW!"
