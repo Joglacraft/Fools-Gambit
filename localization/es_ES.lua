@@ -1424,8 +1424,9 @@ return {
             },
             languages = {
                 disclaimer = {
-                    "Algunas traducciones pueden estar incompletas",
-                    "*Sendién \'se vende\' por separado"
+                    "Algunas traducciones pueden",
+                    "estar incompletas",
+                    --"*Sendién \'se vende\' por separado"
                 },
                 ["en-us"] = "Ingés",
                 ["es_ES"] = "Español",
@@ -1447,8 +1448,8 @@ return {
                 links = {
                     title = "Enlaces útiles",
                     github = "Repositorio de Github",
-                    discord = "Servidor de Discord",
-                    d_thread = "Canál del mod (discord)",
+                    discord = "Discord",
+                    d_thread = "Hílo del mod",
                     wiki = "Wiki del mod",
                     wiki_dev = "Wiki de desarollo",
                 },

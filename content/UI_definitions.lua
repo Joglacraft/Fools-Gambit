@@ -118,7 +118,7 @@ G.FUNCS.FG_credits = function (e,page,from_callback)
 				-- Main page
 				{n = G.UIT.C, config = {align = "tm", padding = 0}, nodes = {
 					{n = G.UIT.R, config = {align = "tm", padding = 0}, nodes = {{n = G.UIT.T, config = {text = FG.FUNCS.localize{"FG","credits","misc","lead_developer"}, colour = G.C.GOLD, scale = .5}}}},
-					{n = G.UIT.R, config = {align = "tm", padding = 0.15}, nodes = {{n = G.UIT.T, config = {text = FG.FUNCS.localize{"FG","credits","names","goldenleaf"}, colour = G.C.WHITE, scale = .3}}}},
+					{n = G.UIT.R, config = {align = "tm", padding = 0.15}, nodes = {{n = G.UIT.T, config = {text = FG.FUNCS.localize{"FG","credits","names","jogla"}, colour = G.C.WHITE, scale = .3}}}},
 					{n = G.UIT.R, config = {align = "tm"}, nodes = {
 						{n = G.UIT.C, config = {minw = 2, align = "tm", padding = 0.1}, nodes = {
 							{n = G.UIT.R, config = {align = "tm"}, nodes = {{n = G.UIT.T, config = {text = FG.FUNCS.localize{"FG","credits","misc","code"}, colour = G.C.GREEN, scale = .5}}}},
@@ -128,7 +128,6 @@ G.FUNCS.FG_credits = function (e,page,from_callback)
 									FG.FUNCS.localize{"FG","credits","names","jogla"},
 									FG.FUNCS.localize{"FG","credits","names","jenku"},
 									FG.FUNCS.localize{"FG","credits","names","deathmodereal"},
-									FG.FUNCS.localize{"FG","credits","names","poker_the_poker"},
 									FG.FUNCS.localize{"FG","credits","names","astrojoot"},
 								},
 								scale = 0.3,
@@ -153,7 +152,6 @@ G.FUNCS.FG_credits = function (e,page,from_callback)
 							FG.FUNCS.UIBox_text{
 								text = {
 									FG.FUNCS.localize{"FG","credits","names","goldenleaf"},
-									FG.FUNCS.localize{"FG","credits","names","poker_the_poker"},
 								},
 								scale = 0.3,
 								align = "tm",
@@ -210,7 +208,7 @@ G.FUNCS.FG_credits = function (e,page,from_callback)
 									"",
 									FG.FUNCS.localize{"FG","credits","languages","es_ES"},
 									FG.FUNCS.localize{"FG","credits","languages","zh-CN"},
-									FG.FUNCS.localize{"FG","credits","languages","sn_bos"},
+									--FG.FUNCS.localize{"FG","credits","languages","sn_bos"},
 									FG.FUNCS.localize{"FG","credits","languages","ja"},
 								},
 								scale = 0.3,
@@ -226,7 +224,7 @@ G.FUNCS.FG_credits = function (e,page,from_callback)
 									FG.FUNCS.localize{"FG","credits","names","deathmodereal"},
 									FG.FUNCS.localize{"FG","credits","names","jogla"},
 									FG.FUNCS.localize{"FG","credits","names","goldenleaf"},
-									FG.FUNCS.localize{"FG","credits","names","goldenleaf"}..", "..FG.FUNCS.localize{"FG","credits","names","jogla"},
+									--FG.FUNCS.localize{"FG","credits","names","goldenleaf"}..", "..FG.FUNCS.localize{"FG","credits","names","jogla"},
 									FG.FUNCS.localize{"FG","credits","names","mina_kitsune"},
 								},
 								scale = 0.3,

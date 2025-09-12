@@ -121,7 +121,7 @@ SMODS.JimboQuip{
 
 SMODS.JimboQuip{
     key = 'fg_jogla_w2',
-    type = 'loss',
+    type = 'win',
 	extra = {center = 'j_fg_jogla'},
 	filter = function () if next(SMODS.find_card('j_fg_jogla')) or next(SMODS.find_card('j_fg_joglalt')) then return true, {weight = 8e256} end end,
 }

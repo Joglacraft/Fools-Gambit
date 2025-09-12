@@ -1470,7 +1470,7 @@ return {
             languages = {
                 disclaimer = {
                     "Some localizations may be incomplete",
-                    "*Sendien \'sold\' separately"
+                    --"*Sendien \'sold\' separately"
                 },
                 ["en-us"] = "English",
                 ["es_ES"] = "Spanish",
