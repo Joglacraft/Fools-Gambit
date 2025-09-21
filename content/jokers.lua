@@ -4893,6 +4893,8 @@ SMODS.Joker {
 			alternate_card = "j_fg_goldenleafalt"
 		}, extra = { Xmult = 3 } },
 	loc_vars = function(self, info_queue, card)
+		table.insert(info_queue,G.P_CENTERS.m_gold)
+		table.insert(info_queue,G.P_CENTERS.m_fg_gold)
 		return { vars = { card.ability.extra.Xmult } }
 	end,
 	rarity = 'fg_collective',

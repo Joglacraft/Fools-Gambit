@@ -128,7 +128,7 @@ end
 
 
 ---
---- ONLY FOR THE TRAINER
+--- ONLY FOR THE TRAILER
 ---
 
 if false then
@@ -143,4 +143,16 @@ function create_UIBox_main_menu_buttons()
 		}}}}}}
 	return t
 end
+end
+
+local ref = Card.update
+
+function Card:update(dt)
+	local ret = ref(self,dt)
+	if self.ability and self.ability.fg_data and self.ability.fg_data.is_alternate then
+		SMODS.Stickers['fg_alternate_mark']:apply(self,true)
+	else
+		SMODS.Stickers['fg_alternate_mark']:apply(self,false)
+	end
+	return ret
 end

@@ -1029,7 +1029,9 @@ return {
                 name = 'deathmodereal',
                 text = {
                     "He's {X:black,C:white}cool(ish){}",
-                    '{X:mult,C:white}X#1#{} mult.'
+                    '{X:mult,C:white}X#1#{} mult.',
+                    "{C:inactive,s:0.7}(X2 required score for",
+                    "{C:inactive,s:0.7}each hand played)"
                 },
             },
             j_fg_deathmoderealalt = {
@@ -1080,8 +1082,8 @@ return {
             j_fg_goldenleafalt = {
                 name = "SilverAutumn",
                 text = {
-                    "Permanently increase amount of hands",
-                    "by {C:blue}#1#{} when",
+                    "Permanently increase amount",
+                    "of hands by {C:blue}#1#{} when",
                     "{C:attention}Boss blind{} defeated",
                     "{C:inactive}(Currently {C:blue}+#2#{C:inactive} hands)"
                 }
@@ -1093,6 +1095,14 @@ return {
                 label = "Unchangeable",
                 text = {
                     "Can't be alternated"
+                }
+            },
+            fg_alternate_mark = {
+                name = "Alternate",
+                label = "Alternate",
+                text = {
+                    "This is an",
+                    "{C:purple}alternate{} card"
                 }
             },
             p_fg_aberration1 = {
@@ -1548,7 +1558,8 @@ return {
             fg_legendary_alt = "Legendary?",
             fg_collective = "Collective",
             fg_collective_alt = "Collective?",
-            fg_unchangeable = "Unchangeable"
+            fg_unchangeable = "Unchangeable",
+            fg_alternate_mark = "Alternate",
         },
         poker_hand_descriptions = {},
         poker_hands = {},

@@ -33,17 +33,11 @@ SMODS.Sticker{
 
 SMODS.Sticker{
     key = "alternate_mark",
-    hide_badge = true,
+    hide_badge = false,
+    badge_colour = G.C.PURPLE,
     default_compat = false,
     sets = {},
     rate = 0,
-    loc_txt = {
-        name = "Alternate",
-        text = {
-            "This is an",
-            "{C:purple}alternate{} card"
-        }
-    }
 }
 
 
