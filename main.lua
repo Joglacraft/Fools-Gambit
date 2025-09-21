@@ -53,7 +53,8 @@ local mod_contents = {
 	"tarots",
 	"spectral",
 	"seals", -- WIP, SMODS is acting rather silly now
-	"misc"
+	"misc",
+	"decks"
 }
 
 for k, v in pairs(mod_contents) do -- Load this mod's files

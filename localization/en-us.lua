@@ -512,7 +512,7 @@ return {
                     ""
                 }
             },
-            j_fg_fist = {
+            j_fg_raised_fist = {
                 name = 'Raised Fist?',
                 text = {
                     "Gains {C:attention}half{} the rank",
@@ -796,11 +796,10 @@ return {
             j_fg_ancient = {
                 name = "Ancient Joker",
                 text = {
-                    "Gains {C:white,X:mult}X#2#{} Mult when",
-                    "all playing cards are {V:#1#}#3#{}",
+                    "Gains {C:white,X:mult}X#3#{} Mult when all",
+                    "playing cards are {V:1}#1#",
                     "Suit changes every round",
-                    "{C:inactive}(Currently{C:white,X:mult}#1#{C:inactive} Mult)",
-                    "{C:inactive}(Can't go below X0.75 Mult)"
+                    "{C:inactive}(Currently{C:white,X:mult}X#2#{C:inactive} Mult)",
                 }
             },
             j_fg_campfire = {
@@ -1030,7 +1029,9 @@ return {
                 name = 'deathmodereal',
                 text = {
                     "He's {X:black,C:white}cool(ish){}",
-                    '{X:mult,C:white}X#1#{} mult.'
+                    '{X:mult,C:white}X#1#{} mult.',
+                    "{C:inactive,s:0.7}(X2 required score for",
+                    "{C:inactive,s:0.7}each hand played)"
                 },
             },
             j_fg_deathmoderealalt = {
@@ -1081,8 +1082,8 @@ return {
             j_fg_goldenleafalt = {
                 name = "SilverAutumn",
                 text = {
-                    "Permanently increase amount of hands",
-                    "by {C:blue}#1#{} when",
+                    "Permanently increase amount",
+                    "of hands by {C:blue}#1#{} when",
                     "{C:attention}Boss blind{} defeated",
                     "{C:inactive}(Currently {C:blue}+#2#{C:inactive} hands)"
                 }
@@ -1094,6 +1095,14 @@ return {
                 label = "Unchangeable",
                 text = {
                     "Can't be alternated"
+                }
+            },
+            fg_alternate_mark = {
+                name = "Alternate",
+                label = "Alternate",
+                text = {
+                    "This is an",
+                    "{C:purple}alternate{} card"
                 }
             },
             p_fg_aberration1 = {
@@ -1471,7 +1480,7 @@ return {
             languages = {
                 disclaimer = {
                     "Some localizations may be incomplete",
-                    "*Sendien \'sold\' separately"
+                    --"*Sendien \'sold\' separately"
                 },
                 ["en-us"] = "English",
                 ["es_ES"] = "Spanish",
@@ -1549,14 +1558,31 @@ return {
             fg_legendary_alt = "Legendary?",
             fg_collective = "Collective",
             fg_collective_alt = "Collective?",
-            fg_unchangeable = "Unchangeable"
+            fg_unchangeable = "Unchangeable",
+            fg_alternate_mark = "Alternate",
         },
         poker_hand_descriptions = {},
         poker_hands = {},
         quips = {
+            -- Jogla
             fg_jogla_w1 = {
-                "WIZ"
+                "I'd say it's",
+                "{C:attention}showtime{}"
             },
+            fg_jogla_w2 = {
+                "So, what's your",
+                "next move?"
+            },
+            fg_jogla_l1 = {
+                "I am sorry I",
+                "couldn't aid you."
+            },
+            fg_jogla_l2 = {
+                "What a terrible",
+                "fate you've met"
+            },
+
+            -- GoldenLeaf
             fg_goldenleaf_wq = {
                 "Travis scott, lock into a stud",
                 "NOW!"

@@ -6,7 +6,7 @@
 local main_menu_ref = Game.main_menu
 
 function Game:main_menu(change_context)
-	main_menu_ref(self,change_context)
+	local ret = main_menu_ref(self,change_context)
 	local SC_scale = 1.1*(G.debug_splash_size_toggle and 0.8 or 1)
 	local CAI = {
         TITLE_TOP_W = G.CARD_W,
@@ -38,6 +38,7 @@ function Game:main_menu(change_context)
     local replace_card = Card(self.fg_title.T.x, self.fg_title.T.y, 1.2*G.CARD_W*SC_scale*1.8, 1.2*G.CARD_H*SC_scale*0.5, G.P_CENTERS.j_fg_logo, G.P_CENTERS.j_fg_logo)
     replace_card.no_ui = true
 	self.fg_title:emplace(replace_card)
+	return ret
 end
 
 
@@ -121,3 +122,37 @@ end
 		return card
 	end
 --end
+
+
+
+
+
+---
+--- ONLY FOR THE TRAILER
+---
+
+if false then
+function create_UIBox_main_menu_buttons()
+	local text_scale = 0.45
+
+	local t = {
+		n=G.UIT.ROOT, config = {align = "cm",colour = G.C.CLEAR}, nodes={ 
+		{n=G.UIT.C, config={align = "bm"}, nodes={      
+			{n=G.UIT.R, config={align = "cm", padding = 0.2, r = 0.1, emboss = 0.1, colour = G.C.L_BLACK, mid = true}, nodes={
+			UIBox_button{id = 'main_menu_play', button = "setup_run", colour = G.C.PURPLE, minw = 3.65, minh = 1.55, label = {"Main menu"}, scale = text_scale*2, col = true},
+		}}}}}}
+	return t
+end
+end
+
+local ref = Card.update
+
+function Card:update(dt)
+	local ret = ref(self,dt)
+	if self.ability and self.ability.fg_data and self.ability.fg_data.is_alternate then
+		SMODS.Stickers['fg_alternate_mark']:apply(self,true)
+	else
+		SMODS.Stickers['fg_alternate_mark']:apply(self,false)
+	end
+	return ret
+end

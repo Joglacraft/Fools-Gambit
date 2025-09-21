@@ -1772,8 +1772,9 @@ SMODS.Joker {
 			for _,v in ipairs(G.hand.cards) do
 				if not rank then rank = FG.FUNCS.get_card_info(v).id end
 				if rank > FG.FUNCS.get_card_info(v).id then rank = FG.FUNCS.get_card_info(v).id end
+				if FG.FUNCS.get_card_info(v).rank == "Ace" then rank = 1 end
 			end
-			card.ability.extra.mult = card.ability.extra.mult + math.ceil(rank/2)
+			card.ability.extra.mult = card.ability.extra.mult + (rank/2)
     	end
 		if context.joker_main then return {mult = card.ability.extra.mult} end
 	end
@@ -2236,6 +2237,48 @@ SMODS.Joker {
 		fg_data = {
 			is_alternate = true,
 			alternate_card = "j_abstract"
+		},
+		extra = {
+			mult_gain = 4,
+			mult = 0,
+			sold = 0
+		}
+	},
+	loc_vars = function(self, info_queue, card)
+		return {
+			vars = {
+				card.ability.extra.mult_gain,
+				card.ability.extra.mult
+			}
+		}
+	end,
+	blueprint_compat = true,
+	calculate = function(self, card, context)
+		if context.selling_card and not context.repetition and not context.blueprint then
+			if not string.find(FG.FUNCS.get_card_info(context.card).key,"j_") then return end
+			card.ability.extra.sold = card.ability.extra.sold + 1
+			card.ability.extra.mult = card.ability.extra.mult_gain * card.ability.extra.sold
+			return {
+				message = "+"..card.ability.extra.mult_gain.." Mult"
+			}
+		end
+		if context.joker_main then
+			return {
+				mult = card.ability.extra.mult
+			}
+		end
+	end
+}
+SMODS.Joker {
+	key = 'delayed_grat',
+	atlas = 'jokers_alt',
+	pos = { x = 3, y = 3 },
+	rarity = "fg_common_alt",
+	cost = 2,
+	config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = "j_delayed_grat"
 		},
 		extra = {
 			mult_gain = 4,
@@ -3464,6 +3507,57 @@ SMODS.Joker{
 		end
     end
 }
+--[[ Ancient
+SMODS.Joker{
+	key = "ancient",
+	atlas = "jokers_alt",
+	pos = {x = 7, y = 15},
+	rarity = "fg_rare_alt",
+	cost = 8,
+	config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = "j_ancient"
+		},
+		extra = {
+			suit = nil,
+			xmult = 1,
+			xmult_i = 0.5
+		}
+	},
+	loc_vars = function (self, info_queue, card)
+		local suit = card.ability.extra.suit or SMODS.Suits.Spades
+		return {vars = {
+			(suit and suit.name) or "Spades",
+			colours = { 
+				G.C.SUITS[suit.key] or G.C.SUITS.Spades,
+			},
+			card.ability.extra.xmult,
+			card.ability.extra.xmult_i
+		}}
+	end,
+	set_ability = function (self, card, initial, delay_sprites)
+		if card.ability.extra.suit then return end
+		card.ability.extra.suit = pseudorandom_element(SMODS.Suits)
+		t_suit = card.ability.extra.suit
+	end,
+	blueprint_compat = true,
+	calculate = function (self, card, context)
+		local give = true
+		if context.before then
+			for _,v in ipairs(G.play.cards) do
+				if FG.FUNCS.get_card_info(v).suit ~= card.ability.extra.suit.key then 
+					print(FG.FUNCS.get_card_info(v).suit.. " | "..tostring(card.ability.extra.suit.key))
+					print("fail")
+					give = false
+				end
+			end
+			if give then card.ability.extra.xmult = card.ability.extra.xmult + card.ability.extra.xmult_i end
+		end
+		if context.joker_main then return {xmult = card.ability.extra.xmult} end
+		if context.end_of_round then card.ability.extra.suit = pseudorandom_element(SMODS.Suits) end
+	end
+}]]
 -- Ramen
 SMODS.Joker{
     key = "ramen",
@@ -4799,6 +4893,8 @@ SMODS.Joker {
 			alternate_card = "j_fg_goldenleafalt"
 		}, extra = { Xmult = 3 } },
 	loc_vars = function(self, info_queue, card)
+		table.insert(info_queue,G.P_CENTERS.m_gold)
+		table.insert(info_queue,G.P_CENTERS.m_fg_gold)
 		return { vars = { card.ability.extra.Xmult } }
 	end,
 	rarity = 'fg_collective',
