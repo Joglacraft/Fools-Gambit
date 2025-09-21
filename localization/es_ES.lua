@@ -1064,6 +1064,14 @@ return {
                     "No puede ser alternada"
                 }
             },
+            fg_alternate_mark = {
+                name = "Alternativa",
+                label = "Alternativa",
+                text = {
+                    "Esta es una carta",
+                    "{C:purple}alternativa{}"
+                }
+            },
             p_fg_aberration1 = {
                 name = 'Paquete melódico',
                 text = { 
@@ -1482,8 +1490,14 @@ return {
         },
         high_scores={},
         labels={
-            fg_collective = "Colectivo",
-            fg_aberration = "Aberración"
+            fg_common_alt = "¿Común?",
+            fg_uncommon_alt = "¿Inusual?",
+            fg_rare_alt = "¿Rara?",
+            fg_legendary_alt = "¿Legendaria?",
+            fg_collective = "Colectiva",
+            fg_collective_alt = "¿Colectiva?",
+            fg_unchangeable = "Incambiable",
+            fg_alternate_mark = "Alternativa",
         },
         poker_hand_descriptions={},
         poker_hands={},

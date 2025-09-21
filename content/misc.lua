@@ -11,6 +11,12 @@ SMODS.Atlas{
     py = 95
 }
 SMODS.Atlas{
+    key = "alt_marker",
+    path = "alt_marker.png",
+    px = 71,
+    py = 95
+}
+SMODS.Atlas{
     key = "stakes",
     path = "pink_stake.png",
     px = 29,
@@ -33,6 +39,8 @@ SMODS.Sticker{
 
 SMODS.Sticker{
     key = "alternate_mark",
+    atlas = 'alt_marker',
+    pos = {x = 0, y = 0},
     hide_badge = false,
     badge_colour = G.C.PURPLE,
     default_compat = false,
