@@ -144,6 +144,7 @@ local function bulk_use (param,extra)
                 for _,vv in ipairs(extra.rarity) do if FG.FUNCS.get_card_info(G[cardarea].cards[i]).rarity == vv then can = true end end
 
                 if not FG.FUNCS.get_card_info(G[cardarea].cards[i]).stickers.unchangeable
+                and G[cardarea].cards[i].ability.fg_data
                 and FG.FUNCS.check_exists(G[cardarea].cards[i].ability.fg_data.alternate_card)
                 and can then
                     local c = FG.FUNCS.alternate_card(G[cardarea].cards[i])
@@ -257,7 +258,7 @@ SMODS.Consumable{
 	pos = { x = 2, y = 0 },
     config = {
         fg_data = {
-            is_alternate = true,
+            is_alternate = false,
             alternate_card = "c_fg_treble_alt"
         },
     },
@@ -273,7 +274,7 @@ SMODS.Consumable{
 	pos = { x = 0, y = 0 },
     config = {
         fg_data = {
-            is_alternate = true,
+            is_alternate = false,
             alternate_card = "c_fg_bass_alt"
         },
     },
@@ -289,7 +290,7 @@ SMODS.Consumable{
 	pos = { x = 1, y = 0 },
     config = {
         fg_data = {
-            is_alternate = true,
+            is_alternate = false,
             alternate_card = "c_fg_alto_alt"
         },
     },

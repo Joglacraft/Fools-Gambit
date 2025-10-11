@@ -31,7 +31,7 @@ SMODS.Sticker{
     default_compat = true,
     rate = 0.3,
     should_apply = function(self, card, center, area, bypass_roll)
-        if math.random(0,1) <= 0.3 and not (card.ability.set == "Planet") then
+        if card and math.random(0,1) <= 0.3 and not (card.ability.set == "Planet") then
             return G.GAME.modifiers.enable_unchangeable_in_shop
         end
     end,
