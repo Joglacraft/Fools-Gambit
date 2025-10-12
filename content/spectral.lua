@@ -11,6 +11,12 @@ SMODS.Consumable{
     can_repeat_soul = false,
     key = "soul",
     atlas = "Consumeables",
+    config = {
+        fg_data = {
+			is_alternate = true,
+			alternate_card = 'c_soul'
+		},
+    },
     pos = {x = 2, y = 2},
     soul_pos = {x = 6, y = 5},
     can_use = function (self, card)
