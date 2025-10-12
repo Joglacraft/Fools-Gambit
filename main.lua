@@ -54,6 +54,8 @@ local mod_contents = {
 	{path = 'seals', depencies = {}},
 	{path = 'misc', depencies = {}},
 	{path = 'decks', depencies = {}},
+	-- Compat entries
+	{path = 'compat/joker_display', depencies = {"JokerDisplay"}},
 }
 
 for k, v in ipairs(mod_contents) do -- Load this mod's files
@@ -61,7 +63,7 @@ for k, v in ipairs(mod_contents) do -- Load this mod's files
 	for _,vv in ipairs(v.depencies) do
 		if not next(SMODS.find_mod(vv)) then exists = false end
 	end
-	if exists then assert(SMODS.load_file('/content/'..v.path..'.lua'))() end
+	if exists then assert(SMODS.load_file('/src/'..v.path..'.lua'))() end
 end
 
 -- Pool flags
