@@ -119,7 +119,7 @@ function FG.FUNCS.alternate_enhancement(source,target,ref)
 	ref = ref or FG.ALTS.enhancement_equivalents
 	target = target or source
 	local enhancement = FG.FUNCS.get_alternate(FG.FUNCS.get_card_info(source).key,ref)
-	target:set_ability(G.P_CENTERS[enhancement])
+	if enhancement then target:set_ability(G.P_CENTERS[enhancement]) end
 end
 
 

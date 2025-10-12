@@ -464,7 +464,7 @@ return {
                     "restante",
                 }
             },
-            j_fg_summit = {
+            j_fg_mystic_summit = {
                 name = '¿Cumbre mística?',
                 text = {
                     "{C:red}-#2#{} descartes",
@@ -473,7 +473,7 @@ return {
                     "restantes",
                 }
             },
-            j_fg_loyalty = {
+            j_fg_loyalty_card = {
                 name = '¿Tarjeta de fidelización?',
                 text = {
                      "Cada {C:attention}#1#{} cartas",

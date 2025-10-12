@@ -3,6 +3,7 @@ return {
     extra_jokers = true,
     duplicated_jokers = false,
     alternate_sfx = false,
+    extended_tooltips = false,
     additional_title = true,
     s_version = {
         options = {"None", "2025 April Fools"},

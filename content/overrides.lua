@@ -48,7 +48,7 @@ end
 local start_run_ref = Game.start_run
 
 function Game:start_run(args)
-	start_run_ref(self,args)
+	local ret = start_run_ref(self,args)
 
 	-- Initialize FG's default data table
 	G.GAME.fg_data = {
@@ -86,6 +86,7 @@ function Game:start_run(args)
 		end
 	end
 	-- [ #end ]
+	return ret
 end
 
 
@@ -139,7 +140,7 @@ function create_UIBox_main_menu_buttons()
 		n=G.UIT.ROOT, config = {align = "cm",colour = G.C.CLEAR}, nodes={ 
 		{n=G.UIT.C, config={align = "bm"}, nodes={      
 			{n=G.UIT.R, config={align = "cm", padding = 0.2, r = 0.1, emboss = 0.1, colour = G.C.L_BLACK, mid = true}, nodes={
-			UIBox_button{id = 'main_menu_play', button = "setup_run", colour = G.C.PURPLE, minw = 3.65, minh = 1.55, label = {"Main menu"}, scale = text_scale*2, col = true},
+			UIBox_button{id = 'main_menu_play', button = "setup_run", colour = G.C.PURPLE, minw = 3.65, minh = 1.55, label = {FG.test.main_menu_button_text}, scale = text_scale*2, col = true},
 		}}}}}}
 	return t
 end
@@ -154,5 +155,16 @@ function Card:update(dt)
 	else
 		SMODS.Stickers['fg_alternate_mark']:apply(self,false)
 	end
+	return ret
+end
+
+local ref = Game.init_game_object
+
+function Game:init_game_object()
+	local ret = ref(self)
+	self.P_CENTERS['m_lucky'].config.fg_data = {
+		is_alternate = false,
+		alternate_card = 'm_fg_lucky'
+	}
 	return ret
 end

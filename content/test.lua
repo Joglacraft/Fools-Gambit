@@ -1,4 +1,6 @@
-FG.test = {}
+FG.test = {
+    main_menu_button_text = "Stuff"
+}
 
 function FG.test.toggle_unchangeable()
     if not G.jokers then

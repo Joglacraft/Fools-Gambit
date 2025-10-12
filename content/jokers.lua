@@ -263,7 +263,12 @@ SMODS.Joker {
 --Concert Ticket
 SMODS.Joker {
 	key = 'concert',
-	config = { extra = { item_amount = 15, item_amount2 = 0 } },
+	config = { 
+		fg_data = {
+			is_alternate = false,
+			alternate_card = 'j_fg_concertalt'
+		},
+		extra = { item_amount = 15, item_amount2 = 0 } },
 	loc_vars = function(self, info_queue, card)
 		return { vars = { card.ability.extra.item_amount, card.ability.extra.item_amount2 } }
 	end,
@@ -311,7 +316,12 @@ SMODS.Joker {
 
 SMODS.Joker {
 	key = 'concertalt',
-	config = {},
+	config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = 'j_fg_concert'
+		},
+	},
 	rarity = "fg_uncommon_alt",
 	atlas = 'newjokers',
 	pos = { x = 0, y = 0 },
@@ -348,8 +358,14 @@ SMODS.Joker {
 -- Delinquent
 SMODS.Joker {
 	key = 'delinquent',
-	rarity = "fg_uncommon_alt",
+	rarity = 2,
 	atlas = 'newjokers',
+	config = {
+		fg_data = {
+			is_alternate = false,
+			alternate_card = 'j_fg_delinquentalt'
+		},
+	},
 	pos = { x = 1, y = 0 },
 	cost = 7,
 	no_pool_flag = 'alternate_spawn',
@@ -384,7 +400,12 @@ SMODS.Joker {
 	key = 'delinquentalt',
 	rarity = "fg_uncommon_alt",
 	atlas = 'newjokers',
-	
+	config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = 'j_fg_delinquent'
+		},
+	},
 	pos = { x = 1, y = 0 },
 	cost = 8,
 	in_pool = function (self, args)
@@ -416,8 +437,13 @@ SMODS.Joker {
 --Disc Joker
 SMODS.Joker {
 	key = 'disc',
-	config = { extra = { chips = 25 } },
-	rarity = "fg_common_alt",
+	config = { 
+		fg_data = {
+			is_alternate = false,
+			alternate_card = 'j_fg_orchestral'
+		},
+		extra = { chips = 25 } },
+	rarity = 2,
 	atlas = 'newjokers',
 	pos = { x = 2, y = 0 }, -- read above
 	cost = 5,
@@ -448,7 +474,12 @@ SMODS.Joker {
 --Orchestral Joker
 SMODS.Joker {
 	key = 'orchestral',
-	config = { extra = { mult = 10 } },
+	config = { 
+		fg_data = {
+			is_alternate = true,
+			alternate_card = 'j_fg_disc'
+		},
+		extra = { mult = 10 } },
 	rarity = "fg_common_alt",
 	atlas = 'newjokers',
 	pos = { x = 3, y = 0 }, -- read above
@@ -480,11 +511,16 @@ SMODS.Joker {
 --Conductor
 SMODS.Joker {
 	key = 'conductor',
-	rarity = "fg_uncommon_alt",
+	rarity = 2,
 	atlas = 'newjokers',
 	pos = { x = 4, y = 0 }, -- read above
 	cost = 5,
-	config = { extra = { amount = 1 } },
+	config = { 
+		fg_data = {
+			is_alternate = false,
+			alternate_card = 'j_fg_conductoralt'
+		},
+		extra = { amount = 1 } },
 	loc_vars = function(self, info_queue, card)
 		return { vars = { card.ability.extra.amount } }
 	end,
@@ -529,7 +565,12 @@ SMODS.Joker {
 	pos = { x = 4, y = 0 }, -- read above
 	cost = 5,
 	
-	config = { extra = { amount = 2 } },
+	config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = 'j_fg_conductor'
+		},
+		extra = { amount = 2 } },
 	loc_vars = function(self, info_queue, card)
 		return { vars = { card.ability.extra.amount } }
 	end,
@@ -566,11 +607,16 @@ SMODS.Joker {
 -- Mango
 SMODS.Joker {
 	key = 'mango',
-	rarity = "fg_common_alt",
+	rarity = 2,
 	atlas = 'newjokers',
 	pos = { x = 8, y = 0 },
 	cost = 1,
-	config = { extra = { mult = 15, lessmult = 2.5 } },
+	config = {
+		fg_data = {
+			is_alternate = false,
+			alternate_card = 'j_fg_mango'
+		},
+		extra = { mult = 15, lessmult = 2.5 } },
 	in_pool = function (self, args)
 		if FG.config.extra_jokers and FG.FUNCS.allow_duplicate(self) and not G.GAME.pool_flags.alternate_spawn then return true else return false end
 	end,
@@ -610,7 +656,12 @@ SMODS.Joker {
 	key = 'mangoalt',
 	rarity = "fg_common_alt",
 	atlas = 'newjokers',
-	
+	config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = 'j_fg_mango'
+		},
+	},
 	in_pool = function (self, args)
 		if FG.config.extra_jokers and FG.FUNCS.allow_duplicate(self) and not G.GAME.pool_flags.alternate_spawn then return true else return false end
 	end,
@@ -2272,7 +2323,7 @@ SMODS.Joker {
 SMODS.Joker {
 	key = 'delayed_grat',
 	atlas = 'jokers_alt',
-	pos = { x = 3, y = 3 },
+	pos = { x = 4, y = 3 },
 	rarity = "fg_common_alt",
 	cost = 2,
 	config = {
@@ -2281,9 +2332,6 @@ SMODS.Joker {
 			alternate_card = "j_delayed_grat"
 		},
 		extra = {
-			mult_gain = 4,
-			mult = 0,
-			sold = 0
 		}
 	},
 	loc_vars = function(self, info_queue, card)
@@ -2296,19 +2344,7 @@ SMODS.Joker {
 	end,
 	blueprint_compat = true,
 	calculate = function(self, card, context)
-		if context.selling_card and not context.repetition and not context.blueprint then
-			if not string.find(FG.FUNCS.get_card_info(context.card).key,"j_") then return end
-			card.ability.extra.sold = card.ability.extra.sold + 1
-			card.ability.extra.mult = card.ability.extra.mult_gain * card.ability.extra.sold
-			return {
-				message = "+"..card.ability.extra.mult_gain.." Mult"
-			}
-		end
-		if context.joker_main then
-			return {
-				mult = card.ability.extra.mult
-			}
-		end
+		if context.end_of_round and G.GAME.current_round.discards == 1 then return {dollars = 5} end
 	end
 }
 -- Egg
@@ -4171,7 +4207,7 @@ SMODS.Joker{
     key = "seeing_double",
     atlas = "jokers_alt",
     pos = { x = 4, y = 4 },
-    rarity = "fg_common_alt",
+    rarity = "fg_uncommon_alt",
     cost = 5,
     
      -- Custom logic for spawning
@@ -4201,7 +4237,7 @@ SMODS.Joker{
 				if FG.FUNCS.get_card_info(v).suit == "Clubs" or FG.FUNCS.get_card_info(v).key == "m_wild" then has_clubs = true end
 				if FG.FUNCS.get_card_info(v).suit ~= "Clubs" or FG.FUNCS.get_card_info(v).key == "m_wild" then has_other = true end
 			end
-			if has_clubs and has_other then return true else return false end
+			return has_clubs and has_other
 		end
 		if context.joker_main and check() then return {xmult = card.ability.extra.xmult} end
 		if context.after and check() then
