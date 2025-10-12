@@ -211,15 +211,16 @@ SMODS.Consumable{
         }
     },
     loc_vars = function (self, info_queue, card)
-        if not G.hand then return end
-        for _,v in ipairs(G.hand.highlighted) do
-            info_queue[#info_queue+1] = G.P_CENTERS[v.ability and v.ability.fg_data and v.ability.fg_data.alternate_card]
-        end
-        return {
+        local ret = {
             vars = {
                 card.ability.extra.max_highllight
             }
         }
+        if not G.hand then return ret end
+        for _,v in ipairs(G.hand.highlighted) do
+            info_queue[#info_queue+1] = G.P_CENTERS[v.ability and v.ability.fg_data and v.ability.fg_data.alternate_card]
+        end
+        return ret
     end,
     can_use = function(self, card)
         if #G.hand.highlighted > 0 and #G.hand.highlighted <= card.ability.extra.max_highllight then
