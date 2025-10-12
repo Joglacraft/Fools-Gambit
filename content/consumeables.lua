@@ -196,7 +196,6 @@ SMODS.Consumable{
     use = function(self, card, area, copier) return tonal_use({self,card,area,copier},{area = "consumeables"}) end
 }
 
-if FG.config.debug_mode then
 SMODS.Consumable{
     key = "accelerando",
     set = "aberration",
@@ -207,11 +206,32 @@ SMODS.Consumable{
             is_alternate = false,
             alternate_card = ""
         },
+        extra = {
+            max_highllight = 3
+        }
     },
+    loc_vars = function (self, info_queue, card)
+        if not G.hand then return end
+        for _,v in ipairs(G.hand.highlighted) do
+            info_queue[#info_queue+1] = G.P_CENTERS[v.ability and v.ability.fg_data and v.ability.fg_data.alternate_card]
+        end
+        return {
+            vars = {
+                card.ability.extra.max_highllight
+            }
+        }
+    end,
     can_use = function(self, card)
-        if #G.hand.highlighted > 0 and #G.hand.highlighted <= 3 then return true else return false end
+        if #G.hand.highlighted > 0 and #G.hand.highlighted <= card.ability.extra.max_highllight then
+            for _,v in ipairs(G.hand.highlighted) do
+                if FG.FUNCS.get_card_info(v).key ~= 'c_base' then return true end
+            end
+        end
     end,
     use = function(card, area, copier)
+        table.sort(G.hand.highlighted,function(a,b)
+            return a.T.x < b.T.x
+        end)
         local pitch = 0.9
         play_sound("tarot1")
         for k,v in pairs(G.hand.highlighted) do
@@ -249,7 +269,6 @@ SMODS.Consumable{
         end
     end
 }
-end
 
 SMODS.Consumable{
     key = "treble",

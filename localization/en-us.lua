@@ -18,7 +18,7 @@ return {
             c_fg_accelerando = {
                 name = "Accelerando",
                 text = {
-                    "Changes {C:attention}3{} selected cards",
+                    "Changes {C:attention}#1#{} selected cards",
                     "and turns their editions, seals and,",
                     "enhancements to their {C:purple}Alternate{} form",
                 }

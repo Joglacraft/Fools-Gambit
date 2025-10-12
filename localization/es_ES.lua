@@ -18,8 +18,8 @@ return {
             c_fg_accelerando = {
                 name = "Accelerando",
                 text = {
-                    "Selecciona hasta {C:attention}3{} cartas",
-                    "y alterna sus ediciones, sellos y mejoras"
+                    "Selecciona hasta {C:attention}#1#{} cartas y",
+                    "alterna sus ediciones, sellos y mejoras"
                 }
             },
             c_fg_treble = {

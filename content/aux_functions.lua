@@ -23,7 +23,9 @@ function FG.FUNCS.is_alternate(card) return (card and card.ability and card.abil
 ---@return string|boolean key The key of the alternate card, or `false` (boolean) if not found
 function FG.FUNCS.get_alternate(key,table)
 
-	if not table or type(table) ~= "table" then table = FG.FUNCS.full_search_alternate() end
+	for _,v in pairs(G.P_CENTERS) do
+		
+	end
 
 	local _passing = "k" 
 	--if FG.FUNCS.is_alternate(key,table) then _passing = "v" end
@@ -118,7 +120,7 @@ end
 function FG.FUNCS.alternate_enhancement(source,target,ref)
 	ref = ref or FG.ALTS.enhancement_equivalents
 	target = target or source
-	local enhancement = FG.FUNCS.get_alternate(FG.FUNCS.get_card_info(source).key,ref)
+	local enhancement = source.ability.fg_data.alternate_card
 	if enhancement then target:set_ability(G.P_CENTERS[enhancement]) end
 end
 

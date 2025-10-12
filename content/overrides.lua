@@ -161,6 +161,7 @@ end
 local ref = Game.init_game_object
 
 function Game:init_game_object()
+	-- Dealing with edge_cases
 	local ret = ref(self)
 	self.P_CENTERS['m_lucky'].config.fg_data = {
 		is_alternate = false,
