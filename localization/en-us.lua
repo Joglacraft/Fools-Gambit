@@ -497,7 +497,7 @@ return {
                     "{C:inactive}#2#",
                 }
             },
-            j_fg_8ball = {
+            j_fg_8_ball = {
                 name = '8 Ball?',
                 text = {
                     "Every {C:attention}#1#{} scored {C:attention}8{} creates a",

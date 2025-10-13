@@ -495,7 +495,7 @@ return {
                      "{C:inactive}(#2#)",
                 }
             },
-            j_fg_8ball = {
+            j_fg_8_ball = {
                 name = '¿Bola 8?',
                 text = {
                         "Cada {C:attention}8{} jugado crea una",
