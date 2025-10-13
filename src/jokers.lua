@@ -4838,15 +4838,21 @@ SMODS.Joker{
 			is_alternate = false,
 			alternate_card = "j_fg_jogla_alt"
 		}, extra = { duplicate = 2, name = "None"} },
+		update = function (self, card, dt)
+			if G.consumeables then
+				if G.consumeables.cards[1] then
+					card.ability.extra.name = G.consumeables.cards[1].config.center.name
+					card.ability.extra.name = localize{type = "name_text", set = G.consumeables.cards[1].ability.set, key = G.consumeables.cards[1].config.center.key}
+				else
+					card.ability.extra.name = "None"
+				end
+			end
+		end,
 		loc_vars = function(self, info_queue, card)
 			info_queue[#info_queue+1] = {key = 'e_negative_consumable', set = 'Edition', config = {extra = 1}}
 			if G.consumeables then
 				if G.consumeables.cards[1] then
-					card.ability.extra.name = G.consumeables.cards[1].config.center.name
 					info_queue[#info_queue+1] = G.consumeables.cards[1].config.center
-					card.ability.extra.name = localize{type = "name_text", set = G.consumeables.cards[1].ability.set, key = G.consumeables.cards[1].config.center.key}
-				else
-					card.ability.extra.name = "None"
 				end
 			end
 			return {
