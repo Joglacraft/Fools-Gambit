@@ -1517,42 +1517,6 @@ SMODS.Joker {
 		end
 	end
 }
-SMODS.Joker {
-	key = 'marble',
-	atlas = 'jokers_alt',
-	pos = { x = 3, y = 2 },
-	rarity = "fg_common_alt",
-	cost = 2,
-	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_marble"
-		},
-		extra = {
-			replace = 1
-		}
-	},
-	loc_vars = function(self, info_queue, card)
-		info_queue[#info_queue+1] = G.P_CENTERS.m_fg_stone
-	end,
-	blueprint_compat = true,
-	calculate = function(self, card, context)
-		if context.end_of_round and context.cardarea == G.jokers then
-			G.E_MANAGER:add_event(Event{
-				func = function ()
-					local chosen_card = pseudorandom("mila",1,#G.hand.cards)
-					G.hand.cards[chosen_card]:set_ability("m_fg_stone")
-					return true
-				end
-			})
-			G.E_MANAGER:add_event(Event{
-				trigger = 'after',
-				delay = 1,
-				func = function () return true end
-			})
-		end
-	end
-}
 -- Summit
 SMODS.Joker {
 	key = 'mystic_summit',
@@ -1590,6 +1554,43 @@ SMODS.Joker {
 				colour = G.C.MULT,
 				message = "+" .. card.ability.extra.mult
 			}
+		end
+	end
+}
+-- Marble
+SMODS.Joker {
+	key = 'marble',
+	atlas = 'jokers_alt',
+	pos = { x = 3, y = 2 },
+	rarity = "fg_common_alt",
+	cost = 2,
+	config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = "j_marble"
+		},
+		extra = {
+			replace = 1
+		}
+	},
+	loc_vars = function(self, info_queue, card)
+		info_queue[#info_queue+1] = G.P_CENTERS.m_fg_stone
+	end,
+	blueprint_compat = true,
+	calculate = function(self, card, context)
+		if context.end_of_round and context.cardarea == G.jokers then
+			G.E_MANAGER:add_event(Event{
+				func = function ()
+					local chosen_card = pseudorandom("mila",1,#G.hand.cards)
+					G.hand.cards[chosen_card]:set_ability("m_fg_stone")
+					return true
+				end
+			})
+			G.E_MANAGER:add_event(Event{
+				trigger = 'after',
+				delay = 1,
+				func = function () return true end
+			})
 		end
 	end
 }
@@ -1663,7 +1664,7 @@ SMODS.Joker {
 }
 -- 8 Ball
 SMODS.Joker {
-	key = '8ball',
+	key = '8_ball',
 	atlas = 'jokers_alt',
 	pos = { x = 0, y = 5 },
 	rarity = "fg_common_alt",
@@ -2003,6 +2004,49 @@ SMODS.Joker {
 		end
 	end
 }
+-- Abstract
+SMODS.Joker {
+	key = 'abstract',
+	atlas = 'jokers_alt',
+	pos = { x = 3, y = 3 },
+	rarity = "fg_common_alt",
+	cost = 2,
+	config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = "j_abstract"
+		},
+		extra = {
+			mult_gain = 4,
+			mult = 0,
+			sold = 0
+		}
+	},
+	loc_vars = function(self, info_queue, card)
+		return {
+			vars = {
+				card.ability.extra.mult_gain,
+				card.ability.extra.mult
+			}
+		}
+	end,
+	blueprint_compat = true,
+	calculate = function(self, card, context)
+		if context.selling_card and not context.repetition and not context.blueprint then
+			if not string.find(FG.FUNCS.get_card_info(context.card).key,"j_") then return end
+			card.ability.extra.sold = card.ability.extra.sold + 1
+			card.ability.extra.mult = card.ability.extra.mult_gain * card.ability.extra.sold
+			return {
+				message = "+"..card.ability.extra.mult_gain.." Mult"
+			}
+		end
+		if context.joker_main then
+			return {
+				mult = card.ability.extra.mult
+			}
+		end
+	end
+}
 -- Gros Michael
 SMODS.Joker{
 	key = "gros_michel",
@@ -2274,49 +2318,6 @@ SMODS.Joker{
 		end
 		if context.joker_main and card.ability.extra.mult > 0 then
 			return {mult = card.ability.extra.mult}
-		end
-	end
-}
--- Abstract
-SMODS.Joker {
-	key = 'abstract',
-	atlas = 'jokers_alt',
-	pos = { x = 3, y = 3 },
-	rarity = "fg_common_alt",
-	cost = 2,
-	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_abstract"
-		},
-		extra = {
-			mult_gain = 4,
-			mult = 0,
-			sold = 0
-		}
-	},
-	loc_vars = function(self, info_queue, card)
-		return {
-			vars = {
-				card.ability.extra.mult_gain,
-				card.ability.extra.mult
-			}
-		}
-	end,
-	blueprint_compat = true,
-	calculate = function(self, card, context)
-		if context.selling_card and not context.repetition and not context.blueprint then
-			if not string.find(FG.FUNCS.get_card_info(context.card).key,"j_") then return end
-			card.ability.extra.sold = card.ability.extra.sold + 1
-			card.ability.extra.mult = card.ability.extra.mult_gain * card.ability.extra.sold
-			return {
-				message = "+"..card.ability.extra.mult_gain.." Mult"
-			}
-		end
-		if context.joker_main then
-			return {
-				mult = card.ability.extra.mult
-			}
 		end
 	end
 }
