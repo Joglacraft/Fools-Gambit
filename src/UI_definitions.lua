@@ -250,7 +250,7 @@ G.FUNCS.FG_credits = function (e,page,from_callback)
 							minh = 0.5,
 							scale = 0.35,
 							button = "FG_link_website",
-							ref_table = "https://github.com/jenkuuuuuu/Fools-Gambit"
+							ref_table = "https://github.com/Joglacraft/Fools-Gambit"
 						}
 					}},
 					{n = G.UIT.R, config = {padding = 0.05, align = "cm"}, nodes = {
