@@ -37,28 +37,33 @@ G.C.FG_ORIGINAL = HEX('FE5F55')
 -- This is in preparation for file splitting. I'll do that later. - Jogla
 -- im splitting jokers and stuff into sections to make this easier later - jenku
 local mod_contents = {
-	"special_editions/sendien",
-	"aux_functions",
-	"overrides",
-	"jokers",
-	"editions",
-	"consumeables",
-	"booster_packs",
-	"rarities",
-	"vouchers",
-	"enhancements",
-	"UI_definitions",
-	"test",
-	"special_editions/mila",
-	"tarots",
-	"spectral",
-	"seals", -- WIP, SMODS is acting rather silly now
-	"misc",
-	"decks"
+	{path = 'special_editions/sendien', depencies = {}},
+	{path = 'aux_functions', depencies = {}},
+	{path = 'overrides', depencies = {}},
+	{path = 'jokers', depencies = {}},
+	{path = 'editions', depencies = {}},
+	{path = 'consumeables', depencies = {}},
+	{path = 'booster_packs', depencies = {}},
+	{path = 'rarities', depencies = {}},
+	{path = 'vouchers', depencies = {}},
+	{path = 'enhancements', depencies = {}},
+	{path = 'UI_definitions', depencies = {}},
+	{path = 'test', depencies = {}},
+	{path = 'special_editions/mila', depencies = {}},
+	{path = 'tarots', depencies = {}},
+	{path = 'seals', depencies = {}},
+	{path = 'misc', depencies = {}},
+	{path = 'decks', depencies = {}},
+	-- Compat entries
+	{path = 'compat/joker_display', depencies = {"JokerDisplay"}},
 }
 
-for k, v in pairs(mod_contents) do -- Load this mod's files
-	assert(SMODS.load_file('/content/'..v..'.lua'))()
+for k, v in ipairs(mod_contents) do -- Load this mod's files
+	local exists = true
+	for _,vv in ipairs(v.depencies) do
+		if not next(SMODS.find_mod(vv)) then exists = false end
+	end
+	if exists then assert(SMODS.load_file('/src/'..v.path..'.lua'))() end
 end
 
 -- Pool flags

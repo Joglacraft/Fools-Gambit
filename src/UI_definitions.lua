@@ -43,13 +43,13 @@ SMODS.current_mod.config_tab = function()
 		{n = G.UIT.R, nodes = {
 			{n = G.UIT.C, nodes = {
 				create_toggle{
-					label = FG.FUNCS.localize{"FG","config","alt_sfx"},
+					label = FG.FUNCS.localize{"FG","config","extended_tooltips"},
 					ref_table = FG.config,
-					ref_value = "alternate_sfx"
+					ref_value = "extended_tooltips"
 				},		
 			}},
 			{n = G.UIT.C, config = {align = "cm"}, nodes = {
-				{n = G.UIT.T, config = {text = FG.FUNCS.localize{"FG","config","misc","?"}, colour = G.C.GREY, scale = .4, tooltip = {text = FG.FUNCS.localize{"FG","config","alt_sfx_tooltip"}}}},
+				{n = G.UIT.T, config = {text = FG.FUNCS.localize{"FG","config","misc","?"}, colour = G.C.GREY, scale = .4, tooltip = {text = FG.FUNCS.localize{"FG","config","extended_tooltips_tooltip"}}}},
 			}},
 			{n = G.UIT.C, config = {minw = 0.1}}, -- Separator
 			{n = G.UIT.C, nodes = {

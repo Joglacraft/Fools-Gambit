@@ -18,7 +18,7 @@ return {
             c_fg_accelerando = {
                 name = "Accelerando",
                 text = {
-                    "Changes {C:attention}3{} selected cards",
+                    "Changes {C:attention}#1#{} selected cards",
                     "and turns their editions, seals and,",
                     "enhancements to their {C:purple}Alternate{} form",
                 }
@@ -479,7 +479,7 @@ return {
                     "after {C:attention}Blind{} is defeated"
                 }
             },
-            j_fg_summit = {
+            j_fg_mystic_summit = {
                 name = 'Mystic Summit?',
                 text = {
                     "{C:red}-#2#{} discards",
@@ -488,7 +488,7 @@ return {
                     "remaining",
                 }
             },
-            j_fg_loyalty = {
+            j_fg_loyalty_card = {
                 name = 'Loyalty Card?',
                 text = {
                     "Every {C:attention}#1#{} items",
@@ -598,6 +598,13 @@ return {
                     "each {C:attention}Joker{} card Sold",
                     "{C:inactive}(Currently {C:red}+#2#{C:inactive} Mult)",
                 },
+            },
+            j_fg_delayed_grat = {
+                name = 'Delayed gratification',
+                text = {
+                    "Earn {C:money}$5{} if {C:attention}1{} discard",
+                    "at end of round"
+                }
             },
             j_fg_egg = {
                 name = 'Egg?',
@@ -1447,6 +1454,11 @@ return {
                 "with custom ones",
                 " ",
                 "{C:red}Requires restart{}"
+            },
+            extended_tooltips = "Extended tooltips",
+            extended_tooltips_tooltip = {
+                "Displays alternate effects",
+                "effects in the info queue"
             },
             additional_title = "Additional title",
             additional_title_tooltip = {

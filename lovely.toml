@@ -25,3 +25,21 @@ end
 '''
 match_indent = false
 times = 1
+
+[[patches]]
+[patches.pattern]
+target = "functions/common_events.lua"
+pattern = '''
+    if full_UI_table.name then
+        full_UI_table.info[#full_UI_table.info+1] = {}
+        desc_nodes = full_UI_table.info[#full_UI_table.info]
+    end
+'''
+position = "after"
+payload = '''
+    if first_pass and FG.config.extended_tooltips and _c.config and _c.config.fg_data and _c.config.fg_data.alternate_card then
+        info_queue[#info_queue+1] = G.P_CENTERS[_c.config.fg_data.alternate_card]
+    end
+'''
+match_indent = false
+times = 1

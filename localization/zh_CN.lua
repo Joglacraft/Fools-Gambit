@@ -429,7 +429,7 @@ return {
                     "{C:chips}+#1#{}筹码",
                 }
             },
-            j_fg_summit = {
+            j_fg_mystic_summit = {
                 name = '神秘之峰？',
                 text = {
                     "{C:red}-#2#{} discards",
@@ -438,7 +438,7 @@ return {
                     "remaining",
                 }
             },
-            j_fg_loyalty = {
+            j_fg_loyalty_card = {
                 name = 'Loyalty Card?',
                 text = {
                      "Every {C:attention}#1#{} items",

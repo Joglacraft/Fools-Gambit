@@ -18,8 +18,8 @@ return {
             c_fg_accelerando = {
                 name = "Accelerando",
                 text = {
-                    "Selecciona hasta {C:attention}3{} cartas",
-                    "y alterna sus ediciones, sellos y mejoras"
+                    "Selecciona hasta {C:attention}#1#{} cartas y",
+                    "alterna sus ediciones, sellos y mejoras"
                 }
             },
             c_fg_treble = {
@@ -324,7 +324,8 @@ return {
                 text = {
                     "Gana {C:mult}+#1#{} multi por cada carta",
                     "con el palo de {C:diamonds}diamantes{}",
-                    "Se reinicia cuando se derrota la {C:attention}ciega jefe{}",
+                    "Se reinicia cuando se derrota",
+                    "la {C:attention}ciega jefe{}",
                     "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Multi)",
                 }
             },
@@ -333,7 +334,8 @@ return {
                 text = {
                     "Gana {C:mult}+#1#{} multi por cada carta",
                     "con el palo de {C:hearts}corazones{}",
-                    "Se reinicia cuando se derrota la {C:attention}ciega jefe{}",
+                    "Se reinicia cuando se derrota",
+                    "la {C:attention}ciega jefe{}",
                     "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Multi)",
                 }
             },
@@ -342,7 +344,8 @@ return {
                 text = {
                     "Gana {C:mult}+#1#{} multi por cada carta",
                     "con el palo de {C:spades}picas{}",
-                    "Se reinicia cuando se derrota la {C:attention}ciega jefe{}",
+                    "Se reinicia cuando se derrota",
+                    "la {C:attention}ciega jefe{}",
                     "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Multi)",
                 }
             },
@@ -351,7 +354,8 @@ return {
                 text = {
                     "Gana {C:mult}+#1#{} multi por cada carta",
                     "con el palo de {C:clubs}tréboles{}",
-                    "Se reinicia cuando se derrota la {C:attention}ciega jefe{}",
+                    "Se reinicia cuando se derrota",
+                    "la {C:attention}ciega jefe{}",
                     "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Multi)",
                 }
             },
@@ -359,8 +363,8 @@ return {
                 name = '¿Comodín contento?',
                 text = {
                     "{C:red}+#1#{} Multi",
-                    "Reactiva las cartas jugadas {C:attention}#3#{} vez",
-                    "si la mano contiene",
+                    "Reactiva las cartas jugadas",
+                    "{C:attention}#3#{} vez si la mano contiene",
                     "una {C:attention}#2#",
                }
             },
@@ -368,8 +372,8 @@ return {
                 name = '¿Comodín chiflado?',
                 text = {
                     "{C:red}+#1#{} Multi",
-                    "Reactiva las cartas jugadas {C:attention}#3#{} vez",
-                    "si la mano contiene",
+                    "Reactiva las cartas jugadas",
+                    "{C:attention}#3#{} vez si la mano contiene",
                     "un {C:attention}#2#",
                }
             },
@@ -377,8 +381,8 @@ return {
                 name = '¿Comodín demente?',
                 text = {
                     "{C:red}+#1#{} Multi",
-                    "Reactiva las cartas jugadas {C:attention}#3#{} vez",
-                    "si la mano contiene",
+                    "Reactiva las cartas jugadas",
+                    "{C:attention}#3#{} vez si la mano contiene",
                     "una {C:attention}#2#",
                }
             },
@@ -386,8 +390,8 @@ return {
                 name = '¿Comodín loco?',
                 text = {
                     "{C:red}+#1#{} Multi",
-                    "Reactiva las cartas jugadas {C:attention}#3#{} vez",
-                    "si la mano contiene",
+                    "Reactiva las cartas jugadas",
+                    "{C:attention}#3#{} vez si la mano contiene",
                     "una {C:attention}#2#",
                }
             },
@@ -395,8 +399,8 @@ return {
                 name = '¿Comodín gracioso?',
                 text = {
                     "{C:red}+#1#{} Multi",
-                    "Reactiva las cartas jugadas {C:attention}#3#{} vez",
-                    "si la mano contiene",
+                    "Reactiva las cartas jugadas",
+                    "{C:attention}#3#{} vez si la mano contiene",
                     "un {C:attention}#2#",
                }
             },
@@ -404,8 +408,8 @@ return {
                 name = '¿Comodín artero?',
                 text = {
                     "{C:chips}+#1#{} Fichas",
-                    "Reactiva las cartas jugadas {C:attention}#3#{} vez",
-                    "si la mano contiene",
+                    "Reactiva las cartas jugadas",
+                    "{C:attention}#3#{} vez si la mano contiene",
                     "una {C:attention}#2#",
                }
             },
@@ -413,8 +417,8 @@ return {
                 name = '¿Comodín taimado?',
                 text = {
                     "{C:chips}+#1#{} Fichas",
-                    "Reactiva las cartas jugadas {C:attention}#3#{} vez",
-                    "si la mano contiene",
+                    "Reactiva las cartas jugadas",
+                    "{C:attention}#3#{} vez si la mano contiene",
                     "un {C:attention}#2#",
                }
             },
@@ -422,8 +426,8 @@ return {
                 name = '¿Comodín astuto?',
                 text = {
                     "{C:chips}+#1#{} Fichas",
-                    "Reactiva las cartas jugadas {C:attention}#3#{} vez",
-                    "si la mano contiene",
+                    "Reactiva las cartas jugadas",
+                    "{C:attention}#3#{} vez si la mano contiene",
                     "una {C:attention}#2#",
                }
             },
@@ -431,8 +435,8 @@ return {
                 name = '¿Comodín ladino?',
                 text = {
                     "{C:chips}+#1#{} Fichas",
-                    "Reactiva las cartas jugadas {C:attention}#3#{} vez",
-                    "si la mano contiene",
+                    "Reactiva las cartas jugadas",
+                    "{C:attention}#3#{} vez si la mano contiene",
                     "una {C:attention}#2#",
                }
             },
@@ -440,12 +444,12 @@ return {
                 name = '¿Comodín mañoso?',
                 text = {
                     "{C:chips}+#1#{} Fichas",
-                    "Reactiva las cartas jugadas {C:attention}#3#{} vez",
-                    "si la mano contiene",
+                    "Reactiva las cartas jugadas",
+                    "{C:attention}#3#{} vez si la mano contiene",
                     "un {C:attention}#2#",
                }
             },
-            j_fg_dagger = {
+            j_fg_ceremonial = {
                 name = '¿Daga ceremonial?',
                 text = {
                     "Cuando se selecciona una {C:attention}ciega{},",
@@ -464,7 +468,16 @@ return {
                     "restante",
                 }
             },
-            j_fg_summit = {
+            j_fg_marble = {
+                name = '¿Comodín de mármol?',
+                text = {
+                    "Convierte una carta de la",
+                    "mano a una {C:attention}Carta de ¿Piedra?{}",
+                    "cuando se derrota a la",
+                    "{C:attention}ciega jefe{}"
+                }
+            },
+            j_fg_mystic_summit = {
                 name = '¿Cumbre mística?',
                 text = {
                     "{C:red}-#2#{} descartes",
@@ -473,7 +486,7 @@ return {
                     "restantes",
                 }
             },
-            j_fg_loyalty = {
+            j_fg_loyalty_card = {
                 name = '¿Tarjeta de fidelización?',
                 text = {
                      "Cada {C:attention}#1#{} cartas",
@@ -500,7 +513,7 @@ return {
                 name = '¿Puño en alto?',
                 text = {
                     "Añade {C:attention}la mitad{} del rango",
-                    "de la carta con el número más{C:attention}alto{}",
+                    "de la carta con la categoría más {C:attention}alta{}",
                     "en la mano como Multi",
                     '{C:inactive}Actualmente {C:mult}+#1#{C:inactive} multi{}'
                 }
@@ -552,7 +565,7 @@ return {
                 name = "¿Erudito?",
                 text = {
                     "{C:white,X:mult}X#1#{} Multi si la mano jugada",
-                    "contiene al menos {C:attention}#2#{} #3#es"
+                    "contiene al menos {C:attention}#2#{} Ases"
                 }
             },
             j_fg_business = {
@@ -685,6 +698,14 @@ return {
                     "de {C:attention}#2#{} cartas"
                 }
             },
+            j_fg_lucky_cat = {
+                name = "¿Gato de la suerte?",
+                text = {
+                    "Por cada carta de la {C:inactive}¿{C:attention}Suerte{C:inactive}?{}",
+                    "{C:green}1 en 4{} probabilidades de añadir {C:chips}+#1#{} Fichas,",
+                    "{C:mult}+#2#{} Multi y {C:money}+$#3#{} dependiendo de la versión"
+                }
+            },
             j_fg_duo = {
                 name = '¿El dúo?',
                 text = {
@@ -784,7 +805,7 @@ return {
             j_fg_campfire = {
                 name = "¿Fogata?",
                 text = {
-                    "Gana {C:white,X:mult}X#2#{} Multi por cada carta{C:attention}descartada{}",
+                    "Gana {C:white,X:mult}X#2#{} Multi por cada carta {C:attention}descartada{}",
                     "Pierde {C:white,X:mult}X#3#{} Multi cuando se derrota a la {C:attention}ciega jefe{}",
                     "{C:inactive}(Actualmente {C:white,X:mult}X#1#{C:inactive} Multi, no puede bajar más de {C:white,X:mult}X0.75{C:inactive} Multi)"
                 }
@@ -1088,6 +1109,22 @@ return {
                     "usar de inmediato."
                 }
             },
+            p_fg_aberration3 = {
+                name = 'Paquete melódico jumbo',
+                text = {
+                    "Elige {C:attention}#1#{} de hasta ",
+                    "{C:attention}#2#{} cartas de {C:purple}aberration{} para",
+                    "usar de inmediato."
+                },
+            },
+            p_fg_aberration4 = {
+                name = 'Mega paquete melódico',
+                text = {
+                    "Elige {C:attention}#1#{} de hasta ",
+                    "{C:attention}#2#{} cartas de {C:purple}aberration{} para",
+                    "usar de inmediato."
+                },
+            }
         },
         Planet={},
         Spectral={
@@ -1400,6 +1437,11 @@ return {
                 "balatro con unos personalizados",
                 " ",
                 "{C:red}Requiere reinicio{}"
+            },
+            extended_tooltips = "Info adicional",
+            extended_tooltips_tooltip = {
+                "Muestra los efectos alternativos",
+                "en la cola de información"
             },
             special_edition = "Edición especial",
             debug_mode = "Activar modo de desarollo",
