@@ -415,6 +415,11 @@ jd['j_fg_crafty'] = {
         card.joker_display_values.reps = reps
     end
 }
+jd['j_fg_half'] = {}
+jd['j_fg_stencil'] = {}
+jd['j_fg_four_fingers'] = {}
+jd['j_fg_mime'] = {}
+jd['j_fg_credit_card'] = {}
 jd['j_fg_ceremonial'] = {
     text = {
         {text = "+", colour = G.C.BLUE},
@@ -459,6 +464,7 @@ jd['j_fg_8_ball'] = {
 jd['j_fg_misprint'] = {
     -- TODO
 }
+jd['j_fg_dusk'] = {}
 jd['j_fg_raised_fist'] = {
     text = {
         {text = '+', colour = G.C.RED},
@@ -488,11 +494,13 @@ jd['j_fg_raised_fist'] = {
         end
     end
 }
+jd['j_fg_chaos'] = {}
 jd['j_fg_fibonacci'] = {
     reminder_text = {
         {text = '(Ace,2,3,5,8,King)'}
     }
 }
+jd['j_fg_steel_joker'] = {}
 jd['j_fg_scary_face'] = {
     text = {
         {text = "+", colour = G.C.BLUE},
@@ -522,35 +530,157 @@ jd['j_fg_abstract'] = {
         {ref_table = 'card.ability.extra', ref_value = 'mult', colour = G.C.RED}
     }
 }
-jd['j_fg_gros_michel'] = {}
-jd['j_fg_even_steven'] = {}
-jd['j_fg_odd_todd'] = {}
-jd['j_fg_business'] = {}
+jd['j_fg_delayed_grat'] = {}
+jd['j_fg_hack'] = {}
+jd['j_fg_pareidolia'] = {}
+jd['j_fg_gros_michel'] = {
+    text = {
+        {
+            border_nodes = {
+                {text = 'X'},
+                {ref_table = 'card.ability.extra', ref_value = 'xmult', retrigger_type = 'mult'}
+            },
+            border_colour = G.C.RED
+        },
+    },
+    extra = {
+        {
+            {text = '('},
+            {ref_table = 'G.GAME.probabilities', ref_value = 'normal', colour = G.C.GREEN},
+            {text = ' in ', colour = G.C.GREEN},
+            {ref_table = 'card.ability.extra', ref_value = 'max_chance', colour = G.C.GREEN},
+            {text = ')'}
+        }
+    },  
+    extra_config = {scale = 0.3, colour = G.C.GREY}
+}
+jd['j_fg_even_steven'] = {
+    text = {
+        {text = '+'},
+        {ref_table = 'card.ability.extra', ref_value = 'mult_t', retrigger_type = 'mult'}
+    },
+    text_config = {colour = G.C.RED},
+    reminder_text = {
+        {text = '(10,8,6,4,2)'}
+    }
+}
+jd['j_fg_odd_todd'] = {
+    text = {
+        {text = '+'},
+        {ref_table = 'card.ability.extra', ref_value = 'chips_t', retrigger_type = 'chips'}
+    },
+    text_config = {colour = G.C.BLUE},
+    reminder_text = {
+        {text = '(Ace,9,7,5,3)'}
+    }
+}
+jd['j_fg_scholar'] = {
+    text = {
+        {
+            border_nodes = {
+                {text = 'X'},
+                {ref_table = 'card.joker_display_values', ref_value = 'xmult'}
+            },
+            border_colour = G.C.RED
+        }
+    },
+    reminder_text = {
+        {text = '(Aces)'}
+    },
+    calc_function = function (card)
+        card.joker_display_values.xmult = 1
+        if G.play then
+            local c = 0
+            local text, _, scoring = JokerDisplay.evaluate_hand()
+            for _,v in ipairs(scoring) do
+                if FG.FUNCS.get_card_info(v).rank == 'Ace' then c = c + 1 end
+            end
+            if text ~= 'Unknown' then
+                card.joker_display_values.xmult = (c>=card.ability.extra.amount) and card.ability.extra.xmult or 1
+            end
+        end
+    end
+}
+jd['j_fg_business'] = {
+    reminder_text = {
+        {text = '(Face)'}
+    },
+    extra = {
+        {
+            {text = '(', colour = G.C.GREY},
+            {ref_table = 'G.GAME.probabilities', ref_value = 'normal'},
+            {text = ' in '},
+            {ref_table = 'card.ability.extra', ref_value = 'max_chance'},
+            {text = ')', colour = G.C.GREY},
+        }
+    },
+    extra_config = {colour = G.C.GREEN, scale = 0.3}
+}
 jd['j_fg_supernova'] = {}
-jd['j_fg_ride_the_bus'] = {}
-jd['j_fg_duo'] = {}
-jd['j_fg_trio'] = {}
-jd['j_fg_family'] = {}
-jd['j_fg_order'] = {}
-jd['j_fg_tribe'] = {}
+jd['j_fg_ride_the_bus'] = {
+    text = {
+        {text = '+'},
+        {ref_table = 'card.ability.extra', ref_value = 'mult'}
+    },
+    text_config = {colour = G.C.RED}
+}
+jd['j_fg_space'] = {}
 jd['j_fg_egg'] = {}
-jd['j_fg_ice_cream'] = {}
+jd['j_fg_burglar'] = {}
+jd['j_fg_blackboard'] = {}
+jd['j_fg_runner'] = {}
+jd['j_fg_ice_cream'] = {
+    text = {
+        {text = '+'},
+        {ref_table = 'card.ability.extra', ref_value = 'chips'}
+    },
+    text_config = {colour = G.C.BLUE}
+}
+jd['j_fg_constellation'] = {}
+jd['j_fg_hiker'] = {}
 jd['j_fg_faceless'] = {}
-jd['j_fg_baron'] = {}
+jd['j_fg_green_joker'] = {}
+jd['j_fg_superposition'] = {}
+jd['j_fg_todo_list'] = {}
+jd['j_fg_cavendish'] = {}
+jd['j_fg_card_sharp'] = {}
+jd['j_fg_red_card'] = {}
+jd['j_fg_madness'] = {}
+jd['j_fg_square'] = {}
+jd['j_fg_seance'] = {}
 jd['j_fg_riff_raff'] = {}
+jd['j_fg_vampire'] = {}
+jd['j_fg_shurtcut'] = {}
+jd['j_fg_hologram'] = {}
+jd['j_fg_vagabond'] = {}
+jd['j_fg_baron'] = {}
 jd['j_fg_cloud_9'] = {}
 jd['j_fg_rocket'] = {}
+jd['j_fg_obelisk'] = {}
+jd['j_fg_midas_mask'] = {}
+jd['j_fg_luchador'] = {}
+jd['j_fg_photograph'] = {}
 jd['j_fg_gift'] = {}
-jd['j_fg_erision'] = {}
+jd['j_fg_turtle_bean'] = {}
+jd['j_fg_erosion'] = {}
+jd['j_fg_reserved_parking'] = {}
+jd['j_fg_mail'] = {}
+jd['j_fg_to_the_moon'] = {}
+jd['j_fg_hallucination'] = {}
+jd['j_fg_fortune_teller'] = {}
 jd['j_fg_juggler'] = {}
 jd['j_fg_drunkard'] = {}
 jd['j_fg_stone'] = {}
+jd['j_fg_golden'] = {}
 jd['j_fg_lucky_cat'] = {}
-jd['j_fg_splash'] = {}
-jd['j_fg_cavendish'] = {}
-jd['j_fg_red_card'] = {}
+jd['j_fg_baseball_card'] = {}
+jd['j_fg_bull'] = {}
+jd['j_fg_diet_cola'] = {}
+jd['j_fg_trading'] = {}
+jd['j_fg_flash'] = {}
 jd['j_fg_popcorn'] = {}
-jd['j_fg_ramen'] = {}
+jd['j_fg_trouses'] = {}
+jd['j_fg_ancient'] = {}
 jd['j_fg_walkie_talkie'] = {}
 jd['j_fg_selzer'] = {
     reminder_text = {
@@ -560,41 +690,51 @@ jd['j_fg_selzer'] = {
     }
 }
 jd['j_fg_castle'] = {}
-jd['j_fg_campfire'] = {}
-jd['j_fg_acrobat'] = {}
-jd['j_fg_swashbuckler'] = {}
-jd['j_fg_change_of_pace'] = {}
-jd['j_fg_flipped_script'] = {}
-jd['j_fg_concert'] = {}
-jd['j_fg_delinquent'] = {}
-jd['j_fg_conductor'] = {}
-jd['j_fg_oscillator'] = {}
-jd['j_fg_mango'] = {}
-jd['j_fg_disc'] = {}
-jd['j_fg_orchestral'] = {}
-jd['j_fg_troubadour'] = {}
-jd['j_fg_throwback'] = {}
 jd['j_fg_smiley'] = {}
-jd['j_fg_fist'] = {}
+jd['j_fg_campfire'] = {}
+jd['j_fg_ticket'] = {}
+jd['j_fg_mr_bones'] = {}
+jd['j_fg_acrobat'] = {}
+jd['j_fg_sock_and_buskin'] = {}
+jd['j_fg_swashbuckler'] = {}
+jd['j_fg_troubadour'] = {}
+jd['j_fg_certificate'] = {}
+jd['j_fg_smeared'] = {}
+jd['j_fg_throwback'] = {}
 jd['j_fg_hanging_chad'] = {}
-jd['j_fg_gem'] = {}
+jd['j_fg_rough_gem'] = {}
 jd['j_fg_bloodstone'] = {}
 jd['j_fg_arrowhead'] = {}
-jd['j_fg_agate'] = {}
+jd['j_fg_onyx_agate'] = {}
+jd['j_fg_glass'] = {}
+jd['j_fg_showman'] = {}
 jd['j_fg_flower_pot'] = {}
-jd['j_fg_seeing_double'] = {}
-jd['j_fg_oops'] = {}
+jd['j_fg_blueprint'] = {}
 jd['j_fg_wee'] = {}
+jd['j_fg_merry_andy'] = {}
+jd['j_fg_oops'] = {}
+jd['j_fg_idol'] = {}
+jd['j_fg_seeing_double'] = {}
+jd['j_fg_matador'] = {}
 jd['j_fg_hit_the_road'] = {}
+jd['j_fg_duo'] = {}
+jd['j_fg_trio'] = {}
+jd['j_fg_family'] = {}
+jd['j_fg_order'] = {}
+jd['j_fg_tribe'] = {}
+jd['j_fg_stuntman'] = {}
 jd['j_fg_invisible'] = {}
-jd['j_fg_drivers_license'] = {}
+jd['j_fg_invisible_memory'] = {}
+jd['j_fg_brainstorm'] = {}
+jd['j_fg_astronomer'] = {}
+jd['j_fg_burnt'] = {}
 jd['j_fg_bootstraps'] = {}
+-- Legendaries
 jd['j_fg_caino'] = {}
 jd['j_fg_triboulet'] = {}
 jd['j_fg_yorick'] = {}
 jd['j_fg_chicot'] = {}
 jd['j_fg_perkeo'] = {}
-
 -- Collectives
 jd['j_fg_jogla'] = {
     text = {
