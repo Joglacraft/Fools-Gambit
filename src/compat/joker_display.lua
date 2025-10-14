@@ -638,24 +638,150 @@ jd['j_fg_ice_cream'] = {
 }
 jd['j_fg_constellation'] = {}
 jd['j_fg_hiker'] = {}
-jd['j_fg_faceless'] = {}
+jd['j_fg_faceless'] = {
+    text = {
+        {
+            border_nodes = {
+                {text = 'X'},
+                {ref_table = 'card.joker_display_values', ref_value = 'xmult', retrigger_type = 'exp'}
+            },
+            border_colour = G.C.RED
+        }
+    },
+    reminder_text = {
+        {text = '(No faces)'}
+    },
+    calc_function = function (card)
+        if not G.play then return end
+        local _, _, scoring = JokerDisplay.evaluate_hand()
+        local no_face = false
+        for _,v in ipairs(scoring) do
+            if FG.FUNCS.get_card_info(v).is_face then no_face = true end
+        end
+        card.joker_display_values.xmult = (not no_face and card.ability.extra.xmult) or 1
+    end
+}
 jd['j_fg_green_joker'] = {}
 jd['j_fg_superposition'] = {}
 jd['j_fg_todo_list'] = {}
-jd['j_fg_cavendish'] = {}
+jd['j_fg_cavendish'] = {
+    text = {
+        {
+            border_nodes = {
+                {text = 'X'},
+                {ref_table = 'card.ability.extra', ref_value = 'xmult'}
+            },
+            border_colour = G.C.RED
+        }
+    },
+    extra = {
+        {
+            {text = '('},
+            {ref_table = 'G.GAME.probabilities', ref_value = 'normal'},
+            {text = ' in '},
+            {ref_table = 'card.ability.extra', ref_value = 'xmult_c'},
+            {text = ')'}
+        }  
+    },
+    extra_config = {scale = 0.3, colour = G.C.GREEN}
+}
 jd['j_fg_card_sharp'] = {}
-jd['j_fg_red_card'] = {}
+jd['j_fg_red_card'] = {
+    text = {
+        {text = '+'},
+        {ref_table = 'card.ability.extra', ref_value = 'mult'}
+    },
+    text_config = {colour = G.C.RED}
+}
 jd['j_fg_madness'] = {}
 jd['j_fg_square'] = {}
 jd['j_fg_seance'] = {}
-jd['j_fg_riff_raff'] = {}
+jd['j_fg_riff_raff'] = {
+    extra = {
+        {
+            {text = '('},
+            {ref_table = 'G.GAME.probabilities', ref_value = 'normal'},
+            {text = ' in '},
+            {ref_table = 'card.ability.extra', ref_value = 'rare_chance'},
+            {text = ')'}
+        },
+        {
+            {text = '('},
+            {ref_table = 'G.GAME.probabilities', ref_value = 'normal'},
+            {text = ' in '},
+            {ref_table = 'card.ability.extra', ref_value = 'uncommon_chance'},
+            {text = ')'}
+        },
+    },
+    extra_config = {scale = 0.3, colour = G.C.GREEN}
+}
 jd['j_fg_vampire'] = {}
 jd['j_fg_shurtcut'] = {}
 jd['j_fg_hologram'] = {}
 jd['j_fg_vagabond'] = {}
-jd['j_fg_baron'] = {}
-jd['j_fg_cloud_9'] = {}
-jd['j_fg_rocket'] = {}
+jd['j_fg_baron'] = {
+    text = {
+        {
+            border_nodes = {
+                {text = 'X'},
+                {ref_table = 'card.ability.extra', ref_value = 'xmult'}
+            },
+            border_colour = G.C.RED
+        }
+    },
+    reminder_text = {
+        {text = '(Kings)'}
+    },
+    extra = {
+        {
+            {text = '(', colour = G.C.GREY},
+            {
+                border_nodes = {
+                    {text = '+X'},
+                    {ref_table = 'card.joker_display_values', ref_value = 'xmult_i'}
+                },
+                border_colour = G.C.RED
+            },
+            {text = ')', colour = G.C.GREY},
+        }
+    },
+    extra_config = {scale = 0.3},
+    calc_function = function (card)
+        if not next(G.hand.cards) then card.joker_display_values.xmult_i = 0 return end
+        local xmult_i = 0
+        for _, v in ipairs(G.hand.cards) do
+            if v.facing ~= 'front' then xmult_i = '???' break end
+            if FG.FUNCS.get_card_info(v).rank == 'King' and not v.highlighted then xmult_i = xmult_i + card.ability.extra.xmult_i end
+        end
+        card.joker_display_values.xmult_i = xmult_i
+    end
+}
+jd['j_fg_cloud_9'] = {
+    text = {
+        {ref_table = 'card.joker_display_values', ref_value = 'count'},
+        {text = 'x'},
+        {text = '$', colour = G.C.GOLD},
+        {ref_table = 'card.ability.extra', ref_value = 'dollars', colour = G.C.GOLD}
+    },
+    calc_function = function (card)
+        local count = 0
+        if G.play then
+            local _, _, scoring = JokerDisplay.evaluate_hand()
+            for _,v in ipairs(scoring) do
+                if FG.FUNCS.get_card_info(v).rank == '9' then count = count + JokerDisplay.calculate_card_triggers(v,scoring) end
+            end
+        end
+        card.joker_display_values.count = count
+    end
+
+}
+jd['j_fg_rocket'] = {
+    text = {
+        {text = '$'},
+        {ref_table = 'card.ability.extra', ref_value = 'payout'}
+    },
+    text_config = {colour = G.C.GOLD}
+}
 jd['j_fg_obelisk'] = {}
 jd['j_fg_midas_mask'] = {}
 jd['j_fg_luchador'] = {}

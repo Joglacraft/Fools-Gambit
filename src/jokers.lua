@@ -2480,7 +2480,63 @@ SMODS.Joker{
 		end
     end
 }
--- Joker
+-- Cavendish
+SMODS.Joker{
+	key = "cavendish",
+	atlas = "jokers_alt",
+	pos = { x = 5, y = 11},
+	yes_pool_flag = "fg_gros_michel_extinct",
+	
+	rarity = "fg_uncommon_alt",
+	config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = "j_cavendish"
+		},
+		extra = {
+			xmult = 10,
+			xmult_r = 1,
+			xmult_c = 6
+		}
+	},
+	loc_vars = function (self, info_queue, card)
+		return {
+			vars = {
+				card.ability.extra.xmult,
+				card.ability.extra.xmult_r,
+				G.GAME.probabilities.normal or 1,
+				card.ability.extra.xmult_c
+			}
+		}		
+	end,
+	blueprint_compat = true,
+	calculate = function (self, card, context)
+		if context.joker_main then return {xmult = card.ability.extra.xmult} end
+		if context.end_of_round and context.cardarea == G.jokers then
+			if FG.FUNCS.random_chance(card.ability.extra.xmult_c) then
+				card.ability.extra.xmult = card.ability.extra.xmult - card.ability.extra.xmult_r
+				FG.FUNCS.card_eval_status_text{
+					card = card,
+					message = "-X1",
+					mode = "literal",
+					colour = "red"
+				}
+			else
+				return {
+					message = "Safe!?"
+				}
+			end
+			if card.ability.extra.xmult <= 1 then
+				card:start_dissolve()
+				play_sound("tarot2",1.5,1)
+				return {
+					message = "Extint?!"
+				}
+			end	
+		end
+	end
+}
+-- Red card
 SMODS.Joker{
     key = "red_card",
     atlas = "jokers_alt",
@@ -2522,7 +2578,44 @@ SMODS.Joker{
 		if context.joker_main then return {mult = card.ability.extra.mult} end
     end
 }
--- Joker
+-- Riff-raff
+SMODS.Joker{
+    key = "riff_raff",
+    atlas = "jokers_alt",
+    pos = { x = 1, y = 12},
+    rarity = "fg_common_alt",
+    cost = 5,
+	
+     -- Custom logic for spawning
+    config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = "j_riff_raff",
+		},
+        fg_alternate = {}, -- Kept between alternations
+        extra = {
+			uncommon_chance = 3,
+			rare_chance = 6
+		}
+    },
+    loc_vars = function (self, info_queue, card)
+        return {
+            vars = {
+				G.GAME.probabilities.normal or 1,
+				card.ability.extra.uncommon_chance,
+				card.ability.extra.rare_chance
+			}
+        }
+    end,
+    blueprint_compat = true,
+    calculate = function (self, card, context)
+		if context.setting_blind then
+			if FG.FUNCS.random_chance(card.ability.extra.uncommon_chance) then SMODS.add_card{ set = "Joker", rarity = .9} end
+			if FG.FUNCS.random_chance(card.ability.extra.rare_chance) then SMODS.add_card{ set = "Joker", rarity = "fg_common_alt"} end
+		end
+    end
+}
+-- Baron
 SMODS.Joker{
     key = "baron",
     atlas = "jokers_alt",
@@ -2572,43 +2665,6 @@ SMODS.Joker{
 			end
 		end
 		if context.joker_main then return {xmult = card.ability.extra.xmult} end
-    end
-}
--- Riff-raff
-SMODS.Joker{
-    key = "riff_raff",
-    atlas = "jokers_alt",
-    pos = { x = 1, y = 12},
-    rarity = "fg_common_alt",
-    cost = 5,
-	
-     -- Custom logic for spawning
-    config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_riff_raff",
-		},
-        fg_alternate = {}, -- Kept between alternations
-        extra = {
-			uncommon_chance = 3,
-			rare_chance = 6
-		}
-    },
-    loc_vars = function (self, info_queue, card)
-        return {
-            vars = {
-				G.GAME.probabilities.normal or 1,
-				card.ability.extra.uncommon_chance,
-				card.ability.extra.rare_chance
-			}
-        }
-    end,
-    blueprint_compat = true,
-    calculate = function (self, card, context)
-		if context.setting_blind then
-			if FG.FUNCS.random_chance(card.ability.extra.uncommon_chance) then SMODS.add_card{ set = "Joker", rarity = .9} end
-			if FG.FUNCS.random_chance(card.ability.extra.rare_chance) then SMODS.add_card{ set = "Joker", rarity = "fg_common_alt"} end
-		end
     end
 }
 -- Joker
@@ -2954,63 +3010,6 @@ SMODS.Joker{
 	end
 }
 ]]
--- Cavendish
-SMODS.Joker{
-	key = "cavendish",
-	atlas = "jokers_alt",
-	pos = { x = 5, y = 11},
-	yes_pool_flag = "fg_gros_michel_extinct",
-	
-	rarity = "fg_uncommon_alt",
-	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_cavendish"
-		},
-		extra = {
-			xmult = 10,
-			xmult_r = 1,
-			xmult_c = 6
-		}
-	},
-	loc_vars = function (self, info_queue, card)
-		return {
-			vars = {
-				card.ability.extra.xmult,
-				card.ability.extra.xmult_r,
-				G.GAME.probabilities.normal or 1,
-				card.ability.extra.xmult_c
-			}
-		}		
-	end,
-	blueprint_compat = true,
-	calculate = function (self, card, context)
-		if context.joker_main then return {xmult = card.ability.extra.xmult} end
-		if context.end_of_round and context.cardarea == G.jokers then
-			if FG.FUNCS.random_chance(card.ability.extra.xmult_c) then
-				card.ability.extra.xmult = card.ability.extra.xmult - card.ability.extra.xmult_r
-				FG.FUNCS.card_eval_status_text{
-					card = card,
-					message = "-X1",
-					mode = "literal",
-					colour = "red"
-				}
-			else
-				return {
-					message = "Safe!?"
-				}
-			end
-			if card.ability.extra.xmult <= 1 then
-				card:start_dissolve()
-				play_sound("tarot2",1.5,1)
-				return {
-					message = "Extint?!"
-				}
-			end	
-		end
-	end
-}
-
 -- Duo
 SMODS.Joker {
 	key = 'duo',
