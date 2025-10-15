@@ -1473,7 +1473,11 @@ SMODS.Joker {
 		end
 	end
 }
---2nd page of collection
+-- Half
+-- Stencil
+-- Four fingers
+-- Mime
+-- Credit card
 -- Dagger
 SMODS.Joker {
 	key = 'ceremonial',
@@ -1779,7 +1783,6 @@ SMODS.Joker {
 	end
 }
 -- Missprint
-
 local function generateArrayMisprint(min, max) 
 	local mults = {}
 	for i = 1, 10 do
@@ -1855,8 +1858,8 @@ SMODS.Joker {
 		end
 	end
 }
+-- Dusk
 -- Fist
-
 SMODS.Joker {
     key = 'raised_fist',
     atlas = 'jokers_alt',
@@ -1888,7 +1891,7 @@ SMODS.Joker {
 		if context.joker_main then return {mult = card.ability.extra.mult} end
 	end
 }
-
+-- Chaos
 -- Fibonacci
 SMODS.Joker {
 	key = 'fibonacci',
@@ -2021,7 +2024,8 @@ SMODS.Joker {
 		end
 	end
 }
--- Face
+-- Steel
+-- Scary face
 SMODS.Joker {
 	key = 'scary_face',
 	atlas = 'jokers_alt',
@@ -2104,6 +2108,36 @@ SMODS.Joker {
 		end
 	end
 }
+-- Delayed grat
+SMODS.Joker {
+	key = 'delayed_grat',
+	atlas = 'jokers_alt',
+	pos = { x = 4, y = 3 },
+	rarity = "fg_common_alt",
+	cost = 2,
+	config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = "j_delayed_grat"
+		},
+		extra = {
+		}
+	},
+	loc_vars = function(self, info_queue, card)
+		return {
+			vars = {
+				card.ability.extra.mult_gain,
+				card.ability.extra.mult
+			}
+		}
+	end,
+	blueprint_compat = true,
+	calculate = function(self, card, context)
+		if context.end_of_round and G.GAME.current_round.discards == 1 then return {dollars = 5} end
+	end
+}
+-- Hack
+-- Pareidolia
 -- Gros Michael
 SMODS.Joker{
 	key = "gros_michel",
@@ -2323,8 +2357,7 @@ SMODS.Joker {
 	end
 }
 -- Supernova TBA
-
--- Ride the buss
+-- Ride the bus
 SMODS.Joker{
 	key = "ride_the_bus",
 	atlas = "jokers_alt",
@@ -2378,33 +2411,7 @@ SMODS.Joker{
 		end
 	end
 }
-SMODS.Joker {
-	key = 'delayed_grat',
-	atlas = 'jokers_alt',
-	pos = { x = 4, y = 3 },
-	rarity = "fg_common_alt",
-	cost = 2,
-	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_delayed_grat"
-		},
-		extra = {
-		}
-	},
-	loc_vars = function(self, info_queue, card)
-		return {
-			vars = {
-				card.ability.extra.mult_gain,
-				card.ability.extra.mult
-			}
-		}
-	end,
-	blueprint_compat = true,
-	calculate = function(self, card, context)
-		if context.end_of_round and G.GAME.current_round.discards == 1 then return {dollars = 5} end
-	end
-}
+-- Space
 -- Egg
 SMODS.Joker {
 	key = 'egg',
@@ -2444,6 +2451,9 @@ SMODS.Joker {
 		end
 	end
 }
+-- Burglar
+-- Blackboard
+-- Runner
 -- Ice cream
 SMODS.Joker{
     key = "ice_cream",
@@ -2498,7 +2508,13 @@ SMODS.Joker{
 		end
     end
 }
--- Joker
+-- DNA
+-- Splash
+-- Blue
+-- Sixth sense
+-- Constellation
+-- Hiker
+-- Faceless
 SMODS.Joker{
     key = "faceless",
     atlas = "jokers_alt",
@@ -2537,6 +2553,9 @@ SMODS.Joker{
 		end
     end
 }
+-- Green
+-- Superposition
+-- To do list
 -- Cavendish
 SMODS.Joker{
 	key = "cavendish",
@@ -2593,6 +2612,7 @@ SMODS.Joker{
 		end
 	end
 }
+-- Card sharp
 -- Red card
 SMODS.Joker{
     key = "red_card",
@@ -2635,6 +2655,9 @@ SMODS.Joker{
 		if context.joker_main then return {mult = card.ability.extra.mult} end
     end
 }
+-- Madness
+-- Square
+-- Seance
 -- Riff-raff
 SMODS.Joker{
     key = "riff_raff",
@@ -2672,6 +2695,10 @@ SMODS.Joker{
 		end
     end
 }
+-- Vampire
+-- Shortcut
+-- Hologram
+-- Vagabond
 -- Baron
 SMODS.Joker{
     key = "baron",
@@ -2724,7 +2751,7 @@ SMODS.Joker{
 		if context.joker_main then return {xmult = card.ability.extra.xmult} end
     end
 }
--- Joker
+-- Cloud 9
 SMODS.Joker{
     key = "cloud_9",
     atlas = "jokers_alt",
@@ -2757,7 +2784,7 @@ SMODS.Joker{
 		return card.ability.extra.dollars
 	end
 }
--- Joker
+-- Rocket
 SMODS.Joker{
     key = "rocket",
     atlas = "jokers_alt",
@@ -2801,7 +2828,11 @@ SMODS.Joker{
 		return card.ability.extra.payout
 	end
 }
--- Joker
+-- Obelisk
+-- Midas mask
+-- Luchador
+-- Photograph
+-- Gift card
 SMODS.Joker{
     key = "gift",
     atlas = "jokers_alt",
@@ -2840,6 +2871,7 @@ SMODS.Joker{
 		end
     end
 }
+-- Turtle bean
 -- Erosion
 SMODS.Joker{
     key = "erosion",
@@ -2873,6 +2905,11 @@ SMODS.Joker{
 		if context.joker_main and G.playing_cards and #G.playing_cards < card.ability.extra.max_cards then return {xmult = card.ability.extra.xmult} end
     end
 }
+-- Reserved parking
+-- Mail
+-- To the moon
+-- Hallucination
+-- Fortune teller
 -- Juggler
 SMODS.Joker{
     key = "juggler",
@@ -2945,6 +2982,7 @@ SMODS.Joker{
     end,
     blueprint_compat = false,
 }
+-- Stone
 SMODS.Joker{
     key = "stone",
     atlas = "jokers_alt",
@@ -2968,7 +3006,8 @@ SMODS.Joker{
 	end,
     blueprint_compat = false,
 }
-
+-- Golden
+-- Cat
 SMODS.Joker{
     key = "lucky_cat",
     atlas = "jokers_alt",
@@ -3046,507 +3085,12 @@ SMODS.Joker{
 	end,
     blueprint_compat = true,
 }
---[[-- Splash | does not work help
-SMODS.Joker{
-	key = "splash",
-	atlas = "jokers_alt",
-	pos = { x = 6, y = 10},
-	rarity = "fg_common_alt",
-	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_splash"
-		},
-	},
-	calculate = function (self, card, context)
-		if context.before and context.cardarea == G.play then
-			for i,v in ipairs(G.play.hand) do
-				SMODS.debuff_card(v,false)
-			end
-		end
-	end
-}
-]]
--- Duo
-SMODS.Joker {
-	key = 'duo',
-	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_duo"
-		},
-		type = 'Pair',
-		extra = {
-			Xmult_mod = 0.1,
-			Xmult = 1
-		}
-	},
-	loc_vars = function(self, info_queue, card)
-		return { vars = { card.ability.extra.Xmult_mod, localize(card.ability.type, 'poker_hands'), card.ability.extra.Xmult } }
-	end,
-	rarity = "fg_rare_alt",
-	atlas = 'jokers_alt',
-	
-	
-	pos = { x = 5, y = 4 },
-	cost = 2,
-	blueprint_compat = true,
-	calculate = function(self, card, context)
-		if context.before and context.cardarea == G.jokers and not context.repetition and not context.blueprint then
-			if (next(context.poker_hands[card.ability.type])) then
-				card.ability.extra.Xmult = card.ability.extra.Xmult + card.ability.extra.Xmult_mod
-				FG.FUNCS.card_eval_status_text{
-					card = card,
-					message = "Upgrade!",
-					mode = "literal"
-				}
-			end
-		end
-		if context.joker_main then
-			if card.ability.extra.Xmult > 0 then
-				return {
-					Xmult = card.ability.extra.Xmult
-				}
-			end
-		end
-	end
-}
--- Trio
-SMODS.Joker {
-	key = 'trio',
-	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_trio"
-		},
-		type = 'Three of a Kind',
-		extra = {
-			Xmult_mod = 0.15,
-			Xmult = 1
-		}
-	},
-	loc_vars = function(self, info_queue, card)
-		return { vars = { card.ability.extra.Xmult_mod, localize(card.ability.type, 'poker_hands'), card.ability.extra.Xmult } }
-	end,
-	rarity = "fg_rare_alt",
-	atlas = 'jokers_alt',
-	
-	
-	pos = { x = 6, y = 4 },
-	cost = 2,
-	blueprint_compat = true,
-	calculate = function(self, card, context)
-		if context.before and context.cardarea == G.jokers and not context.repetition and not context.blueprint then
-			if (next(context.poker_hands[card.ability.type])) then
-				card.ability.extra.Xmult = card.ability.extra.Xmult + card.ability.extra.Xmult_mod
-				FG.FUNCS.card_eval_status_text{
-					card = card,
-					message = "Upgrade!",
-					mode = "literal"
-				}
-			end
-		end
-		if context.joker_main then
-			if card.ability.extra.Xmult > 0 then
-				return {
-					Xmult = card.ability.extra.Xmult
-				}
-			end
-		end
-	end
-}
--- Family
-SMODS.Joker {
-	key = 'family',
-	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_family"
-		},
-		type = 'Four of a Kind',
-		extra = {
-			Xmult_mod = 0.2,
-			Xmult = 1
-		}
-	},
-	loc_vars = function(self, info_queue, card)
-		return { vars = { card.ability.extra.Xmult_mod, localize(card.ability.type, 'poker_hands'), card.ability.extra.Xmult } }
-	end,
-	rarity = "fg_rare_alt",
-	atlas = 'jokers_alt',
-	
-	
-	pos = { x = 7, y = 4 },
-	cost = 2,
-	blueprint_compat = true,
-	calculate = function(self, card, context)
-		if context.before and context.cardarea == G.jokers and not context.repetition and not context.blueprint then
-			if (next(context.poker_hands[card.ability.type])) then
-				card.ability.extra.Xmult = card.ability.extra.Xmult + card.ability.extra.Xmult_mod
-				FG.FUNCS.card_eval_status_text{
-					card = card,
-					message = "Upgrade!",
-					mode = "literal"
-				}
-			end
-		end
-		if context.joker_main then
-			if card.ability.extra.Xmult > 0 then
-				return {
-					Xmult = card.ability.extra.Xmult
-				}
-			end
-		end
-	end
-}
--- Order
-SMODS.Joker {
-	key = 'order',
-	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_order"
-		},
-		type = 'Straight',
-		extra = {
-			Xmult_mod = 0.15,
-			Xmult = 1
-		}
-	},
-	loc_vars = function(self, info_queue, card)
-		return { vars = { card.ability.extra.Xmult_mod, localize(card.ability.type, 'poker_hands'), card.ability.extra.Xmult } }
-	end,
-	rarity = "fg_rare_alt",
-	atlas = 'jokers_alt',
-	pos = { x = 8, y = 4 },
-	cost = 2,
-	blueprint_compat = true,
-	calculate = function(self, card, context)
-		if context.before and context.cardarea == G.jokers and not context.repetition and not context.blueprint then
-			if (next(context.poker_hands[card.ability.type])) then
-				card.ability.extra.Xmult = card.ability.extra.Xmult + card.ability.extra.Xmult_mod
-				FG.FUNCS.card_eval_status_text{
-					card = card,
-					message = "Upgrade!",
-					mode = "literal"
-				}
-			end
-		end
-		if context.joker_main then
-			if card.ability.extra.Xmult > 0 then
-				return {
-					Xmult = card.ability.extra.Xmult
-				}
-			end
-		end
-	end
-}
--- Tribe
-SMODS.Joker{
-    key = "tribe",
-    atlas = "jokers_alt",
-    pos = { x = 9, y = 4},
-    rarity = "fg_rare_alt",
-    cost = 7,
-    
-     -- Custom logic for spawning
-    config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_tribe"
-		},
-        fg_alternate = {}, -- Kept between alternations
-        extra = {
-			xmult = 12
-		}
-    },
-    loc_vars = function (self, info_queue, card)
-        return {
-            vars = {
-				card.ability.extra.xmult
-			}
-        }
-    end,
-    blueprint_compat = true,
-    calculate = function (self, card, context)
-		if context.joker_main then
-			-- WHAT THE FUCK IS THIS
-			-- DON'T TOUCH. i DON'T KNOW HOW I MADE IT WORK
-			-- ASK ERNESTO IF YOU WANT TO KNOW IDK
-			local cards = {}
-			local suit = true -- True means wild card
-			for i,v in ipairs(context.scoring_hand) do
-				if FG.FUNCS.get_card_info(v).rank ~= "Queen" then return end
-				if FG.FUNCS.get_card_info(v).key ~= "m_wild" then cards[i] = FG.FUNCS.get_card_info(v).suit else cards[i] = true end
-			end
-			if #cards ~= 5 then return end
-			for _,v in ipairs(cards) do
-				if v ~= true then
-					if suit ~= v and suit ~= true then return end
-					suit = v
-				end
-			end
-			return {xmult = card.ability.extra.xmult}
-		end
-    end
-}
-
---[[ Joker
-SMODS.Joker{
-    key = "ancient",
-    atlas = "jokers_alt",
-    pos = { x = 7, y = 15},
-    rarity = "fg_common_alt",
-    cost = 2,
-      
-     -- Custom logic for spawning
-    config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_ancient"
-		},
-        fg_alternate = {}, -- Kept between alternations
-        extra = {
-			xmult = 1,
-			xmult_i = 0.5,
-		}
-    },
-    loc_vars = function (self, info_queue, card)
-		local suit = pseudorandom_element(SMODS.Suits)
-		suit = suit.name or "Spades"
-        return {
-            vars = {
-				card.ability.extra.xmult,
-				card.ability.extra.xmult_i,
-				suit,
-				colours = {
-					G.C.SUITS.Spades
-				}
-			}
-        }
-    end,
-    blueprint_compat = true,
-    calculate = function (self, card, context)
-    end
-}]]
--- Acrobat
-SMODS.Joker{
-    key = "acrobat",
-    atlas = "jokers_alt",
-    pos = { x = 2, y = 1},
-    rarity = "fg_uncommon_alt",
-    cost = 6,
-    
-     -- Custom logic for spawning
-    config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_acrobat"
-		},
-        fg_alternate = {}, -- Kept between alternations
-        extra = {
-			xmult = 1,
-			xmult_i = 0.2,
-		}
-    },
-    loc_vars = function (self, info_queue, card)
-        return {
-            vars = {
-				card.ability.extra.xmult,
-				card.ability.extra.xmult_i,
-			}
-        }
-    end,
-    blueprint_compat = true,
-    calculate = function (self, card, context)
-		if context.end_of_round and not context.blueprint and context.cardarea == G.jokers and G.GAME.current_round.hands_left == G.GAME.round_resets.hands - 1 then
-			card.ability.extra.xmult = card.ability.extra.xmult + card.ability.extra.xmult_i
-			FG.FUNCS.card_eval_status_text{
-				card = card,
-				message = "Upgrade!",
-				mode = "literal"
-			}
-		end
-		if context.joker_main then return {xmult = card.ability.extra.xmult} end
-    end
-}
--- Campfire
-SMODS.Joker{
-    key = "campfire",
-    atlas = "jokers_alt",
-    pos = { x = 5, y = 15},
-    rarity = "fg_rare_alt",
-    cost = 6,
-    
-     -- Custom logic for spawning
-    config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_campfire"
-		},
-        fg_alternate = {}, -- Kept between alternations
-        extra = {
-			xmult = 1,
-			xmult_i = 0.04,
-			xmult_d = 0.6,
-			xmult_m = 0.75
-		}
-    },
-    loc_vars = function (self, info_queue, card)
-        return {
-            vars = {
-				card.ability.extra.xmult,
-				card.ability.extra.xmult_i,
-				card.ability.extra.xmult_d,
-				card.ability.extra.xmult_m
-			}
-        }
-    end,
-    blueprint_compat = true,
-    calculate = function (self, card, context)
-		if context.discard and not context.blueprint then
-			card.ability.extra.xmult = card.ability.extra.xmult + card.ability.extra.xmult_i
-			FG.FUNCS.card_eval_status_text{
-				card = card,
-				message = "+X"..card.ability.extra.xmult_i.." Mult",
-				mode = "literal",
-				colour = "mult"
-			}
-		end
-		if context.end_of_round and context.cardarea == G.jokers and G.GAME.blind.boss and not context.blueprint then
-			card.ability.extra.xmult = card.ability.extra.xmult - card.ability.extra.xmult_d
-			FG.FUNCS.card_eval_status_text{
-				card = card,
-				message = "-X"..card.ability.extra.xmult_d.." Mult",
-				mode = "literal",
-				colour = "mult"
-			}
-			if card.ability.extra.xmult < card.ability.extra.xmult_m then card.ability.extra.xmult = card.ability.extra.xmult_m end
-		end
-		if context.joker_main then return {xmult = card.ability.extra.xmult} end
-    end
-}
--- swashbuckler
-SMODS.Joker{
-	key = "swashbuckler",
-	rarity = "fg_common_alt",
-    cost = 2,
-	
-	
-	atlas = "jokers_alt",
-    pos = { x = 9, y = 5 },
-    config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_swashbuckler"
-		},
-		extra = {
-			sell_value = 1
-		}
-	},
-    loc_vars = function(self, info_queue, card)
-        return { vars = { card.ability.extra.sell_value } }
-    end,
-    calculate = function(self, card, context)
-		card.ability.extra.sell_value = card.sell_cost
-        if context.selling_self and not context.blueprint then
-            for _, area in ipairs({ G.jokers }) do
-            	for _, other_card in ipairs(area.cards) do
-                	if other_card.set_cost then
-                    	other_card.ability.extra_value = (other_card.ability.extra_value or 0) +
-                        	card.ability.extra.sell_value
-                    	other_card:set_cost()
-                	end
-            	end
-            end
-            return {
-            	message = localize('k_val_up'),
-            	colour = G.C.MONEY
-            }
-		end
-    end
-}
--- troubador
-SMODS.Joker{
-	key = "troubadour",
-	rarity = "fg_common_alt",
-    cost = 2,
-	
-	
-	atlas = "jokers_alt",
-	blueprint_compat = false,
-    pos = { x = 0, y = 2 },
-    config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_troubadour"
-		},
-		extra = {
-			h_size = -2,
-			h_plays = 1
-		}
-	},
-    loc_vars = function(self, info_queue, card)
-        return { vars = { card.ability.extra.h_size, card.ability.extra.h_plays } }
-    end,
-    add_to_deck = function(self, card, from_debuff)
-        G.GAME.round_resets.hands = G.GAME.round_resets.hands + card.ability.extra.h_plays
-        G.hand:change_size(card.ability.extra.h_size)
-    end,
-    remove_from_deck = function(self, card, from_debuff)
-        G.GAME.round_resets.hands = G.GAME.round_resets.hands - card.ability.extra.h_plays
-        G.hand:change_size(-card.ability.extra.h_size)
-    end
-}
--- Throwback
-SMODS.Joker{
-	key = "throwback",
-	
-	
-	atlas = "jokers_alt",
-	pos = { x = 5 , y = 7},
-	rarity = "fg_uncommon_alt",
-    cost = 2,
-	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_throwback"
-		},
-		extra = {
-			xmult = 1,
-			xmult_i = 0.35,
-			u_shop = false,
-		}
-	},
-	loc_vars = function (self, info_queue, card)
-		return {
-			vars = {
-				card.ability.extra.xmult,
-				card.ability.extra.xmult_i
-			}
-		}
-	end,
-	blueprint_compat = true,
-	calculate = function (self, card, context)
-		if context.end_of_round then card.ability.extra.u_shop = false and not context.blueprint end
-		if context.buying_card or context.open_booster then
-			card.ability.extra.u_shop = true
-		end
-		if context.ending_shop and not card.ability.extra.u_shop then
-			card.ability.extra.xmult = card.ability.extra.xmult + card.ability.extra.xmult_i
-			return {
-				message = "X"..card.ability.extra.xmult.."!"
-			}
-		end
-		if context.joker_main and card.ability.extra.xmult ~= 1 then
-			return {
-				xmult = card.ability.extra.xmult
-			}
-		end
-
-	end
-}
--- Joker
+-- Baseball
+-- Bull
+-- Cola
+-- Trading card
+-- Flash card
+-- Popcorn
 SMODS.Joker{
     key = "popcorn",
     atlas = "jokers_alt",
@@ -3600,6 +3144,7 @@ SMODS.Joker{
 		end
     end
 }
+-- Trouses
 --[[ Ancient
 SMODS.Joker{
 	key = "ancient",
@@ -3930,11 +3475,225 @@ SMODS.Joker{
 		if context.joker_main then return {mult = card.ability.extra.mult} end
     end
 }
+-- Campfire
+SMODS.Joker{
+    key = "campfire",
+    atlas = "jokers_alt",
+    pos = { x = 5, y = 15},
+    rarity = "fg_rare_alt",
+    cost = 6,
+    
+     -- Custom logic for spawning
+    config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = "j_campfire"
+		},
+        fg_alternate = {}, -- Kept between alternations
+        extra = {
+			xmult = 1,
+			xmult_i = 0.04,
+			xmult_d = 0.6,
+			xmult_m = 0.75
+		}
+    },
+    loc_vars = function (self, info_queue, card)
+        return {
+            vars = {
+				card.ability.extra.xmult,
+				card.ability.extra.xmult_i,
+				card.ability.extra.xmult_d,
+				card.ability.extra.xmult_m
+			}
+        }
+    end,
+    blueprint_compat = true,
+    calculate = function (self, card, context)
+		if context.discard and not context.blueprint then
+			card.ability.extra.xmult = card.ability.extra.xmult + card.ability.extra.xmult_i
+			FG.FUNCS.card_eval_status_text{
+				card = card,
+				message = "+X"..card.ability.extra.xmult_i.." Mult",
+				mode = "literal",
+				colour = "mult"
+			}
+		end
+		if context.end_of_round and context.cardarea == G.jokers and G.GAME.blind.boss and not context.blueprint then
+			card.ability.extra.xmult = card.ability.extra.xmult - card.ability.extra.xmult_d
+			FG.FUNCS.card_eval_status_text{
+				card = card,
+				message = "-X"..card.ability.extra.xmult_d.." Mult",
+				mode = "literal",
+				colour = "mult"
+			}
+			if card.ability.extra.xmult < card.ability.extra.xmult_m then card.ability.extra.xmult = card.ability.extra.xmult_m end
+		end
+		if context.joker_main then return {xmult = card.ability.extra.xmult} end
+    end
+}
+-- Ticket
+-- Mr. Bones
+-- Acrobat
+SMODS.Joker{
+    key = "acrobat",
+    atlas = "jokers_alt",
+    pos = { x = 2, y = 1},
+    rarity = "fg_uncommon_alt",
+    cost = 6,
+    
+     -- Custom logic for spawning
+    config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = "j_acrobat"
+		},
+        fg_alternate = {}, -- Kept between alternations
+        extra = {
+			xmult = 1,
+			xmult_i = 0.2,
+		}
+    },
+    loc_vars = function (self, info_queue, card)
+        return {
+            vars = {
+				card.ability.extra.xmult,
+				card.ability.extra.xmult_i,
+			}
+        }
+    end,
+    blueprint_compat = true,
+    calculate = function (self, card, context)
+		if context.end_of_round and not context.blueprint and context.cardarea == G.jokers and G.GAME.current_round.hands_left == G.GAME.round_resets.hands - 1 then
+			card.ability.extra.xmult = card.ability.extra.xmult + card.ability.extra.xmult_i
+			FG.FUNCS.card_eval_status_text{
+				card = card,
+				message = "Upgrade!",
+				mode = "literal"
+			}
+		end
+		if context.joker_main then return {xmult = card.ability.extra.xmult} end
+    end
+}
+-- Sock and Buskin
+-- swashbuckler
+SMODS.Joker{
+	key = "swashbuckler",
+	rarity = "fg_common_alt",
+    cost = 2,
+	atlas = "jokers_alt",
+    pos = { x = 9, y = 5 },
+    config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = "j_swashbuckler"
+		},
+		extra = {
+			sell_value = 1
+		}
+	},
+    loc_vars = function(self, info_queue, card)
+        return { vars = { card.ability.extra.sell_value } }
+    end,
+    calculate = function(self, card, context)
+		card.ability.extra.sell_value = card.sell_cost
+        if context.selling_self and not context.blueprint then
+            for _, area in ipairs({ G.jokers }) do
+            	for _, other_card in ipairs(area.cards) do
+                	if other_card.set_cost then
+                    	other_card.ability.extra_value = (other_card.ability.extra_value or 0) +
+                        	card.ability.extra.sell_value
+                    	other_card:set_cost()
+                	end
+            	end
+            end
+            return {
+            	message = localize('k_val_up'),
+            	colour = G.C.MONEY
+            }
+		end
+    end
+}
+-- troubador
+SMODS.Joker{
+	key = "troubadour",
+	rarity = "fg_common_alt",
+    cost = 2,
+	atlas = "jokers_alt",
+	blueprint_compat = false,
+    pos = { x = 0, y = 2 },
+    config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = "j_troubadour"
+		},
+		extra = {
+			h_size = -2,
+			h_plays = 1
+		}
+	},
+    loc_vars = function(self, info_queue, card)
+        return { vars = { card.ability.extra.h_size, card.ability.extra.h_plays } }
+    end,
+    add_to_deck = function(self, card, from_debuff)
+        G.GAME.round_resets.hands = G.GAME.round_resets.hands + card.ability.extra.h_plays
+        G.hand:change_size(card.ability.extra.h_size)
+    end,
+    remove_from_deck = function(self, card, from_debuff)
+        G.GAME.round_resets.hands = G.GAME.round_resets.hands - card.ability.extra.h_plays
+        G.hand:change_size(-card.ability.extra.h_size)
+    end
+}
+-- Certificate
+-- Smeared
+-- Throwback
+SMODS.Joker{
+	key = "throwback",
+	atlas = "jokers_alt",
+	pos = { x = 5 , y = 7},
+	rarity = "fg_uncommon_alt",
+    cost = 2,
+	config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = "j_throwback"
+		},
+		extra = {
+			xmult = 1,
+			xmult_i = 0.35,
+			u_shop = false,
+		}
+	},
+	loc_vars = function (self, info_queue, card)
+		return {
+			vars = {
+				card.ability.extra.xmult,
+				card.ability.extra.xmult_i
+			}
+		}
+	end,
+	blueprint_compat = true,
+	calculate = function (self, card, context)
+		if context.end_of_round then card.ability.extra.u_shop = false and not context.blueprint end
+		if context.buying_card or context.open_booster then
+			card.ability.extra.u_shop = true
+		end
+		if context.ending_shop and not card.ability.extra.u_shop then
+			card.ability.extra.xmult = card.ability.extra.xmult + card.ability.extra.xmult_i
+			return {
+				message = "X"..card.ability.extra.xmult.."!"
+			}
+		end
+		if context.joker_main and card.ability.extra.xmult ~= 1 then
+			return {
+				xmult = card.ability.extra.xmult
+			}
+		end
+
+	end
+}
 -- Hanging chad
 SMODS.Joker{
 	key = "hanging_chad",
-	
-	
 	atlas = "jokers_alt",
 	pos = { x = 9, y = 6},
 	rarity = "fg_rare_alt",
@@ -4204,11 +3963,13 @@ SMODS.Joker {
 		if context.joker_main then
 			return {
 				mult_mod = card.ability.extra.mult,
-				message = '+' .. card.ability.extra.mult .. ' Mult'
+				message = card.ability.extra.mult > 0 and ('+' .. card.ability.extra.mult .. ' Mult') or nil
 			}
 		end
 	end
 }
+-- Glass
+-- Showman
 -- Flower pot
 SMODS.Joker{
     key = "flower_pot",
@@ -4259,6 +4020,54 @@ SMODS.Joker{
 		if context.joker_main and check() then return {xmult = card.ability.extra.xmult} end
     end
 }
+-- Blueprint
+-- Wee
+-- Merry Andy
+-- oops all 6s
+SMODS.Joker {
+	key = 'oops',
+	rarity = "fg_uncommon_alt",
+	atlas = 'jokers_alt',
+	config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = "j_oops"
+		},
+		extra = {
+			den_gain = 1,
+			num_gain = 1,
+			den_rate = 8,
+			num_rate = 9
+		}
+	},
+	loc_vars = function(self, info_queue, card)
+		return { vars = { card.ability.extra.den_gain, card.ability.extra.num_gain, card.ability.extra.den_rate, card.ability.extra.num_rate } }
+	end,
+	
+	
+	pos = { x = 5, y = 6 },
+	cost = 2,
+	blueprint_compat = true,
+	calculate = function(self, card, context)
+		if context.pseudorandom_result and context.result then
+            card.ability.extra.num_gain = card.ability.extra.num_gain * card.ability.extra.num_rate
+            card.ability.extra.den_gain = card.ability.extra.den_gain * card.ability.extra.den_rate
+			return{
+				extra = {
+					message = "Multiplied!",
+					focus = card
+				}
+			}
+		end
+		if context.mod_probability and not context.blueprint then
+            return {
+                numerator = context.numerator * card.ability.extra.num_gain,
+                denominator = context.denominator * card.ability.extra.den_gain
+            }
+        end
+	end
+}
+-- Idol
 -- Seeing double
 SMODS.Joker{
     key = "seeing_double",
@@ -4305,7 +4114,7 @@ SMODS.Joker{
 		end
     end
 }
-
+-- Matador
 SMODS.Joker{
     key = "matador",
     atlas = "jokers_alt",
@@ -4354,50 +4163,6 @@ SMODS.Joker{
 		end
 	end
 }
---oops all 6s
-SMODS.Joker {
-	key = 'oops',
-	rarity = "fg_uncommon_alt",
-	atlas = 'jokers_alt',
-	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_oops"
-		},
-		extra = {
-			den_gain = 1,
-			num_gain = 1,
-			den_rate = 8,
-			num_rate = 9
-		}
-	},
-	loc_vars = function(self, info_queue, card)
-		return { vars = { card.ability.extra.den_gain, card.ability.extra.num_gain, card.ability.extra.den_rate, card.ability.extra.num_rate } }
-	end,
-	
-	
-	pos = { x = 5, y = 6 },
-	cost = 2,
-	blueprint_compat = true,
-	calculate = function(self, card, context)
-		if context.pseudorandom_result and context.result then
-            card.ability.extra.num_gain = card.ability.extra.num_gain * card.ability.extra.num_rate
-            card.ability.extra.den_gain = card.ability.extra.den_gain * card.ability.extra.den_rate
-			return{
-				extra = {
-					message = "Multiplied!",
-					focus = card
-				}
-			}
-		end
-		if context.mod_probability and not context.blueprint then
-            return {
-                numerator = context.numerator * card.ability.extra.num_gain,
-                denominator = context.denominator * card.ability.extra.den_gain
-            }
-        end
-	end
-}
 -- Hit the road
 SMODS.Joker{
     key = "hit_the_road",
@@ -4442,14 +4207,235 @@ SMODS.Joker{
 		if context.joker_main then return {xmult = card.ability.extra.xmult} end
     end
 }
-
+-- Duo
+SMODS.Joker {
+	key = 'duo',
+	config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = "j_duo"
+		},
+		type = 'Pair',
+		extra = {
+			Xmult_mod = 0.1,
+			Xmult = 1
+		}
+	},
+	loc_vars = function(self, info_queue, card)
+		return { vars = { card.ability.extra.Xmult_mod, localize(card.ability.type, 'poker_hands'), card.ability.extra.Xmult } }
+	end,
+	rarity = "fg_rare_alt",
+	atlas = 'jokers_alt',
+	
+	
+	pos = { x = 5, y = 4 },
+	cost = 2,
+	blueprint_compat = true,
+	calculate = function(self, card, context)
+		if context.before and context.cardarea == G.jokers and not context.repetition and not context.blueprint then
+			if (next(context.poker_hands[card.ability.type])) then
+				card.ability.extra.Xmult = card.ability.extra.Xmult + card.ability.extra.Xmult_mod
+				FG.FUNCS.card_eval_status_text{
+					card = card,
+					message = "Upgrade!",
+					mode = "literal"
+				}
+			end
+		end
+		if context.joker_main then
+			if card.ability.extra.Xmult > 0 then
+				return {
+					Xmult = card.ability.extra.Xmult
+				}
+			end
+		end
+	end
+}
+-- Trio
+SMODS.Joker {
+	key = 'trio',
+	config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = "j_trio"
+		},
+		type = 'Three of a Kind',
+		extra = {
+			Xmult_mod = 0.15,
+			Xmult = 1
+		}
+	},
+	loc_vars = function(self, info_queue, card)
+		return { vars = { card.ability.extra.Xmult_mod, localize(card.ability.type, 'poker_hands'), card.ability.extra.Xmult } }
+	end,
+	rarity = "fg_rare_alt",
+	atlas = 'jokers_alt',
+	
+	
+	pos = { x = 6, y = 4 },
+	cost = 2,
+	blueprint_compat = true,
+	calculate = function(self, card, context)
+		if context.before and context.cardarea == G.jokers and not context.repetition and not context.blueprint then
+			if (next(context.poker_hands[card.ability.type])) then
+				card.ability.extra.Xmult = card.ability.extra.Xmult + card.ability.extra.Xmult_mod
+				FG.FUNCS.card_eval_status_text{
+					card = card,
+					message = "Upgrade!",
+					mode = "literal"
+				}
+			end
+		end
+		if context.joker_main then
+			if card.ability.extra.Xmult > 0 then
+				return {
+					Xmult = card.ability.extra.Xmult
+				}
+			end
+		end
+	end
+}
+-- Family
+SMODS.Joker {
+	key = 'family',
+	config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = "j_family"
+		},
+		type = 'Four of a Kind',
+		extra = {
+			Xmult_mod = 0.2,
+			Xmult = 1
+		}
+	},
+	loc_vars = function(self, info_queue, card)
+		return { vars = { card.ability.extra.Xmult_mod, localize(card.ability.type, 'poker_hands'), card.ability.extra.Xmult } }
+	end,
+	rarity = "fg_rare_alt",
+	atlas = 'jokers_alt',
+	
+	
+	pos = { x = 7, y = 4 },
+	cost = 2,
+	blueprint_compat = true,
+	calculate = function(self, card, context)
+		if context.before and context.cardarea == G.jokers and not context.repetition and not context.blueprint then
+			if (next(context.poker_hands[card.ability.type])) then
+				card.ability.extra.Xmult = card.ability.extra.Xmult + card.ability.extra.Xmult_mod
+				FG.FUNCS.card_eval_status_text{
+					card = card,
+					message = "Upgrade!",
+					mode = "literal"
+				}
+			end
+		end
+		if context.joker_main then
+			if card.ability.extra.Xmult > 0 then
+				return {
+					Xmult = card.ability.extra.Xmult
+				}
+			end
+		end
+	end
+}
+-- Order
+SMODS.Joker {
+	key = 'order',
+	config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = "j_order"
+		},
+		type = 'Straight',
+		extra = {
+			Xmult_mod = 0.15,
+			Xmult = 1
+		}
+	},
+	loc_vars = function(self, info_queue, card)
+		return { vars = { card.ability.extra.Xmult_mod, localize(card.ability.type, 'poker_hands'), card.ability.extra.Xmult } }
+	end,
+	rarity = "fg_rare_alt",
+	atlas = 'jokers_alt',
+	pos = { x = 8, y = 4 },
+	cost = 2,
+	blueprint_compat = true,
+	calculate = function(self, card, context)
+		if context.before and context.cardarea == G.jokers and not context.repetition and not context.blueprint then
+			if (next(context.poker_hands[card.ability.type])) then
+				card.ability.extra.Xmult = card.ability.extra.Xmult + card.ability.extra.Xmult_mod
+				FG.FUNCS.card_eval_status_text{
+					card = card,
+					message = "Upgrade!",
+					mode = "literal"
+				}
+			end
+		end
+		if context.joker_main then
+			if card.ability.extra.Xmult > 0 then
+				return {
+					Xmult = card.ability.extra.Xmult
+				}
+			end
+		end
+	end
+}
+-- Tribe
+SMODS.Joker{
+    key = "tribe",
+    atlas = "jokers_alt",
+    pos = { x = 9, y = 4},
+    rarity = "fg_rare_alt",
+    cost = 7,
+    
+     -- Custom logic for spawning
+    config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = "j_tribe"
+		},
+        fg_alternate = {}, -- Kept between alternations
+        extra = {
+			xmult = 12
+		}
+    },
+    loc_vars = function (self, info_queue, card)
+        return {
+            vars = {
+				card.ability.extra.xmult
+			}
+        }
+    end,
+    blueprint_compat = true,
+    calculate = function (self, card, context)
+		if context.joker_main then
+			-- WHAT THE FUCK IS THIS
+			-- DON'T TOUCH. i DON'T KNOW HOW I MADE IT WORK
+			-- ASK ERNESTO IF YOU WANT TO KNOW IDK
+			local cards = {}
+			local suit = true -- True means wild card
+			for i,v in ipairs(context.scoring_hand) do
+				if FG.FUNCS.get_card_info(v).rank ~= "Queen" then return end
+				if FG.FUNCS.get_card_info(v).key ~= "m_wild" then cards[i] = FG.FUNCS.get_card_info(v).suit else cards[i] = true end
+			end
+			if #cards ~= 5 then return end
+			for _,v in ipairs(cards) do
+				if v ~= true then
+					if suit ~= v and suit ~= true then return end
+					suit = v
+				end
+			end
+			return {xmult = card.ability.extra.xmult}
+		end
+    end
+}
+-- Stuntman
 -- Invisible
-
 FG.cards.invisible = {
 	elegible_jokers = {},
 	selected = {}
 }
-
 SMODS.Joker{
 	key = "invisible",
 	config = {
@@ -4484,7 +4470,6 @@ SMODS.Joker{
 		end
 	end
 }
-
 SMODS.Joker{
 	key = "invisible_memory",
 	atlas = "jokers_alt",
@@ -4536,6 +4521,9 @@ SMODS.Joker{
 		end
 	end
 }
+-- Brainstorm
+-- Satellite
+-- Shoot the moon
 -- Driver's license
 SMODS.Joker{
     key = "drivers_license",
@@ -4579,7 +4567,9 @@ SMODS.Joker{
 		end
     end
 }
-
+-- Cartomancer
+-- Astronomer
+-- Burnt
 -- Bootstraps
 SMODS.Joker{
     key = "bootstraps",
@@ -4632,8 +4622,9 @@ SMODS.Joker{
 		if context.joker_main then return {mult = card.ability.extra.mult} end
     end
 }
-
--- Legendaries
+-----------------
+---Legendaries---
+-----------------
 -- Canio
 SMODS.Joker{
     key = "caino",

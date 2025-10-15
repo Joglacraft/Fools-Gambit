@@ -822,22 +822,143 @@ jd['j_fg_selzer'] = {
     }
 }
 jd['j_fg_castle'] = {}
-jd['j_fg_smiley'] = {}
-jd['j_fg_campfire'] = {}
+jd['j_fg_smiley'] = {
+    text = {
+        {text = '+'},
+        {ref_table = 'card.joker_display_values', ref_value = 'mult'}
+    },
+    text_config = {colour = G.C.RED},
+    reminder_text = {
+        {text = '(Faces)'}
+    },
+    calc_function = function (card)
+        card.joker_display_values.mult = card.ability.extra.mult
+        if not G.play or next(G.play.cards) then return end
+        local text,_,scoring = JokerDisplay.evaluate_hand()
+        if text ~= "Unknown" then
+            for _,v in pairs(scoring) do
+                if FG.FUNCS.get_card_info(v).is_face then
+                    card.joker_display_values.mult = card.joker_display_values.mult + JokerDisplay.calculate_card_triggers(v,scoring)*card.ability.extra.mult_i
+                end
+            end
+        end
+    end
+}
+jd['j_fg_campfire'] = {
+    text = {
+        {
+            border_nodes = {
+                {text = 'X'},
+                {ref_table = 'card.ability.extra',ref_value = 'xmult'}
+            },
+            border_colour = G.C.RED
+        }
+    }
+}
 jd['j_fg_ticket'] = {}
 jd['j_fg_mr_bones'] = {}
-jd['j_fg_acrobat'] = {}
+jd['j_fg_acrobat'] = {
+    text = {
+        {
+            border_nodes = {
+                {text = 'X'},
+                {ref_table = 'card.ability.extra',ref_value = 'xmult'}
+            },
+            border_colour = G.C.RED
+        }
+    }
+}
 jd['j_fg_sock_and_buskin'] = {}
 jd['j_fg_swashbuckler'] = {}
 jd['j_fg_troubadour'] = {}
 jd['j_fg_certificate'] = {}
 jd['j_fg_smeared'] = {}
-jd['j_fg_throwback'] = {}
-jd['j_fg_hanging_chad'] = {}
-jd['j_fg_rough_gem'] = {}
-jd['j_fg_bloodstone'] = {}
-jd['j_fg_arrowhead'] = {}
-jd['j_fg_onyx_agate'] = {}
+jd['j_fg_throwback'] = {
+    text = {
+        {
+            border_nodes = {
+                {text = 'X'},
+                {ref_table = 'card.ability.extra',ref_value = 'xmult'}
+            },
+            border_colour = G.C.RED
+        }
+    }
+}
+jd['j_fg_hanging_chad'] = {
+    text = {
+        {text = '('},
+        {ref_table = 'G.GAME.probabilities', ref_value = 'normal'},
+        {text = ' in '},
+        {ref_table = 'card.ability.extra', ref_value = 'enhancement_max'},
+        {text = ', '},
+        {ref_table = 'card.ability.extra', ref_value = 'seal_max'},
+        {text = ', '},
+        {ref_table = 'card.ability.extra', ref_value = 'edition_max'},
+        {text = ')'},
+    },
+    text_config = {colour = G.C.GREEN}
+}
+jd['j_fg_rough_gem'] = {
+    text = {
+        {text = '$'},
+        {ref_table = 'card.joker_display_values', ref_value = 'dollars'}
+    },
+    text_config = {colour = G.C.GOLD},
+    reminder_text = {
+        {text = '(Diamonds)'}
+    },
+    calc_function = function(card)
+        local give = true
+        local name, hands, scoring = JokerDisplay.evaluate_hand()
+        if name ~= 'Unknown' then
+            if hands['Flush'] and next(hands['Flush']) then
+                for _,v in ipairs(scoring) do
+                    if FG.FUNCS.get_card_info(v).suit ~= 'Diamonds' and FG.FUNCS.get_card_info(v).key ~= 'm_wild' then give = false end
+                end
+            else
+                give = false
+            end
+        else
+            card.joker_display_values.dollars = '???'
+        end
+        card.joker_display_values.dollars = give and card.ability.extra.dollars or 0
+    end
+}
+jd['j_fg_bloodstone'] = {
+    text = {
+        {
+            border_nodes = {
+                {text = 'X'},
+                {ref_table = 'card.ability.extra', ref_value = 'Xmult'}
+            },
+            border_colour = G.C.RED
+        },
+
+    },
+    reminder_text = {
+        {text = '(Hearts)'}
+    }
+}
+jd['j_fg_arrowhead'] = {
+    text = {
+        {text = '+'},
+        {ref_table = 'card.ability.extra', ref_value = 'chips'}
+    },
+    text_config = {colour = G.C.BLUE},
+    reminder_text = {
+        {text = '(Spades)'}
+    }
+}
+jd['j_fg_onyx_agate'] = {
+    text = {
+        {text = '+'},
+        {ref_table = 'card.ability.extra', ref_value = 'mult'}
+    },
+    text_config = {colour = G.C.RED},
+    reminder_text = {
+        {text = '(Hearts)'}
+    }
+}
 jd['j_fg_glass'] = {}
 jd['j_fg_showman'] = {}
 jd['j_fg_flower_pot'] = {}
@@ -848,15 +969,109 @@ jd['j_fg_oops'] = {}
 jd['j_fg_idol'] = {}
 jd['j_fg_seeing_double'] = {}
 jd['j_fg_matador'] = {}
-jd['j_fg_hit_the_road'] = {}
-jd['j_fg_duo'] = {}
-jd['j_fg_trio'] = {}
-jd['j_fg_family'] = {}
-jd['j_fg_order'] = {}
-jd['j_fg_tribe'] = {}
+jd['j_fg_hit_the_road'] = {
+    text = {
+        {
+            border_nodes = {
+                {text = 'X'},
+                {ref_table = 'card.ability.extra', ref_value = 'xmult'}
+            },
+            border_colour = G.C.RED
+        },
+
+    },
+    reminder_text = {
+        {text = '(Jacks)'}
+    }
+}
+jd['j_fg_duo'] = {
+    text = {
+        {
+            border_nodes = {
+                {text = 'X'},
+                {ref_table = 'card.ability.extra', ref_value = 'Xmult'}
+            },
+            border_colour = G.C.RED
+        },
+
+    },
+    reminder_text = {
+        {text = '(Pair)'}
+    }
+}
+jd['j_fg_trio'] = {
+    text = {
+        {
+            border_nodes = {
+                {text = 'X'},
+                {ref_table = 'card.ability.extra', ref_value = 'Xmult'}
+            },
+            border_colour = G.C.RED
+        },
+
+    },
+    reminder_text = {
+        {text = '(Three of a kind)'}
+    }
+}
+jd['j_fg_family'] = {
+    text = {
+        {
+            border_nodes = {
+                {text = 'X'},
+                {ref_table = 'card.ability.extra', ref_value = 'Xmult'}
+            },
+            border_colour = G.C.RED
+        },
+
+    },
+    reminder_text = {
+        {text = '(Four of a kind)'}
+    }
+}
+jd['j_fg_order'] = {
+    text = {
+        {
+            border_nodes = {
+                {text = 'X'},
+                {ref_table = 'card.ability.extra', ref_value = 'Xmult'}
+            },
+            border_colour = G.C.RED
+        },
+
+    },
+    reminder_text = {
+        {text = '(Straight)'}
+    }
+}
+jd['j_fg_tribe'] = {
+    text = {
+        {
+            border_nodes = {
+                {text = 'X'},
+                {ref_table = 'card.ability.extra', ref_value = 'Xmult'}
+            },
+            border_colour = G.C.RED
+        },
+
+    },
+    reminder_text = {
+        {text = '(Flush five, Queens)'}
+    }
+}
 jd['j_fg_stuntman'] = {}
 jd['j_fg_invisible'] = {}
-jd['j_fg_invisible_memory'] = {}
+jd['j_fg_invisible_memory'] = {
+    text = {
+        {ref_table = 'card.ability.extra', ref_value = 'copies', colour = G.C.ORANGE},
+        {text = 'x '},
+        {ref_table = 'card.ability.extra', ref_value = 'name', colour = G.C.ORANGE}
+    },
+    reminder_text = {
+        {ref_table = 'card.ability.extra', ref_value = 'rounds'},
+        {text = ' left'}
+    }
+}
 jd['j_fg_brainstorm'] = {}
 jd['j_fg_astronomer'] = {}
 jd['j_fg_burnt'] = {}
