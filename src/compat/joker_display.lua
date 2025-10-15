@@ -786,7 +786,13 @@ jd['j_fg_obelisk'] = {}
 jd['j_fg_midas_mask'] = {}
 jd['j_fg_luchador'] = {}
 jd['j_fg_photograph'] = {}
-jd['j_fg_gift'] = {}
+jd['j_fg_gift'] = {
+    text = {
+        {text = '$'},
+        {ref_table = 'card', ref_value = 'sell_cost'}
+    },
+    text_config = {colour = G.C.GOLD}
+}
 jd['j_fg_turtle_bean'] = {}
 jd['j_fg_erosion'] = {}
 jd['j_fg_reserved_parking'] = {}
