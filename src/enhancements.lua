@@ -8,6 +8,7 @@ FG.ALTS.enhancement_equivalents = {
 	m_lucky = "m_fg_lucky",
 	m_gold = "m_fg_gold"
 }
+
 FG.cards.steel = {-- Stores global card info.
 	mult = 1
 }
@@ -50,10 +51,10 @@ SMODS.Enhancement{
 	end,
 	calculate = function (self, card, context)
 		card.ability.bonus = 0
-		if FG.FUNCS.random_chance(card.ability.extra.grant_max) then
+		if FG.FUNCS.random_chance(card.ability.extra.grant_max, card) then
 			card.ability.bonus = card.ability.bonus + card.ability.extra.grant_amount
 		end
-		if FG.FUNCS.random_chance(card.ability.extra.remove_max) then
+		if FG.FUNCS.random_chance(card.ability.extra.remove_max, card) then
 			card.ability.bonus = card.ability.bonus - card.ability.extra.remove_amount
 		end
 	end
@@ -89,10 +90,10 @@ SMODS.Enhancement{
 	end,
 	calculate = function (self, card, context)
 		card.ability.mult = 0
-		if FG.FUNCS.random_chance(card.ability.extra.grant_max) then
+		if FG.FUNCS.random_chance(card.ability.extra.grant_max, card) then
 			card.ability.mult = card.ability.mult + card.ability.extra.grant_amount
 		end
-		if FG.FUNCS.random_chance(card.ability.extra.remove_max) then
+		if FG.FUNCS.random_chance(card.ability.extra.remove_max, card) then
 			card.ability.mult = card.ability.mult - card.ability.extra.remove_amount
 		end
 	end
@@ -364,10 +365,10 @@ SMODS.Enhancement:take_ownership('lucky',
 	end,
 	calculate = function (self, card, context)
 		card.ability.bonus = 0
-		if FG.FUNCS.random_chance(card.ability.extra.mult_max) then
+		if FG.FUNCS.random_chance(card.ability.extra.mult_max, card) then
 			card.ability.mult = card.ability.extra.mult
 		end
-		if FG.FUNCS.random_chance(card.ability.extra.money_max) then
+		if FG.FUNCS.random_chance(card.ability.extra.money_max, card) then
 			card.ability.p_dollars = card.ability.extra.money
 		else
 			card.ability.p_dollars = 0
@@ -404,10 +405,10 @@ SMODS.Enhancement{
 	end,
 	calculate = function (self, card, context)
 		card.ability.bonus = 0
-		if FG.FUNCS.random_chance(card.ability.extra.chips_max) then
+		if FG.FUNCS.random_chance(card.ability.extra.chips_max, card) then
 			card.ability.bonus = card.ability.extra.chips
 		end
-		if FG.FUNCS.random_chance(card.ability.extra.money_max) then
+		if FG.FUNCS.random_chance(card.ability.extra.money_max, card) then
 			card.ability.p_dollars = card.ability.extra.money
 		else
 			card.ability.p_dollars = 0

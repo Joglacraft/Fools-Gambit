@@ -260,12 +260,25 @@ return {
                     "{s:0.8}Disc Joker included",
                 },
             },
+            j_fg_discalt = {
+                name = "Disc Joker?",
+                text = {
+                    "Cards with {C:red}original{C:attention} enhancements",
+                    "each give {C:chips}+#1#{} Chips",
+                },
+            },
             j_fg_orchestral = {
                 name = "Orchestral Joker",
                 text = {
                     "{C:purple}Alternate{C:attention} Jokers",
                     "each give {C:mult}+#1#{} Mult",
-                    "{s:0.8}Orchestral Joker included",
+                },
+            },
+            j_fg_orchestralalt = {
+                name = "Orchestral Joker?",
+                text = {
+                    "Cards with {C:purple}alternate{C:attention} enhancements",
+                    "each give {C:mult}+#1#{} Mult",
                 },
             },
             j_fg_conductor = {
