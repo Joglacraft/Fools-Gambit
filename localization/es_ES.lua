@@ -1411,6 +1411,11 @@ return {
                 "Este mod esta actualmente en desarollo",
                 "Todo el contenido está sugeto a cambiar",
             },
+            labels = {
+                ['content'] = 'Contenido',
+                ['ui'] = 'Interfaz',
+                ['misc'] = "Misc"
+            },
             extra_jokers = "Comodines adicionales",
             extra_jokers_tooltip = {
                 "Hace que los comodines añadidos por Fool's Gambit",

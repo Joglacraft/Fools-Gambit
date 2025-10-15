@@ -1426,8 +1426,12 @@ return {
     FG = {
         config = {
             disclaimer = {
-                "This mod is currently in early beta",
-                "Everything is subject to change",
+                "This mod is currently in early beta. Everything is subject to change",
+            },
+            labels = {
+                ['content'] = 'Content',
+                ['ui'] = 'Interface',
+                ['misc'] = "Misc"
             },
             extra_jokers = "Additional jokers",
             extra_jokers_tooltip = {
@@ -1458,7 +1462,7 @@ return {
             extended_tooltips = "Extended tooltips",
             extended_tooltips_tooltip = {
                 "Displays alternate effects",
-                "effects in the info queue"
+                "in the info queue"
             },
             additional_title = "Additional title",
             additional_title_tooltip = {
