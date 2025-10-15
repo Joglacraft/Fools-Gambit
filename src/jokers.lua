@@ -440,7 +440,7 @@ SMODS.Joker {
 	config = { 
 		fg_data = {
 			is_alternate = false,
-			alternate_card = 'j_fg_orchestral'
+			alternate_card = 'j_fg_discalt'
 		},
 		extra = { chips = 25 } },
 	rarity = 2,
@@ -471,13 +471,40 @@ SMODS.Joker {
 		end
 	end
 }
+
+SMODS.Joker {
+	key = 'discalt',
+	config = { 
+		fg_data = {
+			is_alternate = true,
+			alternate_card = 'j_fg_disc'
+		},
+		extra = { chips = 10 } },
+	rarity = 2,
+	atlas = 'newjokers',
+	pos = { x = 2, y = 0 }, -- read above
+	cost = 5,
+	loc_vars = function(self, info_queue, card)
+		return { vars = { card.ability.extra.chips } }
+	end,
+	in_pool = function (self, args)
+		if FG.config.extra_jokers and FG.FUNCS.allow_duplicate(self) and not G.GAME.pool_flags.alternate_spawn then return true else return false end
+	end,
+	calculate = function(self, card, context)
+		if context.individual and context.cardarea == G.play then
+			if not G.P_CENTERS[FG.FUNCS.get_card_info(context.other_card).key].original_mod then
+				return {chips = card.ability.extra.chips}
+			end
+		end
+	end
+}
 --Orchestral Joker
 SMODS.Joker {
 	key = 'orchestral',
 	config = { 
 		fg_data = {
-			is_alternate = true,
-			alternate_card = 'j_fg_disc'
+			is_alternate = false,
+			alternate_card = 'j_fg_orchestralalt'
 		},
 		extra = { mult = 10 } },
 	rarity = "fg_common_alt",
@@ -505,6 +532,36 @@ SMODS.Joker {
 					colour = G.C.MULT
 				}
 			end
+		end
+	end
+}
+
+--Orchestral Joker
+SMODS.Joker {
+	key = 'orchestralalt',
+	config = { 
+		fg_data = {
+			is_alternate = true,
+			alternate_card = 'j_fg_orchestral'
+		},
+		extra = { mult = 5 } },
+	rarity = "fg_common_alt",
+	atlas = 'newjokers',
+	pos = { x = 3, y = 0 }, -- read above
+	cost = 5,
+	loc_vars = function(self, info_queue, card)
+		return { vars = { card.ability.extra.mult } }
+	end,
+	in_pool = function (self, args)
+		if FG.config.extra_jokers and FG.FUNCS.allow_duplicate(self) and not G.GAME.pool_flags.alternate_spawn then return true else return false end
+	end,
+	calculate = function(self, card, context)
+		if context.individual and context.cardarea == G.play then
+				if G.P_CENTERS[FG.FUNCS.get_card_info(context.other_card).key].original_mod then
+					if G.P_CENTERS[FG.FUNCS.get_card_info(context.other_card).key].original_mod.id == "foolsGambit" then
+					    return {mult = card.ability.extra.mult}
+					end
+				end
 		end
 	end
 }
@@ -2080,7 +2137,7 @@ SMODS.Joker{
 	calculate = function (self, card, context)
 		if context.joker_main then return {xmult = card.ability.extra.xmult} end
 		if context.end_of_round and context.cardarea == G.jokers then
-			if FG.FUNCS.random_chance(card.ability.extra.max_chance) then
+			if FG.FUNCS.random_chance(card.ability.extra.max_chance, card) then
 			play_sound("tarot2",1.5,1)
 			card:start_dissolve()
 			G.GAME.pool_flags.fg_gros_michel_extinct = true
@@ -2245,7 +2302,7 @@ SMODS.Joker {
 	calculate = function (self, card, context)
 		if context.after then
 			for _,v in ipairs(context.scoring_hand) do
-				if FG.FUNCS.get_card_info(v).is_face and FG.FUNCS.random_chance(card.ability.extra.max_chance) and FG.FUNCS.get_card_info(v).key == "c_base" then
+				if FG.FUNCS.get_card_info(v).is_face and FG.FUNCS.random_chance(card.ability.extra.max_chance, card) and FG.FUNCS.get_card_info(v).key == "c_base" then
 					G.E_MANAGER:add_event(Event({
 						trigger = "after",
 						delay = 0.2,
@@ -2946,7 +3003,7 @@ SMODS.Joker{
 	calculate = function (self, card, context)
 		if context.individual and context.cardarea == G.play then	
 			if FG.FUNCS.get_card_info(context.other_card).key == "m_fg_lucky" then
-				if FG.FUNCS.random_chance(card.ability.extra.chancemax) then
+				if FG.FUNCS.random_chance(card.ability.extra.chancemax, card) then
 					context.other_card.ability.extra.chips = context.other_card.ability.extra.chips + card.ability.extra.pluschips
 					context.other_card.ability.extra.money = context.other_card.ability.extra.money + card.ability.extra.plusmoney
 					return{
@@ -2966,7 +3023,7 @@ SMODS.Joker{
 				end
 			end
 			if FG.FUNCS.get_card_info(context.other_card).key == "m_lucky" then
-				if FG.FUNCS.random_chance(card.ability.extra.chancemax) then
+				if FG.FUNCS.random_chance(card.ability.extra.chancemax, card) then
 					context.other_card.ability.extra.mult = context.other_card.ability.extra.mult + card.ability.extra.plusmult
 					context.other_card.ability.extra.money = context.other_card.ability.extra.money + card.ability.extra.plusmoney
 					return{
@@ -3909,7 +3966,7 @@ SMODS.Joker{
 		if context.after and not context.blueprint then
 			for i,v in ipairs(context.scoring_hand) do
 				if FG.FUNCS.get_card_info(v).key == "c_base" then
-					if FG.FUNCS.random_chance(card.ability.extra.enhancement_max) then
+					if FG.FUNCS.random_chance(card.ability.extra.enhancement_max, card) then
 						G.E_MANAGER:add_event(Event({
 							trigger = "after",
 							delay = 0.2,
@@ -3924,7 +3981,7 @@ SMODS.Joker{
 						FG.FUNCS.card_eval_status_text{card = card, message = "Enhanced!", mode = "literal"}	
 					end
 				elseif not FG.FUNCS.get_card_info(v).seal then	
-					if FG.FUNCS.random_chance(card.ability.extra.seal_max) then	
+					if FG.FUNCS.random_chance(card.ability.extra.seal_max, card) then	
 						G.E_MANAGER:add_event(Event({
 							trigger = "after",
 							delay = 0.2,
@@ -3938,7 +3995,7 @@ SMODS.Joker{
 						FG.FUNCS.card_eval_status_text{card = card, message = "Seal!", mode = "literal"}
 					end
 				elseif not FG.FUNCS.get_card_info(v).edition then
-					if FG.FUNCS.random_chance(card.ability.extra.edition_max) then
+					if FG.FUNCS.random_chance(card.ability.extra.edition_max, card) then
 						G.E_MANAGER:add_event(Event({
 							trigger = "after",
 							delay = 0,2,
@@ -4247,6 +4304,55 @@ SMODS.Joker{
 			G.E_MANAGER:add_event(Event({trigger = "after", delay = 1, func = function() return true end}))
 		end
     end
+}
+
+SMODS.Joker{
+    key = "matador",
+    atlas = "jokers_alt",
+    pos = { x = 4, y = 5 },
+    rarity = "fg_uncommon_alt",
+    cost = 5,
+    
+     -- Custom logic for spawning
+    config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = "j_matador"
+		},
+        fg_alternate = {}, -- Kept between alternations
+        extra = {
+			money = 5,
+			availability = true
+		}
+    },
+    loc_vars = function (self, info_queue, card)
+        return {
+            vars = {
+				card.ability.extra.money
+			}
+        }
+    end,
+    blueprint_compat = true,
+    calculate = function (self, card, context)
+		local extra = card.ability.extra
+		if context.setting_blind then
+			if context.blind.boss then
+			extra.availability = true
+			else
+				extra.availability = false
+			end
+		end
+        if context.debuffed_hand or context.joker_main then
+            if G.GAME.blind.triggered then
+				extra.availability = false
+            end
+        end
+    end,
+	calc_dollar_bonus = function (self, card)
+		if card.ability.extra.availability then
+		return card.ability.extra.money
+		end
+	end
 }
 --oops all 6s
 SMODS.Joker {

@@ -116,7 +116,7 @@ return {
                     "Gains {C:white,X:red}X#1#{} Mult for every",
                     "{C:attention}steel? card{} in {C:attention}full deck{}",
                     "Triggers while this card is",
-                    "held in hand.",
+                    "held in hand",
                     "{C:inactive}(Currently {C:white,X:red}X#2#{C:inactive} mult)"
                 }
             },
@@ -170,7 +170,7 @@ return {
                 text = {
                     "When held in hand, destroy this card and ",
                     "enhance adjacent non-enhanced cards to",
-                    "{C:attention}Stone? Cards{} with {C:chips}15 more Chips.",
+                    "{C:attention}Stone? Cards{} with {C:chips}15 more Chips",
                     "{C:inactive}(Currently {C:chips}+#2#{C:inactive} extra Chips)"
                 }
             },
@@ -189,14 +189,14 @@ return {
                 name = 'Change of Pace',
                 text = {
                     "After being sold, changes spawned {C:red}jokers{}",
-                    "to their {C:purple}Alternate{} forms."
+                    "to their {C:purple}Alternate{} forms"
                 }
             },
             j_fg_change_of_pace_alt = {
                 name = 'Change of Pace?',
                 text = {
                     "After being sold, changes spawned {C:purple}jokers{}",
-                    "to their {C:red}Original{} forms."
+                    "to their {C:red}Original{} forms"
                 }
             },
             j_fg_flipped_script = {
@@ -217,7 +217,7 @@ return {
                 name = 'Script Flipped',
                 text = {
                     "When sold, changes the edition of",
-                    "all other jokers to the opposite edition."
+                    "all other jokers to the opposite edition"
                 }
             },
             j_fg_delinquent = {
@@ -260,12 +260,25 @@ return {
                     "{s:0.8}Disc Joker included",
                 },
             },
+            j_fg_discalt = {
+                name = "Disc Joker?",
+                text = {
+                    "Cards with {C:red}original{C:attention} enhancements",
+                    "each give {C:chips}+#1#{} Chips",
+                },
+            },
             j_fg_orchestral = {
                 name = "Orchestral Joker",
                 text = {
                     "{C:purple}Alternate{C:attention} Jokers",
                     "each give {C:mult}+#1#{} Mult",
-                    "{s:0.8}Orchestral Joker included",
+                },
+            },
+            j_fg_orchestralalt = {
+                name = "Orchestral Joker?",
+                text = {
+                    "Cards with {C:purple}alternate{C:attention} enhancements",
+                    "each give {C:mult}+#1#{} Mult",
                 },
             },
             j_fg_conductor = {
@@ -319,6 +332,15 @@ return {
                 },
             },
             -- Normal jokers
+            j_fg_matador = {
+                name = "Matador?",
+                text = {
+                    "If the {C:attention}Boss Blind{} ability",
+                    "never gets triggered",
+                    "for the round,",
+                    "Earn {C:money}$#1#{}",
+                },
+            },
             j_fg_joker = {
                 name = 'Joker?',
                 text = {
@@ -609,7 +631,7 @@ return {
             j_fg_egg = {
                 name = 'Egg?',
                 text = {
-                    "Has {C:money}$#1#{} sell value.",
+                    "Has {C:money}$#1#{} sell value",
                     "when sold lose",
                     "{C:mult}#2#{} hand and {C:mult}#3#{} discard"
                 },
@@ -640,7 +662,7 @@ return {
                 text = {
                     "{C:white,X:mult}X#1#{} Mult",
                     "{C:green}#3# in #4#{} chance of losing",
-                    "{C:white,X:mult}X#2#{} Mult at end of round.",
+                    "{C:white,X:mult}X#2#{} Mult at end of round",
                     "Self-destruct on {C:white,X:mult}X1{} Mult"
                 }
             },
@@ -1036,7 +1058,7 @@ return {
                 name = 'deathmodereal',
                 text = {
                     "He's {X:black,C:white}cool(ish){}",
-                    '{X:mult,C:white}X#1#{} mult.',
+                    '{X:mult,C:white}X#1#{} mult',
                     "{C:inactive,s:0.7}(X2 required score for",
                     "{C:inactive,s:0.7}each hand played)"
                 },
@@ -1046,7 +1068,7 @@ return {
                 text = {
                     "He's {X:white,C:black}cool{}",
                     'each scored card gives',
-                    '{X:mult,C:white}X#1#{} mult.'
+                    '{X:mult,C:white}X#1#{} mult'
                 }
             },
             j_fg_jogla = {
@@ -1054,7 +1076,7 @@ return {
                 text = {
                     "Create {C:attention}#1# {C:dark_edition}Negative{} copies of",
                     "the {C:attention}leftmost{} consumable in possession",
-                    "at the end of the {C:attention}shop{}.",
+                    "at the end of the {C:attention}shop{}",
                     "{C:inactive}(Currently copying {C:attention}#2#{C:inactive})",
                     "{C:inactive,s:0.7}\"I am NOT a wizard\""
                 },
@@ -1071,7 +1093,7 @@ return {
                 name = 'Jenku',
                 text = {
                     "Retriggers every {C:attention}Joker{}",
-                    "for every second {C:attention}Boss Blind{} defeated.",
+                    "for every second {C:attention}Boss Blind{} defeated",
                     "starting at {C:mult}1{}",
                     "{C:inactive}(Currently {C:mult}#1#{}{C:inactive} time(s))",
                     "{C:inactive,s:0.7}\"Probably caused the most crashes.\""
@@ -1117,7 +1139,7 @@ return {
                 text = {
                     "Choose {C:attention}#1#{} of up to ",
                     "{C:attention}#2#{} {C:purple}aberration{} cards to",
-                    "be used immediately."
+                    "be used immediately"
                 },
             },
             p_fg_aberration2 = {
@@ -1125,7 +1147,7 @@ return {
                 text = {
                     "Choose {C:attention}#1#{} of up to ",
                     "{C:attention}#2#{} {C:purple}aberration{} cards to",
-                    "be used immediately."
+                    "be used immediately"
                 },
             },
             p_fg_aberration3 = {
@@ -1133,7 +1155,7 @@ return {
                 text = {
                     "Choose {C:attention}#1#{} of up to",
                     "{C:attention}#2#{} {C:purple}aberration{} cards to",
-                    "be used immediately."
+                    "be used immediately"
                 },
             },
             p_fg_aberration4 = {
@@ -1141,7 +1163,7 @@ return {
                 text = {
                     "Choose {C:attention}#1#{} of up to",
                     "{C:attention}#2#{} {C:purple}aberration{} cards to",
-                    "be used immediately."
+                    "be used immediately"
                 },
             }
         },
@@ -1591,7 +1613,7 @@ return {
             },
             fg_jogla_l1 = {
                 "I am sorry I",
-                "couldn't aid you."
+                "couldn't aid you"
             },
             fg_jogla_l2 = {
                 "What a terrible",

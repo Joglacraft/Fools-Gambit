@@ -972,7 +972,7 @@ SMODS.Consumable{
         local rarity = FG.FUNCS.get_card_info(G.jokers.cards[1]).rarity
         play_sound("tarot2")
         G.jokers.cards[1]:start_dissolve()
-        if FG.FUNCS.random_chance(card.ability.extra.low_chance or 2) then
+        if FG.FUNCS.random_chance(card.ability.extra.low_chance or 2, card) then
             rarity = rarity - 1
             for i=1, math.max(math.min((card.ability.extra.count or 2), G.jokers.config.card_limit-G.jokers.config.card_count)) do
                 SMODS.add_card{
