@@ -4305,6 +4305,55 @@ SMODS.Joker{
 		end
     end
 }
+
+SMODS.Joker{
+    key = "matador",
+    atlas = "jokers_alt",
+    pos = { x = 4, y = 5 },
+    rarity = "fg_uncommon_alt",
+    cost = 5,
+    
+     -- Custom logic for spawning
+    config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = "j_matador"
+		},
+        fg_alternate = {}, -- Kept between alternations
+        extra = {
+			money = 5,
+			availability = true
+		}
+    },
+    loc_vars = function (self, info_queue, card)
+        return {
+            vars = {
+				card.ability.extra.money
+			}
+        }
+    end,
+    blueprint_compat = true,
+    calculate = function (self, card, context)
+		local extra = card.ability.extra
+		if context.setting_blind then
+			if context.blind.boss then
+			extra.availability = true
+			else
+				extra.availability = false
+			end
+		end
+        if context.debuffed_hand or context.joker_main then
+            if G.GAME.blind.triggered then
+				extra.availability = false
+            end
+        end
+    end,
+	calc_dollar_bonus = function (self, card)
+		if card.ability.extra.availability then
+		return card.ability.extra.money
+		end
+	end
+}
 --oops all 6s
 SMODS.Joker {
 	key = 'oops',
