@@ -671,7 +671,7 @@ SMODS.Joker {
 	config = {
 		fg_data = {
 			is_alternate = false,
-			alternate_card = 'j_fg_mango'
+			alternate_card = 'j_fg_mangoalt'
 		},
 		extra = { mult = 15, lessmult = 2.5 } },
 	in_pool = function (self, args)
@@ -927,6 +927,175 @@ SMODS.Joker{
 		if context.joker_main and card.ability.fg_alternate.chips > 0 then return {chips = card.ability.fg_alternate.chips} end
 	end
 }
+
+-- Kevin
+SMODS.Joker {
+	key = 'kevin',
+	rarity = 4,
+	atlas = 'newjokers',
+	pos = { x = 9, y = 0 },
+	soul_pos = { x = 9, y = 1 },
+	cost = 20,
+	config = {
+		fg_data = {
+			--[[is_alternate = false,
+			alternate_card = 'j_fg_kevinalt']]
+			alternate_card = 'j_fg_kevin'
+		},
+		extra = { mult = 10, lessmult = 0.25 } },
+	in_pool = function (self, args)
+		if FG.config.extra_jokers and FG.FUNCS.allow_duplicate(self) and not G.GAME.pool_flags.alternate_spawn then return true else return false end
+	end,
+	loc_vars = function(self, info_queue, card)
+		return { vars = { card.ability.extra.mult, card.ability.extra.lessmult } }
+	end,
+	calculate = function(self, card, context)
+		local extra = card.ability.extra
+		if context.before then
+			extra.mult = extra.mult - extra.lessmult
+			if extra.mult <= 1 then
+				card:start_dissolve(nil, true, 1, true)
+			end
+			return {message = localize("k_minus").." "..extra.lessmult}
+		end
+		if context.joker_main then
+			return {xmult = extra.mult}
+		end
+	end
+}
+--[[Kevin alt
+SMODS.Joker {
+	key = 'kevinalt',
+	rarity = "fg_legendary_alt",
+	atlas = 'newjokers',
+	pos = { x = 9, y = 0 },
+	soul_pos = { x = 9, y = 1 },
+	cost = 1,
+	config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = 'j_fg_kevin'
+		},
+		extra = { mult = 10, lessmult = 0.25 } },
+	in_pool = function (self, args)
+		if FG.config.extra_jokers and FG.FUNCS.allow_duplicate(self) and not G.GAME.pool_flags.alternate_spawn then return true else return false end
+	end,
+	loc_vars = function(self, info_queue, card)
+		return { vars = { card.ability.extra.mult, card.ability.extra.lessmult } }
+	end,
+	calculate = function(self, card, context)
+		local extra = card.ability.extra
+		if context.before then
+			extra.mult = extra.mult - extra.lessmult
+			if extra.mult <= 1 then
+				card:start_dissolve(nil, true, 1, true)
+			end
+			return {message = localize("k_minus").." "..extra.lessmult}
+		end
+		if context.joker_main then
+			return {xmult = extra.mult}
+		end
+	end
+}
+]]
+-- Equalizer
+-- entropy eq hook shoutout to ruby
+-- the code is unique though
+--[[local scie = SMODS.calculate_individual_effect
+function SMODS.calculate_individual_effect(effect, scored_card, key, amount, from_edition)
+    local ret
+    ret = scie(effect, scored_card, key, amount, from_edition)
+    if ret then
+        return ret
+    end
+    if (key == 'eq_mult' or key == 'Eqmult_mod') then 
+        mult = mod_mult(amount)
+        update_hand_text({delay = 0}, {mult = mult})
+		card_eval_status_text(effect.message_card or effect.juice_card or scored_card or effect.card or effect.focus, 'extra', nil, percent, nil, {message = "= "..amount, colour = G.C.MULT})
+        return true
+    end
+    if (key == 'eq_chips' or key == 'Eqchips_mod') then 
+        hand_chips = mod_chips(amount)
+        update_hand_text({delay = 0}, {chips = hand_chips})
+		card_eval_status_text(effect.message_card or effect.juice_card or scored_card or effect.card or effect.focus, 'extra', nil, percent, nil, {message = "= "..amount, colour = G.C.CHIPS})
+        return true
+    end
+    if (key == 'multequalchips') then 
+        mult = mod_mult(hand_chips * amount)
+        update_hand_text({delay = 0}, {mult = mult})
+		card_eval_status_text(effect.message_card or effect.juice_card or scored_card or effect.card or effect.focus, 'extra', nil, percent, nil, {message = "= "..(100 * amount).."% Chips", colour = G.C.CHIPS})
+        return true
+    end
+    if (key == 'chipsequalmult') then 
+        hand_chips = mod_chips(mult * amount)
+        update_hand_text({delay = 0}, {chips = hand_chips})
+		card_eval_status_text(effect.message_card or effect.juice_card or scored_card or effect.card or effect.focus, 'extra', nil, percent, nil, {message = "= "..(100 * amount).."% Mult", colour = G.C.MULT})
+        return true
+    end
+end
+for _, v in ipairs({'eq_mult', 'Eqmult_mod', 'eq_chips', 'Eqchips_mod', 'chipsequalmult', 'multequalchips'}) do
+    table.insert(SMODS.scoring_parameter_keys or SMODS.calculation_keys or {}, v)
+end
+
+SMODS.Joker {
+	key = 'equalizer',
+	rarity = 2,
+	atlas = 'newjokers',
+	pos = { x = 0, y = 1 },
+	cost = 1,
+	config = {
+		fg_data = {
+			is_alternate = false,
+			alternate_card = 'j_fg_equalizeralt'
+		},
+		extra = { mult = 20, addmult = 4, odds = 4} },
+	in_pool = function (self, args)
+		if FG.config.extra_jokers and FG.FUNCS.allow_duplicate(self) and not G.GAME.pool_flags.alternate_spawn then return true else return false end
+	end,
+	loc_vars = function(self, info_queue, card)
+		return { vars = { 
+			card.ability.extra.mult, 
+			card.ability.extra.addmult, 
+			G.GAME.probabilities.normal or 1,
+			card.ability.extra.odds
+		} }
+	end,
+	calculate = function(self, card, context)
+		local extra = card.ability.extra
+		if context.joker_main then
+			return {Eqmult_mod = extra.mult}
+		end
+	end
+}
+-- Equalizer alt
+SMODS.Joker {
+	key = 'equalizeralt',
+	rarity = "fg_uncommon_alt",
+	atlas = 'newjokers',
+	pos = { x = 0, y = 1 },
+	cost = 1,
+	config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = 'j_fg_equalizer'
+		},
+		extra = 1/5
+	},
+	loc_vars = function(self, info_queue, card)
+		return { vars = { 
+			(100 * card.ability.extra).."%"
+		} }
+	end,
+	in_pool = function (self, args)
+		if FG.config.extra_jokers and FG.FUNCS.allow_duplicate(self) and not G.GAME.pool_flags.alternate_spawn then return true else return false end
+	end,
+	calculate = function(self, card, context)
+		if context.joker_main then
+			return {chipsequalmult = card.ability.extra}
+		end
+	end
+}
+]]
 ---------------------
 ---STANDARD JOKERS---
 ---------------------

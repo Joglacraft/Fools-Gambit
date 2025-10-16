@@ -331,6 +331,42 @@ return {
                     "{C:purple}Alternate{} joker bought",
                 },
             },
+            j_fg_kevin = {
+                name = "Kevin",
+                text = {
+                    "{X:mult,C:white}X#1#{} Mult,",
+                    "Loses {X:mult,C:white}X#2#{} per hand",
+                    "played",
+                    "{C:attention}Alternate this Joker",
+                    "{C:attention}to reset its values"
+                },
+            },
+            j_fg_kevinalt = {
+                name = "Kevin?",
+                text = {
+                    "{X:mult,C:white}X#1#{} Mult,",
+                    "Loses {X:mult,C:white}X#2#{} per hand",
+                    "played",
+                    "{C:attention}Alternate this Joker",
+                    "{C:attention}to reset its values"
+                },
+            },
+            j_fg_equalizer = {
+                name = "Equalizer",
+                text = {
+                    "Set {C:mult}Mult{} to {C:mult}#1#{},",
+                    "{C:green}#3# in #4#{} Chance to",
+                    "add {C:attention}#2#{} to this value",
+                    "when an {C:attention}aberration{} card is used"
+                },
+            },
+            j_fg_equalizeralt = {
+                name = "Equalizer?",
+                text = {
+                    "Set {C:chips}Chips{} equal to",
+                    "{C:attention}#1#{} times {C:mult}Mult{}",
+                },
+            },
             -- Normal jokers
             j_fg_matador = {
                 name = "Matador?",
@@ -1570,6 +1606,7 @@ return {
         challenge_names = {},
         collabs = {},
         dictionary = {
+            k_minus = "-",
             k_fg_common_alt = "Common?",
             k_fg_uncommon_alt = "Uncommon?",
             k_fg_rare_alt = "Rare?",
