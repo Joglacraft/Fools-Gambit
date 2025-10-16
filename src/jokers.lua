@@ -313,354 +313,6 @@ SMODS.Joker {
 		end
 	end
 }
-
-SMODS.Joker {
-	key = 'concertalt',
-	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = 'j_fg_concert'
-		},
-	},
-	rarity = "fg_uncommon_alt",
-	atlas = 'newjokers',
-	pos = { x = 0, y = 0 },
-	cost = 6,
-	
-	in_pool = function (self, args)
-		if FG.config.extra_jokers and FG.FUNCS.allow_duplicate(self) and not G.GAME.pool_flags.alternate_spawn then return true else return false end
-	end,
-	calculate = function(self, card, context)
-		if G.jokers then
-			if context.buying_card then
-				if context.card.ability.set == 'Voucher' then
-					if #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
-						G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
-						G.E_MANAGER:add_event(Event({
-							trigger = 'before',
-							delay = 0.0,
-							func = (function()
-								local card = create_card('aberration', G.consumeables, nil, nil, nil, nil, nil, '8ba')
-								card:add_to_deck()
-								G.consumeables:emplace(card)
-								G.GAME.consumeable_buffer = 0
-								return true
-							end)
-						}))
-						card_eval_status_text(card, 'extra', nil, nil, nil,
-							{ message = localize('k_plus_aberration'), colour = G.C.PURPLE })
-					end
-				end
-			end
-		end
-	end
-}
--- Delinquent
-SMODS.Joker {
-	key = 'delinquent',
-	rarity = 2,
-	atlas = 'newjokers',
-	config = {
-		fg_data = {
-			is_alternate = false,
-			alternate_card = 'j_fg_delinquentalt'
-		},
-	},
-	pos = { x = 1, y = 0 },
-	cost = 7,
-	no_pool_flag = 'alternate_spawn',
-	in_pool = function (self, args)
-		if FG.config.extra_jokers and FG.FUNCS.allow_duplicate(self) and not G.GAME.pool_flags.alternate_spawn then return true else return false end
-	end,
-	calculate = function(self, card, context)
-		if context.skip_blind then
-			for i = 1, #G.consumeables.cards do
-				G.consumeables.cards[i]:start_dissolve(nil, true, 1, true)
-				G.E_MANAGER:add_event(Event({
-					trigger = 'before',
-					delay = 0.0,
-					func = (function()
-						local card = create_card('aberration', G.consumeables, nil, nil, nil, nil, nil, '8ba')
-						card:add_to_deck()
-						G.consumeables:emplace(card)
-						G.GAME.consumeable_buffer = 0
-						return true
-					end)
-				}))
-			end
-			if #G.consumeables.cards > 0 then
-				card_eval_status_text(card, 'extra', nil, nil, nil,
-					{ message = localize('k_replaced'), colour = G.C.PURPLE })
-			end
-		end
-	end
-}
-
-SMODS.Joker {
-	key = 'delinquentalt',
-	rarity = "fg_uncommon_alt",
-	atlas = 'newjokers',
-	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = 'j_fg_delinquent'
-		},
-	},
-	pos = { x = 1, y = 0 },
-	cost = 8,
-	in_pool = function (self, args)
-		if FG.config.extra_jokers and FG.FUNCS.allow_duplicate(self) and not G.GAME.pool_flags.alternate_spawn then return true else return false end
-	end,
-	calculate = function(self, card, context)
-		if context.end_of_round and context.individual then
-			if #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
-				for i = 1, G.consumeables.config.card_limit - #G.consumeables.cards + G.GAME.consumeable_buffer do
-					G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
-					G.E_MANAGER:add_event(Event({
-						trigger = 'before',
-						delay = 0.0,
-						func = (function()
-							local card = create_card('aberration', G.consumeables, nil, nil, nil, nil, nil, '8ba')
-							card:add_to_deck()
-							G.consumeables:emplace(card)
-							G.GAME.consumeable_buffer = 0
-							return true
-						end)
-					}))
-				end
-				card_eval_status_text(card, 'extra', nil, nil, nil,
-					{ message = localize('k_replenished'), colour = G.C.PURPLE })
-			end
-		end
-	end
-}
---Disc Joker
-SMODS.Joker {
-	key = 'disc',
-	config = { 
-		fg_data = {
-			is_alternate = false,
-			alternate_card = 'j_fg_discalt'
-		},
-		extra = { chips = 25 } },
-	rarity = 2,
-	atlas = 'newjokers',
-	pos = { x = 2, y = 0 }, -- read above
-	cost = 5,
-	loc_vars = function(self, info_queue, card)
-		return { vars = { card.ability.extra.chips } }
-	end,
-	in_pool = function (self, args)
-		if FG.config.extra_jokers and FG.FUNCS.allow_duplicate(self) and not G.GAME.pool_flags.alternate_spawn then return true else return false end
-	end,
-	calculate = function(self, card, context)
-		if context.other_joker then
-			if (context.other_joker.config.center.rarity == 1 or context.other_joker.config.center.rarity == 2 or context.other_joker.config.center.rarity == 3 or context.other_joker.config.center.rarity == 4 or context.other_joker.config.center.rarity == "fg_collective") then
-				G.E_MANAGER:add_event(Event({
-					func = function()
-						context.other_joker:juice_up(0.5, 0.5)
-						return true
-					end
-				}))
-				return {
-					chip_mod = card.ability.extra.chips,
-					message = '+' .. card.ability.extra.chips,
-					colour = G.C.CHIPS
-				}
-			end
-		end
-	end
-}
-
-SMODS.Joker {
-	key = 'discalt',
-	config = { 
-		fg_data = {
-			is_alternate = true,
-			alternate_card = 'j_fg_disc'
-		},
-		extra = { chips = 10 } },
-	rarity = 2,
-	atlas = 'newjokers',
-	pos = { x = 2, y = 0 }, -- read above
-	cost = 5,
-	loc_vars = function(self, info_queue, card)
-		return { vars = { card.ability.extra.chips } }
-	end,
-	in_pool = function (self, args)
-		if FG.config.extra_jokers and FG.FUNCS.allow_duplicate(self) and not G.GAME.pool_flags.alternate_spawn then return true else return false end
-	end,
-	calculate = function(self, card, context)
-		if context.individual and context.cardarea == G.play then
-			if not G.P_CENTERS[FG.FUNCS.get_card_info(context.other_card).key].original_mod then
-				return {chips = card.ability.extra.chips}
-			end
-		end
-	end
-}
---Orchestral Joker
-SMODS.Joker {
-	key = 'orchestral',
-	config = { 
-		fg_data = {
-			is_alternate = false,
-			alternate_card = 'j_fg_orchestralalt'
-		},
-		extra = { mult = 10 } },
-	rarity = "fg_common_alt",
-	atlas = 'newjokers',
-	pos = { x = 3, y = 0 }, -- read above
-	cost = 5,
-	loc_vars = function(self, info_queue, card)
-		return { vars = { card.ability.extra.mult } }
-	end,
-	in_pool = function (self, args)
-		if FG.config.extra_jokers and FG.FUNCS.allow_duplicate(self) and not G.GAME.pool_flags.alternate_spawn then return true else return false end
-	end,
-	calculate = function(self, card, context)
-		if context.other_joker then
-			if (context.other_joker.config.center.yes_pool_flag == "alternate") then
-				G.E_MANAGER:add_event(Event({
-					func = function()
-						context.other_joker:juice_up(0.5, 0.5)
-						return true
-					end
-				}))
-				return {
-					mult_mod = card.ability.extra.mult,
-					message = '+' .. card.ability.extra.mult,
-					colour = G.C.MULT
-				}
-			end
-		end
-	end
-}
-
---Orchestral Joker
-SMODS.Joker {
-	key = 'orchestralalt',
-	config = { 
-		fg_data = {
-			is_alternate = true,
-			alternate_card = 'j_fg_orchestral'
-		},
-		extra = { mult = 5 } },
-	rarity = "fg_common_alt",
-	atlas = 'newjokers',
-	pos = { x = 3, y = 0 }, -- read above
-	cost = 5,
-	loc_vars = function(self, info_queue, card)
-		return { vars = { card.ability.extra.mult } }
-	end,
-	in_pool = function (self, args)
-		if FG.config.extra_jokers and FG.FUNCS.allow_duplicate(self) and not G.GAME.pool_flags.alternate_spawn then return true else return false end
-	end,
-	calculate = function(self, card, context)
-		if context.individual and context.cardarea == G.play then
-				if G.P_CENTERS[FG.FUNCS.get_card_info(context.other_card).key].original_mod then
-					if G.P_CENTERS[FG.FUNCS.get_card_info(context.other_card).key].original_mod.id == "foolsGambit" then
-					    return {mult = card.ability.extra.mult}
-					end
-				end
-		end
-	end
-}
---Conductor
-SMODS.Joker {
-	key = 'conductor',
-	rarity = 2,
-	atlas = 'newjokers',
-	pos = { x = 4, y = 0 }, -- read above
-	cost = 5,
-	config = { 
-		fg_data = {
-			is_alternate = false,
-			alternate_card = 'j_fg_conductoralt'
-		},
-		extra = { amount = 1 } },
-	loc_vars = function(self, info_queue, card)
-		return { vars = { card.ability.extra.amount } }
-	end,
-	in_pool = function (self, args)
-		if FG.config.extra_jokers and FG.FUNCS.allow_duplicate(self) and not G.GAME.pool_flags.alternate_spawn then return true else return false end
-	end,
-	calculate = function(self, card, context)
-		if context.joker_main then
-			local nofaces = false
-			for i = 1, #context.scoring_hand do
-				if not context.scoring_hand[i]:is_face() then
-					nofaces = true
-				end
-			end
-			if not nofaces then
-				if #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
-					for i = 1, card.ability.extra.amount do
-						G.E_MANAGER:add_event(Event({
-							trigger = 'before',
-							delay = 0.0,
-							func = (function()
-								local card = create_card('aberration', G.consumeables, nil, nil, nil, nil, nil, '8ba')
-								card:add_to_deck()
-								G.consumeables:emplace(card)
-								G.GAME.consumeable_buffer = 0
-								return true
-							end)
-						}))
-						card_eval_status_text(card, 'extra', nil, nil, nil,
-							{ message = localize('k_plus_aberration'), colour = G.C.PURPLE })
-					end
-				end
-			end
-		end
-	end
-}
-
-SMODS.Joker {
-	key = 'conductoralt',
-	rarity = "fg_uncommon_alt",
-	atlas = 'newjokers',
-	pos = { x = 4, y = 0 }, -- read above
-	cost = 5,
-	
-	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = 'j_fg_conductor'
-		},
-		extra = { amount = 2 } },
-	loc_vars = function(self, info_queue, card)
-		return { vars = { card.ability.extra.amount } }
-	end,
-	in_pool = function (self, args)
-		if FG.config.extra_jokers and FG.FUNCS.allow_duplicate(self) and not G.GAME.pool_flags.alternate_spawn then return true else return false end
-	end,
-	blueprint_compat = true,
-	calculate = function(self, card, context)
-		if context.using_consumeable then
-			if context.consumeable.ability.set == 'aberration' then
-				G.E_MANAGER:add_event(Event({
-					trigger = 'after',
-					delay = 0.7,
-					func = function()
-						local cards = {}
-						for i = 1, card.ability.extra.amount do
-							cards[i] = true
-							local _suit, _rank = nil, nil
-							_rank = pseudorandom_element({ 'J', 'Q', 'K' }, pseudoseed('familiar_create'))
-							_suit = pseudorandom_element({ 'S', 'H', 'D', 'C' }, pseudoseed('familiar_create'))
-							_suit = _suit or 'S'; _rank = _rank or 'A'
-							create_playing_card({ front = G.P_CARDS[_suit .. '_' .. _rank], center = base }, G.deck,
-								true, i ~= 1, { G.C.BLUE })
-							card_eval_status_text(card, 'extra', nil, nil, nil,
-								{ message = localize('k_card_added'), colour = G.C.BLUE })
-						end
-						return true
-					end
-				}))
-			end
-		end
-	end
-}
 -- Mango
 SMODS.Joker {
 	key = 'mango',
@@ -708,64 +360,44 @@ SMODS.Joker {
 		end
 	end
 }
--- Mango alt
+--Disc Joker
 SMODS.Joker {
-	key = 'mangoalt',
-	rarity = "fg_common_alt",
-	atlas = 'newjokers',
-	config = {
+	key = 'disc',
+	config = { 
 		fg_data = {
-			is_alternate = true,
-			alternate_card = 'j_fg_mango'
+			is_alternate = false,
+			alternate_card = 'j_fg_discalt'
 		},
-	},
+		extra = { chips = 25 } },
+	rarity = 2,
+	atlas = 'newjokers',
+	pos = { x = 2, y = 0 }, -- read above
+	cost = 5,
+	loc_vars = function(self, info_queue, card)
+		return { vars = { card.ability.extra.chips } }
+	end,
 	in_pool = function (self, args)
 		if FG.config.extra_jokers and FG.FUNCS.allow_duplicate(self) and not G.GAME.pool_flags.alternate_spawn then return true else return false end
 	end,
-	pos = { x = 8, y = 0 },
-	cost = 1,
-	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_fg_mango",
-			vars = {}
-		},
-		extra = {
-			mult = 15,
-			lessmult = 5
-		}
-	},
-	loc_vars = function(self, info_queue, card)
-		return { vars = { card.ability.extra.mult, card.ability.extra.lessmult } }
-	end,
 	calculate = function(self, card, context)
-		if context.buying_card then
-			if card.ability.set == 'Joker' then
-				card.ability.extra.mult = card.ability.extra.mult - card.ability.extra.lessmult
+		if context.other_joker then
+			if (context.other_joker.config.center.rarity == 1 or context.other_joker.config.center.rarity == 2 or context.other_joker.config.center.rarity == 3 or context.other_joker.config.center.rarity == 4 or context.other_joker.config.center.rarity == "fg_collective") then
 				G.E_MANAGER:add_event(Event({
 					func = function()
-						card:juice_up(0.5, 0.5)
+						context.other_joker:juice_up(0.5, 0.5)
 						return true
 					end
 				}))
-				if card.ability.extra.mult <= -1 then
-					card:start_dissolve(nil, true, 1, true)
-					return {
-						message = 'Eated!',
-						colour = G.C.MULT
-					}
-				end
+				return {
+					chip_mod = card.ability.extra.chips,
+					message = '+' .. card.ability.extra.chips,
+					colour = G.C.CHIPS
+				}
 			end
-		end
-		if context.joker_main then
-			return {
-				mult_mod = card.ability.extra.mult,
-				message = '+' .. card.ability.extra.mult,
-				colour = G.C.MULT
-			}
 		end
 	end
 }
+-- Oscillator
 SMODS.Joker{
 	key = "oscillator",
 	atlas = "oscillator_atlas",
@@ -843,7 +475,375 @@ SMODS.Joker{
 		if context.joker_main and card.ability.fg_data.vars.chips > 0 then return {chips = card.ability.fg_data.vars.chips} end
 	end
 }
+-- Delinquent
+SMODS.Joker {
+	key = 'delinquent',
+	rarity = 2,
+	atlas = 'newjokers',
+	config = {
+		fg_data = {
+			is_alternate = false,
+			alternate_card = 'j_fg_delinquentalt'
+		},
+	},
+	pos = { x = 1, y = 0 },
+	cost = 7,
+	no_pool_flag = 'alternate_spawn',
+	in_pool = function (self, args)
+		if FG.config.extra_jokers and FG.FUNCS.allow_duplicate(self) and not G.GAME.pool_flags.alternate_spawn then return true else return false end
+	end,
+	calculate = function(self, card, context)
+		if context.skip_blind then
+			for i = 1, #G.consumeables.cards do
+				G.consumeables.cards[i]:start_dissolve(nil, true, 1, true)
+				G.E_MANAGER:add_event(Event({
+					trigger = 'before',
+					delay = 0.0,
+					func = (function()
+						local card = create_card('aberration', G.consumeables, nil, nil, nil, nil, nil, '8ba')
+						card:add_to_deck()
+						G.consumeables:emplace(card)
+						G.GAME.consumeable_buffer = 0
+						return true
+					end)
+				}))
+			end
+			if #G.consumeables.cards > 0 then
+				card_eval_status_text(card, 'extra', nil, nil, nil,
+					{ message = localize('k_replaced'), colour = G.C.PURPLE })
+			end
+		end
+	end
+}
 
+--Orchestral Joker
+SMODS.Joker {
+	key = 'orchestral',
+	config = { 
+		fg_data = {
+			is_alternate = false,
+			alternate_card = 'j_fg_orchestralalt'
+		},
+		extra = { mult = 10 } },
+	rarity = "fg_common_alt",
+	atlas = 'newjokers',
+	pos = { x = 3, y = 0 }, -- read above
+	cost = 5,
+	loc_vars = function(self, info_queue, card)
+		return { vars = { card.ability.extra.mult } }
+	end,
+	in_pool = function (self, args)
+		if FG.config.extra_jokers and FG.FUNCS.allow_duplicate(self) and not G.GAME.pool_flags.alternate_spawn then return true else return false end
+	end,
+	calculate = function(self, card, context)
+		if context.other_joker then
+			if (context.other_joker.config.center.yes_pool_flag == "alternate") then
+				G.E_MANAGER:add_event(Event({
+					func = function()
+						context.other_joker:juice_up(0.5, 0.5)
+						return true
+					end
+				}))
+				return {
+					mult_mod = card.ability.extra.mult,
+					message = '+' .. card.ability.extra.mult,
+					colour = G.C.MULT
+				}
+			end
+		end
+	end
+}
+--Orchestral alt
+SMODS.Joker {
+	key = 'orchestralalt',
+	config = { 
+		fg_data = {
+			is_alternate = true,
+			alternate_card = 'j_fg_orchestral'
+		},
+		extra = { mult = 5 } },
+	rarity = "fg_common_alt",
+	atlas = 'newjokers',
+	pos = { x = 3, y = 0 }, -- read above
+	cost = 5,
+	loc_vars = function(self, info_queue, card)
+		return { vars = { card.ability.extra.mult } }
+	end,
+	in_pool = function (self, args)
+		if FG.config.extra_jokers and FG.FUNCS.allow_duplicate(self) and not G.GAME.pool_flags.alternate_spawn then return true else return false end
+	end,
+	calculate = function(self, card, context)
+		if context.individual and context.cardarea == G.play then
+				if G.P_CENTERS[FG.FUNCS.get_card_info(context.other_card).key].original_mod then
+					if G.P_CENTERS[FG.FUNCS.get_card_info(context.other_card).key].original_mod.id == "foolsGambit" then
+					    return {mult = card.ability.extra.mult}
+					end
+				end
+		end
+	end
+}
+
+-- Kevin
+SMODS.Joker {
+	key = 'kevin',
+	rarity = 4,
+	atlas = 'newjokers',
+	pos = { x = 9, y = 0 },
+	soul_pos = { x = 9, y = 1 },
+	cost = 20,
+	config = {
+		fg_data = {
+			--[[is_alternate = false,
+			alternate_card = 'j_fg_kevinalt']]
+			alternate_card = 'j_fg_kevin'
+		},
+		extra = { mult = 10, lessmult = 0.25 } },
+	in_pool = function (self, args)
+		if FG.config.extra_jokers and FG.FUNCS.allow_duplicate(self) and not G.GAME.pool_flags.alternate_spawn then return true else return false end
+	end,
+	loc_vars = function(self, info_queue, card)
+		return { vars = { card.ability.extra.mult, card.ability.extra.lessmult } }
+	end,
+	calculate = function(self, card, context)
+		local extra = card.ability.extra
+		if context.before then
+			extra.mult = extra.mult - extra.lessmult
+			if extra.mult <= 1 then
+				card:start_dissolve(nil, true, 1, true)
+			end
+			return {message = localize("k_minus").." "..extra.lessmult}
+		end
+		if context.joker_main then
+			return {xmult = extra.mult}
+		end
+	end
+}
+
+--Conductor
+SMODS.Joker {
+	key = 'conductor',
+	rarity = 2,
+	atlas = 'newjokers',
+	pos = { x = 4, y = 0 }, -- read above
+	cost = 5,
+	config = { 
+		fg_data = {
+			is_alternate = false,
+			alternate_card = 'j_fg_conductoralt'
+		},
+		extra = { amount = 1 } },
+	loc_vars = function(self, info_queue, card)
+		return { vars = { card.ability.extra.amount } }
+	end,
+	in_pool = function (self, args)
+		if FG.config.extra_jokers and FG.FUNCS.allow_duplicate(self) and not G.GAME.pool_flags.alternate_spawn then return true else return false end
+	end,
+	calculate = function(self, card, context)
+		if context.joker_main then
+			local nofaces = false
+			for i = 1, #context.scoring_hand do
+				if not context.scoring_hand[i]:is_face() then
+					nofaces = true
+				end
+			end
+			if not nofaces then
+				if #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
+					for i = 1, card.ability.extra.amount do
+						G.E_MANAGER:add_event(Event({
+							trigger = 'before',
+							delay = 0.0,
+							func = (function()
+								local card = create_card('aberration', G.consumeables, nil, nil, nil, nil, nil, '8ba')
+								card:add_to_deck()
+								G.consumeables:emplace(card)
+								G.GAME.consumeable_buffer = 0
+								return true
+							end)
+						}))
+						card_eval_status_text(card, 'extra', nil, nil, nil,
+							{ message = localize('k_plus_aberration'), colour = G.C.PURPLE })
+					end
+				end
+			end
+		end
+	end
+}
+-- Conductor alt
+SMODS.Joker {
+	key = 'conductoralt',
+	rarity = "fg_uncommon_alt",
+	atlas = 'newjokers',
+	pos = { x = 4, y = 0 }, -- read above
+	cost = 5,
+	
+	config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = 'j_fg_conductor'
+		},
+		extra = { amount = 2 } },
+	loc_vars = function(self, info_queue, card)
+		return { vars = { card.ability.extra.amount } }
+	end,
+	in_pool = function (self, args)
+		if FG.config.extra_jokers and FG.FUNCS.allow_duplicate(self) and not G.GAME.pool_flags.alternate_spawn then return true else return false end
+	end,
+	blueprint_compat = true,
+	calculate = function(self, card, context)
+		if context.using_consumeable then
+			if context.consumeable.ability.set == 'aberration' then
+				G.E_MANAGER:add_event(Event({
+					trigger = 'after',
+					delay = 0.7,
+					func = function()
+						local cards = {}
+						for i = 1, card.ability.extra.amount do
+							cards[i] = true
+							local _suit, _rank = nil, nil
+							_rank = pseudorandom_element({ 'J', 'Q', 'K' }, pseudoseed('familiar_create'))
+							_suit = pseudorandom_element({ 'S', 'H', 'D', 'C' }, pseudoseed('familiar_create'))
+							_suit = _suit or 'S'; _rank = _rank or 'A'
+							create_playing_card({ front = G.P_CARDS[_suit .. '_' .. _rank], center = base }, G.deck,
+								true, i ~= 1, { G.C.BLUE })
+							card_eval_status_text(card, 'extra', nil, nil, nil,
+								{ message = localize('k_card_added'), colour = G.C.BLUE })
+						end
+						return true
+					end
+				}))
+			end
+		end
+	end
+}
+
+-- Concert ticket alt
+SMODS.Joker {
+	key = 'concertalt',
+	config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = 'j_fg_concert'
+		},
+	},
+	rarity = "fg_uncommon_alt",
+	atlas = 'newjokers',
+	pos = { x = 0, y = 0 },
+	cost = 6,
+	
+	in_pool = function (self, args)
+		if FG.config.extra_jokers and FG.FUNCS.allow_duplicate(self) and not G.GAME.pool_flags.alternate_spawn then return true else return false end
+	end,
+	calculate = function(self, card, context)
+		if G.jokers then
+			if context.buying_card then
+				if context.card.ability.set == 'Voucher' then
+					if #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
+						G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
+						G.E_MANAGER:add_event(Event({
+							trigger = 'before',
+							delay = 0.0,
+							func = (function()
+								local card = create_card('aberration', G.consumeables, nil, nil, nil, nil, nil, '8ba')
+								card:add_to_deck()
+								G.consumeables:emplace(card)
+								G.GAME.consumeable_buffer = 0
+								return true
+							end)
+						}))
+						card_eval_status_text(card, 'extra', nil, nil, nil,
+							{ message = localize('k_plus_aberration'), colour = G.C.PURPLE })
+					end
+				end
+			end
+		end
+	end
+}
+-- Mango alt
+SMODS.Joker {
+	key = 'mangoalt',
+	rarity = "fg_common_alt",
+	atlas = 'newjokers',
+	config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = 'j_fg_mango'
+		},
+	},
+	in_pool = function (self, args)
+		if FG.config.extra_jokers and FG.FUNCS.allow_duplicate(self) and not G.GAME.pool_flags.alternate_spawn then return true else return false end
+	end,
+	pos = { x = 8, y = 0 },
+	cost = 1,
+	config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = "j_fg_mango",
+			vars = {}
+		},
+		extra = {
+			mult = 15,
+			lessmult = 5
+		}
+	},
+	loc_vars = function(self, info_queue, card)
+		return { vars = { card.ability.extra.mult, card.ability.extra.lessmult } }
+	end,
+	calculate = function(self, card, context)
+		if context.buying_card then
+			if card.ability.set == 'Joker' then
+				card.ability.extra.mult = card.ability.extra.mult - card.ability.extra.lessmult
+				G.E_MANAGER:add_event(Event({
+					func = function()
+						card:juice_up(0.5, 0.5)
+						return true
+					end
+				}))
+				if card.ability.extra.mult <= -1 then
+					card:start_dissolve(nil, true, 1, true)
+					return {
+						message = 'Eated!',
+						colour = G.C.MULT
+					}
+				end
+			end
+		end
+		if context.joker_main then
+			return {
+				mult_mod = card.ability.extra.mult,
+				message = '+' .. card.ability.extra.mult,
+				colour = G.C.MULT
+			}
+		end
+	end
+}
+-- Disk alt
+SMODS.Joker {
+	key = 'discalt',
+	config = { 
+		fg_data = {
+			is_alternate = true,
+			alternate_card = 'j_fg_disc'
+		},
+		extra = { chips = 10 } },
+	rarity = 2,
+	atlas = 'newjokers',
+	pos = { x = 2, y = 0 }, -- read above
+	cost = 5,
+	loc_vars = function(self, info_queue, card)
+		return { vars = { card.ability.extra.chips } }
+	end,
+	in_pool = function (self, args)
+		if FG.config.extra_jokers and FG.FUNCS.allow_duplicate(self) and not G.GAME.pool_flags.alternate_spawn then return true else return false end
+	end,
+	calculate = function(self, card, context)
+		if context.individual and context.cardarea == G.play then
+			if not G.P_CENTERS[FG.FUNCS.get_card_info(context.other_card).key].original_mod then
+				return {chips = card.ability.extra.chips}
+			end
+		end
+	end
+}
+-- Oscillator alt
 SMODS.Joker{
 	key = "oscillator_alt",
 	atlas = "oscillator_atlas",
@@ -921,77 +921,46 @@ SMODS.Joker{
 		if context.joker_main and card.ability.fg_data.vars.chips > 0 then return {chips = card.ability.fg_data.vars.chips} end
 	end
 }
-
--- Kevin
+-- Delinquent alt
 SMODS.Joker {
-	key = 'kevin',
-	rarity = 4,
+	key = 'delinquentalt',
+	rarity = "fg_uncommon_alt",
 	atlas = 'newjokers',
-	pos = { x = 9, y = 0 },
-	soul_pos = { x = 9, y = 1 },
-	cost = 20,
-	config = {
-		fg_data = {
-			--[[is_alternate = false,
-			alternate_card = 'j_fg_kevinalt']]
-			alternate_card = 'j_fg_kevin'
-		},
-		extra = { mult = 10, lessmult = 0.25 } },
-	in_pool = function (self, args)
-		if FG.config.extra_jokers and FG.FUNCS.allow_duplicate(self) and not G.GAME.pool_flags.alternate_spawn then return true else return false end
-	end,
-	loc_vars = function(self, info_queue, card)
-		return { vars = { card.ability.extra.mult, card.ability.extra.lessmult } }
-	end,
-	calculate = function(self, card, context)
-		local extra = card.ability.extra
-		if context.before then
-			extra.mult = extra.mult - extra.lessmult
-			if extra.mult <= 1 then
-				card:start_dissolve(nil, true, 1, true)
-			end
-			return {message = localize("k_minus").." "..extra.lessmult}
-		end
-		if context.joker_main then
-			return {xmult = extra.mult}
-		end
-	end
-}
---[[Kevin alt
-SMODS.Joker {
-	key = 'kevinalt',
-	rarity = "fg_legendary_alt",
-	atlas = 'newjokers',
-	pos = { x = 9, y = 0 },
-	soul_pos = { x = 9, y = 1 },
-	cost = 1,
 	config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = 'j_fg_kevin'
+			alternate_card = 'j_fg_delinquent'
 		},
-		extra = { mult = 10, lessmult = 0.25 } },
+	},
+	pos = { x = 1, y = 0 },
+	cost = 8,
 	in_pool = function (self, args)
 		if FG.config.extra_jokers and FG.FUNCS.allow_duplicate(self) and not G.GAME.pool_flags.alternate_spawn then return true else return false end
 	end,
-	loc_vars = function(self, info_queue, card)
-		return { vars = { card.ability.extra.mult, card.ability.extra.lessmult } }
-	end,
 	calculate = function(self, card, context)
-		local extra = card.ability.extra
-		if context.before then
-			extra.mult = extra.mult - extra.lessmult
-			if extra.mult <= 1 then
-				card:start_dissolve(nil, true, 1, true)
+		if context.end_of_round and context.individual then
+			if #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
+				for i = 1, G.consumeables.config.card_limit - #G.consumeables.cards + G.GAME.consumeable_buffer do
+					G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
+					G.E_MANAGER:add_event(Event({
+						trigger = 'before',
+						delay = 0.0,
+						func = (function()
+							local card = create_card('aberration', G.consumeables, nil, nil, nil, nil, nil, '8ba')
+							card:add_to_deck()
+							G.consumeables:emplace(card)
+							G.GAME.consumeable_buffer = 0
+							return true
+						end)
+					}))
+				end
+				card_eval_status_text(card, 'extra', nil, nil, nil,
+					{ message = localize('k_replenished'), colour = G.C.PURPLE })
 			end
-			return {message = localize("k_minus").." "..extra.lessmult}
-		end
-		if context.joker_main then
-			return {xmult = extra.mult}
 		end
 	end
 }
-]]
+
 -- Equalizer
 -- entropy eq hook shoutout to ruby
 -- the code is unique though
