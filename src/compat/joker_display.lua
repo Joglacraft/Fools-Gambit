@@ -243,8 +243,8 @@ jd['j_fg_droll'] = {
     },
     extra = {
         {
-            {text = "+", colour = G.C.BLUE},
-            {ref_table = 'card.joker_display_values', ref_value = 'mult', colour = G.C.BLUE}
+            {text = "+", colour = G.C.RED},
+            {ref_table = 'card.joker_display_values', ref_value = 'mult', colour = G.C.RED}
         },
         {
             {ref_table = 'card.joker_display_values', ref_value = 'reps', colour = G.C.GOLD},
@@ -257,7 +257,7 @@ jd['j_fg_droll'] = {
         if G.play then
             local text, poker_hands, scoring_hand = JokerDisplay.evaluate_hand()
             if poker_hands[card.ability.type] and next(poker_hands[card.ability.type]) then
-                mult = card.ability.t_chips
+                mult = card.ability.t_mult
                 reps = card.ability.extra.repetitions
             end
         end
@@ -1082,6 +1082,17 @@ jd['j_fg_triboulet'] = {}
 jd['j_fg_yorick'] = {}
 jd['j_fg_chicot'] = {}
 jd['j_fg_perkeo'] = {}
+jd['j_fg_kevin'] = {
+    text = {
+        {
+            border_nodes = {
+                {text = 'X'},
+                {ref_table = 'card.ability.extra', ref_value = 'mult'}
+            },
+            border_colour = G.C.RED
+        }
+    }
+}
 -- Collectives
 jd['j_fg_jogla'] = {
     text = {

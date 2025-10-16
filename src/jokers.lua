@@ -619,6 +619,53 @@ SMODS.Joker {
 	end
 }
 
+-- Conductor alt
+SMODS.Joker {
+	key = 'conductoralt',
+	rarity = "fg_uncommon_alt",
+	atlas = 'newjokers',
+	pos = { x = 4, y = 0 }, -- read above
+	cost = 5,
+	
+	config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = 'j_fg_conductor'
+		},
+		extra = { amount = 2 } },
+	loc_vars = function(self, info_queue, card)
+		return { vars = { card.ability.extra.amount } }
+	end,
+	in_pool = function (self, args)
+		if FG.config.extra_jokers and FG.FUNCS.allow_duplicate(self) and not G.GAME.pool_flags.alternate_spawn then return true else return false end
+	end,
+	blueprint_compat = true,
+	calculate = function(self, card, context)
+		if context.using_consumeable then
+			if context.consumeable.ability.set == 'aberration' then
+				G.E_MANAGER:add_event(Event({
+					trigger = 'after',
+					delay = 0.7,
+					func = function()
+						local cards = {}
+						for i = 1, card.ability.extra.amount do
+							cards[i] = true
+							local _suit, _rank = nil, nil
+							_rank = pseudorandom_element({ 'J', 'Q', 'K' }, pseudoseed('familiar_create'))
+							_suit = pseudorandom_element({ 'S', 'H', 'D', 'C' }, pseudoseed('familiar_create'))
+							_suit = _suit or 'S'; _rank = _rank or 'A'
+							create_playing_card({ front = G.P_CARDS[_suit .. '_' .. _rank], center = base }, G.deck,
+								true, i ~= 1, { G.C.BLUE })
+							card_eval_status_text(card, 'extra', nil, nil, nil,
+								{ message = localize('k_card_added'), colour = G.C.BLUE })
+						end
+						return true
+					end
+				}))
+			end
+		end
+	end
+}
 --Conductor
 SMODS.Joker {
 	key = 'conductor',
@@ -664,53 +711,6 @@ SMODS.Joker {
 							{ message = localize('k_plus_aberration'), colour = G.C.PURPLE })
 					end
 				end
-			end
-		end
-	end
-}
--- Conductor alt
-SMODS.Joker {
-	key = 'conductoralt',
-	rarity = "fg_uncommon_alt",
-	atlas = 'newjokers',
-	pos = { x = 4, y = 0 }, -- read above
-	cost = 5,
-	
-	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = 'j_fg_conductor'
-		},
-		extra = { amount = 2 } },
-	loc_vars = function(self, info_queue, card)
-		return { vars = { card.ability.extra.amount } }
-	end,
-	in_pool = function (self, args)
-		if FG.config.extra_jokers and FG.FUNCS.allow_duplicate(self) and not G.GAME.pool_flags.alternate_spawn then return true else return false end
-	end,
-	blueprint_compat = true,
-	calculate = function(self, card, context)
-		if context.using_consumeable then
-			if context.consumeable.ability.set == 'aberration' then
-				G.E_MANAGER:add_event(Event({
-					trigger = 'after',
-					delay = 0.7,
-					func = function()
-						local cards = {}
-						for i = 1, card.ability.extra.amount do
-							cards[i] = true
-							local _suit, _rank = nil, nil
-							_rank = pseudorandom_element({ 'J', 'Q', 'K' }, pseudoseed('familiar_create'))
-							_suit = pseudorandom_element({ 'S', 'H', 'D', 'C' }, pseudoseed('familiar_create'))
-							_suit = _suit or 'S'; _rank = _rank or 'A'
-							create_playing_card({ front = G.P_CARDS[_suit .. '_' .. _rank], center = base }, G.deck,
-								true, i ~= 1, { G.C.BLUE })
-							card_eval_status_text(card, 'extra', nil, nil, nil,
-								{ message = localize('k_card_added'), colour = G.C.BLUE })
-						end
-						return true
-					end
-				}))
 			end
 		end
 	end
