@@ -1122,7 +1122,7 @@ return {
                 text = {
                     "Reactiva cada {C:attention}comodín{}",
                     "por cada dos {C:attention}ciegas jefes{} derrotadas.",
-                    "emplezando en {C:mult}1{}",
+                    "empezando en {C:mult}1{}",
 					"{C:inactive}(Actualmente {C:mult}#1#{}{C:inactive} veces)",
                     "{C:inactive,s:0.7}\"Probablemente haya causado la mayor cantidad de crasheos.\""
                 }
