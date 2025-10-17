@@ -37,30 +37,31 @@ G.C.FG_ORIGINAL = HEX('FE5F55')
 -- This is in preparation for file splitting. I'll do that later. - Jogla
 -- im splitting jokers and stuff into sections to make this easier later - jenku
 local mod_contents = {
-	{path = 'special_editions/sendien', depencies = {}},
-	{path = 'aux_functions', depencies = {}},
-	{path = 'overrides', depencies = {}},
-	{path = 'jokers', depencies = {}},
-	{path = 'editions', depencies = {}},
-	{path = 'consumeables', depencies = {}},
-	{path = 'booster_packs', depencies = {}},
-	{path = 'rarities', depencies = {}},
-	{path = 'vouchers', depencies = {}},
-	{path = 'enhancements', depencies = {}},
-	{path = 'UI_definitions', depencies = {}},
-	{path = 'test', depencies = {}},
-	{path = 'special_editions/mila', depencies = {}},
-	{path = 'tarots', depencies = {}},
-	{path = 'seals', depencies = {}},
-	{path = 'misc', depencies = {}},
-	{path = 'decks', depencies = {}},
+	{path = 'special_editions/sendien', deps = {}},
+	{path = 'aux_functions', deps = {}},
+	{path = 'overrides', deps = {}},
+	{path = 'jokers', deps = {}},
+	{path = 'editions', deps = {}},
+	{path = 'consumeables', deps = {}},
+	{path = 'booster_packs', deps = {}},
+	{path = 'rarities', deps = {}},
+	{path = 'vouchers', deps = {}},
+	{path = 'enhancements', deps = {}},
+	{path = 'UI_definitions', deps = {}},
+	{path = 'test', deps = {}},
+	{path = 'special_editions/mila', deps = {}},
+	{path = 'spectral', deps = {}},
+	{path = 'tarots', deps = {}},
+	{path = 'seals', deps = {}},
+	{path = 'misc', deps = {}},
+	{path = 'decks', deps = {}},
 	-- Compat entries
-	{path = 'compat/joker_display', depencies = {"JokerDisplay"}},
+	{path = 'compat/joker_display', deps = {"JokerDisplay"}},
 }
 
 for k, v in ipairs(mod_contents) do -- Load this mod's files
 	local exists = true
-	for _,vv in ipairs(v.depencies) do
+	for _,vv in ipairs(v.deps) do
 		if not next(SMODS.find_mod(vv)) then exists = false end
 	end
 	if exists then assert(SMODS.load_file('/src/'..v.path..'.lua'))() end
