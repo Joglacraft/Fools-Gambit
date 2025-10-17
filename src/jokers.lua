@@ -2647,6 +2647,8 @@ SMODS.Joker{
 	key = 'blue_joker',
 	atlas = 'jokers_alt',
 	pos = {x = 7, y = 10},
+	rarity = 'fg_common_alt',
+	cost = 4,
 	config = {
 		fg_data = {
 			is_alternate = true,
@@ -2676,6 +2678,8 @@ SMODS.Joker{
 	key = 'constellation',
 	atlas = 'jokers_alt',
 	pos = {x = 9, y = 10},
+	rarity = 'fg_common_alt',
+	cost = 6,
 	config = {
 		fg_data = {
 			is_alternate = true,
@@ -2891,6 +2895,8 @@ SMODS.Joker{
 	key = 'vampire',
 	atlas = 'jokers_alt',
 	pos = {x = 2, y = 12},
+	rarity = 'fg_uncommon_alt',
+	cost = 5,
 	config = {
 		fg_data = {
 			is_alternate = true,
