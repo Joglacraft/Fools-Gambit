@@ -784,6 +784,15 @@ return {
                     "{C:inactive}(Currently {C:gold}$#1#{C:inactive})"
                 }
             },
+            j_fg_turtle_bean = {
+                name = 'Turtle Bean?',
+                text = {
+                    "{C:attention}+#1#{} hand size",
+                    "Gains {C:attention}+#2#{} extra hand size for this",
+                    "round for each hand used.",
+                    "{C:inactive}(Currently {C:attention}+#3#{C:inactive} hand size){}"
+                }
+            },
             j_fg_erosion = {
                 name = "Erosion?",
                 text = {

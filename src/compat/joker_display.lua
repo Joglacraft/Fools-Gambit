@@ -816,7 +816,16 @@ jd['j_fg_gift'] = {
     },
     text_config = {colour = G.C.GOLD}
 }
-jd['j_fg_turtle_bean'] = {}
+jd['j_fg_turtle_bean'] = {
+    text = {
+        {text = '+'},
+        {ref_table = 'card.joker_display_values', ref_value = 'size'}
+    },
+    text_config = {colour = G.C.ORANGE},
+    calc_function = function (card)
+        card.joker_display_values.size = G.hand and (card.ability.extra.hand_size + ((G.GAME.round_resets.hands - G.GAME.current_round.hands_left) * card.ability.extra.extra_size)) or 0
+    end
+}
 jd['j_fg_erosion'] = {}
 jd['j_fg_reserved_parking'] = {}
 jd['j_fg_mail'] = {}

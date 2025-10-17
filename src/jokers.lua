@@ -3119,6 +3119,63 @@ SMODS.Joker{
     end
 }
 -- Turtle bean
+SMODS.Joker{
+	key = 'turtle_bean',
+	pos = {x=4,y=13},
+	rarity = 'fg_uncommon_alt',
+	cost = 5,
+	config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = 'j_turtle_bean'
+		},
+		extra = {
+			original_limit = G.hand and G.hand.config.card_limit or 0,
+			hand_size = 1,
+			extra_size = 1,
+		}
+	},
+	loc_vars = function (self, info_queue, card)
+		return {
+			vars = {
+				card.ability.extra.hand_size,
+				card.ability.extra.extra_size,
+				G.hand and (card.ability.extra.hand_size + ((G.GAME.round_resets.hands - G.GAME.current_round.hands_left) * card.ability.extra.extra_size)) or 0
+			}
+		}
+	end,
+	calculate = function (self, card, context)
+		local original_limit = card.ability.extra.original_limit
+		local current_limit = G.hand.config.card_limit
+		if context.blueprint then return end
+		if context.setting_blind then
+			card.ability.extra.original_limit = G.hand.config.card_limit
+			G.hand.config.card_limit = G.hand.config.card_limit + card.ability.extra.hand_size
+			return {
+				message = '+'..card.ability.extra.hand_size
+			}
+		end
+		if context.after then
+			current_limit = G.hand.config.card_limit
+			local dif = ((G.GAME.round_resets.hands - G.GAME.current_round.hands_left) * card.ability.extra.extra_size)
+			G.E_MANAGER:add_event(Event{
+				func = function ()
+					G.hand.config.card_limit = card.ability.extra.original_limit + card.ability.extra.hand_size + dif
+					return true
+				end
+			})
+			return {
+				message = '+'..card.ability.extra.extra_size
+			}
+		end
+		if context.end_of_round and context.cardarea == G.jokers then
+			G.hand.config.card_limit = card.ability.extra.original_limit
+			return {
+				message = localize('k_reset')
+			}
+		end
+	end
+}
 -- Erosion
 SMODS.Joker{
     key = "erosion",
