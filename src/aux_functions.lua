@@ -195,7 +195,7 @@ function FG.FUNCS.card_eval_status_text (args)
 	local args = args or {}
 	local card = args.card -- Target card
 	local eval_type = args.type or "extra"
-	local misc_cat = args.category or 'FG'
+	local misc_cat = args.category
 	local message = args.message or "ERROR"
 	local mode = args.mode or "localize"
 	local colour = args.colour or args.color or string.upper("orange") -- The color of the square background.
@@ -205,10 +205,10 @@ function FG.FUNCS.card_eval_status_text (args)
 
 	if mode == "literal" then
 		card_eval_status_text(card, eval_type, nil, nil, nil,
-		{ message = message, colour = G.C[colour] })
+		{ message = message, colour = G.C[colour], delay = args.delay})
 	elseif mode == "localize" then
 		card_eval_status_text(card, eval_type, nil, nil, nil,
-		{ message = localize(message,misc_cat), colour = G.C[colour] })
+		{ message = localize(message,misc_cat), colour = G.C[colour], delay = args.delay})
 	end
 end
 --- Retrieves useful data for the specified card
@@ -265,7 +265,7 @@ end
 ---@param max number 1 in N chance, where N is `max`
 ---@return boolean success If the random chance succeeds
 function FG.FUNCS.random_chance(max)
-	return pseudorandom('mila', G.GAME.probabilities.normal, math.max(max,G.GAME.probabilities.normal,1)) <= G.GAME.probabilities.normal
+	return pseudorandom('mila', G.GAME.probabilities.normal, math.max(max,G.GAME.probabilities.normal)) <= G.GAME.probabilities.normal
 end
 
 function FG.FUNCS.allow_duplicate (card)

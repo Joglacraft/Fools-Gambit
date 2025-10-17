@@ -169,3 +169,42 @@ function Game:init_game_object()
 	}
 	return ret
 end
+
+-- Mr bonez
+local ref = end_round
+function end_round(...)
+	local eval
+	local skip_og = false -- Skip original function, mainly to remove the game over screen
+	for _,v in ipairs(G.jokers.cards) do
+		eval = v:calculate_joker({end_of_round = true})
+		if eval then
+			if eval.fg_game_over == 'mr_bones' then
+
+				if FG.FUNCS.random_chance(v.ability.extra.max_chance) then
+					v:start_dissolve()
+				end
+
+				skip_og = true
+				G.E_MANAGER:add_event(Event({
+					func = function()
+						if G.FUNCS.draw_from_deck_to_hand(nil) then
+							return true
+						end
+						G.E_MANAGER:add_event(Event({
+							func = function()
+							G.STATE = G.STATES.SELECTING_HAND
+							G.STATE_COMPLETE = false
+							G.GAME.blind:drawn_to_hand()
+							return true
+							end
+						}))
+						return true
+					end
+				}))
+				break
+			end
+		end
+	end
+	local ret = not skip_og and ref(...)
+	return ret
+end

@@ -1,5 +1,7 @@
 FG.test = {
-    main_menu_button_text = "Stuff"
+    main_menu_button_text = "Stuff",
+    -- silly thing I made. Makes samuran act like copy/paste from cryptid
+    samuran_is_copy_paste = false
 }
 
 function FG.test.toggle_unchangeable()

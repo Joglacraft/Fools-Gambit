@@ -1148,3 +1148,14 @@ jd['j_fg_goldenleaf'] = {}
 jd['j_fg_goldenleafalt'] = {}
 jd['j_fg_jenker'] = {}
 jd['j_fg_jenkeralt'] = {}
+jd['j_fg_samuran'] = {
+    reminder_text = {
+        {text = '('},
+        {ref_table = 'G.GAME.probabilities', ref_value = 'normal'},
+        {text = ' in '},
+        {ref_table = 'card.ability.extra', ref_value = 'max_chance'},
+        {text = ')'}
+    },
+    reminder_text_config = {colour = G.C.GREEN}
+}
+jd['j_fg_samuran_alt'] = {}

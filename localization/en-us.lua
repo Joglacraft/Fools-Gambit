@@ -910,6 +910,15 @@ return {
                     "{C:inactive}(Currently {C:white,X:mult}X#1#{C:inactive} Mult, can't go below {C:white,X:mult}X0.75{C:inactive} Mult)"
                 }
             },
+            j_fg_mr_bones = {
+                name = 'Mr. Bones',
+                text = {
+                    "After {C:attention}final hand{} {C:blue}+#4#{} hands and {C:red}+#5#{} discards if chips",
+                    "scored are at least {C:attention}#3#%{} of required score",
+                    "{C:green}#1# in #2#{} chance this card gets {C:red}destroyed{}",
+                    "when triggered"
+                }
+            },
             j_fg_acrobat = {
                 name = "Acrobat?",
                 text = {
@@ -1186,6 +1195,21 @@ return {
                     "of hands by {C:blue}#1#{} when",
                     "{C:attention}Boss blind{} defeated",
                     "{C:inactive}(Currently {C:blue}+#2#{C:inactive} hands)"
+                }
+            },
+            j_fg_samuran = {
+                name = 'Samuran',
+                text = {
+                    "{C:green}#1# in #2#{} chance to create a {C:dark_edition}negative{} copy",
+                    " of a {C:red}non-negative{} consumable when used"
+                }
+            },
+            j_fg_samuran_alt = {
+                name = 'Samuran?',
+                text = {
+                    "All consumables in the shop are {C:dark_edition}negative{}",
+                    "{C:attention}Further increase{} shop prices for each",
+                    "{C:dark_edition}negative{} consumable in posession"
                 }
             }
         },

@@ -868,6 +868,15 @@ return {
                     "{C:inactive}(Actualmente {C:white,X:mult}X#1#{C:inactive} Multi, no puede bajar más de {C:white,X:mult}X0.75{C:inactive} Multi)"
                 }
             },
+            j_fg_mr_bones = {
+                name = '¿Sr. Huesos?',
+                text = {
+                    "Tras jugar la {C:attention}última mano{} {C:blue}+#4#{} manos y {C:red}+#5#{} descartes si las",
+                    "fichas obtenidas son al menos {C:attention}#3#%{} de lo requerido.",
+                    "{C:green}#1# en #2#{} probabilidades de que esta carta",
+                    "sea {C:red}destruida{} al ser activada"
+                }
+            },
             j_fg_acrobat = {
                 name = "¿Acróbata?",
                 text = {
@@ -1132,6 +1141,21 @@ return {
                     "Aumenta la cantidad de manos en {C:attention}#1#{}",
                     "cuando se derrota a {C:attention}ciega jefe{}",
                     "{C:inactive}(Actualmente {C:attention}+#2#{C:inactive} manos)"
+                }
+            },
+            j_fg_samuran = {
+                name = 'Samuran',
+                text = {
+                    "{C:green}#1# en #2#{} probabilidades de crear una copia {C:dark_edition}negativa{}",
+                    "de un consumible {C:red}no negativo{} cuando se usa un consumible"
+                }
+            },
+            j_fg_samuran_alt = {
+                name = '¿Samuran?',
+                text = {
+                    "Todos los consumibles en la tienda son {C:dark_edition}negativos{}",
+                    "{C:attention}Aumenta{} los precios de la tienda por cada",
+                    "consumible {C:dark_edition}negativo{} en posesión"
                 }
             }
         },

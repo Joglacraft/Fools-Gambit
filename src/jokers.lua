@@ -3889,6 +3889,58 @@ SMODS.Joker{
 }
 -- Ticket
 -- Mr. Bones
+SMODS.Joker{
+	key = 'mr_bones',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
+	pos = {x=3,y=4},
+	rarity = 'fg_rare_alt',
+	cost = 6,
+	config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = 'j_mr_bones'
+		},
+		extra = {
+			chips = 0.25,
+			max_chance = 2,
+			hands = 1,
+			discards = 1,
+		}
+	},
+	loc_vars = function (self, info_queue, card)
+		return {
+			vars = {
+				G.GAME.probabilities.normal,
+				card.ability.extra.max_chance,
+				100*card.ability.extra.chips,
+				card.ability.extra.hands,
+				card.ability.extra.discards
+			}
+		}
+	end,
+	calculate = function (self, card, context)
+		if G.GAME.chips >= G.GAME.blind.chips*card.ability.extra.chips
+		and G.GAME.chips < G.GAME.blind.chips
+		and G.GAME.current_round.hands_left <= 1
+		and context.end_of_round and not context.blueprint then
+			G.E_MANAGER:add_event(Event{
+				func = function ()
+					ease_hands_played(tonumber(card.ability.extra.hands) or 1)
+					ease_discard(tonumber(card.ability.extra.hands) or 1)
+					return true
+				end
+			},nil)
+			FG.FUNCS.card_eval_status_text{
+				card = card,
+				message = 'k_saved_ex'
+			}
+			return {
+				fg_game_over = 'mr_bones'
+			}
+		end
+	end
+}
 -- Acrobat
 SMODS.Joker{
     key = "acrobat",
@@ -5638,6 +5690,88 @@ SMODS.Joker {
 				for _, playing_card in pairs(G.playing_cards) do
 						SMODS.debuff_card(playing_card, false, "jenkerdebuff")
 				end
+			end
+		end
+	end
+}
+-- Samuran
+SMODS.Joker{
+	key = 'samuran',
+	-- missing atlas key
+	rarity = 'fg_collective',
+	cost = 30,
+	config = {
+		fg_data = {
+			is_alternate = false,
+			alternate_card = 'j_fg_samuran_alt'
+		},
+		extra = {
+			max_chance = 2
+		}
+	},
+	loc_vars = function (self, info_queue, card)
+		return {
+			vars = {
+				G.GAME.probabilities.normal,
+				card.ability.extra.max_chance,
+			}
+		}
+	end,
+	blueprint_compat = true,
+	calculate = function (self, card, context)
+		if context.using_consumeable
+		and 
+		  ((FG.FUNCS.get_card_info(context.consumeable).edition ~= 'e_negative'
+		  and FG.FUNCS.random_chance(card.ability.extra.max_chance))
+		or FG.test.samuran_is_copy_paste) then
+			local c = SMODS.add_card{
+				key = FG.FUNCS.get_card_info(context.consumeable).key
+			}
+			c:set_edition('e_negative',true,false)
+			FG.FUNCS.card_eval_status_text{
+				card = card,
+				message = 'Copied!',
+				mode = 'literal',
+			}
+		end
+	end
+}
+SMODS.Joker{
+	key = 'samuran_alt',
+	-- Missing atlas data
+	rarity = 'fg_collective_alt',
+	cost = 30,
+	config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = 'j_fg_samuran'
+		},
+		extra = {
+			inflation = 1,
+		}
+	},
+	blueprint_compat = false,
+	calculate = function (self, card, context)
+		if G.shop_jokers and context.starting_shop or context.reroll_shop and not context.blueprint then
+			for _,v in ipairs(G.shop_jokers.cards) do
+				if v.config.center.set ~= 'Joker' then
+					G.E_MANAGER:add_event(Event{
+						trigger = 'after',
+						delay = 0.1,
+						func = function ()
+							v:set_edition('e_negative',true,false)
+							return true
+						end
+					})
+				end
+
+				local c = 0
+				for _,vv in ipairs(G.consumeables.cards) do
+					if FG.FUNCS.get_card_info(vv).edition == 'e_negative' then
+						c = c + card.ability.extra.inflation
+					end
+				end
+				v.cost = v.cost + c
 			end
 		end
 	end
