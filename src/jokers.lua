@@ -2643,6 +2643,33 @@ SMODS.Joker{
 -- DNA
 -- Splash
 -- Blue
+SMODS.Joker{
+	key = 'blue_joker',
+	atlas = 'jokers_alt',
+	pos = {x = 7, y = 10},
+	config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = 'j_blue_joker'
+		},
+		extra = {
+			chips = 1,
+		}
+	},
+	loc_vars = function (self, info_queue, card)
+		return {
+			vars = {
+				card.ability.extra.chips,
+				G.playing_cards and (card.ability.extra.chips * #G.playing_cards) or 0
+			}
+		}
+	end,
+	calculate = function (self, card, context)
+		if context.joker_main then
+			return {chips = card.ability.extra.chips * #G.playing_cards}
+		end
+	end
+}
 -- Sixth sense
 -- Constellation
 SMODS.Joker{
@@ -5023,171 +5050,170 @@ SMODS.Joker{
 -----------------
 ---Collectives---
 -----------------
---if FG.config.debug_mode then
-	-- Deathmodereal
-	SMODS.Joker {
-		key = 'deathmodereal',
-		rarity = "fg_collective",
-		cost = 30,
-		atlas = "collective",
-		pos = { x = 3, y = 0 },
-		config = {
-		fg_data = {
-			is_alternate = false,
-			alternate_card = "j_fg_deathmoderealalt"
-		}, extra = { Xmult = 20, blindchipmult = 2 } },
-		loc_vars = function(self, info_queue, card)
-			return {
-				vars = {
-					card.ability.extra.Xmult
-				}
+-- Deathmodereal
+SMODS.Joker {
+	key = 'deathmodereal',
+	rarity = "fg_collective",
+	cost = 30,
+	atlas = "collective",
+	pos = { x = 3, y = 0 },
+	config = {
+	fg_data = {
+		is_alternate = false,
+		alternate_card = "j_fg_deathmoderealalt"
+	}, extra = { Xmult = 20, blindchipmult = 2 } },
+	loc_vars = function(self, info_queue, card)
+		return {
+			vars = {
+				card.ability.extra.Xmult
 			}
-		end,
-		calculate = function(self, card, context)
-			if G.jokers then
-				if context.before then
-					G.E_MANAGER:add_event(Event({
-						func = function()
-							G.GAME.blind.chips = G.GAME.blind.chips * card.ability.extra.blindchipmult
-							G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
-							G.FUNCS.blind_chip_UI_scale(G.hand_text_area.blind_chips)
-							G.HUD_blind:recalculate()
-							return true
-						end
-					}))
-					return {
-						message = "hehehehehe....",
-						colour = G.C.WHITE
-					}
-				end
-			end
-			if context.joker_main then
-				return {
-					Xmult = card.ability.extra.Xmult
-				}
-			end
-		end
-	}
-	-- Deathmodereal alt
-	SMODS.Joker {
-		key = 'deathmoderealalt',
-		config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_fg_deathmodereal"
-		}, extra = { Xmult = 1.25 } },
-		loc_vars = function(self, info_queue, card)
-			return { vars = { card.ability.extra.Xmult } }
-		end,
-		rarity = "fg_collective_alt",
-		atlas = 'collective',
-		pos = { x = 4, y = 0 },
-		cost = 30,
-		calculate = function(self, card, context)
-			if context.individual and context.cardarea == G.play then
-				return {
-					Xmult = card.ability.extra.Xmult
-				}
-			end
-		end
-	}
-	-- Jogla (I was told he was op, but I decided to not change it lol)
-	SMODS.Joker {
-		key = 'jogla',
-		config = {
-		fg_data = {
-			is_alternate = false,
-			alternate_card = "j_fg_jogla_alt"
-		}, extra = { duplicate = 2, name = "None"} },
-		update = function (self, card, dt)
-			if G.consumeables then
-				if G.consumeables.cards[1] then
-					card.ability.extra.name = G.consumeables.cards[1].config.center.name
-					card.ability.extra.name = localize{type = "name_text", set = G.consumeables.cards[1].ability.set, key = G.consumeables.cards[1].config.center.key}
-				else
-					card.ability.extra.name = "None"
-				end
-			end
-		end,
-		loc_vars = function(self, info_queue, card)
-			info_queue[#info_queue+1] = {key = 'e_negative_consumable', set = 'Edition', config = {extra = 1}}
-			if G.consumeables then
-				if G.consumeables.cards[1] then
-					info_queue[#info_queue+1] = G.consumeables.cards[1].config.center
-				end
-			end
-			return {
-				vars = {
-					card.ability.extra.duplicate,
-					card.ability.extra.name
-				}
-			}
-		end,
-		rarity = "fg_collective",
-		atlas = 'collective',
-		pos = { x = 2, y = 0 },
-		soul_pos = { x = 2, y = 1 },
-		cost = 30,
-		blueprint_compat = true,
-		calculate = function(self, card, context)
-			if context.ending_shop and G.consumeables.cards[1] then
-				local target_card_key = G.consumeables.cards[1].config.center.key
-				if target_card_key ~= nil then
-					FG.FUNCS.card_eval_status_text{
-						card = card,
-						message = "k_duplicated_ex",
-						mode = "localize",
-						category = "dictionary"
-					}
-					for i=1, card.ability.extra.duplicate do
-						local new_card = SMODS.add_card{
-							key = target_card_key,
-							edition = "e_negative"
-						}
+		}
+	end,
+	calculate = function(self, card, context)
+		if G.jokers then
+			if context.before then
+				G.E_MANAGER:add_event(Event({
+					func = function()
+						G.GAME.blind.chips = G.GAME.blind.chips * card.ability.extra.blindchipmult
+						G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
+						G.FUNCS.blind_chip_UI_scale(G.hand_text_area.blind_chips)
+						G.HUD_blind:recalculate()
+						return true
 					end
-				end
-				--card_eval_status_text(card, 'extra', nil, nil, nil, { message = "Upgrade!" })
-			end
-		end
-	}
-	SMODS.Joker {
-		key = 'jogla_alt',
-		config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_fg_jogla"
-		}, extra = { increase = 1, extra_size = 2} },
-		loc_vars = function(self, info_queue, card)
-			return {
-				vars = {
-					card.ability.extra.increase,
-					card.ability.extra.extra_size
+				}))
+				return {
+					message = "hehehehehe....",
+					colour = G.C.WHITE
 				}
-			}
-		end,
-		rarity = "fg_collective_alt", 
-		atlas = 'collective',
-		pos = { x = 2, y = 0 },
-		soul_pos = { x = 2, y = 1 },
-		cost = 5,
-		blueprint_compat = false,
-		add_to_deck = function (self, card, from_debuff)
-			G.hand:change_size(card.ability.extra.extra_size)
-		end,
-		remove_from_deck = function (self, card, from_debuff)
-			G.hand:change_size(-card.ability.extra.extra_size)
-		end,
-		calculate = function(self, card, context)
-			if context.setting_blind and not context.blueprint then
-				card_eval_status_text(card, 'extra', nil, nil, nil, { message = "+"..card.ability.extra.extra_size.." hand size!" })
-			end
-			if context.end_of_round and not context.blueprint and G.GAME.blind.boss and not context.repetition and not context.individual then
-				card.ability.extra.extra_size = card.ability.extra.extra_size + card.ability.extra.increase
-				G.hand:change_size(card.ability.extra.increase)
-				card_eval_status_text(card, 'extra', nil, nil, nil, { message = "Upgrade!" })
 			end
 		end
-	}
+		if context.joker_main then
+			return {
+				Xmult = card.ability.extra.Xmult
+			}
+		end
+	end
+}
+-- Deathmodereal alt
+SMODS.Joker {
+	key = 'deathmoderealalt',
+	config = {
+	fg_data = {
+		is_alternate = true,
+		alternate_card = "j_fg_deathmodereal"
+	}, extra = { Xmult = 1.25 } },
+	loc_vars = function(self, info_queue, card)
+		return { vars = { card.ability.extra.Xmult } }
+	end,
+	rarity = "fg_collective_alt",
+	atlas = 'collective',
+	pos = { x = 4, y = 0 },
+	cost = 30,
+	calculate = function(self, card, context)
+		if context.individual and context.cardarea == G.play then
+			return {
+				Xmult = card.ability.extra.Xmult
+			}
+		end
+	end
+}
+-- Jogla (I was told he was op, but I decided to not change it lol)
+SMODS.Joker {
+	key = 'jogla',
+	config = {
+	fg_data = {
+		is_alternate = false,
+		alternate_card = "j_fg_jogla_alt"
+	}, extra = { duplicate = 2, name = "None"} },
+	update = function (self, card, dt)
+		if G.consumeables then
+			if G.consumeables.cards[1] then
+				card.ability.extra.name = G.consumeables.cards[1].config.center.name
+				card.ability.extra.name = localize{type = "name_text", set = G.consumeables.cards[1].ability.set, key = G.consumeables.cards[1].config.center.key}
+			else
+				card.ability.extra.name = "None"
+			end
+		end
+	end,
+	loc_vars = function(self, info_queue, card)
+		info_queue[#info_queue+1] = {key = 'e_negative_consumable', set = 'Edition', config = {extra = 1}}
+		if G.consumeables then
+			if G.consumeables.cards[1] then
+				info_queue[#info_queue+1] = G.consumeables.cards[1].config.center
+			end
+		end
+		return {
+			vars = {
+				card.ability.extra.duplicate,
+				card.ability.extra.name
+			}
+		}
+	end,
+	rarity = "fg_collective",
+	atlas = 'collective',
+	pos = { x = 2, y = 0 },
+	soul_pos = { x = 2, y = 1 },
+	cost = 30,
+	blueprint_compat = true,
+	calculate = function(self, card, context)
+		if context.ending_shop and G.consumeables.cards[1] then
+			local target_card_key = G.consumeables.cards[1].config.center.key
+			if target_card_key ~= nil then
+				FG.FUNCS.card_eval_status_text{
+					card = card,
+					message = "k_duplicated_ex",
+					mode = "localize",
+					category = "dictionary"
+				}
+				for i=1, card.ability.extra.duplicate do
+					local new_card = SMODS.add_card{
+						key = target_card_key,
+						edition = "e_negative"
+					}
+				end
+			end
+			--card_eval_status_text(card, 'extra', nil, nil, nil, { message = "Upgrade!" })
+		end
+	end
+}
+SMODS.Joker {
+	key = 'jogla_alt',
+	config = {
+	fg_data = {
+		is_alternate = true,
+		alternate_card = "j_fg_jogla"
+	}, extra = { increase = 1, extra_size = 2} },
+	loc_vars = function(self, info_queue, card)
+		return {
+			vars = {
+				card.ability.extra.increase,
+				card.ability.extra.extra_size
+			}
+		}
+	end,
+	rarity = "fg_collective_alt", 
+	atlas = 'collective',
+	pos = { x = 2, y = 0 },
+	soul_pos = { x = 2, y = 1 },
+	cost = 5,
+	blueprint_compat = false,
+	add_to_deck = function (self, card, from_debuff)
+		G.hand:change_size(card.ability.extra.extra_size)
+	end,
+	remove_from_deck = function (self, card, from_debuff)
+		G.hand:change_size(-card.ability.extra.extra_size)
+	end,
+	calculate = function(self, card, context)
+		if context.setting_blind and not context.blueprint then
+			card_eval_status_text(card, 'extra', nil, nil, nil, { message = "+"..card.ability.extra.extra_size.." hand size!" })
+		end
+		if context.end_of_round and not context.blueprint and G.GAME.blind.boss and not context.repetition and not context.individual then
+			card.ability.extra.extra_size = card.ability.extra.extra_size + card.ability.extra.increase
+			G.hand:change_size(card.ability.extra.increase)
+			card_eval_status_text(card, 'extra', nil, nil, nil, { message = "Upgrade!" })
+		end
+	end
+}
 SMODS.Joker {
 	key = 'goldenleaf',
 	config = {
@@ -5216,210 +5242,209 @@ SMODS.Joker {
 		end
 	end
 }
-	-- goldenleaf alt
-	SMODS.Joker {
-		key = 'goldenleafalt',
-		config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_fg_goldenleaf"
-		}, extra = { increase = 1, extra_size = 0} },
-		loc_vars = function(self, info_queue, card)
-			return {
-				vars = {
-					card.ability.extra.increase,
-					card.ability.extra.extra_size
-				}
+-- goldenleaf alt
+SMODS.Joker {
+	key = 'goldenleafalt',
+	config = {
+	fg_data = {
+		is_alternate = true,
+		alternate_card = "j_fg_goldenleaf"
+	}, extra = { increase = 1, extra_size = 0} },
+	loc_vars = function(self, info_queue, card)
+		return {
+			vars = {
+				card.ability.extra.increase,
+				card.ability.extra.extra_size
 			}
-		end,
-		rarity = "fg_collective_alt", 
-		atlas = 'collective',
-		pos = { x = 0, y = 0 },
-		soul_pos = { x = 0, y = 1 },
-		cost = 30,
-		blueprint_compat = false,
-		calculate = function(self, card, context)
-			if context.end_of_round and not context.blueprint and G.GAME.blind.boss and not context.repetition and not context.individual then
-				card.ability.extra.extra_size = card.ability.extra.extra_size + card.ability.extra.increase
-				G.GAME.round_resets.hands = G.GAME.round_resets.hands + card.ability.extra.increase
-				ease_hands_played(card.ability.extra.increase)
-				card_eval_status_text(card, 'extra', nil, nil, nil, { message = "+"..card.ability.extra.extra_size.." hand(s)!" })
+		}
+	end,
+	rarity = "fg_collective_alt", 
+	atlas = 'collective',
+	pos = { x = 0, y = 0 },
+	soul_pos = { x = 0, y = 1 },
+	cost = 30,
+	blueprint_compat = false,
+	calculate = function(self, card, context)
+		if context.end_of_round and not context.blueprint and G.GAME.blind.boss and not context.repetition and not context.individual then
+			card.ability.extra.extra_size = card.ability.extra.extra_size + card.ability.extra.increase
+			G.GAME.round_resets.hands = G.GAME.round_resets.hands + card.ability.extra.increase
+			ease_hands_played(card.ability.extra.increase)
+			card_eval_status_text(card, 'extra', nil, nil, nil, { message = "+"..card.ability.extra.extra_size.." hand(s)!" })
+		end
+	end
+}
+-- Jenku
+-- shes fucking op i will probably nerf her but its 4am
+--hello chat it is i jenku it is 4am again! i am now going to fix. this. thINGOID
+-- devlog time!!! violin voucher flashbacks
+SMODS.Joker {
+	key = 'jenker',
+	config = {
+	fg_data = {
+		is_alternate = false,
+		alternate_card = "j_fg_jenkeralt"
+	}, extra = { repetitions = 1, increase = false } },
+	loc_vars = function(self, info_queue, card)
+		return {
+			vars = {
+				card.ability.extra.repetitions
+			}
+		}
+	end,
+	rarity = "fg_collective",
+	atlas = 'collective',
+	pos = { x = 1, y = 0 },
+	soul_pos = { x = 1, y = 1 },
+	cost = 30,
+	calculate = function(self, card, context)
+		if not context.blueprint then	
+			if card.ability.extra.repetitions == 0 then
+				card.ability.extra.repetitions = 1
+			end
+			if context.end_of_round and not context.repetition and not context.individual and G.GAME.blind.boss then
+				card.ability.extra.repetitions = card.ability.extra.repetitions + 1
+			end
+			if context.retrigger_joker_check and not context.retrigger_joker and card ~= self then
+				return { 
+					repetitions = card.ability.extra.repetitions
+				} 
 			end
 		end
-	}
-	-- Jenku
-	-- shes fucking op i will probably nerf her but its 4am
-	--hello chat it is i jenku it is 4am again! i am now going to fix. this. thINGOID
-	-- devlog time!!! violin voucher flashbacks
-	SMODS.Joker {
-		key = 'jenker',
-		config = {
-		fg_data = {
-			is_alternate = false,
-			alternate_card = "j_fg_jenkeralt"
-		}, extra = { repetitions = 1, increase = false } },
-		loc_vars = function(self, info_queue, card)
-			return {
-				vars = {
-					card.ability.extra.repetitions
-				}
-			}
-		end,
-		rarity = "fg_collective",
-		atlas = 'collective',
-		pos = { x = 1, y = 0 },
-		soul_pos = { x = 1, y = 1 },
-		cost = 30,
-		calculate = function(self, card, context)
-			if not context.blueprint then	
-				if card.ability.extra.repetitions == 0 then
-					card.ability.extra.repetitions = 1
-				end
-				if context.end_of_round and not context.repetition and not context.individual and G.GAME.blind.boss then
-					card.ability.extra.repetitions = card.ability.extra.repetitions + 1
-				end
-				if context.retrigger_joker_check and not context.retrigger_joker and card ~= self then
-					return { 
-						repetitions = card.ability.extra.repetitions
-					} 
-				end
-			end
-		end
-	}
-	-- Jenku alt
-	SMODS.Joker {
-		key = 'jenkeralt',
-		config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_fg_jenker"
-		}, extra = { name = "jenku", repetitions = 5, odds = 4} },
-		rarity = "fg_collective_alt",
-		atlas = 'collective',
-		loc_txt = {
-			name = "#1#",
-			text = {""}
-		},
-		pos = { x = 1, y = 0 },
-		soul_pos = { x = 1, y = 1 },
-		cost = 30,
-		-- how the FUCK DO I MAKE THIS ABLE TO BE LOCALISED?????
-		-- I JUST OPENED CELESTE INSTEAD OF BALATRO ITS STILL 4AM
-		loc_vars = function(self, info_queue, card)
-			return {
-				main_end = {
-					{n=G.UIT.R, config= {align="bm", padding = 0.02}, nodes={
-						{n=G.UIT.C, config={align = "m", colour=colour, r=0.05, padding=0.05}, nodes={
-							{n=G.UIT.T, config={text = "Retriggers every", colour = G.C.UI.TEXT_DARK, scale=0.3}},
-							{
-								n = G.UIT.O,
-								config = {
-									object = DynaText({
-										string = { "scORed Card", "scp]o}{d }ca", "Cscored ()'", "560$30 6470", "sd[]{;l''l;} a;'", "834934-230", "s{;} @:[ored]"},
-										colours = { G.C.RED },
-										pop_in_rate = 9999999,
-										silent = true,
-										random_element = true,
-										pop_delay = 0.30,
-										scale = 0.32,
-										min_cycle_time = 0,
-									}),
-								},
+	end
+}
+-- Jenku alt
+SMODS.Joker {
+	key = 'jenkeralt',
+	config = {
+	fg_data = {
+		is_alternate = true,
+		alternate_card = "j_fg_jenker"
+	}, extra = { name = "jenku", repetitions = 5, odds = 4} },
+	rarity = "fg_collective_alt",
+	atlas = 'collective',
+	loc_txt = {
+		name = "#1#",
+		text = {""}
+	},
+	pos = { x = 1, y = 0 },
+	soul_pos = { x = 1, y = 1 },
+	cost = 30,
+	-- how the FUCK DO I MAKE THIS ABLE TO BE LOCALISED?????
+	-- I JUST OPENED CELESTE INSTEAD OF BALATRO ITS STILL 4AM
+	loc_vars = function(self, info_queue, card)
+		return {
+			main_end = {
+				{n=G.UIT.R, config= {align="bm", padding = 0.02}, nodes={
+					{n=G.UIT.C, config={align = "m", colour=colour, r=0.05, padding=0.05}, nodes={
+						{n=G.UIT.T, config={text = "Retriggers every", colour = G.C.UI.TEXT_DARK, scale=0.3}},
+						{
+							n = G.UIT.O,
+							config = {
+								object = DynaText({
+									string = { "scORed Card", "scp]o}{d }ca", "Cscored ()'", "560$30 6470", "sd[]{;l''l;} a;'", "834934-230", "s{;} @:[ored]"},
+									colours = { G.C.RED },
+									pop_in_rate = 9999999,
+									silent = true,
+									random_element = true,
+									pop_delay = 0.30,
+									scale = 0.32,
+									min_cycle_time = 0,
+								}),
 							},
-						}}
-					}},
-					{n=G.UIT.R, config= {align="bm", padding = 0.02}, nodes={
-						{n=G.UIT.C, config={align = "m", colour=colour, r=0.05, padding=0.05}, nodes={
-							{
-								n = G.UIT.O,
-								config = {
-									object = DynaText({
-										string = { "-1", "0", "1", "2", "3", "4", "5"},
-										colours = { G.C.IMPORTANT },
-										pop_in_rate = 9999999,
-										silent = true,
-										random_element = true,
-										pop_delay = 0.30,
-										scale = 0.32,
-										min_cycle_time = 0,
-									}),
-								},
+						},
+					}}
+				}},
+				{n=G.UIT.R, config= {align="bm", padding = 0.02}, nodes={
+					{n=G.UIT.C, config={align = "m", colour=colour, r=0.05, padding=0.05}, nodes={
+						{
+							n = G.UIT.O,
+							config = {
+								object = DynaText({
+									string = { "-1", "0", "1", "2", "3", "4", "5"},
+									colours = { G.C.IMPORTANT },
+									pop_in_rate = 9999999,
+									silent = true,
+									random_element = true,
+									pop_delay = 0.30,
+									scale = 0.32,
+									min_cycle_time = 0,
+								}),
 							},
-							{n=G.UIT.T, config={text = "times.", colour = G.C.UI.TEXT_DARK, scale=0.3}},
-							{n=G.UIT.T, config={text = "1/4", colour = G.C.IMPORTANT, scale=0.3}},
-							{n=G.UIT.T, config={text = "chance to", colour = G.C.UI.TEXT_DARK, scale=0.3}},
-							{n=G.UIT.T, config={text = "debuff", colour = G.C.UI.TEXT_DARK, scale=0.3}},
-						}}
-					}},
-					{n=G.UIT.R, config= {align="bm", padding = 0.02}, nodes={
-						{n=G.UIT.C, config={align = "m", colour=colour, r=0.05, padding=0.05}, nodes={
-							{n=G.UIT.T, config={text = "every card in", colour = G.C.UI.TEXT_DARK, scale=0.3}},
-							{
-								n = G.UIT.O,
-								config = {
-									object = DynaText({
-										string = { "scoring hand", "scp]as}ga }ha", "8Coirgng ad()'", "56$30 6470", "s[]{;l''l;} a;'", "834934-230", "s{;} @:[ored]"},
-										colours = { G.C.RED },
-										pop_in_rate = 9999999,
-										silent = true,
-										random_element = true,
-										pop_delay = 0.30,
-										scale = 0.32,
-										min_cycle_time = 0,
-									}),
-								},
+						},
+						{n=G.UIT.T, config={text = "times.", colour = G.C.UI.TEXT_DARK, scale=0.3}},
+						{n=G.UIT.T, config={text = "1/4", colour = G.C.IMPORTANT, scale=0.3}},
+						{n=G.UIT.T, config={text = "chance to", colour = G.C.UI.TEXT_DARK, scale=0.3}},
+						{n=G.UIT.T, config={text = "debuff", colour = G.C.UI.TEXT_DARK, scale=0.3}},
+					}}
+				}},
+				{n=G.UIT.R, config= {align="bm", padding = 0.02}, nodes={
+					{n=G.UIT.C, config={align = "m", colour=colour, r=0.05, padding=0.05}, nodes={
+						{n=G.UIT.T, config={text = "every card in", colour = G.C.UI.TEXT_DARK, scale=0.3}},
+						{
+							n = G.UIT.O,
+							config = {
+								object = DynaText({
+									string = { "scoring hand", "scp]as}ga }ha", "8Coirgng ad()'", "56$30 6470", "s[]{;l''l;} a;'", "834934-230", "s{;} @:[ored]"},
+									colours = { G.C.RED },
+									pop_in_rate = 9999999,
+									silent = true,
+									random_element = true,
+									pop_delay = 0.30,
+									scale = 0.32,
+									min_cycle_time = 0,
+								}),
 							},
-						}}
-					}},
-					{n=G.UIT.R, config= {align="bm", padding = 0.02}, nodes={
-						{n=G.UIT.C, config={align = "m", colour=colour, r=0.05, padding=0.05}, nodes={
-							{n=G.UIT.T, config={text = "Uh, this one's kinda.. broken. You sure?", colour = G.C.UI.TEXT_INACTIVE, scale=0.25}},
-						}}
-					}},
-				},
-				vars = {card.ability.extra.name,card.ability.extra.repetitions,card.ability.extra.odds}
-			}
-		end,
-		calculate = function(self, card, context)
-			if not context.blueprint then	
-				local debuffing = false
-				if context.before then
-					if pseudorandom('jenker') < (G.GAME.probabilities.normal or 1) / self.config.extra.odds then
-						debuffing = true
-						card.ability.extra.name = "janku"
-						card.children.center:set_sprite_pos({x = 5, y = 0})
-						card.children.floating_sprite:set_sprite_pos({x = 5, y = 1})
-						card_eval_status_text(card, 'extra', nil, nil, nil, { message = "Nope!" })
-						
-						for i in ipairs(context.scoring_hand) do
-							SMODS.debuff_card(context.scoring_hand[i], true, "jenkerdebuff")
-						end
-					end
-				end
-				-- random repetition logic
-				if context.repetition and context.cardarea == G.play then
-					if not debuffing then
-						local random_repetitions = pseudorandom('jenker', 1, card.ability.extra.repetitions)
-						return {
-							message = localize('k_again_ex'),
-							repetitions = random_repetitions,
-							card = card
-						}
-					end
-				end
-				-- reset card to default at end of round, go thru playing cards and un-debuff them all
-				-- i spent an hour and 20 minutes debugging this. my indentation was goofed. oh my god.
-				if context.end_of_round then
-					debuffing = nil
-					card.ability.extra.name = "jenku"
-					card.children.center:set_sprite_pos({x = 1, y = 0})
-					card.children.floating_sprite:set_sprite_pos({x = 1, y = 1})
+						},
+					}}
+				}},
+				{n=G.UIT.R, config= {align="bm", padding = 0.02}, nodes={
+					{n=G.UIT.C, config={align = "m", colour=colour, r=0.05, padding=0.05}, nodes={
+						{n=G.UIT.T, config={text = "Uh, this one's kinda.. broken. You sure?", colour = G.C.UI.TEXT_INACTIVE, scale=0.25}},
+					}}
+				}},
+			},
+			vars = {card.ability.extra.name,card.ability.extra.repetitions,card.ability.extra.odds}
+		}
+	end,
+	calculate = function(self, card, context)
+		if not context.blueprint then	
+			local debuffing = false
+			if context.before then
+				if pseudorandom('jenker') < (G.GAME.probabilities.normal or 1) / self.config.extra.odds then
+					debuffing = true
+					card.ability.extra.name = "janku"
+					card.children.center:set_sprite_pos({x = 5, y = 0})
+					card.children.floating_sprite:set_sprite_pos({x = 5, y = 1})
+					card_eval_status_text(card, 'extra', nil, nil, nil, { message = "Nope!" })
 					
-					for _, playing_card in pairs(G.playing_cards) do
-							SMODS.debuff_card(playing_card, false, "jenkerdebuff")
+					for i in ipairs(context.scoring_hand) do
+						SMODS.debuff_card(context.scoring_hand[i], true, "jenkerdebuff")
 					end
 				end
 			end
+			-- random repetition logic
+			if context.repetition and context.cardarea == G.play then
+				if not debuffing then
+					local random_repetitions = pseudorandom('jenker', 1, card.ability.extra.repetitions)
+					return {
+						message = localize('k_again_ex'),
+						repetitions = random_repetitions,
+						card = card
+					}
+				end
+			end
+			-- reset card to default at end of round, go thru playing cards and un-debuff them all
+			-- i spent an hour and 20 minutes debugging this. my indentation was goofed. oh my god.
+			if context.end_of_round then
+				debuffing = nil
+				card.ability.extra.name = "jenku"
+				card.children.center:set_sprite_pos({x = 1, y = 0})
+				card.children.floating_sprite:set_sprite_pos({x = 1, y = 1})
+				
+				for _, playing_card in pairs(G.playing_cards) do
+						SMODS.debuff_card(playing_card, false, "jenkerdebuff")
+				end
+			end
 		end
-	}
---end
+	end
+}

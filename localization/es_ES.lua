@@ -644,6 +644,14 @@ return {
                     "{C:attention}se selecciona{} una ciega"
                 }
             },
+            j_fg_blue_joker = {
+                name = '¿Comodín azul?',
+                text = {
+                    "{C:chips}+#1#{} Fichas por cada carta",
+                    "en el {C:attention}mazo completo{}",
+                    "{C:inactive}(Actualmente {C:chips}+#2#{C:inactive} Fichas){}"
+                }
+            },
             j_fg_constellation = {
                 name = '¿Constelación?',
                 text = {

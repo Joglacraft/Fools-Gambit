@@ -680,6 +680,14 @@ return {
                     "blind {C:attention}selected{}"
                 }
             },
+            j_fg_blue_joker = {
+                name = 'Blue Joker?',
+                text = {
+                    "{C:chips}+#1#{} Chips for every",
+                    "card in the {C:attention}full deck{}",
+                    "{C:inactive}(Currently {C:chips}+#2#{C:inactive} Chips){}"
+                }
+            },
             j_fg_constellation = {
                 name = 'Constellation',
                 text = {
