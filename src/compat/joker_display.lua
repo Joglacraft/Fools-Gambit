@@ -636,7 +636,13 @@ jd['j_fg_ice_cream'] = {
     },
     text_config = {colour = G.C.BLUE}
 }
-jd['j_fg_constellation'] = {}
+jd['j_fg_constellation'] = {
+    text = {
+        {text = '+'},
+        {ref_table = 'card.ability.extra', ref_value = 'mult'}
+    },
+    text_config = {colour = G.C.MULT}
+}
 jd['j_fg_hiker'] = {}
 jd['j_fg_faceless'] = {
     text = {

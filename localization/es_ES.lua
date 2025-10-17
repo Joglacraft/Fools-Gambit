@@ -253,12 +253,26 @@ return {
 					 "{s:0.8} Disco comodín incluido",
                 },
             },
+            j_fg_discalt = {
+                name = "¿Comodín disco?",
+                text = {
+                    "Las cartas con mejoras {C:red}originales{C:attention}",
+                    "puntuan {C:chips}+#1#{} fichas",
+                },
+            },
 			j_fg_orchestral={
                 name="Comodín orquestral",
                 text={
                     "Los {C:attention}Comodines {C:purple}alternativos",
                     "dan cada uno {C:mult}+#1#{} Multi",
 					"{s:0.8}Comodín orquestral incluido",
+                },
+            },
+            j_fg_orchestralalt = {
+                name = "¿Comodín orquestral?",
+                text = {
+                    "Las cartas con mejoras {C:purple}alternativas{C:attention}",
+                    "dan {C:mult}+#1#{} Multi",
                 },
             },
 			j_fg_conductor={
@@ -311,7 +325,25 @@ return {
 					"comidín {C:purple}alterno{} comprado",
 				},
 			},
+            j_fg_kevin = {
+                name = "Kevin",
+                text = {
+                    "{X:mult,C:white}X#1#{} Multi,",
+                    "Pierde {X:mult,C:white}X#2#{} por cada",
+                    "mano jugada",
+                    "{C:attention}Alterna este comodín para",
+                    "{C:attention}reiniciar sus valores"
+                },
+            },
             -- Normal jokers
+            j_fg_matador = {
+                name = "Torero?",
+                text = {
+                    "Si la habilidad de la {C:attention}ciega jefe{}",
+                    " nunca es activada en esta ronda,",
+                    "gana {C:money}$#1#{}",
+                },
+            },
             j_fg_joker = {
                 name = '¿Comodín?',
                 text = {
@@ -610,6 +642,14 @@ return {
                     "{C:chips}+#1#{} Fichas",
                     "{C:chips}-#2#{} Fichas cuando",
                     "{C:attention}se selecciona{} una ciega"
+                }
+            },
+            j_fg_constellation = {
+                name = '¿Constelación?',
+                text = {
+                    "Gana {C:mult}+#2#{} Multi por cada",
+                    "carta de {C:attention}planeta{} usada",
+                    "{C:inactive}(Actualmente {C:mult}+#1#{C:inactive} Multi)"
                 }
             },
             j_fg_faceless = {

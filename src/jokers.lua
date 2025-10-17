@@ -2645,6 +2645,38 @@ SMODS.Joker{
 -- Blue
 -- Sixth sense
 -- Constellation
+SMODS.Joker{
+	key = 'constellation',
+	atlas = 'jokers_alt',
+	pos = {x = 9, y = 10},
+	config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = 'j_constellation'
+		},
+		extra = {
+			mult = 0,
+			mult_i = 5,
+		}
+	},
+	loc_vars = function (self, info_queue, card)
+		return {
+			vars = {
+				card.ability.extra.mult,
+				card.ability.extra.mult_i
+			}
+		}
+	end,
+	calculate = function (self, card, context)
+		if context.using_consumeable and context.consumeable.config.center.set == 'Planet' and not context.blueprint then
+			card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.mult_i
+			return {
+				message = localize('k_upgrade_ex'),
+			}
+		end
+		if context.joker_main then return {mult = card.ability.extra.mult} end
+	end
+}
 -- Hiker
 -- Faceless
 SMODS.Joker{

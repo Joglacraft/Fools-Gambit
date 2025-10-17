@@ -680,6 +680,14 @@ return {
                     "blind {C:attention}selected{}"
                 }
             },
+            j_fg_constellation = {
+                name = 'Constellation',
+                text = {
+                    "Gains {C:mult}+#2#{} Mult for each",
+                    "{C:attention}planet{} card used",
+                    "{C:inactive}(Currently {C:mult}+#1#{C:inactive} Mult)"
+                }
+            },
             j_fg_faceless = {
                 name = "Faceless Joker?",
                 text = {
