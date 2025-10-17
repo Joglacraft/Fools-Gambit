@@ -1,11 +1,4 @@
 SMODS.Atlas {
-	key = "jokers_alt",
-	path = "jokers_alt.png",
-	px = 71,
-	py = 95
-}
-
-SMODS.Atlas {
 	key = 'collective',
 	path = 'collective.png',
 	px = 71,
@@ -1066,7 +1059,8 @@ SMODS.Joker {
 -- Joker
 SMODS.Joker {
 	key = 'joker',
-	atlas = 'jokers_alt',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	pos = { x = 0, y = 0 },
 	rarity = "fg_common_alt",
 	cost = 2,
@@ -1095,7 +1089,8 @@ SMODS.Joker {
 -- Greedy
 SMODS.Joker {
 	key = 'greedy_joker',
-	atlas = 'jokers_alt',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	pos = { x = 6, y = 1 },
 	rarity = "fg_common_alt",
 	cost = 0,
@@ -1139,7 +1134,8 @@ SMODS.Joker {
 -- Lusty
 SMODS.Joker {
 	key = 'lusty_joker',
-	atlas = 'jokers_alt',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	pos = { x = 7, y = 1 },
 	rarity = "fg_common_alt",
 	cost = 0,
@@ -1183,7 +1179,8 @@ SMODS.Joker {
 -- Wrathful
 SMODS.Joker {
 	key = 'wrathful_joker',
-	atlas = 'jokers_alt',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	pos = { x = 8, y = 1 },
 	rarity = "fg_common_alt",
 	cost = 0,
@@ -1227,7 +1224,8 @@ SMODS.Joker {
 -- Gluttonous
 SMODS.Joker {
 	key = 'gluttenous_joker',
-	atlas = 'jokers_alt',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	pos = { x = 9, y = 1 },
 	rarity = "fg_common_alt",
 	cost = 0,
@@ -1271,7 +1269,8 @@ SMODS.Joker {
 -- Jolly
 SMODS.Joker {
 	key = 'jolly',
-	atlas = 'jokers_alt',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	pos = { x = 2, y = 0 },
 	rarity = "fg_common_alt",
 	cost = 2,
@@ -1305,7 +1304,8 @@ SMODS.Joker {
 -- Zany
 SMODS.Joker {
 	key = 'zany',
-	atlas = 'jokers_alt',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	pos = { x = 3, y = 0 },
 	rarity = "fg_common_alt",
 	cost = 2,
@@ -1338,7 +1338,8 @@ SMODS.Joker {
 -- Mad
 SMODS.Joker {
 	key = 'mad',
-	atlas = 'jokers_alt',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	pos = { x = 4, y = 0 },
 	rarity = "fg_common_alt",
 	cost = 2,
@@ -1371,7 +1372,8 @@ SMODS.Joker {
 -- Crazy
 SMODS.Joker {
 	key = 'crazy',
-	atlas = 'jokers_alt',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	pos = { x = 5, y = 0 },
 	rarity = "fg_common_alt",
 	cost = 2,
@@ -1404,7 +1406,8 @@ SMODS.Joker {
 -- Droll
 SMODS.Joker {
 	key = 'droll',
-	atlas = 'jokers_alt',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	pos = { x = 6, y = 0 },
 	rarity = "fg_common_alt",
 	cost = 2,
@@ -1438,7 +1441,8 @@ SMODS.Joker {
 -- Sly
 SMODS.Joker {
 	key = 'sly',
-	atlas = 'jokers_alt',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	pos = { x = 0, y = 14 },
 	rarity = "fg_common_alt",
 	cost = 2,
@@ -1472,7 +1476,8 @@ SMODS.Joker {
 -- Wily
 SMODS.Joker {
 	key = 'wily',
-	atlas = 'jokers_alt',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	pos = { x = 1, y = 14 },
 	rarity = "fg_common_alt",
 	cost = 2,
@@ -1506,7 +1511,8 @@ SMODS.Joker {
 -- Clever
 SMODS.Joker {
 	key = 'clever',
-	atlas = 'jokers_alt',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	pos = { x = 2, y = 14 },
 	rarity = "fg_common_alt",
 	cost = 2,
@@ -1540,7 +1546,8 @@ SMODS.Joker {
 -- Devious
 SMODS.Joker {
 	key = 'devious',
-	atlas = 'jokers_alt',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	pos = { x = 3, y = 14 },
 	rarity = "fg_common_alt",
 	cost = 2,
@@ -1574,7 +1581,8 @@ SMODS.Joker {
 -- Crafty
 SMODS.Joker {
 	key = 'crafty',
-	atlas = 'jokers_alt',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	pos = { x = 4, y = 14 },
 	rarity = "fg_common_alt",
 	cost = 2,
@@ -1613,7 +1621,8 @@ SMODS.Joker {
 -- Dagger
 SMODS.Joker {
 	key = 'ceremonial',
-	atlas = 'jokers_alt',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	pos = { x = 5, y = 5 },
 	rarity = "fg_common_alt",
 	cost = 2,
@@ -1675,7 +1684,8 @@ SMODS.Joker {
 -- Banner
 SMODS.Joker {
 	key = 'banner',
-	atlas = 'jokers_alt',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	pos = { x = 1, y = 2 },
 	rarity = "fg_common_alt",
 	cost = 2,
@@ -1713,7 +1723,8 @@ SMODS.Joker {
 -- Summit
 SMODS.Joker {
 	key = 'mystic_summit',
-	atlas = 'jokers_alt',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	pos = { x = 2, y = 2 },
 	rarity = "fg_common_alt",
 	cost = 2,
@@ -1753,7 +1764,8 @@ SMODS.Joker {
 -- Marble
 SMODS.Joker {
 	key = 'marble',
-	atlas = 'jokers_alt',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	pos = { x = 3, y = 2 },
 	rarity = "fg_common_alt",
 	cost = 2,
@@ -1790,7 +1802,8 @@ SMODS.Joker {
 -- Loyalty
 SMODS.Joker {
 	key = 'loyalty_card',
-	atlas = 'jokers_alt',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	pos = { x = 4, y = 2 },
 	rarity = "fg_common_alt",
 	cost = 2,
@@ -1858,7 +1871,8 @@ SMODS.Joker {
 -- 8 Ball
 SMODS.Joker {
 	key = '8_ball',
-	atlas = 'jokers_alt',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	pos = { x = 0, y = 5 },
 	rarity = "fg_common_alt",
 	cost = 2,
@@ -1925,7 +1939,8 @@ local function generateArrayMisprint(min, max)
 end
 SMODS.Joker {
 	key = 'misprint',
-	atlas = "jokers_alt",
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	pos = { x = 6, y = 2 },
 	rarity = "fg_uncommon_alt",
 	cost = 6,
@@ -1994,7 +2009,8 @@ SMODS.Joker {
 -- Fist
 SMODS.Joker {
     key = 'raised_fist',
-    atlas = 'jokers_alt',
+    atlas = 'Joker',
+	prefix_config = {atlas = false},
     pos = { x = 8, y = 2 },
     rarity = "fg_common_alt",
     cost = 2,
@@ -2027,7 +2043,8 @@ SMODS.Joker {
 -- Fibonacci
 SMODS.Joker {
 	key = 'fibonacci',
-	atlas = 'jokers_alt',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	pos = { x = 1, y = 5 },
 	rarity = "fg_common_alt",
 	cost = 2,
@@ -2160,7 +2177,8 @@ SMODS.Joker {
 -- Scary face
 SMODS.Joker {
 	key = 'scary_face',
-	atlas = 'jokers_alt',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	pos = { x = 2, y = 3 },
 	rarity = "fg_common_alt",
 	cost = 2,
@@ -2200,7 +2218,8 @@ SMODS.Joker {
 -- Abstract
 SMODS.Joker {
 	key = 'abstract',
-	atlas = 'jokers_alt',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	pos = { x = 3, y = 3 },
 	rarity = "fg_common_alt",
 	cost = 2,
@@ -2243,7 +2262,8 @@ SMODS.Joker {
 -- Delayed grat
 SMODS.Joker {
 	key = 'delayed_grat',
-	atlas = 'jokers_alt',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	pos = { x = 4, y = 3 },
 	rarity = "fg_common_alt",
 	cost = 2,
@@ -2273,7 +2293,8 @@ SMODS.Joker {
 -- Gros Michael
 SMODS.Joker{
 	key = "gros_michel",
-	atlas = "jokers_alt",
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	pos = { x = 7, y = 6},
 	rarity = "fg_common_alt",
 	cost = 4,
@@ -2320,7 +2341,8 @@ SMODS.Joker{
 -- Even Steven
 SMODS.Joker{
 	key = "even_steven",
-	atlas = "jokers_alt",
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	pos = { x = 8, y = 3},
 	rarity = "fg_common_alt",
 	cost = 2,
@@ -2362,7 +2384,8 @@ SMODS.Joker{
 -- Odd Todd
 SMODS.Joker{
 	key = "odd_todd",
-	atlas = "jokers_alt",
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	pos = { x = 9, y = 3},
 	rarity = "fg_common_alt",
 	config = {
@@ -2403,7 +2426,8 @@ SMODS.Joker{
 -- Scholar
 SMODS.Joker{
 	key = "scholar",
-	atlas = "jokers_alt",
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	pos = { x = 3, y = 6},
 	rarity = "fg_uncommon_alt",
 	cost = 4,
@@ -2443,7 +2467,8 @@ SMODS.Joker{
 -- Business Card
 SMODS.Joker {
 	key = "business",
-	atlas = "jokers_alt",
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	pos = { x = 1, y = 4},
 	rarity = "fg_uncommon_alt",
 	cost = 4,
@@ -2492,7 +2517,8 @@ SMODS.Joker {
 -- Ride the bus
 SMODS.Joker{
 	key = "ride_the_bus",
-	atlas = "jokers_alt",
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	pos = { x = 1, y = 6},
 	rarity = "fg_common_alt",
 	cost = 3,
@@ -2547,7 +2573,8 @@ SMODS.Joker{
 -- Egg
 SMODS.Joker {
 	key = 'egg',
-	atlas = 'jokers_alt',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	pos = { x = 0, y = 10 },
 	rarity = "fg_common_alt",
 	cost = 2,
@@ -2589,7 +2616,8 @@ SMODS.Joker {
 -- Ice cream
 SMODS.Joker{
     key = "ice_cream",
-    atlas = "jokers_alt",
+    atlas = 'Joker',
+	prefix_config = {atlas = false},
     pos = { x = 4, y = 10},
     rarity = "fg_common_alt",
     cost = 2,
@@ -2645,7 +2673,8 @@ SMODS.Joker{
 -- Blue
 SMODS.Joker{
 	key = 'blue_joker',
-	atlas = 'jokers_alt',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	pos = {x = 7, y = 10},
 	rarity = 'fg_common_alt',
 	cost = 4,
@@ -2676,7 +2705,8 @@ SMODS.Joker{
 -- Constellation
 SMODS.Joker{
 	key = 'constellation',
-	atlas = 'jokers_alt',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	pos = {x = 9, y = 10},
 	rarity = 'fg_common_alt',
 	cost = 6,
@@ -2712,7 +2742,8 @@ SMODS.Joker{
 -- Faceless
 SMODS.Joker{
     key = "faceless",
-    atlas = "jokers_alt",
+    atlas = 'Joker',
+	prefix_config = {atlas = false},
     pos = { x = 1, y = 11 },
     rarity = "fg_common_alt",
     cost = 2,
@@ -2754,7 +2785,8 @@ SMODS.Joker{
 -- Cavendish
 SMODS.Joker{
 	key = "cavendish",
-	atlas = "jokers_alt",
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	pos = { x = 5, y = 11},
 	yes_pool_flag = "fg_gros_michel_extinct",
 	
@@ -2811,7 +2843,8 @@ SMODS.Joker{
 -- Red card
 SMODS.Joker{
     key = "red_card",
-    atlas = "jokers_alt",
+    atlas = 'Joker',
+	prefix_config = {atlas = false},
     pos = { x = 7, y = 11},
     rarity = "fg_common_alt",
     cost = 2,
@@ -2856,7 +2889,8 @@ SMODS.Joker{
 -- Riff-raff
 SMODS.Joker{
     key = "riff_raff",
-    atlas = "jokers_alt",
+    atlas = 'Joker',
+	prefix_config = {atlas = false},
     pos = { x = 1, y = 12},
     rarity = "fg_common_alt",
     cost = 5,
@@ -2893,7 +2927,8 @@ SMODS.Joker{
 -- Vampire
 SMODS.Joker{
 	key = 'vampire',
-	atlas = 'jokers_alt',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	pos = {x = 2, y = 12},
 	rarity = 'fg_uncommon_alt',
 	cost = 5,
@@ -2949,7 +2984,8 @@ SMODS.Joker{
 -- Baron
 SMODS.Joker{
     key = "baron",
-    atlas = "jokers_alt",
+    atlas = 'Joker',
+	prefix_config = {atlas = false},
     pos = { x = 6, y = 12},
     rarity = "fg_rare_alt",
     cost = 6,
@@ -3001,7 +3037,8 @@ SMODS.Joker{
 -- Cloud 9
 SMODS.Joker{
     key = "cloud_9",
-    atlas = "jokers_alt",
+    atlas = 'Joker',
+	prefix_config = {atlas = false},
     pos = { x = 7, y = 12},
     rarity = "fg_common_alt",
     cost = 2,
@@ -3034,7 +3071,8 @@ SMODS.Joker{
 -- Rocket
 SMODS.Joker{
     key = "rocket",
-    atlas = "jokers_alt",
+    atlas = 'Joker',
+	prefix_config = {atlas = false},
     pos = { x = 8, y = 12},
     rarity = "fg_common_alt",
     cost = 2,
@@ -3082,7 +3120,8 @@ SMODS.Joker{
 -- Gift card
 SMODS.Joker{
     key = "gift",
-    atlas = "jokers_alt",
+    atlas = 'Joker',
+	prefix_config = {atlas = false},
     pos = { x = 3, y = 13},
     rarity = "fg_common_alt",
     cost = 4,
@@ -3179,7 +3218,8 @@ SMODS.Joker{
 -- Erosion
 SMODS.Joker{
     key = "erosion",
-    atlas = "jokers_alt",
+    atlas = 'Joker',
+	prefix_config = {atlas = false},
     pos = { x = 5, y = 13},
     rarity = "fg_uncommon_alt",
     cost = 5,
@@ -3217,7 +3257,8 @@ SMODS.Joker{
 -- Juggler
 SMODS.Joker{
     key = "juggler",
-    atlas = "jokers_alt",
+    atlas = 'Joker',
+	prefix_config = {atlas = false},
     pos = { x = 0, y = 1},
     rarity = "fg_common_alt",
     cost = 4,
@@ -3253,7 +3294,8 @@ SMODS.Joker{
 -- Drunkard
 SMODS.Joker{
     key = "drunkard",
-    atlas = "jokers_alt",
+    atlas = 'Joker',
+	prefix_config = {atlas = false},
     pos = { x = 1, y = 1},
     rarity = "fg_uncommon_alt",
     cost = 5,
@@ -3289,7 +3331,8 @@ SMODS.Joker{
 -- Stone
 SMODS.Joker{
     key = "stone",
-    atlas = "jokers_alt",
+    atlas = 'Joker',
+	prefix_config = {atlas = false},
     pos = { x = 9, y = 0},
     rarity = "fg_common_alt",
     cost = 2,
@@ -3314,7 +3357,8 @@ SMODS.Joker{
 -- Cat
 SMODS.Joker{
     key = "lucky_cat",
-    atlas = "jokers_alt",
+    atlas = 'Joker',
+	prefix_config = {atlas = false},
     pos = { x = 5, y = 14},
     rarity = "fg_common_alt",
     cost = 2,
@@ -3397,7 +3441,8 @@ SMODS.Joker{
 -- Popcorn
 SMODS.Joker{
     key = "popcorn",
-    atlas = "jokers_alt",
+    atlas = 'Joker',
+	prefix_config = {atlas = false},
     pos = { x = 1, y = 15},
     rarity = "fg_common_alt",
     cost = 2,
@@ -3452,7 +3497,8 @@ SMODS.Joker{
 --[[ Ancient
 SMODS.Joker{
 	key = "ancient",
-	atlas = "jokers_alt",
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	pos = {x = 7, y = 15},
 	rarity = "fg_rare_alt",
 	cost = 8,
@@ -3503,7 +3549,8 @@ SMODS.Joker{
 -- Ramen
 SMODS.Joker{
     key = "ramen",
-    atlas = "jokers_alt",
+    atlas = 'Joker',
+	prefix_config = {atlas = false},
     pos = { x = 2, y = 15},
     rarity = "fg_common_alt",
     cost = 2,
@@ -3570,7 +3617,8 @@ SMODS.Joker{
 -- Walkie talkie
 SMODS.Joker{
     key = "walkie_talkie",
-    atlas = "jokers_alt",
+    atlas = 'Joker',
+	prefix_config = {atlas = false},
     pos = { x = 8, y = 15},
     rarity = "fg_common_alt",
     cost = 4,
@@ -3643,7 +3691,8 @@ SMODS.Joker{
 -- selzer
 SMODS.Joker{
     key = "selzer",
-    atlas = "jokers_alt",
+    atlas = 'Joker',
+	prefix_config = {atlas = false},
     pos = { x = 3, y = 15},
     rarity = "fg_uncommon_alt",
     cost = 5,
@@ -3698,7 +3747,8 @@ SMODS.Joker{
 --[[ castle
 SMODS.Joker{
     key = "castle",
-    atlas = "jokers_alt",
+    atlas = 'Joker',
+	prefix_config = {atlas = false},
     pos = { x = 9, y = 15},
     rarity = "fg_common_alt",
     cost = 4,
@@ -3740,7 +3790,8 @@ SMODS.Joker{
 -- Smiley
 SMODS.Joker{
     key = "smiley",
-    atlas = "jokers_alt",
+    atlas = 'Joker',
+	prefix_config = {atlas = false},
     pos = { x = 6, y = 15},
     rarity = "fg_common_alt",
     cost = 2,
@@ -3782,7 +3833,8 @@ SMODS.Joker{
 -- Campfire
 SMODS.Joker{
     key = "campfire",
-    atlas = "jokers_alt",
+    atlas = 'Joker',
+	prefix_config = {atlas = false},
     pos = { x = 5, y = 15},
     rarity = "fg_rare_alt",
     cost = 6,
@@ -3840,7 +3892,8 @@ SMODS.Joker{
 -- Acrobat
 SMODS.Joker{
     key = "acrobat",
-    atlas = "jokers_alt",
+    atlas = 'Joker',
+	prefix_config = {atlas = false},
     pos = { x = 2, y = 1},
     rarity = "fg_uncommon_alt",
     cost = 6,
@@ -3884,7 +3937,8 @@ SMODS.Joker{
 	key = "swashbuckler",
 	rarity = "fg_common_alt",
     cost = 2,
-	atlas = "jokers_alt",
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
     pos = { x = 9, y = 5 },
     config = {
 		fg_data = {
@@ -3922,7 +3976,8 @@ SMODS.Joker{
 	key = "troubadour",
 	rarity = "fg_common_alt",
     cost = 2,
-	atlas = "jokers_alt",
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	blueprint_compat = false,
     pos = { x = 0, y = 2 },
     config = {
@@ -3952,7 +4007,8 @@ SMODS.Joker{
 -- Throwback
 SMODS.Joker{
 	key = "throwback",
-	atlas = "jokers_alt",
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	pos = { x = 5 , y = 7},
 	rarity = "fg_uncommon_alt",
     cost = 2,
@@ -3998,7 +4054,8 @@ SMODS.Joker{
 -- Hanging chad
 SMODS.Joker{
 	key = "hanging_chad",
-	atlas = "jokers_alt",
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	pos = { x = 9, y = 6},
 	rarity = "fg_rare_alt",
 	config = {
@@ -4093,7 +4150,8 @@ SMODS.Joker {
 		return { vars = { localize(card.ability.type, 'poker_hands'), card.ability.extra.dollars } }
 	end,
 	rarity = "fg_rare_alt",
-	atlas = 'jokers_alt',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	
 	
 	pos = { x = 9, y = 7 },
@@ -4138,7 +4196,8 @@ SMODS.Joker {
 		return { vars = { localize(card.ability.type, 'poker_hands'), card.ability.extra.Xmult_gain, card.ability.extra.Xmult } }
 	end,
 	rarity = "fg_rare_alt",
-	atlas = 'jokers_alt',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	
 	pos = { x = 0, y = 8 },
 	cost = 2,
@@ -4190,7 +4249,8 @@ SMODS.Joker {
 		return { vars = { localize(card.ability.type, 'poker_hands'), card.ability.extra.chip_gain, card.ability.extra.chips } }
 	end,
 	rarity = "fg_rare_alt",
-	atlas = 'jokers_alt',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	
 	
 	pos = { x = 1, y = 8 },
@@ -4239,7 +4299,8 @@ SMODS.Joker {
 		return { vars = { localize(card.ability.type, 'poker_hands'), card.ability.extra.mult_gain, card.ability.extra.mult } }
 	end,
 	rarity = "fg_rare_alt",
-	atlas = 'jokers_alt',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	
 	
 	pos = { x = 2, y = 8 },
@@ -4277,7 +4338,8 @@ SMODS.Joker {
 -- Flower pot
 SMODS.Joker{
     key = "flower_pot",
-    atlas = "jokers_alt",
+    atlas = 'Joker',
+	prefix_config = {atlas = false},
     pos = { x = 0, y = 6 },
     rarity = "fg_uncommon_alt",
     cost = 5,
@@ -4331,7 +4393,8 @@ SMODS.Joker{
 SMODS.Joker {
 	key = 'oops',
 	rarity = "fg_uncommon_alt",
-	atlas = 'jokers_alt',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	config = {
 		fg_data = {
 			is_alternate = true,
@@ -4375,7 +4438,8 @@ SMODS.Joker {
 -- Seeing double
 SMODS.Joker{
     key = "seeing_double",
-    atlas = "jokers_alt",
+    atlas = 'Joker',
+	prefix_config = {atlas = false},
     pos = { x = 4, y = 4 },
     rarity = "fg_uncommon_alt",
     cost = 5,
@@ -4421,7 +4485,8 @@ SMODS.Joker{
 -- Matador
 SMODS.Joker{
     key = "matador",
-    atlas = "jokers_alt",
+    atlas = 'Joker',
+	prefix_config = {atlas = false},
     pos = { x = 4, y = 5 },
     rarity = "fg_uncommon_alt",
     cost = 5,
@@ -4470,7 +4535,8 @@ SMODS.Joker{
 -- Hit the road
 SMODS.Joker{
     key = "hit_the_road",
-    atlas = "jokers_alt",
+    atlas = 'Joker',
+	prefix_config = {atlas = false},
     pos = { x = 8, y = 5},
     rarity = "fg_rare_alt",
     cost = 6,
@@ -4529,7 +4595,8 @@ SMODS.Joker {
 		return { vars = { card.ability.extra.Xmult_mod, localize(card.ability.type, 'poker_hands'), card.ability.extra.Xmult } }
 	end,
 	rarity = "fg_rare_alt",
-	atlas = 'jokers_alt',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	
 	
 	pos = { x = 5, y = 4 },
@@ -4573,7 +4640,8 @@ SMODS.Joker {
 		return { vars = { card.ability.extra.Xmult_mod, localize(card.ability.type, 'poker_hands'), card.ability.extra.Xmult } }
 	end,
 	rarity = "fg_rare_alt",
-	atlas = 'jokers_alt',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	
 	
 	pos = { x = 6, y = 4 },
@@ -4617,7 +4685,8 @@ SMODS.Joker {
 		return { vars = { card.ability.extra.Xmult_mod, localize(card.ability.type, 'poker_hands'), card.ability.extra.Xmult } }
 	end,
 	rarity = "fg_rare_alt",
-	atlas = 'jokers_alt',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	
 	
 	pos = { x = 7, y = 4 },
@@ -4661,7 +4730,8 @@ SMODS.Joker {
 		return { vars = { card.ability.extra.Xmult_mod, localize(card.ability.type, 'poker_hands'), card.ability.extra.Xmult } }
 	end,
 	rarity = "fg_rare_alt",
-	atlas = 'jokers_alt',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	pos = { x = 8, y = 4 },
 	cost = 2,
 	blueprint_compat = true,
@@ -4688,7 +4758,8 @@ SMODS.Joker {
 -- Tribe
 SMODS.Joker{
     key = "tribe",
-    atlas = "jokers_alt",
+    atlas = 'Joker',
+	prefix_config = {atlas = false},
     pos = { x = 9, y = 4},
     rarity = "fg_rare_alt",
     cost = 7,
@@ -4749,7 +4820,8 @@ SMODS.Joker{
 		},
 
 	},
-	atlas = "jokers_alt",
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	pos = { x = 1, y = 7},
 	rarity = "fg_rare_alt",
 	eternal_compat = false,
@@ -4776,7 +4848,8 @@ SMODS.Joker{
 }
 SMODS.Joker{
 	key = "invisible_memory",
-	atlas = "jokers_alt",
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
 	rarity = "fg_rare_alt",
 	no_collection = true,
 	yes_pool_flag = "mila",
@@ -4831,7 +4904,8 @@ SMODS.Joker{
 -- Driver's license
 SMODS.Joker{
     key = "drivers_license",
-    atlas = "jokers_alt",
+    atlas = 'Joker',
+	prefix_config = {atlas = false},
     pos = { x = 0, y = 7},
     rarity = "fg_rare_alt",
     cost = 6,
@@ -4877,7 +4951,8 @@ SMODS.Joker{
 -- Bootstraps
 SMODS.Joker{
     key = "bootstraps",
-    atlas = "jokers_alt",
+    atlas = 'Joker',
+	prefix_config = {atlas = false},
     pos = { x = 9, y = 8},
     rarity = "fg_common_alt",
     cost = 5,
@@ -4932,7 +5007,8 @@ SMODS.Joker{
 -- Canio
 SMODS.Joker{
     key = "caino",
-    atlas = "jokers_alt",
+    atlas = 'Joker',
+	prefix_config = {atlas = false},
     pos = { x = 3, y = 8},
 	soul_pos = { x = 3, y = 9},
     rarity = "fg_legendary_alt",
@@ -4975,7 +5051,8 @@ SMODS.Joker{
 -- Triboulet
 SMODS.Joker{
     key = "triboulet",
-    atlas = "jokers_alt",
+    atlas = 'Joker',
+	prefix_config = {atlas = false},
     pos = { x = 4, y = 8},
 	soul_pos = { x = 4, y = 9},
     rarity = "fg_legendary_alt",
@@ -5018,7 +5095,8 @@ SMODS.Joker{
 -- Yorick
 SMODS.Joker{
     key = "yorick",
-    atlas = "jokers_alt",
+    atlas = 'Joker',
+	prefix_config = {atlas = false},
     pos = { x = 5, y = 8},
 	soul_pos = { x = 5, y = 9},
     rarity = "fg_legendary_alt",
@@ -5069,7 +5147,8 @@ SMODS.Joker{
 -- Chicot
 SMODS.Joker{
     key = "chicot",
-    atlas = "jokers_alt",
+    atlas = 'Joker',
+	prefix_config = {atlas = false},
     pos = { x = 6, y = 8},
 	soul_pos = { x = 6, y = 9},
     rarity = "fg_legendary_alt",
@@ -5115,7 +5194,8 @@ SMODS.Joker{
 -- Perkeo
 SMODS.Joker{
     key = "perkeo",
-    atlas = "jokers_alt",
+    atlas = 'Joker',
+	prefix_config = {atlas = false},
     pos = { x = 7, y = 8},
 	soul_pos = { x = 7, y = 9},
     rarity = "fg_legendary_alt",
@@ -5160,6 +5240,7 @@ SMODS.Joker{
 		end
     end
 }
+
 -----------------
 ---Collectives---
 -----------------
