@@ -636,6 +636,13 @@ jd['j_fg_ice_cream'] = {
     },
     text_config = {colour = G.C.BLUE}
 }
+jd['j_fg_blue_joker'] = {
+    text = {
+        {text = '+'},
+        {ref_table = 'card.ability.extra', ref_value = 'chips'}
+    },
+    text_config = {colour = G.C.CHIPS}
+}
 jd['j_fg_constellation'] = {
     text = {
         {text = '+'},
@@ -721,7 +728,17 @@ jd['j_fg_riff_raff'] = {
     },
     extra_config = {scale = 0.3, colour = G.C.GREEN}
 }
-jd['j_fg_vampire'] = {}
+jd['j_fg_vampire'] = {
+    text = {
+        {
+            border_nodes = {
+                {text = 'X'},
+                {ref_table = 'card.ability.extra', ref_value = 'xmult'}
+            },
+            border_colour = G.C.MULT
+        }
+    }
+}
 jd['j_fg_shurtcut'] = {}
 jd['j_fg_hologram'] = {}
 jd['j_fg_vagabond'] = {}

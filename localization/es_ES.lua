@@ -705,6 +705,16 @@ return {
                     "{C:inactive}(Actualmente {X:mult,C:white}X#1#{}{C:inactive} Multi)"
                 }
             },
+            j_fg_vampire = {
+                name = '¿Vampiro?',
+                text = {
+                    "Este comodín gana {X:mult,C:white}X#2#{} Multi por",
+                    "cada que puntue con una {C:attention}edición{} y",
+                    "elimina la {C:attention}edición{} de la carta",
+                    "{C:inactive}(Actualmente {X:mult,C:white}X#1#{C:inactive} Multi)",
+                    "{C:inactive,s:0.8}(Se aplica tras jugar las cartas){}"
+                }
+            },
             j_fg_riff_raff = {
                 name = "¿Gentuza?",
                 text = {

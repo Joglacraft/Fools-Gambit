@@ -741,6 +741,16 @@ return {
                     "{C:inactive}(Currently {X:mult,C:white}X#1#{}{C:inactive} Mult)"
                 }
             },
+            j_fg_vampire = {
+                name = 'Vampire?',
+                text = {
+                    "This joker gains {X:mult,C:white}X#2#{} Mult",
+                    "per scoring card with an {C:attention}edition{}",
+                    "Removes card {C:attention}edition{}",
+                    "{C:inactive}(Currently {X:mult,C:white}X#1#{C:inactive} Mult)",
+                    "{C:inactive,s:0.8}(Effect applies after scoring){}"
+                }
+            },
             j_fg_riff_raff = {
                 name = "Riff-raff",
                 text = {

@@ -2887,6 +2887,56 @@ SMODS.Joker{
     end
 }
 -- Vampire
+SMODS.Joker{
+	key = 'vampire',
+	atlas = 'jokers_alt',
+	pos = {x = 2, y = 12},
+	config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = 'j_vampire'
+		},
+		extra = {
+			xmult = 1,
+			xmult_i = 0.5,
+		}
+	},
+	loc_vars = function (self, info_queue, card)
+		return {
+			vars = {
+				card.ability.extra.xmult,
+				card.ability.extra.xmult_i
+			}
+		}
+	end,
+	calculate = function (self, card, context)
+		if context.after and context.cardarea == G.jokers and not context.blueprint and context.scoring_hand then
+			local vampired = 0
+			for _,v in ipairs(context.scoring_hand) do
+				if FG.FUNCS.get_card_info(v).edition then
+					vampired = vampired + 1
+					G.E_MANAGER:add_event(Event{
+						func = function ()
+							v:set_edition(nil,true,true)
+							v:juice_up()
+							return true
+						end
+					})
+				end
+			end
+			G.E_MANAGER:add_event(Event{
+				func = function ()
+					card.ability.extra.xmult = card.ability.extra.xmult + card.ability.extra.xmult_i * vampired
+					return true
+				end
+			})
+			return {
+				message = vampired > 0 and localize('k_upgrade_ex')
+			}
+		end
+		if context.joker_main then return {xmult = card.ability.extra.xmult} end
+	end
+}
 -- Shortcut
 -- Hologram
 -- Vagabond
