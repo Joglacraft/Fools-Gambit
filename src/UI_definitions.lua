@@ -192,7 +192,7 @@ G.FUNCS.FG_credits = function (e,page,from_callback)
 								align = "tm",
 							},
 						}},
-						{n = G.UIT.C, config = {minw = 2, align = "tm", padding = 0.1}, nodes = {
+						--[[{n = G.UIT.C, config = {minw = 2, align = "tm", padding = 0.1}, nodes = {
 							{n = G.UIT.R, config = {align = "tm"}, nodes = {{n = G.UIT.T, config = {text = FG.FUNCS.localize{"FG","credits","misc","music"}, colour = G.C.RED, scale = .5}}}},
 							FG.FUNCS.UIBox_text{
 								text = {
@@ -201,7 +201,7 @@ G.FUNCS.FG_credits = function (e,page,from_callback)
 								scale = 0.3,
 								align = "tm",
 							},
-						}},
+						}},]]
 					}},
 					{n = G.UIT.R, config = {align = "tm"}, nodes = {{n = G.UIT.T, config = {text = FG.FUNCS.localize{"FG","credits","misc","special_thanks"}, colour = G.C.GOLD, scale = .5}}}},
 					{n = G.UIT.R, config = {minh = 0.1}},
