@@ -4920,7 +4920,7 @@ SMODS.Joker{
 			alternate_card = 'j_stuntman'
 		},
 		extra = {
-			og_size = G.hand and G.hand.config.card_limit or 8,
+			hand_var = 3,
 			hand_size = 5,
 			chips = 1e3
 		},
@@ -4934,13 +4934,17 @@ SMODS.Joker{
 		}
 	end,
 	blueprint_compat = true,
+	add_to_deck = function (self, card, from_debuff)
+		card.ability.extra.hand_var = G.hand and (math.max(0,G.hand.config.card_limit - card.ability.extra.hand_size)) or 0
+		card.ability.extra.activated = true
+	end,
 	update = function (self, card, dt)
-		if G.hand and G.hand.config.card_limit > card.ability.extra.hand_size and G.hand then
+		if card.ability.extra.activated and G.hand and G.hand.config.card_limit > card.ability.extra.hand_size then
 			G.hand.config.card_limit = card.ability.extra.hand_size
 		end
 	end,
 	remove_from_deck = function (self, card, from_debuff)
-		if G.hand then G.hand.config.card_limit = card.ability.extra.og_size end
+		if G.hand then G.hand.config.card_limit = G.hand.config.card_limit + card.ability.extra.hand_var end
 	end,
 	calculate = function (self, card, context)
 		if G.GAME.current_round.discards_left > 0 then ease_discard(-G.GAME.current_round.discards_left,true,false) end
