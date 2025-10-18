@@ -816,6 +816,13 @@ return {
                     "todas del mismo {C:attention}palo{}"
                 }
             },
+            j_fg_trading = {
+                name = '¿Carta de colección?',
+                text = {
+                    "Gana {C:gold}$#1#{} por cada",
+                    "carta destruida"
+                }
+            },
             j_fg_popcorn = {
                 name = "¿Palomitas?",
                 text = {

@@ -850,7 +850,16 @@ jd['j_fg_lucky_cat'] = {}
 jd['j_fg_baseball_card'] = {}
 jd['j_fg_bull'] = {}
 jd['j_fg_diet_cola'] = {}
-jd['j_fg_trading'] = {}
+jd['j_fg_trading'] = {
+    text = {
+        {text = '+$'},
+        {ref_table = 'card.joker_display_values', ref_value = 'money'}
+    },
+    text_config = {colour = G.C.GOLD},
+    calc_function = function (card)
+        card.joker_display_values.money = card.ability.extra.money * (G.hand and #G.hand.highlighted or 0)
+    end
+}
 jd['j_fg_flash'] = {}
 jd['j_fg_popcorn'] = {}
 jd['j_fg_trouses'] = {}

@@ -853,6 +853,13 @@ return {
                     "all sharing the same {C:attention}suit{}"
                 }
             },
+            j_fg_trading = {
+                name = 'Trading Card?',
+                text = {
+                    "Earn {C:gold}$#1#{} for each",
+                    "card destroyed"
+                }
+            },
             j_fg_popcorn = {
                 name = "Popcorn?",
                 text = {

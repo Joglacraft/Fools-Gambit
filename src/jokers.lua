@@ -3486,6 +3486,45 @@ SMODS.Joker{
 -- Bull
 -- Cola
 -- Trading card
+SMODS.Joker{
+	key = 'trading',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
+	pos = {x=9,y=14},
+	rarity = 'fg_uncommon_alt',
+	cost = 6,
+	config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = 'j_trading'
+		},
+		extra = {
+			money = 4
+		}
+	},
+	loc_vars = function (self, info_queue, card)
+		return {
+			vars = {
+				card.ability.extra.money
+			}
+		}
+	end,
+	blueprint_compat = true,
+	calculate = function (self, card, context)
+		if context.remove_playing_cards then
+			for _,v in ipairs(context.removed) do
+				v:juice_up()
+			end
+			ease_dollars(card.ability.extra.money)
+			FG.FUNCS.card_eval_status_text{
+				card = card,
+				message = '$'..card.ability.extra.money * table.size(context.removed),
+				mode = 'literal',
+				colour = 'gold'
+			}
+		end
+	end
+}
 -- Flash card
 -- Popcorn
 SMODS.Joker{
