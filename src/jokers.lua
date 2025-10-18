@@ -5371,7 +5371,7 @@ SMODS.Joker{
     end,
     blueprint_compat = true,
     calculate = function (self, card, context)
-		if context.end_of_round and G.GAME.blind.boss then
+		if context.end_of_round and context.cardarea == G.jokers and G.GAME.blind.boss then
 			local ellegible_jokers = {}
 			local choosen_joker = {}
 			for _,v in ipairs(G.jokers.cards) do
@@ -5381,10 +5381,19 @@ SMODS.Joker{
 					--print("joker added, key="..FG.FUNCS.get_card_info(v).key)
 				end
 			end
+			if not next(ellegible_jokers) then
+				FG.FUNCS.card_eval_status_text{
+					card = card,
+					message = 'k_nope_ex'
+				}
+				return
+			end
 			choosen_joker = ellegible_jokers[pseudorandom("mila",1,#ellegible_jokers)]
 			local new_card = copy_card(choosen_joker)
 			new_card:set_edition("e_negative")
+			new_card:set_eternal(false)
 			new_card:set_perishable()
+			new_card.ability.perish_tally = new_card.ability.perish_tally + 1
 			new_card:add_to_deck()
             G.jokers:emplace(new_card)
 		end
