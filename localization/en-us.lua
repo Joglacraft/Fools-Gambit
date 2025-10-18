@@ -1028,6 +1028,14 @@ return {
                     "{C:inactive}(Currently {C:white,X:mult}X#1#{C:inactive} Mult)"
                 }
             },
+            j_fg_stuntman = {
+                name = 'Stuntman?',
+                text = {
+                    "{C:chips}+#1#{} Chips",
+                    "{C:red,E:1}Forcebly{} removes all discards and",
+                    "sets maximum hand size to {C:attention}#2#{}"
+                }
+            },
             j_fg_invisible = {
                 name = "Invisible Joker?",
                 text = {

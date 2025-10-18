@@ -4907,6 +4907,46 @@ SMODS.Joker{
     end
 }
 -- Stuntman
+SMODS.Joker{
+	key = 'stuntman',
+	atlas = 'Joker',
+	pos = {x=8,y=6},
+	prefix_config = {atlas = false},
+	rarity = 'fg_rare_alt',
+	cost = 7,
+	config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = 'j_stuntman'
+		},
+		extra = {
+			og_size = G.hand and G.hand.config.card_limit or 8,
+			hand_size = 5,
+			chips = 1e3
+		},
+	},
+	loc_vars = function (self, info_queue, card)
+		return {
+			vars = {
+				card.ability.extra.chips,
+				card.ability.extra.hand_size
+			}
+		}
+	end,
+	blueprint_compat = true,
+	update = function (self, card, dt)
+		if G.hand and G.hand.config.card_limit > card.ability.extra.hand_size and G.hand then
+			G.hand.config.card_limit = card.ability.extra.hand_size
+		end
+	end,
+	remove_from_deck = function (self, card, from_debuff)
+		if G.hand then G.hand.config.card_limit = card.ability.extra.og_size end
+	end,
+	calculate = function (self, card, context)
+		if G.GAME.current_round.discards_left > 0 then ease_discard(-G.GAME.current_round.discards_left,true,false) end
+		if context.joker_main then return {chips = card.ability.extra.chips} end
+	end
+}
 -- Invisible
 FG.cards.invisible = {
 	elegible_jokers = {},

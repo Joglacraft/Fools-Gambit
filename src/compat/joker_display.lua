@@ -1101,7 +1101,13 @@ jd['j_fg_tribe'] = {
         {text = '(Flush five, Queens)'}
     }
 }
-jd['j_fg_stuntman'] = {}
+jd['j_fg_stuntman'] = {
+    text = {
+        {text = '+'},
+        {ref_table = 'card.ability.extra', ref_value = 'chips'}
+    },
+    text_config = {colour = G.C.CHIPS}
+}
 jd['j_fg_invisible'] = {}
 jd['j_fg_invisible_memory'] = {
     text = {

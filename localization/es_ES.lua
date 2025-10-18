@@ -1008,6 +1008,14 @@ return {
                     "{C:inactive}(Actualmente {C:white,X:mult}X#1#{C:inactive} MultI)"
                 }
             },
+            j_fg_stuntman = {
+                name = '¿Doble de riesgo?',
+                text = {
+                    "{C:chips}+#1#{} Fichas",
+                    "{C:red,E:1}Obligatoriamente{} elimina todos los descartes",
+                    "y reduce el tamaño máximo de la mano a {C:attention}#2#{}"
+                }
+            },
             j_fg_invisible = {
                 name = "¿Comodín Invisible?",
                 text = {
