@@ -1037,6 +1037,14 @@ return {
                     "create {C:attention}#2#{C:dark_edition} negative{} copies of {C:attention}#3#{}",
                 }
             },
+            j_fg_shoot_the_moon = {
+                name = 'Shoot the moon?',
+                text = {
+                    "Gains {C:mult}+#2#{} Mult for every {C:attention}face{} card",
+                    "held in hand at {C:attention}end of round{}",
+                    "{C:inactive}(Currently {C:mult}+#1#{C:inactive} Mult){}"
+                }
+            },
             j_fg_drivers_license = {
                 name = "Driver's license?",
                 text = {

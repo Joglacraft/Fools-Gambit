@@ -1105,6 +1105,37 @@ jd['j_fg_invisible_memory'] = {
     }
 }
 jd['j_fg_brainstorm'] = {}
+jd['j_fg_satellite'] = {}
+jd['j_fg_shoot_the_moon'] = {
+    text = {
+        {text = '+'},
+        {ref_table = 'card.ability.extra', ref_value = 'mult'}
+    },
+    text_config = {colour = G.C.RED},
+    reminder_text = {
+        {text = '(Faces)'}
+    },
+    extra = {
+        {
+            {text = '(', colour = G.C.GREY},
+            {text = '+', colour = G.C.MULT},
+            {ref_table = 'card.joker_display_values', ref_value = 'mult_i', colour = G.C.MULT},
+            {text = ')', colour = G.C.GREY},
+        }
+    },
+    extra_config = {scale = 0.3},
+    calc_function = function (card)
+        if not next(G.hand.cards) then card.joker_display_values.mult_i = 0 return end
+        local mult_i = 0
+        for _, v in ipairs(G.hand.cards) do
+            if v.facing ~= 'front' then mult_i = '???' break end
+            if FG.FUNCS.get_card_info(v).is_face and not v.highlighted then mult_i = mult_i + card.ability.extra.mult_i end
+        end
+        card.joker_display_values.mult_i = mult_i
+    end
+}
+jd['j_fg_drivers_license'] = {}
+jd['j_fg_cartomancer'] = {}
 jd['j_fg_astronomer'] = {}
 jd['j_fg_burnt'] = {}
 jd['j_fg_bootstraps'] = {}

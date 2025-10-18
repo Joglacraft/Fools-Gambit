@@ -4953,6 +4953,55 @@ SMODS.Joker{
 -- Brainstorm
 -- Satellite
 -- Shoot the moon
+SMODS.Joker{
+	key = 'shoot_the_moon',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
+	pos = {x=2,y=6},
+	rarity = 'fg_common_alt',
+	cost = 4,
+	config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = 'j_shoot_the_moon'
+		},
+		extra = {
+			mult = 0,
+			mult_i = 3
+		}
+	},
+	loc_vars = function (self, info_queue, card)
+		return {
+			vars = {
+				card.ability.extra.mult,
+				card.ability.extra.mult_i
+			}
+		}
+	end,
+	blueprint_compat = true,
+	calculate = function (self, card, context)
+		if context.end_of_round and context.cardarea == G.jokers and not context.blueprint then
+			for _,v in ipairs(G.hand.cards) do
+				if FG.FUNCS.get_card_info(v).is_face then
+					card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.mult_i
+					G.E_MANAGER:add_event(Event({
+						func = function ()
+							v:juice_up()
+							return true
+						end
+					}))
+					FG.FUNCS.card_eval_status_text{
+						card = card,
+						message = "+"..card.ability.extra.mult_i.." Mult",
+						mode = "literal",
+						colour = "mult"
+					}
+				end
+			end
+		end
+		if context.joker_main then return {mult = card.ability.extra.mult} end
+	end
+}
 -- Driver's license
 SMODS.Joker{
     key = "drivers_license",

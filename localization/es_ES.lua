@@ -1009,6 +1009,14 @@ return {
                     "{C:inactive}(No puede copiar comodines eternos){}",
                 }
             },
+            j_fg_shoot_the_moon = {
+                name = '¿Disparo a la luna?',
+                text = {
+                    "Gana {C:mult}+#2#{} Multi por cada {C:attention}figura{} en",
+                    "la mano al {C:attention}final de la ronda{}",
+                    "{C:inactive}(Actualmente {C:mult}+#1#{C:inactive} Multi){}"
+                }
+            },
             j_fg_drivers_license = {
                 name = "¿Permiso de conducir?",
                 text = {
