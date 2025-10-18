@@ -740,7 +740,17 @@ jd['j_fg_vampire'] = {
     }
 }
 jd['j_fg_shurtcut'] = {}
-jd['j_fg_hologram'] = {}
+jd['j_fg_hologram'] = {
+    text = {
+        {
+            border_nodes = {
+                {text = 'X'},
+                {ref_table = 'card.ability.extra', ref_value = 'xmult'}
+            },
+            border_colour = G.C.RED
+        }
+    },
+}
 jd['j_fg_vagabond'] = {}
 jd['j_fg_baron'] = {
     text = {

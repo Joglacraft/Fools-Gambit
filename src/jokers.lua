@@ -2980,6 +2980,55 @@ SMODS.Joker{
 }
 -- Shortcut
 -- Hologram
+SMODS.Joker{
+	key = 'hologram',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
+	pos = {x=4,y=12},
+	soul_pos = {x=2, y=9},
+	rarity = 'fg_uncommon_alt',
+	cost = 6,
+	config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = 'j_hologram'
+		},
+		extra = {
+			xmult = 1,
+			xmult_i = 0.5
+		}
+	},
+	loc_vars = function (self, info_queue, card)
+		return {
+			vars = {
+				card.ability.extra.xmult,
+				card.ability.extra.xmult_i
+			}
+		}
+	end,
+	draw = function (self, card, layer)
+		local scale_mod = 0.07 + 0.02*math.sin(1.8*G.TIMERS.REAL) + 0.00*math.sin((G.TIMERS.REAL - math.floor(G.TIMERS.REAL))*math.pi*14)*(1 - (G.TIMERS.REAL - math.floor(G.TIMERS.REAL)))^3
+        local rotate_mod = 0.05*math.sin(1.219*G.TIMERS.REAL) + 0.00*math.sin((G.TIMERS.REAL)*math.pi*5)*(1 - (G.TIMERS.REAL - math.floor(G.TIMERS.REAL)))^2
+
+		card.hover_tilt = card.hover_tilt*1.5
+		card.children.floating_sprite:draw_shader('hologram', nil, card.ARGS.send_to_shader, nil, card.children.center, 2*scale_mod, 2*rotate_mod)
+		card.hover_tilt = card.hover_tilt/1.5
+	end,
+	blueprint_compat = true,
+	calculate = function (self, card, context)
+		if context.remove_playing_cards and not context.blueprint then
+			local increase = card.ability.extra.xmult_i * table.size(context.removed)
+			card.ability.extra.xmult = card.ability.extra.xmult + increase
+			FG.FUNCS.card_eval_status_text{
+				card = card,
+				message = '+X'..increase..' Mult',
+				mode = 'literal',
+				colour = 'red'
+			}
+		end
+		if context.joker_main then return {xmult = card.ability.extra.xmult} end
+	end
+}
 -- Vagabond
 -- Baron
 SMODS.Joker{

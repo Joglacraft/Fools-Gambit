@@ -696,6 +696,14 @@ return {
                     "{C:inactive}(Actualmente {C:mult}+#1#{C:inactive} Multi)"
                 }
             },
+            j_fg_hologram = {
+                name = '¿Holograma?',
+                text = {
+                    "Gana {X:mult,C:white}X#2#{} Multi por cada",
+                    "carta {C:attention}destruida{}",
+                    "{C:inactive}(Actualmente {X:mult,C:white}X#1#{}{C:inactive} Multi)"
+                }
+            },
             j_fg_baron = {
                 name = "¿Barón?",
                 text = {

@@ -732,6 +732,14 @@ return {
                     "{C:inactive}(Currently {C:mult}+#1#{C:inactive} Mult)"
                 }
             },
+            j_fg_hologram = {
+                name = 'Hologram?',
+                text = {
+                    "Gains {X:mult,C:white}X#2#{} Mult for every",
+                    "{C:attention}destroyed{} card",
+                    "{C:inactive}(Currently {X:mult,C:white}X#1#{}{C:inactive} Mult)"
+                }
+            },
             j_fg_baron = {
                 name = "Baron?",
                 text = {
