@@ -5014,7 +5014,7 @@ SMODS.Joker{
 		return {
 			vars = {
 				card.ability.extra.chips,
-				G.GAME.fg_data.stuntman_data.hand_size
+				G.GAME.fg_data and G.GAME.fg_data.stuntman_data.hand_size or 5
 			}
 		}
 	end,
