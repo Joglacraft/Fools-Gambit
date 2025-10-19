@@ -327,8 +327,6 @@ function G.FUNCS.reroll_boss_button(e)
 			e.config.button = 'reroll_boss'
 			e.children[1].children[1].config.shadow = true
 			if e.children[2] then e.children[2].children[1].config.shadow = true end 
-			e.config.colour = G.C.GREEN
-			e.config.button = 'reroll_shop'
 	  	end
 	end
 	return ret
