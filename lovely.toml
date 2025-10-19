@@ -52,6 +52,7 @@ pattern = '''
 '''
 position = "after"
 payload = '''
+                            if v.rental then _joker:set_rental(true) end
                             if v.fg_unchangeable then _joker.ability.fg_unchangeable = true end
 '''
 match_indent = true
@@ -65,6 +66,7 @@ pattern = '''
 '''
 position = "after"
 payload = '''
+    if v.rental then card:set_rental(true) end
     if v.fg_unchangeable then card.ability.fg_unchangeable = true end
 '''
 match_indent = false

@@ -252,9 +252,9 @@ function FG.FUNCS.get_card_info(card)
 	end
 	if card.edition then ret.edition = card.edition.key end
 	if card.ability then
-		for _,ability in pairs(card.ability) do
+		for ability,v in pairs(card.ability) do
 			for _,sticker in pairs(SMODS.Stickers) do
-				if ability == sticker.key then ret.stickers[ability] = true end
+				if ability == sticker.key then ret.stickers[ability] = v end
 			end
 		end
 	end

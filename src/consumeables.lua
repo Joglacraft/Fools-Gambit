@@ -37,7 +37,7 @@ local function tonal_loc_vars (params,extra)
     for i=1, math.min(math.ceil(card.ability.extra.cards),#G[cardarea].cards) do
         if not card.fake_card and #G[cardarea].cards >= 1
         and G[cardarea].cards[i].ability.fg_data
-        and not FG.FUNCS.get_card_info(G[cardarea].cards[i]).stickers.unchangeable then
+        and not FG.FUNCS.get_card_info(G[cardarea].cards[i]).stickers['fg_unchangeable'] then
             info_queue[#info_queue+1] = G.P_CENTERS[G[cardarea].cards[i].ability.fg_data.alternate_card]
         end
     end
@@ -56,7 +56,7 @@ local function tonal_can (param,extra)
         if not card.ability then card.ability = {extra = { cards = 1}} end
         for i=1, math.min(math.ceil(card.ability.extra.cards or 1),#G[cardarea].cards) do
             if G[cardarea].cards[i].ability.fg_data
-            and not FG.FUNCS.get_card_info(G[cardarea].cards[i]).stickers.unchangeable
+            and not FG.FUNCS.get_card_info(G[cardarea].cards[i]).stickers['fg_unchangeable']
             and FG.FUNCS.check_exists(G[cardarea].cards[i].ability.fg_data.alternate_card) then return true end
         end
     end
@@ -77,7 +77,7 @@ local function tonal_use (param,extra)
         delay = 0.4,
         func = function()
             for i=1, math.min(math.ceil(card.ability.extra.cards or 1),#G[cardarea].cards) do
-                if not FG.FUNCS.get_card_info(G[cardarea].cards[i]).stickers.unchangeable
+                if not FG.FUNCS.get_card_info(G[cardarea].cards[i]).stickers['fg_unchangeable']
                 and FG.FUNCS.check_exists(G[cardarea].cards[i].ability.fg_data.alternate_card) then
                     local c = FG.FUNCS.alternate_card(G[cardarea].cards[i])
                     FG.FUNCS.update_edition(c.original,c.alternate)
@@ -106,7 +106,7 @@ local function bulk_loc (param,extra)
         local can = false
         for _,vv in ipairs(extra.rarity) do if FG.FUNCS.get_card_info(v).rarity == vv then can = true end end
         for _,vv in ipairs(extra.rarity) do if FG.FUNCS.get_card_info(v).rarity == vv then can = true end end
-        if not FG.FUNCS.get_card_info(v).stickers.unchangeable and can and v.ability.fg_data then
+        if not FG.FUNCS.get_card_info(v).stickers['fg_unchangeable'] and can and v.ability.fg_data then
             info_queue[#info_queue+1] = G.P_CENTERS[v.ability.fg_data.alternate_card]
         end
     end
@@ -122,7 +122,7 @@ local function bulk_can (param,extra)
     for _,v in ipairs(G.jokers.cards) do
         local can = false
         for _,vv in ipairs(extra.rarity) do if FG.FUNCS.get_card_info(v).rarity == vv then can = true end end
-        if can and FG.FUNCS.check_exists(FG.FUNCS.get_card_info(v).key) and not FG.FUNCS.get_card_info(v).stickers.unchangeable then return true end
+        if can and FG.FUNCS.check_exists(FG.FUNCS.get_card_info(v).key) and not FG.FUNCS.get_card_info(v).stickers['fg_unchangeable'] then return true end
     end
 end
 
@@ -143,7 +143,7 @@ local function bulk_use (param,extra)
                 local can = false
                 for _,vv in ipairs(extra.rarity) do if FG.FUNCS.get_card_info(G[cardarea].cards[i]).rarity == vv then can = true end end
 
-                if not FG.FUNCS.get_card_info(G[cardarea].cards[i]).stickers.unchangeable
+                if not FG.FUNCS.get_card_info(G[cardarea].cards[i]).stickers['fg_unchangeable']
                 and G[cardarea].cards[i].ability.fg_data
                 and FG.FUNCS.check_exists(G[cardarea].cards[i].ability.fg_data.alternate_card)
                 and can then
