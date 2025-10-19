@@ -8,7 +8,7 @@ SMODS.Challenge{
         {id = 'all_eternal'}
     },
     jokers = {
-        {id = 'j_fg_bull', eternal = true, stickers = {'fg_unchangeable','unchangeable'}},
-        {id = 'j_fg_bootstraps', eternal = true, stickers = {'fg_unchangeable','unchangeable'}}
+        {id = 'j_fg_bull', eternal = true, fg_unchangeable = true},
+        {id = 'j_fg_bootstraps', eternal = true, fg_unchangeable = true}
     }
 }

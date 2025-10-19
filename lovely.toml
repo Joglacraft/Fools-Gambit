@@ -43,3 +43,29 @@ payload = '''
 '''
 match_indent = false
 times = 1
+
+[[patches]]
+[patches.pattern]
+target = "game.lua"
+pattern = '''
+                            if v.pinned then _joker.pinned = true end
+'''
+position = "after"
+payload = '''
+                            if v.fg_unchangeable then _joker.ability.fg_unchangeable = true end
+'''
+match_indent = true
+times = 1
+
+[[patches]]
+[patches.pattern]
+target = "functions/UI_definitions.lua"
+pattern = '''
+    if v.eternal then card:set_eternal(true) end
+'''
+position = "after"
+payload = '''
+    if v.fg_unchangeable then card.ability.fg_unchangeable = true end
+'''
+match_indent = false
+times = 3

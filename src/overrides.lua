@@ -47,8 +47,8 @@ end
 
 local start_run_ref = Game.start_run
 
-function Game:start_run(args)
-	local ret = start_run_ref(self,args)
+function Game:start_run(args,...)
+	local ret = start_run_ref(self,args,...)
 
 	-- Initialize FG's default data table
 	G.GAME.fg_data = {
