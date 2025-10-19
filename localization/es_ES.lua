@@ -481,6 +481,14 @@ return {
                     "un {C:attention}#2#",
                }
             },
+            j_fg_credit_card = {
+                name = '¿Targeta de crédito?',
+                text = {
+                    "Puedes endeudarte {C:red}infinitamente{}",
+                    "Cada {C:attention}4{} apuestas si estáes en deuda,",
+                    "destruye todos los comodines en posesión"
+                }
+            },
             j_fg_ceremonial = {
                 name = '¿Daga ceremonial?',
                 text = {

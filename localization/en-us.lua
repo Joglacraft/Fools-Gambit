@@ -510,6 +510,14 @@ return {
                     "a {C:attention}#2#",
                 }
             },
+            j_fg_credit_card = {
+                name = 'Credit Card?',
+                text = {
+                    "Can go {C:red}infinitely{} in debt",
+                    "Every {C:attention}4{} antes if in debt, destroy",
+                    "all jokers in posession"
+                }
+            },
             j_fg_ceremonial = {
                 name = 'Ceremonial Dagger?',
                 text = {

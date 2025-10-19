@@ -59,6 +59,10 @@ function Game:start_run(args,...)
 			hand_var = 0,
 			hand_size = 5,
 			applied = false
+		},
+		credit_card_data = {
+			active = false,
+			trigger_ante = 4,
 		}
 	}
 
@@ -126,6 +130,9 @@ function Game:update(dt,...)
 		else
 			G.GAME.fg_data.stuntman_data.activated = false
 		end
+
+		-- Credit card
+		G.GAME.fg_data.credit_card_data.active = next(find_joker('j_fg_credit_card')) and true or false
 	end
 	return ret
 end
@@ -248,5 +255,81 @@ function end_round(...)
 		end
 	end
 	local ret = not skip_og and ref(...)
+	return ret
+end
+
+
+-- Credit card shenanigans
+
+local ref = G.FUNCS.can_buy
+
+function G.FUNCS.can_buy(e)
+	local ret = ref(e)
+	if G.GAME.fg_data and G.GAME.fg_data.credit_card_data.active then
+        e.config.colour = G.C.ORANGE
+        e.config.button = 'buy_from_shop'
+	end
+	return ret
+end
+
+local ref = G.FUNCS.can_buy_and_use
+
+function G.FUNCS.can_buy_and_use(e)
+	local ret = ref(e)
+	if G.GAME.fg_data and G.GAME.fg_data.credit_card_data.active then
+        e.config.colour = G.C.SECONDARY_SET.Voucher
+        e.config.button = 'buy_from_shop'
+	end
+	return ret
+end
+
+local ref = G.FUNCS.can_redeem
+
+function G.FUNCS.can_redeem(e)
+	local ret = ref(e)
+	if G.GAME.fg_data and G.GAME.fg_data.credit_card_data.active then
+		e.config.colour = G.C.GREEN
+		e.config.button = 'use_card'
+	end
+	return ret
+end
+
+local ref = G.FUNCS.can_open
+
+function G.FUNCS.can_open(e)
+	local ret = ref(e)
+	if G.GAME.fg_data and G.GAME.fg_data.credit_card_data.active then
+		e.config.colour = G.C.GREEN
+		e.config.button = 'use_card'
+	end
+	return ret
+end
+
+local ref = G.FUNCS.can_reroll
+
+function G.FUNCS.can_reroll(e)
+	local ret = ref(e)
+	if G.GAME.fg_data and G.GAME.fg_data.credit_card_data.active then
+        e.config.colour = G.C.GREEN
+        e.config.button = 'reroll_shop'
+	end
+	return ret
+end
+
+local ref = G.FUNCS.reroll_boss_button
+
+function G.FUNCS.reroll_boss_button(e)
+	local ret = ref(e)
+	if G.GAME.fg_data and G.GAME.fg_data.credit_card_data.active then
+		if (G.GAME.used_vouchers["v_retcon"] or
+		(G.GAME.used_vouchers["v_directors_cut"] and not G.GAME.round_resets.boss_rerolled)) then 
+			e.config.colour = G.C.RED
+			e.config.button = 'reroll_boss'
+			e.children[1].children[1].config.shadow = true
+			if e.children[2] then e.children[2].children[1].config.shadow = true end 
+			e.config.colour = G.C.GREEN
+			e.config.button = 'reroll_shop'
+	  	end
+	end
 	return ret
 end
