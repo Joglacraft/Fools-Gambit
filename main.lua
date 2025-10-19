@@ -55,12 +55,14 @@ local mod_contents = {
 	{path = 'seals', deps = {}},
 	{path = 'misc', deps = {}},
 	{path = 'decks', deps = {}},
+	{path = 'challenges', deps = {}},
 	-- Compat entries
 	{path = 'compat/joker_display', deps = {"JokerDisplay"}},
 }
 
 for k, v in ipairs(mod_contents) do -- Load this mod's files
 	local exists = true
+	if not v.deps then v.deps = {} end
 	for _,vv in ipairs(v.deps) do
 		if not next(SMODS.find_mod(vv)) then exists = false end
 	end

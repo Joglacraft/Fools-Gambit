@@ -848,7 +848,15 @@ jd['j_fg_stone'] = {}
 jd['j_fg_golden'] = {}
 jd['j_fg_lucky_cat'] = {}
 jd['j_fg_baseball_card'] = {}
-jd['j_fg_bull'] = {}
+jd['j_fg_bull'] = {
+    text = {
+        {text = '+', colour = G.C.CHIPS},
+        {ref_table = 'card.ability.extra', ref_value = 'chips', colour = G.C.CHIPS},
+        {text = ', ', colour = G.C.INACTIVE},
+        {text = '-$', colour = G.C.MULT},
+        {ref_table = 'card.ability.extra', ref_value = 'money_d', colour = G.C.MULT}
+    }
+}
 jd['j_fg_diet_cola'] = {}
 jd['j_fg_trading'] = {
     text = {
@@ -1163,7 +1171,15 @@ jd['j_fg_drivers_license'] = {}
 jd['j_fg_cartomancer'] = {}
 jd['j_fg_astronomer'] = {}
 jd['j_fg_burnt'] = {}
-jd['j_fg_bootstraps'] = {}
+jd['j_fg_bootstraps'] = {
+    text = {
+        {text = '+', colour = G.C.MULT},
+        {ref_table = 'card.ability.extra', ref_value = 'mult', colour = G.C.MULT},
+        {text = ', ', colour = G.C.INACTIVE},
+        {text = '-$', colour = G.C.MULT},
+        {ref_table = 'card.ability.extra', ref_value = 'cost', colour = G.C.MULT}
+    }
+}
 -- Legendaries
 jd['j_fg_caino'] = {}
 jd['j_fg_triboulet'] = {}

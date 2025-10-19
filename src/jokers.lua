@@ -3484,6 +3484,54 @@ SMODS.Joker{
 }
 -- Baseball
 -- Bull
+SMODS.Joker{
+	key = 'bull',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
+	pos = {x=7,y=14},
+	rarity = 'fg_common_alt',
+	cost = 5,
+	config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = 'j_bull'
+		},
+		extra = {
+			chips = 0,
+			chips_i = 15,
+			money_d = 1,
+		}
+	},
+	loc_vars = function (self, info_queue, card)
+		return {
+			vars = {
+				card.ability.extra.chips,
+				card.ability.extra.chips_i,
+				card.ability.extra.money_d
+			}
+		}
+	end,
+	calculate = function (self, card, context)
+		if context.end_of_round and context.cardarea == G.jokers and not context.blueprint then
+			FG.FUNCS.card_eval_status_text{
+				card = card,
+				message = "+"..card.ability.extra.chips_i,
+				mode = "literal",
+				colour = "chips"
+			}
+			card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chips_i
+			
+			FG.FUNCS.card_eval_status_text{
+				card = card,
+				message = "-$"..card.ability.extra.money_d,
+				mode = "literal",
+				colour = "red"
+			}
+			ease_dollars(-card.ability.extra.money_d)
+		end
+		if context.joker_main then return {chips = card.ability.extra.chips} end
+	end
+}
 -- Cola
 -- Trading card
 SMODS.Joker{
@@ -4978,6 +5026,11 @@ SMODS.Joker{
 		card.ability.extra.activated = true
 	end,
 	update = function (self, card, dt)
+		-- If the card limit is higher than the supposed hand size...
+		if G.hand.config.card_limit > card.ability.extra.hand_size then
+			-- ... then add the extra limit to hand_var to be applied when joker is sold
+			card.ability.extra.hand_var = card.ability.extra.hand_var + (G.hand.config.card_limit-card.ability.extra.hand_size)
+		end
 		if card.ability.extra.activated and G.hand and G.hand.config.card_limit > card.ability.extra.hand_size then
 			G.hand.config.card_limit = card.ability.extra.hand_size
 		end

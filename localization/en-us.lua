@@ -853,6 +853,14 @@ return {
                     "all sharing the same {C:attention}suit{}"
                 }
             },
+            j_fg_bull = {
+                name = "Bull?",
+                text = {
+                    "Gains {C:chips}+#2#{} Chips, {C:red}-$#3#{}",
+                    "at {C:attention}end of round{}",
+                    "{C:inactive}(Currently {C:chips}+#1#{C:inactive} Chips)"
+                }
+            },
             j_fg_trading = {
                 name = 'Trading Card?',
                 text = {

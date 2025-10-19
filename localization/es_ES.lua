@@ -816,6 +816,14 @@ return {
                     "todas del mismo {C:attention}palo{}"
                 }
             },
+            j_fg_bull = {
+                name = "¿Toro?",
+                text = {
+                    "Gana {C:mult}+#2#{} Fichas, {C:red}-$#3#{}",
+                    "al {C:attention}final de la ronda{}",
+                    "{C:inactive}(Actualmente {C:chips}+#1#{C:inactive} Fichas)"
+                }
+            },
             j_fg_trading = {
                 name = '¿Carta de colección?',
                 text = {
