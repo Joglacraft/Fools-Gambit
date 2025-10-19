@@ -3498,7 +3498,7 @@ SMODS.Joker{
 		},
 		extra = {
 			chips = 0,
-			chips_i = 15,
+			chips_i = 7,
 			money_d = 1,
 		}
 	},
@@ -5234,7 +5234,7 @@ SMODS.Joker{
         fg_alternate = {}, -- Kept between alternations
         extra = {
 			mult = 0,
-			mult_i = 6,
+			mult_i = 5,
 			cost = 3,
 		}
     },
