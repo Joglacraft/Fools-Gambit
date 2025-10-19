@@ -54,7 +54,12 @@ function Game:start_run(args)
 	G.GAME.fg_data = {
 		original_rarities_multiply = 1,
 		alternate_rarities_multiply = 0,
-		aberration_rate = 200
+		aberration_rate = 200,
+		stuntman_data = {
+			hand_var = 0,
+			hand_size = 5,
+			applied = false
+		}
 	}
 
 	-- Load and reset alt rates
@@ -88,6 +93,43 @@ function Game:start_run(args)
 	-- [ #end ]
 	return ret
 end
+
+local ref = Game.update
+
+function Game:update(dt,...)
+	local ret = ref(self,dt,...)
+	if G.GAME.fg_data then
+
+		--- STUNTMAN DATA
+
+		if G.GAME.fg_data.stuntman_data.activated then
+			-- If true, there is a stuntman
+			if next(find_joker('j_fg_stuntman')) then
+				-- If the card limit is higher than the supposed hand size...
+				if G.GAME.fg_data.stuntman_data.activated and G.hand.config.card_limit > G.GAME.fg_data.stuntman_data.hand_size then
+					-- ... then add the extra limit to hand_var to be applied when joker is sold
+					G.GAME.fg_data.stuntman_data.hand_var = G.GAME.fg_data.stuntman_data.hand_var + (G.hand.config.card_limit-G.GAME.fg_data.stuntman_data.hand_size)
+				end
+				-- Modify hand size
+				if G.GAME.fg_data.stuntman_data.activated and G.hand and G.hand.config.card_limit > G.GAME.fg_data.stuntman_data.hand_size then
+					G.hand.config.card_limit = G.GAME.fg_data.stuntman_data.hand_size
+				end
+				-- Else, there is not a stuntman. Should fix hand size
+			else
+				if G.hand then G.hand.config.card_limit = G.hand.config.card_limit + G.GAME.fg_data.stuntman_data.hand_var end
+			end
+		end
+
+		-- Final check. Prevents shit being done in the wrong order.
+		if next(find_joker('j_fg_stuntman')) then
+			G.GAME.fg_data.stuntman_data.activated = true
+		else
+			G.GAME.fg_data.stuntman_data.activated = false
+		end
+	end
+	return ret
+end
+
 
 
 -- Injects CoP into the shop

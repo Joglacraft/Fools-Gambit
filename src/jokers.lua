@@ -5007,8 +5007,6 @@ SMODS.Joker{
 			alternate_card = 'j_stuntman'
 		},
 		extra = {
-			hand_var = 0,
-			hand_size = 5,
 			chips = 1e3
 		},
 	},
@@ -5016,32 +5014,13 @@ SMODS.Joker{
 		return {
 			vars = {
 				card.ability.extra.chips,
-				card.ability.extra.hand_size
+				G.GAME.fg_data.stuntman_data.hand_size
 			}
 		}
 	end,
 	blueprint_compat = true,
-	add_to_deck = function (self, card, from_debuff)
-		-- Sets initial hand variation
-		--card.ability.extra.hand_var = G.hand and (math.max(0,G.hand.config.card_limit - card.ability.extra.hand_size)) or 0
-		-- Force card to wait 1 frame to change card limit
-		card.ability.extra.activated = true
-	end,
-	update = function (self, card, dt)
-		-- If the card limit is higher than the supposed hand size...
-		if card.ability.extra.activated and G.hand.config.card_limit > card.ability.extra.hand_size then
-			-- ... then add the extra limit to hand_var to be applied when joker is sold
-			card.ability.extra.hand_var = card.ability.extra.hand_var + (G.hand.config.card_limit-card.ability.extra.hand_size)
-		end
-		-- Modify hand size
-		if card.ability.extra.activated and G.hand and G.hand.config.card_limit > card.ability.extra.hand_size then
-			G.hand.config.card_limit = card.ability.extra.hand_size
-		end
-	end,
-	remove_from_deck = function (self, card, from_debuff)
-		if G.hand then G.hand.config.card_limit = G.hand.config.card_limit + card.ability.extra.hand_var end
-	end,
 	calculate = function (self, card, context)
+		-- MOST FUNCTIONALITY IS IN AN OVERRIDE FUNCTION
 		if G.GAME.current_round.discards_left > 0 then ease_discard(-G.GAME.current_round.discards_left,true,false) end
 		if context.joker_main then return {chips = card.ability.extra.chips} end
 	end
