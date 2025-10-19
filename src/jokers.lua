@@ -3498,7 +3498,7 @@ SMODS.Joker{
 		},
 		extra = {
 			chips = 0,
-			chips_i = 7,
+			chips_i = 4,
 			money_d = 1,
 		}
 	},
@@ -5007,7 +5007,7 @@ SMODS.Joker{
 			alternate_card = 'j_stuntman'
 		},
 		extra = {
-			chips = 1e3
+			chips = 750
 		},
 	},
 	loc_vars = function (self, info_queue, card)
@@ -5134,7 +5134,7 @@ SMODS.Joker{
 		},
 		extra = {
 			mult = 0,
-			mult_i = 3
+			mult_i = 1
 		}
 	},
 	loc_vars = function (self, info_queue, card)
@@ -5222,7 +5222,7 @@ SMODS.Joker{
     atlas = 'Joker',
 	prefix_config = {atlas = false},
     pos = { x = 9, y = 8},
-    rarity = "fg_common_alt",
+    rarity = "fg_uncommon_alt",
     cost = 5,
       
      -- Custom logic for spawning
