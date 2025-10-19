@@ -5007,7 +5007,7 @@ SMODS.Joker{
 			alternate_card = 'j_stuntman'
 		},
 		extra = {
-			hand_var = 3,
+			hand_var = 0,
 			hand_size = 5,
 			chips = 1e3
 		},
@@ -5022,15 +5022,18 @@ SMODS.Joker{
 	end,
 	blueprint_compat = true,
 	add_to_deck = function (self, card, from_debuff)
-		card.ability.extra.hand_var = G.hand and (math.max(0,G.hand.config.card_limit - card.ability.extra.hand_size)) or 0
+		-- Sets initial hand variation
+		--card.ability.extra.hand_var = G.hand and (math.max(0,G.hand.config.card_limit - card.ability.extra.hand_size)) or 0
+		-- Force card to wait 1 frame to change card limit
 		card.ability.extra.activated = true
 	end,
 	update = function (self, card, dt)
 		-- If the card limit is higher than the supposed hand size...
-		if G.hand.config.card_limit > card.ability.extra.hand_size then
+		if card.ability.extra.activated and G.hand.config.card_limit > card.ability.extra.hand_size then
 			-- ... then add the extra limit to hand_var to be applied when joker is sold
 			card.ability.extra.hand_var = card.ability.extra.hand_var + (G.hand.config.card_limit-card.ability.extra.hand_size)
 		end
+		-- Modify hand size
 		if card.ability.extra.activated and G.hand and G.hand.config.card_limit > card.ability.extra.hand_size then
 			G.hand.config.card_limit = card.ability.extra.hand_size
 		end
