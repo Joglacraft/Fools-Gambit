@@ -485,8 +485,8 @@ return {
                 name = '¿Targeta de crédito?',
                 text = {
                     "Puedes endeudarte {C:red}infinitamente{}",
-                    "Cada {C:attention}4{} apuestas si estáes en deuda,",
-                    "destruye todos los comodines en posesión"
+                    "Cada {C:attention}4{} apuestas, o al ser vendida, si estáes en",
+                    "deuda, destruye todos los comodines en posesión"
                 }
             },
             j_fg_ceremonial = {

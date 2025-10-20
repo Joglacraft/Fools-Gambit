@@ -1632,8 +1632,16 @@ SMODS.Joker{
 		}
 	},
 	calculate = function (self, card, context)
+		if context.selling_card and context.card == card
+		and G.GAME and G.GAME.dollars < 0 then
+			for _,v in ipairs(G.jokers.cards) do
+				if not FG.FUNCS.get_card_info(v).stickers['eternal'] then
+					v:start_dissolve()
+				end
+			end
+		end
 		if context.end_of_round and context.cardarea == G.jokers and 
-		G.GAME.fg_data and G.GAME.fg_data.credit_card_data.trigger_ante % 4 == 0 and
+		G.GAME.fg_data and G.GAME.round_resets.ante % G.GAME.fg_data.credit_card_data.trigger_ante == 0 and
 		G.GAME.dollars < 0 then
 			for _,v in ipairs(G.jokers.cards) do
 				if not FG.FUNCS.get_card_info(v).stickers['eternal'] then

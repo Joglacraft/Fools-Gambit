@@ -514,8 +514,8 @@ return {
                 name = 'Credit Card?',
                 text = {
                     "Can go {C:red}infinitely{} in debt",
-                    "Every {C:attention}4{} antes if in debt, destroy",
-                    "all jokers in posession"
+                    "Every {C:attention}4{} antes or when sold, if in debt,",
+                    "destroy all jokers in posession"
                 }
             },
             j_fg_ceremonial = {
