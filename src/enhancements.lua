@@ -201,25 +201,10 @@ SMODS.Enhancement{
 		}
 	},
 	loc_vars = function (self, info_queue, card)
-		if G.jokers then
+		if G.playing_cards then
 			FG.cards.steel.mult = 1
 			card.ability.extra.card_mult = FG.cards.steel.mult
-			for _,v in pairs(G.deck.cards) do
-				if tostring(FG.FUNCS.get_card_info(v).key) == "m_fg_steel" then
-					FG.cards.steel.mult = FG.cards.steel.mult + card.ability.extra.card_gain
-				end
-			end
-			for _,v in pairs(G.hand.cards) do
-				if tostring(FG.FUNCS.get_card_info(v).key) == "m_fg_steel" then
-					FG.cards.steel.mult = FG.cards.steel.mult + card.ability.extra.card_gain
-				end
-			end
-			for _,v in pairs(G.discard.cards) do
-				if tostring(FG.FUNCS.get_card_info(v).key) == "m_fg_steel" then
-					FG.cards.steel.mult = FG.cards.steel.mult + card.ability.extra.card_gain
-				end
-			end
-			for _,v in pairs(G.play.cards) do
+			for _,v in pairs(G.playing_cards) do
 				if tostring(FG.FUNCS.get_card_info(v).key) == "m_fg_steel" then
 					FG.cards.steel.mult = FG.cards.steel.mult + card.ability.extra.card_gain
 				end
