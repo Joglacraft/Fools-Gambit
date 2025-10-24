@@ -1253,7 +1253,40 @@ return {
                     "{C:attention}#2#{} cartas de {C:purple}aberration{} para",
                     "usar de inmediato."
                 },
-            }
+            },
+            -- Seals
+            fg_gold_seal = {
+                name = 'Sello ¿De oro?',
+                text = {
+                    "{C:red}-$#2#{} la primera vez que se juega esta carta",
+                    "{C:money}+$#1#{} la segunda vez que se juega esta carta",
+                    "Repetir este ciclo tras la segunda jugada"
+                }
+            },
+            fg_red_seal = {
+                name = 'Sello ¿Rojo?',
+                text = {
+                    "Reactiva esta carta {C:attention}#1#{} veces",
+                    "Disminuye en {C:attention}#2#{} al ser jugada",
+                    "Quita el sello al llegar a {C:attention}0{}"
+                },
+            },
+            fg_blue_seal = {
+                name = 'Sello ¿Azul?',
+                text = {
+                "Convierte todas las cartas de planeta",
+                "en la carta de {C:planet}Planeta{} de la",
+                "última {C:attention}majo de poker{} jugada",
+                },
+            },
+            fg_purple_seal = {
+                name = 'Sello ¿Morado?',
+                text = {
+                "Llena todas las ranuras de consumibles",
+                "vacias con cartas de {C:purple}Tarot{} aleatorias",
+                "cuando se {C:attention}descartada{}"
+                },
+            },
         },
         Planet={},
         Spectral={
@@ -1674,6 +1707,11 @@ return {
             fg_collective_alt = "¿Colectiva?",
             fg_unchangeable = "Incambiable",
             fg_alternate_mark = "Alternativa",
+            -- Seals
+            fg_red_seal = 'Sello ¿Rojo?',
+            fg_gold_seal = 'Sello ¿De oro?',
+            fg_blue_seal = 'Sello ¿Azul?',
+            fg_purple_seal = 'Sello ¿Morado?',
         },
         poker_hand_descriptions={},
         poker_hands={},

@@ -1307,7 +1307,40 @@ return {
                     "{C:attention}#2#{} {C:purple}aberration{} cards to",
                     "be used immediately"
                 },
-            }
+            },
+            -- Seals
+            fg_gold_seal = {
+                name = 'Gold? Seal',
+                text = {
+                    "{C:red}-$#2#{} the first time this card is played",
+                    "{C:money}+$#1#{} the second time this card is played",
+                    "Repeat this cycle afterwards"
+                }
+            },
+            fg_red_seal = {
+                name = 'Red? Seal',
+                text = {
+                    "Retrigger this card {C:attention}#1#{} times",
+                    "Amount decreases by {C:attention}#2#{} when played.",
+                    "Removes seal when reaches {C:attention}0{}"
+                },
+            },
+            fg_blue_seal = {
+                name = 'Blue? Seal',
+                text = {
+                "Converts all planets cards",
+                "in hand to the {C:planet}Planet{} card",
+                "for the final played {C:attention}poker hand{}"
+                },
+            },
+            fg_purple_seal = {
+                name = 'Purple? Seal',
+                text = {
+                "Fill all empty consumable",
+                "slots with random {C:purple}Tarot{}",
+                "cards when {C:attention}discarded{}"
+                },
+            },
         },
         Planet = {},
         Spectral = {
@@ -1595,7 +1628,7 @@ return {
             labels = {
                 ['content'] = 'Content',
                 ['ui'] = 'Interface',
-                ['misc'] = "Misc"
+                ['misc'] = "Misc",
             },
             extra_jokers = "Additional jokers",
             extra_jokers_tooltip = {
@@ -1741,6 +1774,11 @@ return {
             fg_collective_alt = "Collective?",
             fg_unchangeable = "Unchangeable",
             fg_alternate_mark = "Alternate",
+            -- Seals
+            fg_red_seal = 'Red? Seal',
+            fg_gold_seal = 'Gold? Seal',
+            fg_blue_seal = 'Blue? Seal',
+            fg_purple_seal = 'Blue? Seal',
         },
         poker_hand_descriptions = {},
         poker_hands = {},
