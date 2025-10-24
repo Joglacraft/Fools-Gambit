@@ -126,7 +126,11 @@ end
 
 
 function FG.FUNCS.update_seal(source,target) end
-function FG.FUNCS.alternate_seal(source,target) end
+function FG.FUNCS.alternate_seal(source,target)
+	target = target or source
+	local seal = source.ability.seal.fg_data.alternate_card
+	if seal then target:set_seal(seal) end
+end
 
 --- Transfers and updates the values from any given card to any other card.
 ---@param source table|card is the old card, that is being deleted

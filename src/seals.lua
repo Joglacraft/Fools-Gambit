@@ -15,7 +15,7 @@ SMODS.Seal{
     config = {
         fg_data = {
             is_alternate = true,
-            alternate_card = 'gold'
+            alternate_card = 'Gold'
         },
         should_give = false,
         take = 3,
@@ -48,7 +48,7 @@ SMODS.Seal{
     config = {
         fg_data = {
             is_alternate = true,
-            alternate_card = 'red'
+            alternate_card = 'Red'
         },
         retriggers = 3,
         retriggers_d = 1,
@@ -98,6 +98,12 @@ SMODS.Seal{
     pos = {x = 6, y = 4},
     badge_colour = G.C.BLUE,
     prefix_config = {atlas = false},
+    config = {
+        fg_data = {
+            is_alternate = true,
+            alternate_card = 'Blue'
+        },
+    },
     calculate = function (self, card, context)
         if context.playing_card_end_of_round and context.cardarea == G.hand then
             print("hi")
@@ -132,6 +138,12 @@ SMODS.Seal{
     pos = {x = 4, y = 4},
     badge_colour = G.C.PURPLE,
     prefix_config = {atlas = false},
+    config = {
+        fg_data = {
+            is_alternate = true,
+            alternate_card = 'Purple'
+        },
+    },
     calculate = function (self, card, context)
         if context.discard then
             for i=1, G.consumeables.config.card_limit-#G.consumeables.cards do
