@@ -734,7 +734,7 @@ return {
             j_fg_square = {
                 name = '¿Comodín cuadrado?',
                 text = {
-                    "{X:edition,C:mult}+#1#^#2#{} Multi",
+                    "{X:edition,C:mult}+#1#^#2# = #4#{} Multi",
                     "Aumenta la {C:attention}base{} en {X:edition,C:mult}+#3#{} si la",
                     "mano jugada es un {C:attention}Póker{}"
                 }

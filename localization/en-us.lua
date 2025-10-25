@@ -770,7 +770,7 @@ return {
             j_fg_square = {
                 name = 'Square Joker?',
                 text = {
-                    "{X:edition,C:mult}+#1#^#2#{} Mult",
+                    "{X:edition,C:mult}+#1#^#2# = #4#{} Mult",
                     "Increase {C:attention}base{} by {X:edition,C:mult}+#3#{} if played",
                     "hand is a {C:attention}Four of a Kind{}"
                 }

@@ -2944,7 +2944,8 @@ SMODS.Joker{
 		return {vars = {
 			card.ability.extra.base,
 			card.ability.extra.exp,
-			card.ability.extra.base_i
+			card.ability.extra.base_i,
+			card.ability.extra.base^card.ability.extra.exp
 		}}
 	end,
 	blueprint_compat = true,
