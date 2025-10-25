@@ -10,7 +10,8 @@ SMODS.Seal{
     config = {
         fg_data = {
             is_alternate = true,
-            alternate_card = 'giga_redplus'
+            alternate_card = 'giga_redplus',
+            crossover_label = 'GIGA',
         },
         retriggers = 3,
         retriggers_d = 1,
@@ -69,7 +70,8 @@ SMODS.Seal{
     config = {
         fg_data = {
             is_alternate = true,
-            alternate_card = 'giga_redplus'
+            alternate_card = 'giga_redplus',
+            crossover_label = 'GIGA',
         },
         retriggers = 4,
         retriggers_d = 1,

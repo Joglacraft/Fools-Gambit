@@ -1337,6 +1337,13 @@ return {
                     "be used immediately"
                 },
             },
+            fg_crossover_label = {
+                name = 'Crossover',
+                text = {
+                    "This is a crossover with",
+                    "{C:purple,E:1}#1#{}"
+                }
+            },
             -- Seals
             fg_gold_seal = {
                 name = 'Gold? Seal',

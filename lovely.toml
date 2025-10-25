@@ -43,13 +43,8 @@ pattern = '''
 position = "after"
 payload = '''
     if first_pass and FG.config.extended_tooltips then
-    test = _c
         if (_c.config and _c.config.fg_data and _c.config.fg_data.alternate_card) then
             info_queue[#info_queue+1] = G.P_CENTERS[_c.config.fg_data.alternate_card]
-        end
-        if (_c.fg_extra) then
-            print("Hi")
-            info_queue[#info_queue+1] = G.P_SEALS[_c.config.fg_data.alternate_card]
         end
     end
 '''
@@ -72,10 +67,30 @@ payload = '''
         elseif temp == 'purple_seal' then temp = 'Purple' 
         else temp = string.sub(temp,1,string.len(temp)-5)
         end
-        if G.P_SEALS[temp] and G.P_SEALS[temp].config and G.P_SEALS[temp].config.fg_data and G.P_SEALS[temp].config.fg_data.alternate_card then
-            info_queue[#info_queue+1] = G.P_SEALS[G.P_SEALS[temp].config.fg_data.alternate_card]
-        end
+        if G.P_SEALS[temp] and G.P_SEALS[temp].config and G.P_SEALS[temp].config.fg_data then
+            if G.P_SEALS[temp].config.fg_data.alternate_card then
+                info_queue[#info_queue+1] = G.P_SEALS[G.P_SEALS[temp].config.fg_data.alternate_card]
+            end
+            if first_pass and G.P_SEALS[temp].config.fg_data.crossover_label then
+                info_queue[#info_queue+1] = {set = 'Other', key = 'fg_crossover_label', vars = {G.P_SEALS[temp].config.fg_data.crossover_label}}
+            end
+        end 
     end
+'''
+match_indent = false
+times = 1
+
+[[patches]]
+[patches.pattern]
+target = "functions/common_events.lua"
+pattern = '''
+    for _, v in ipairs(info_queue) do
+        generate_card_ui(v, full_UI_table)
+    end
+'''
+position = "after"
+payload = '''
+
 '''
 match_indent = false
 times = 1
