@@ -127,7 +127,8 @@ end
 SMODS.Consumable{
     set = "Tarot",
     key = "fool",
-    atlas = "Consumeables",
+    atlas = "Tarot",
+    prefix_config = {atlas = false},
     pos = {x = 0, y = 0},
     config = {
         fg_data = {
@@ -165,7 +166,8 @@ SMODS.Consumable{
 SMODS.Consumable{
     set = "Tarot",
     key = "magician",
-    atlas = "Consumeables",
+    atlas = "Tarot",
+    prefix_config = {atlas = false},
     pos = {x = 1 , y = 0},
     config = {
         fg_data = {
@@ -202,7 +204,8 @@ SMODS.Consumable{
 SMODS.Consumable{
     set = "Tarot",
     key = "high_priestess",
-    atlas = "Consumeables",
+    atlas = "Tarot",
+    prefix_config = {atlas = false},
     pos = {x = 2, y = 0},
     config = {
     fg_data = {
@@ -247,7 +250,8 @@ SMODS.Consumable{
 SMODS.Consumable{
     set = "Tarot",
     key = "empress",
-    atlas = "Consumeables",
+    atlas = "Tarot",
+    prefix_config = {atlas = false},
     pos = {x = 3 , y = 0},
     config = {
         fg_data = {
@@ -284,7 +288,8 @@ SMODS.Consumable{
 SMODS.Consumable{
     set = "Tarot",
     key = "emperor",
-    atlas = "Consumeables",
+    atlas = "Tarot",
+    prefix_config = {atlas = false},
     pos = {x = 4, y = 0},
     config = {
         fg_data = {
@@ -328,7 +333,8 @@ SMODS.Consumable{
 SMODS.Consumable{
     set = "Tarot",
     key = "hierophant",
-    atlas = "Consumeables",
+    atlas = "Tarot",
+    prefix_config = {atlas = false},
     pos = {x = 5 , y = 0},
     config = {
         fg_data = {
@@ -364,7 +370,8 @@ SMODS.Consumable{
 SMODS.Consumable{
     set = "Tarot",
     key = "lovers",
-    atlas = "Consumeables",
+    atlas = "Tarot",
+    prefix_config = {atlas = false},
     pos = {x = 6 , y = 0},
     config = {
         fg_data = {
@@ -400,7 +407,8 @@ SMODS.Consumable{
 SMODS.Consumable{
     set = "Tarot",
     key = "chariot",
-    atlas = "Consumeables",
+    atlas = "Tarot",
+    prefix_config = {atlas = false},
     pos = {x = 7 , y = 0},
     config = {
         fg_data = {
@@ -436,7 +444,8 @@ SMODS.Consumable{
 SMODS.Consumable{
     set = "Tarot",
     key = "justice",
-    atlas = "Consumeables",
+    atlas = "Tarot",
+    prefix_config = {atlas = false},
     pos = {x = 8 , y = 0},
     config = {
         fg_data = {
@@ -472,7 +481,8 @@ SMODS.Consumable{
 SMODS.Consumable{
     set = "Tarot",
     key = "hermit",
-    atlas = "Consumeables",
+    atlas = "Tarot",
+    prefix_config = {atlas = false},
     pos = {x = 9, y = 0},
     config = {
         fg_data = {
@@ -534,7 +544,8 @@ SMODS.Consumable{
 SMODS.Consumable{
     set = "Tarot",
     key = "wheel_of_fortune",
-    atlas = "Consumeables",
+    atlas = "Tarot",
+    prefix_config = {atlas = false},
     pos = {x = 0, y = 1},
     config = {
         fg_data = {
@@ -599,7 +610,8 @@ SMODS.Consumable{
 SMODS.Consumable{
     set = "Tarot",
     key = "strength",
-    atlas = "Consumeables",
+    atlas = "Tarot",
+    prefix_config = {atlas = false},
     pos = {x = 1, y = 1},
     config = {
         fg_data = {
@@ -652,7 +664,8 @@ SMODS.Consumable{
 SMODS.Consumable{
     set = "Tarot",
     key = "hanged_man",
-    atlas = "Consumeables",
+    atlas = "Tarot",
+    prefix_config = {atlas = false},
     pos = {x = 2, y = 1},
     config = {
         fg_data = {
@@ -697,7 +710,8 @@ SMODS.Consumable{
 SMODS.Consumable{
     set = "Tarot",
     key = "death",
-    atlas = "Consumeables",
+    atlas = "Tarot",
+    prefix_config = {atlas = false},
     pos = {x = 3, y = 1},
     config = {
         fg_data = {
@@ -754,7 +768,8 @@ SMODS.Consumable{
 SMODS.Consumable{
     set = "Tarot",
     key = "temperance",
-    atlas = "Consumeables",
+    atlas = "Tarot",
+    prefix_config = {atlas = false},
     pos = {x = 4, y = 1},
     config = {
         fg_data = {
@@ -796,7 +811,8 @@ SMODS.Consumable{
 SMODS.Consumable{
     set = "Tarot",
     key = "devil",
-    atlas = "Consumeables",
+    atlas = "Tarot",
+    prefix_config = {atlas = false},
     pos = {x = 5 , y = 1},
     config = {
         fg_data = {
@@ -834,7 +850,8 @@ SMODS.Consumable{
 SMODS.Consumable{
     set = "Tarot",
     key = "tower",
-    atlas = "Consumeables",
+    atlas = "Tarot",
+    prefix_config = {atlas = false},
     pos = {x = 6 , y = 1},
     config = {
         fg_data = {
@@ -871,7 +888,8 @@ SMODS.Consumable{
 SMODS.Consumable{
     set = "Tarot",
     key = "star",
-    atlas = "Consumeables",
+    atlas = "Tarot",
+    prefix_config = {atlas = false},
     pos = {x = 7, y = 1},
     config = {
         fg_data = {
@@ -911,7 +929,8 @@ SMODS.Consumable{
 SMODS.Consumable{
     set = "Tarot",
     key = "moon",
-    atlas = "Consumeables",
+    atlas = "Tarot",
+    prefix_config = {atlas = false},
     pos = {x = 8, y = 1},
     config = {
         fg_data = {
@@ -934,7 +953,8 @@ SMODS.Consumable{
 SMODS.Consumable{
     set = "Tarot",
     key = "sun",
-    atlas = "Consumeables",
+    atlas = "Tarot",
+    prefix_config = {atlas = false},
     pos = {x = 9, y = 1},
     config = {
         fg_data = {
@@ -957,7 +977,8 @@ SMODS.Consumable{
 SMODS.Consumable{
     set = "Tarot",
     key = "judgement",
-    atlas = "Consumeables",
+    atlas = "Tarot",
+    prefix_config = {atlas = false},
     pos = {x = 0, y = 2},
     config = {
         fg_data = {
@@ -1008,7 +1029,8 @@ SMODS.Consumable{
 SMODS.Consumable{
     set = "Tarot",
     key = "world",
-    atlas = "Consumeables",
+    atlas = "Tarot",
+    prefix_config = {atlas = false},
     pos = {x = 1, y = 2},
     config = {
         fg_data = {

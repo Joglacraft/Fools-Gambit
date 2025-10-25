@@ -22,13 +22,6 @@ SMODS.Atlas{
 }
 ]]
 
-SMODS.Atlas{
-	key = 'Consumeables',
-	path = 'Tarots.png',
-	px = 71,
-	py = 95
-}
-
 ---@alias card table
 
 G.C.FG_ALTERNATE = HEX('8867a5')

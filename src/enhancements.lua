@@ -14,15 +14,16 @@ FG.cards.steel = {-- Stores global card info.
 }
 
 SMODS.Atlas {
-	key = 'enhanced',
-	path = 'Enhancers.png',
+	key = 'stone_alt',
+	path = 'stone_sole.png',
 	px = 71,
 	py = 95
 }
 
 SMODS.Enhancement{
 	key = "bonus",
-	atlas = "enhanced",
+	atlas = "centers",
+	prefix_config = {atlas = false},
 	pos = { x = 1, y = 1 },
 	config = {
 		fg_data = {
@@ -62,7 +63,8 @@ SMODS.Enhancement{
 
 SMODS.Enhancement{
 	key = "mult",
-	atlas = "enhanced",
+	atlas = "centers",
+	prefix_config = {atlas = false},
 	pos = { x = 2, y = 1 },
 	config = {
 		fg_data = {
@@ -102,7 +104,8 @@ SMODS.Enhancement{
 
 SMODS.Enhancement{
 	key = "wild",
-	atlas = "enhanced",
+	atlas = "centers",
+	prefix_config = {atlas = false},
 	pos = { x = 3, y = 1},
 	config = {
 		fg_data = {
@@ -144,7 +147,8 @@ SMODS.Enhancement{
 
 SMODS.Enhancement{
 	key = "glass",
-	atlas = "enhanced",
+	atlas = "centers",
+	prefix_config = {atlas = false},
 	pos = { x = 5, y = 1 },
 	config = {
 		fg_data = {
@@ -188,7 +192,8 @@ SMODS.Enhancement{
 
 SMODS.Enhancement{
 	key = "steel",
-	atlas = "enhanced",
+	atlas = "centers",
+	prefix_config = {atlas = false},
 	pos = { x = 6, y = 1},
 	config = {
 		fg_data = {
@@ -260,8 +265,8 @@ local stone = {
 
 SMODS.Enhancement{
 	key = "stone",
-	atlas = "enhanced",
-	pos = { x = 5, y = 0 },
+	atlas = 'stone_alt',
+	pos = { x = 0, y = 0 },
 	config = {
 		fg_data = {
 			is_alternate = true,
@@ -301,7 +306,8 @@ SMODS.Enhancement{
 
 SMODS.Enhancement{
 	key = "gold",
-	atlas = "enhanced",
+	atlas = "centers",
+	prefix_config = {atlas = false},
 	pos = { x = 6, y = 0},
 	config = {
 		fg_data = {
@@ -328,7 +334,8 @@ SMODS.Enhancement{
 }
 SMODS.Enhancement:take_ownership('lucky',
     {
-	atlas = "enhanced",
+	atlas = "centers",
+	prefix_config = {atlas = false},
 	pos = {x = 4, y = 1},
 	config = {
 		extra = {
@@ -364,7 +371,8 @@ SMODS.Enhancement:take_ownership('lucky',
 )
 SMODS.Enhancement{
 	key = "lucky",
-	atlas = "enhanced",
+	atlas = "centers",
+	prefix_config = {atlas = false},
 	pos = {x = 4, y = 1},
 	config = {
 		fg_data = {
