@@ -38,14 +38,15 @@ SMODS.Enhancement{
 		}
 	},
 	loc_vars = function (self, info_queue, card)
+		local num, denom = SMODS.get_probability_vars(nil, 1, 1)
 		card.ability.bonus = 0
 		return {
 			vars = {
-				G.GAME.probabilities.normal or 1,
-				card.ability.extra.grant_max,
+				num,
+				card.ability.extra.grant_max * denom,
 				card.ability.extra.grant_amount,
-				G.GAME.probabilities.normal or 1,
-				card.ability.extra.remove_max,
+				num,
+				card.ability.extra.remove_max * denom,
 				card.ability.extra.remove_amount
 			}
 		}
@@ -79,13 +80,14 @@ SMODS.Enhancement{
 		}
 	},
 	loc_vars = function (self, info_queue, card)
+		local num, denom = SMODS.get_probability_vars(nil, 1, 1)
 		return {
 			vars = {
-				G.GAME.probabilities.normal or 1,
-				card.ability.extra.grant_max,
+				num,
+				card.ability.extra.grant_max * denom,
 				card.ability.extra.grant_amount,
-				G.GAME.probabilities.normal or 1,
-				card.ability.extra.remove_max,
+				num,
+				card.ability.extra.remove_max * denom,
 				card.ability.extra.remove_amount
 			}
 		}
@@ -346,12 +348,13 @@ SMODS.Enhancement:take_ownership('lucky',
 		}
 	},
 	loc_vars = function (self, info_queue, card)
+		local num, denom = SMODS.get_probability_vars(nil, 1, 1)
 		return { vars = {
-			G.GAME.probabilities.normal or 1,
-			card.ability.extra.mult_max,
+			num,
+			card.ability.extra.mult_max * denom,
 			card.ability.extra.mult,
-			G.GAME.probabilities.normal or 1,
-			card.ability.extra.money_max,
+			num,
+			card.ability.extra.money_max * denom,
 			card.ability.extra.money
 		}}
 	end,
@@ -387,12 +390,13 @@ SMODS.Enhancement{
 		}
 	},
 	loc_vars = function (self, info_queue, card)
+		local num, denom = SMODS.get_probability_vars(nil, 1, 1)
 		return { vars = {
-			G.GAME.probabilities.normal or 1,
-			card.ability.extra.chips_max,
+			num,
+			card.ability.extra.chips_max * denom,
 			card.ability.extra.chips,
-			G.GAME.probabilities.normal or 1,
-			card.ability.extra.money_max,
+			num,
+			card.ability.extra.money_max * denom,
 			card.ability.extra.money
 		}}
 	end,

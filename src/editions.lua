@@ -71,11 +71,12 @@ SMODS.Edition({
     extra_cost = 2,
     apply_to_float = false,
     loc_vars = function(self)
+		local num, denom = SMODS.get_probability_vars(nil, 1, 1)
         return {
             vars = {
                 self.config.extra.chips,
-                (G.GAME.probabilities.normal or 1),
-                self.config.extra.odds
+                num,
+                self.config.extra.odds * denom
             }
         }
     end,
@@ -84,7 +85,7 @@ SMODS.Edition({
         if context.post_joker or (context.main_scoring and context.cardarea == G.play) then
             repeat
                 chips_total = chips_total + self.config.extra.chips
-                if pseudorandom('holographic') < (G.GAME.probabilities.normal or 1) / self.config.extra.odds then
+                if FG.random_chance(self.config.extra.odds) then
                     card_eval_status_text(card, 'extra', nil, nil, nil, { message = "+"..tostring(self.config.extra.chips).." "..localize("k_chip")})
                     card_eval_status_text(card, 'extra', nil, nil, nil, { message = localize("k_again_ex")})
                 else
@@ -124,11 +125,12 @@ SMODS.Edition({
     extra_cost = 3,
     apply_to_float = false,
     loc_vars = function(self)
+		local num, denom = SMODS.get_probability_vars(nil, 1, 1)
         return {
             vars = {
                 self.config.extra.mult,
-                (G.GAME.probabilities.normal or 1),
-                self.config.extra.odds
+                num,
+                self.config.extra.odds * denom
             }
         }
     end,
@@ -137,7 +139,7 @@ SMODS.Edition({
         if context.post_joker or (context.main_scoring and context.cardarea == G.play) then
             repeat
                 mult_total = mult_total + self.config.extra.mult
-                if pseudorandom('holographic') < (G.GAME.probabilities.normal or 1) / self.config.extra.odds then
+                if FG.random_chance(self.config.extra.odds) then
                     card_eval_status_text(card, 'extra', nil, nil, nil, { message = "+"..tostring(self.config.extra.mult).." "..localize("k_mult")})
                     card_eval_status_text(card, 'extra', nil, nil, nil, { message = localize("k_again_ex")})
                 else
@@ -177,11 +179,12 @@ SMODS.Edition({
     extra_cost = 5,
     apply_to_float = false,
 	loc_vars = function(self)
-        return { vars = { self.config.extra.xmult, (G.GAME.probabilities.normal or 1), self.config.extra.odds } }
+		local num, denom = SMODS.get_probability_vars(nil, 1, 1)
+        return { vars = { self.config.extra.xmult, num, self.config.extra.odds * denom } }
     end,
 	calculate = function(self, card, context)
 		if context.post_joker or (context.main_scoring and context.cardarea == G.play) then
-            if pseudorandom('polychrome') < G.GAME.probabilities.normal / self.config.extra.odds then
+            if FG.random_chance(self.config.extra.odds) then
                 return {repetitions = 1, Xmult_mod = self.config.extra.xmult}
             end
         end

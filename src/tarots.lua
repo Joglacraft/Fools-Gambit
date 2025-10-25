@@ -218,12 +218,12 @@ SMODS.Consumable{
         }
     },
     loc_vars = function (self, info_queue, card)
+		local num, denom = SMODS.get_probability_vars(nil, 1, 1)
         info_queue[#info_queue+1] = G.P_CENTERS.c_black_hole
-        card.ability.extra.min = G.GAME.probabilities.normal or 1
         return {
             vars = {
-                card.ability.extra.min,
-                card.ability.extra.max
+                num,
+                card.ability.extra.max * denom
             }
         }
     end,
@@ -302,12 +302,12 @@ SMODS.Consumable{
         }
     },
     loc_vars = function (self, info_queue, card)
+		local num, denom = SMODS.get_probability_vars(nil, 1, 1)
         info_queue[#info_queue+1] = G.P_CENTERS.c_soul
-        card.ability.extra.min = G.GAME.probabilities.normal or 1
         return {
             vars = {
-                card.ability.extra.min,
-                card.ability.extra.max
+                num,
+                card.ability.extra.max * denom
             }
         }
     end,
@@ -988,10 +988,11 @@ SMODS.Consumable{
         extra = {low_chance = 2, count = 2}
     },
     loc_vars = function (self, info_queue, card)
+		local num, denom = SMODS.get_probability_vars(nil, 1, 1)
         return {
             vars = {
-                G.GAME.probabilities.normal or 1,
-                card.ability.extra.low_chance or 2,
+                num,
+                (card.ability.extra.low_chance or 2) * denom,
                 card.ability.extra.count or 2
             }
         }

@@ -2344,11 +2344,12 @@ SMODS.Joker{
 		}
 	},
 	loc_vars = function (self, info_queue, card)
+		local num, denom = SMODS.get_probability_vars(nil, 1, 1)
 		return {
 			vars = {
 				card.ability.extra.xmult,
-				G.GAME.probabilities.normal or 1,
-				card.ability.extra.max_chance
+				num,
+				card.ability.extra.max_chance * denom
 			}
 		}
 	end,
@@ -2515,10 +2516,11 @@ SMODS.Joker {
 		}
 	},
 	loc_vars = function (self, info_queue, card)
+		local num, denom = SMODS.get_probability_vars(nil, 1, 1)
 		return {
 			vars = {
-				G.GAME.probabilities.normal or 1,
-				card.ability.extra.max_chance
+				num,
+				card.ability.extra.max_chance * denom
 			}
 		}
 	end,
@@ -2836,12 +2838,13 @@ SMODS.Joker{
 		}
 	},
 	loc_vars = function (self, info_queue, card)
+		local num, denom = SMODS.get_probability_vars(nil, 1, 1)
 		return {
 			vars = {
 				card.ability.extra.xmult,
 				card.ability.extra.xmult_r,
-				G.GAME.probabilities.normal or 1,
-				card.ability.extra.xmult_c
+				num,
+				card.ability.extra.xmult_c * denom
 			}
 		}		
 	end,
@@ -2941,11 +2944,12 @@ SMODS.Joker{
 		}
     },
     loc_vars = function (self, info_queue, card)
+		local num, denom = SMODS.get_probability_vars(nil, 1, 1)
         return {
             vars = {
-				G.GAME.probabilities.normal or 1,
-				card.ability.extra.uncommon_chance,
-				card.ability.extra.rare_chance
+				num,
+				card.ability.extra.uncommon_chance * denom,
+				card.ability.extra.rare_chance * denom
 			}
         }
     end,
@@ -3457,13 +3461,14 @@ SMODS.Joker{
 		}
 	},
 	loc_vars = function (self, info_queue, card)
+		local num, denom = SMODS.get_probability_vars(nil, 1, 1)
 		return {
 			vars = {
 				card.ability.extra.pluschips,
 				card.ability.extra.plusmult,
 				card.ability.extra.plusmoney,
-				G.GAME.probabilities.normal or 1,
-				card.ability.extra.chancemax
+				num,
+				card.ability.extra.chancemax * denom
 			}
 		}		
 	end,
@@ -4292,14 +4297,15 @@ SMODS.Joker{
 	},
 	blueprint_compat = false,
 	loc_vars = function (self, info_queue, card)
+		local num, denom = SMODS.get_probability_vars(nil, 1, 1)
 		return {
 			vars = {
-				G.GAME.probabilities.normal or 1,
-				card.ability.extra.enhancement_max,
-				G.GAME.probabilities.normal or 1,
-				card.ability.extra.seal_max,
-				G.GAME.probabilities.normal or 1,
-				card.ability.extra.edition_max
+				num,
+				card.ability.extra.enhancement_max * denom,
+				num,
+				card.ability.extra.seal_max * denom,
+				num,
+				card.ability.extra.edition_max * denom
 			}
 		}
 	end,
@@ -5968,10 +5974,11 @@ SMODS.Joker{
 		}
 	},
 	loc_vars = function (self, info_queue, card)
+		local num, denom = SMODS.get_probability_vars(nil, 1, 1)
 		return {
 			vars = {
-				G.GAME.probabilities.normal,
-				card.ability.extra.max_chance,
+				num,
+				card.ability.extra.max_chance * denom,
 			}
 		}
 	end,
