@@ -65,12 +65,12 @@ SMODS.Seal{
     key = '_c_giga_red_plus_plus',
     atlas = 'giga_Seals',
     prefix_config = {atlas = false},
-    pos = {x = 0, y = 1},
+    pos = {x = 3, y = 1},
     badge_colour = G.C.RED,
     config = {
         fg_data = {
             is_alternate = true,
-            alternate_card = 'giga_redplus',
+            alternate_card = 'giga_redplusplus',
             crossover_label = 'GIGA',
         },
         retriggers = 4,
@@ -117,6 +117,89 @@ SMODS.Seal{
                 end
             })
             delay(0.2)
+        end
+    end
+}
+
+-- Purple+
+SMODS.Seal{
+    key = '_c_giga_purple_plus',
+    atlas = 'giga_Seals',
+    prefix_config = {atlas = false},
+    pos = {x = 3, y = 0},
+    badge_colour = G.C.PURPLE,
+    config = {
+        fg_data = {
+            is_alternate = true,
+            alternate_card = 'giga_purpleplus',
+            crossover_label = 'GIGA',
+        }
+    },
+    calculate = function (self, card, context)
+        if context.discard and context.cardarea == G.hand then
+            local c = 0
+            for i=1, G.consumeables.config.card_limit - #G.consumeables.cards do
+                G.E_MANAGER:add_event(Event{
+                    trigger = 'after',
+                    delay = 0.4,
+                    func = function ()
+                        SMODS.add_card{
+                            set = 'Tarot'
+                        }
+                        return true
+                    end
+                })
+                c = c + 1
+            end
+            return {
+                message = '+'..c..' '..localize("k_tarot"),
+                colour = G.C.PURPLE
+            }
+        end
+    end
+}
+
+--Purple++
+SMODS.Seal{
+    key = '_c_giga_purple_plus_plus',
+    atlas = 'giga_Seals',
+    prefix_config = {atlas = false},
+    pos = {x = 1, y = 2},
+    badge_colour = G.C.PURPLE,
+    config = {
+        fg_data = {
+            is_alternate = true,
+            alternate_card = 'giga_purpleplusplus',
+            crossover_label = 'GIGA',
+        },
+        minimum = 3,
+        extra = 1,
+    },
+    loc_vars = function (self, info_queue, card)
+        return {vars = {
+            card.ability.seal.minimum,
+            card.ability.seal.extra
+        }}
+    end,
+    calculate = function (self, card, context)
+        if context.discard and context.cardarea == G.hand then
+            local c = card.ability.seal.minimum
+            for _,v in ipairs(G.consumeables.cards) do
+                if FG.FUNCS.get_card_info(v).edition ~= 'e_negative' then c = c + 1 end
+            end
+            for i=1, c do
+                G.E_MANAGER:add_event(Event{
+                    trigger = 'after',
+                    delay = 0.4,
+                    func = function ()
+                        SMODS.add_card{
+                            set = 'Tarot',
+                            edition = 'e_negative'
+                        }
+                        return true
+                    end
+                })
+            end
         end
     end
 }

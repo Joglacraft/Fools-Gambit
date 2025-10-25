@@ -152,11 +152,14 @@ SMODS.Seal{
         },
     },
     calculate = function (self, card, context)
-        if context.discard then
-            for i=1, G.consumeables.config.card_limit-#G.consumeables.cards do
-                SMODS.add_card{
-                    set = 'Tarot'
-                }
+        if context.discard and context.cardarea == G.hand then
+            local c = #G.consumeables.cards
+            for _,v in ipairs(G.consumeables.cards) do
+                v:start_dissolve()
+            end
+            if c < 1 then return end
+            for _=1,c do
+                SMODS.add_card{set = 'Tarot'}
             end
         end
     end

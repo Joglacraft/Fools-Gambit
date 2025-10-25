@@ -1348,8 +1348,8 @@ return {
             fg_gold_seal = {
                 name = 'Gold? Seal',
                 text = {
-                    "{C:red}-$#2#{} the first time this card is played",
-                    "{C:money}+$#1#{} the second time this card is played",
+                    "{C:red}-$#1#{} the first time this card is played",
+                    "{C:money}+$#2#{} the second time this card is played",
                     "Repeat this cycle afterwards"
                 }
             },
@@ -1372,9 +1372,8 @@ return {
             fg_purple_seal = {
                 name = 'Purple? Seal',
                 text = {
-                "Fill all empty consumable",
-                "slots with random {C:purple}Tarot{}",
-                "cards when {C:attention}discarded{}"
+                "Convert all consumables in hand to random",
+                "{C:purple}Tarots{} cards when {C:attention}discarded{}"
                 },
             },
             -- GIGA COMPAT
@@ -1395,6 +1394,22 @@ return {
                     "{C:inactive}(Downgrades seal when reaches {C:attention}0{C:inactive}){}",
                     "{C:inactive}(#3# plays left){}",
                 },
+            },
+            fg__c_giga_purple_plus_seal = {
+                name = 'Purple+? Seal',
+                text = {
+                    "Fill empty consumable slots",
+                    "with random {C:purple}Tarot{}",
+                    "cards when {C:attention}discarded"
+                },
+            },
+            fg__c_giga_purple_plus_plus_seal = {
+                name = 'Purple++? Seal',
+                text = {
+                    "Create {C:attention}#1#{C:dark_edition} Negative{C:purple} Tarot{} cards when discarded",
+                    "Create {C:attention}#2#{} additional card for each non-negative",
+                    "consumable in posession"
+                }
             }
         },
         Planet = {},
@@ -1838,7 +1853,9 @@ return {
             fg_purple_seal = 'Blue? Seal',
             -- GIGA
             fg__c_giga_red_plus_seal = 'Red+? Seal',
-            fg__c_giga_red_plus_plus_seal = 'Red++? Seal'
+            fg__c_giga_red_plus_plus_seal = 'Red++? Seal',
+            fg__c_giga_purple_plus_seal = 'Purple+? Seal',
+            fg__c_giga_purple_plus_plus_seal = 'Purple++? Seal',
         },
         poker_hand_descriptions = {},
         poker_hands = {},
