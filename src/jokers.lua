@@ -4612,6 +4612,96 @@ SMODS.Joker{
     end
 }
 -- Blueprint
+SMODS.Joker{
+    key = "blueprint",
+    atlas = 'Joker',
+	prefix_config = {atlas = false},
+    pos = { x = 0, y = 3 },
+    rarity = "fg_uncommon_alt",
+    cost = 5,
+    
+     -- Custom logic for spawning
+    config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = "j_blueprint"
+		},
+        fg_alternate = {}, -- Kept between alternations
+        extra = {
+			copying_card = nil,
+			valuemanip = 2
+		}
+    },
+    loc_vars = function (self, info_queue, card)
+		local main_end
+		local jocal = card.ability.extra
+        if card.area and card.area == G.jokers then
+            local other_joker = jocal.copying_card and jocal.copying_card or G.jokers.cards[1]
+            local compatible = other_joker and other_joker ~= card and other_joker.config.center.blueprint_compat and not SMODS.is_eternal(other_joker)
+            main_end = {
+                {
+                    n = G.UIT.C,
+                    config = { align = "bm", minh = 0.4 },
+                    nodes = {
+                        {
+                            n = G.UIT.C,
+                            config = { ref_table = card, align = "m", colour = compatible and mix_colours(G.C.GREEN, G.C.JOKER_GREY, 0.8) or mix_colours(G.C.RED, G.C.JOKER_GREY, 0.8), r = 0.05, padding = 0.06 },
+                            nodes = {
+                                { n = G.UIT.T, config = { text = ' ' .. localize('k_' .. (compatible and 'compatible' or 'incompatible')) .. ' ', colour = G.C.UI.TEXT_LIGHT, scale = 0.32 * 0.8 } },
+                            }
+                        }
+                    }
+                }
+            }
+		end
+		info_queue[#info_queue+1] = jocal.copying_card and G.P_CENTERS[jocal.copying_card.config.center.key] or nil
+        return {
+            vars = {
+				jocal.copying_card and jocal.copying_card.config.center.name or localize("k_none"),
+				jocal.valuemanip,
+			},
+			main_end = main_end
+        }
+    end,
+    blueprint_compat = true,
+    calculate = function (self, card, context)
+		local jocal = card.ability.extra
+		if context.setting_blind then
+				jocal.utterlyfucked = true
+			if G.jokers then
+				if not SMODS.is_eternal(G.jokers.cards[1]) and G.jokers.cards[1] ~= card and G.jokers.cards[1].config.center.blueprint_compat then
+				jocal.copying_card = G.jokers.cards[1]
+			return {message = localize("k_marked")}
+				end
+			end
+		end
+		if context.end_of_round then
+			SMODS.destroy_cards({jocal.copying_card})
+			jocal.copying_card = nil
+			if jocal.utterlyfucked then
+				jocal.utterlyfucked = nil
+				FG.FUNCS.card_eval_status_text{
+					card = card,
+					message = localize("k_killed"),
+					mode = "literal",
+				}
+			end
+		end
+		if jocal.copying_card then
+			local effect = SMODS.blueprint_effect(card, jocal.copying_card, context)
+			if type(effect) == "table" then
+			    for key, value in pairs(effect) do
+				    if type(value) == "number" then
+				    	effect[key] = effect[key] * jocal.valuemanip
+				    end
+		    	end
+		    elseif type(effect) == "number" then
+		        effect = effect * jocal.valuemanip
+	        end
+			return effect
+		end
+    end
+}
 -- Wee
 -- Merry Andy
 -- oops all 6s

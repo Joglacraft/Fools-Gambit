@@ -966,6 +966,18 @@ return {
                     "{C:inactive}(Currently {C:white,X:mult}X#1#{C:inactive} Mult){}"
                 }
             },
+            j_fg_blueprint = {
+                name = "Blueprint?",
+                text = {
+                    "This joker {C:attention}marks{} the",
+                    "{C:attention}leftmost joker{} to copy at",
+                    "the{C:attention} start of round{},",
+                    "and is {C:attention}#2#X as effective{},",
+                    "destroys marked joker at the {C:attention}end of round{}",
+                    "{C:inactive}(Currently copying {C:attention}#1#{C:inactive})",
+                    "{C:inactive}(Marked card can't be eternal)",
+                }
+            },
             j_fg_hanging_chad = {
                 name = "Hanging Chad?",
                 text = {
@@ -1754,6 +1766,8 @@ return {
         challenge_names = {},
         collabs = {},
         dictionary = {
+            k_marked = "Marked!",
+            k_killed = "Killed!",
             k_minus = "-",
             k_fg_common_alt = "Common?",
             k_fg_uncommon_alt = "Uncommon?",
