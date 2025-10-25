@@ -1048,6 +1048,15 @@ return {
                     "{C:inactive}(No puede copiar comodines eternos){}",
                 }
             },
+            j_fg_brainstorm = {
+                name = '¿Lluvia de ideas?',
+                text = {
+                    "Copia la habilidad del {C:attention}#1#º{} comodín de más a la izquierda",
+                    "Copia el comodín siguiente al {C:attention}final de la ronda{}",
+                    "{C:inactive}(No se puede copiar a sí mismo, vuelve a el 1º{}",
+                    "{C:inactive}comodín al iterar por todos los comodines){}"
+                }
+            },
             j_fg_shoot_the_moon = {
                 name = '¿Disparo a la luna?',
                 text = {

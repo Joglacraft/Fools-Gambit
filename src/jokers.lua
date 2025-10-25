@@ -5151,6 +5151,42 @@ SMODS.Joker{
 	end
 }
 -- Brainstorm
+SMODS.Joker{
+	key = 'brainstorm',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
+	pos = {x = 7, y = 7},
+	config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = 'j_brainstorm'
+		},
+		extra = 1,
+	},
+	cost = 7,
+	rarity = 'fg_uncommon_alt',
+	loc_vars = function (self, info_queue, card)
+		return {vars = {
+			card.ability.extra
+		}}
+	end,
+	blueprint_compat = false,
+	calculate = function (self, card, context)
+		if context.blueprint then return end
+		if G.jokers and G.jokers.cards[card.ability.extra] ~= card then
+			local other_joker_ret = G.jokers.cards[card.ability.extra]:calculate_joker(context)
+			if other_joker_ret then
+				other_joker_ret.card = context.blueprint_card or card
+				other_joker_ret.colour = G.C.ORANGE
+				return other_joker_ret
+			end
+		end
+		if context.end_of_round and context.cardarea == G.jokers then
+			card.ability.extra = card.ability.extra + 1
+			if card.ability.extra > #G.jokers.cards then card.ability.extra = 1 end
+		end
+	end
+}
 -- Satellite
 -- Shoot the moon
 SMODS.Joker{

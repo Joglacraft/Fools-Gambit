@@ -1076,6 +1076,15 @@ return {
                     "create {C:attention}#2#{C:dark_edition} negative{} copies of {C:attention}#3#{}",
                 }
             },
+            j_fg_brainstorm = {
+                name = 'Brainstorm',
+                text = {
+                    "Copies the ability of the {C:attention}#1#{} leftmost joker",
+                    "Copies the next joker at {C:attention}end of round{}",
+                    "{C:inactive}(Can't copy itself, returns to 1 leftmost{}",
+                    "{C:inactive}when reaching end of joker tray){}"
+                }
+            },
             j_fg_shoot_the_moon = {
                 name = 'Shoot the moon?',
                 text = {
