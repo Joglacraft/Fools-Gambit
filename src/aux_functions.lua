@@ -95,7 +95,7 @@ function FG.FUNCS.alternate_edition(source,target,ref)
 	ref = ref or FG.ALTS.edition_equivalents
 	target = target or source
 	if source.edition then
-		target:set_edition(FG.FUNCS.get_alternate(FG.FUNCS.get_card_info(source).edition,FG.ALTS.edition_equivalents),true,true)
+		target:set_edition(source.ability.fg_data.alternate_card)
 	else
 		target:set_edition(nil,true,true)
 	end

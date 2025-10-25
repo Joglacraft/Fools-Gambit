@@ -42,7 +42,6 @@ pattern = '''
 '''
 position = "after"
 payload = '''
-
     if first_pass and FG.config.extended_tooltips then
     test = _c
         if (_c.config and _c.config.fg_data and _c.config.fg_data.alternate_card) then
@@ -51,6 +50,30 @@ payload = '''
         if (_c.fg_extra) then
             print("Hi")
             info_queue[#info_queue+1] = G.P_SEALS[_c.config.fg_data.alternate_card]
+        end
+    end
+'''
+match_indent = false
+times = 1
+
+[[patches]]
+[patches.pattern]
+target = "functions/common_events.lua"
+pattern = '''
+    if v == 'eternal' then info_queue[#info_queue+1] = {key = 'eternal', set = 'Other'} end
+'''
+position = "before"
+payload = '''
+    if string.find(v,'_seal',string.len(v)-5) then
+        local temp = v
+        if temp == 'gold_seal' then temp = 'Gold'
+        elseif temp == 'red_seal' then temp = 'Red'
+        elseif temp == 'blue_seal' then temp = 'Blue'
+        elseif temp == 'purple_seal' then temp = 'Purple' 
+        else temp = string.sub(temp,1,string.len(temp)-5)
+        end
+        if G.P_SEALS[temp] and G.P_SEALS[temp].config and G.P_SEALS[temp].config.fg_data and G.P_SEALS[temp].config.fg_data.alternate_card then
+            info_queue[#info_queue+1] = G.P_SEALS[G.P_SEALS[temp].config.fg_data.alternate_card]
         end
     end
 '''
