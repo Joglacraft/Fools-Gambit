@@ -111,9 +111,13 @@ SMODS.Seal{
             alternate_card = 'Blue'
         },
     },
+    loc_vars = function (self, info_queue, card)
+        return {vars = {
+            card.ability.seal.repetitions
+        }}
+    end,
     calculate = function (self, card, context)
         if context.playing_card_end_of_round and context.cardarea == G.hand then
-            print("hi")
             if G.GAME.last_hand_played then
                 local _planet = nil
                 for k, v in pairs(G.P_CENTER_POOLS.Planet) do
@@ -122,18 +126,36 @@ SMODS.Seal{
                     end
                 end
                 if _planet then
-                    local c = 0
+                    local t = {}
                     for _,v in ipairs(G.consumeables.cards) do
                         if v.config.center.set == 'Planet' then
-                            v:start_dissolve()
-                            c = c + 1
+                            t[#t+1] = v
                         end
                     end
-                    for i=1,c do
-                        SMODS.add_card({ key = _planet })
-                    end
+                    if #G.consumeables.cards >= G.consumeables.config.card_limit then return end
+                    G.E_MANAGER:add_event(Event{
+                        bloccking = true,
+                        trigger = 'after',
+                        delay = 0.4,
+                        func = function ()
+                            if #G.consumeables.cards >= G.consumeables.config.card_limit then return true end
+                            local card = pseudorandom_element(t,'mila')
+                            if card then 
+                                card:start_dissolve() 
+                            end
+                        return true end
+                    })
+                    if #G.consumeables.cards >= G.consumeables.config.card_limit then return end
+                    G.E_MANAGER:add_event(Event{
+                        bloccking = true,
+                        trigger = 'after',
+                        delay = 0.4,
+                        func = function ()
+                            if #G.consumeables.cards >= G.consumeables.config.card_limit then return true end
+                            SMODS.add_card({ key = _planet })
+                        return true end
+                    })
                 end
-                G.GAME.consumeable_buffer = 0
             end
         end
     end
@@ -151,16 +173,32 @@ SMODS.Seal{
             alternate_card = 'Purple'
         },
     },
+    loc_vars = function (self, info_queue, card)
+        return {vars = {
+            card.ability.seal.repetitions
+        }}
+    end,
     calculate = function (self, card, context)
-        if context.discard and context.cardarea == G.hand then
-            local c = #G.consumeables.cards
-            for _,v in ipairs(G.consumeables.cards) do
-                v:start_dissolve()
-            end
-            if c < 1 then return end
-            for _=1,c do
-                SMODS.add_card{set = 'Tarot'}
-            end
+        if context.discard and context.cardarea == G.hand and context.other_card == card then
+            G.E_MANAGER:add_event(Event{
+                bloccking = true,
+                trigger = 'after',
+                delay = 0.4,
+                func = function ()
+                    local card = pseudorandom_element(G.consumeables.cards,'mila')
+                    if card then 
+                        card:start_dissolve() 
+                    end
+                return true end
+            })
+            G.E_MANAGER:add_event(Event{
+                bloccking = true,
+                trigger = 'after',
+                delay = 0.4,
+                func = function ()
+                    SMODS.add_card({ set = 'Tarot' })
+                return true end
+            })
         end
     end
 }

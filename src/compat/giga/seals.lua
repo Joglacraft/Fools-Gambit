@@ -61,6 +61,7 @@ SMODS.Seal{
     end
 }
 
+-- Red++
 SMODS.Seal{
     key = '_c_giga_red_plus_plus',
     atlas = 'giga_Seals',
@@ -119,6 +120,22 @@ SMODS.Seal{
             delay(0.2)
         end
     end
+}
+
+-- Blue++
+SMODS.Seal{
+    key = '_c_giga_blue_plus',
+    atlas = 'giga_Seals',
+    prefix_config = {atlas = false},
+    pos = {x = 1, y = 1},
+    badge_colour = G.C.BLUE,
+    config = {
+        fg_data = {
+            is_alternate = true,
+            alternate_card = 'giga_blueplus',
+            crossover_label = 'GIGA'
+        }
+    }
 }
 
 -- Purple+

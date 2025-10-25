@@ -1364,16 +1364,17 @@ return {
             fg_blue_seal = {
                 name = 'Blue? Seal',
                 text = {
-                "Converts all planets cards",
+                "Converts {C:attention}1{} planet card",
                 "in hand to the {C:planet}Planet{} card",
-                "for the final played {C:attention}poker hand{}"
+                "for the final played {C:attention}Poker hand{}"
                 },
             },
             fg_purple_seal = {
                 name = 'Purple? Seal',
                 text = {
-                "Convert all consumables in hand to random",
-                "{C:purple}Tarots{} cards when {C:attention}discarded{}"
+                "Convert {C:attention}1{} random consumables",
+                "in hand to a random {C:purple}Tarot{} card",
+                "when {C:attention}discarded{}"
                 },
             },
             -- GIGA COMPAT
@@ -1394,6 +1395,12 @@ return {
                     "{C:inactive}(Downgrades seal when reaches {C:attention}0{C:inactive}){}",
                     "{C:inactive}(#3# plays left){}",
                 },
+            },
+            fg__c_giga_blue_plus_seal = {
+                name = 'Blue+? Seal',
+                text = {
+                    'Empty consumable tray and fill it'
+                }
             },
             fg__c_giga_purple_plus_seal = {
                 name = 'Purple+? Seal',
