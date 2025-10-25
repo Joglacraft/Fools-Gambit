@@ -42,9 +42,12 @@ pattern = '''
 '''
 position = "after"
 payload = '''
-    if first_pass and FG.config.extended_tooltips then
-        if (_c.config and _c.config.fg_data and _c.config.fg_data.alternate_card) then
+    if first_pass and FG.config.extended_tooltips and _c.config and _c.config.fg_data then
+        if _c.config.fg_data.alternate_card then
             info_queue[#info_queue+1] = G.P_CENTERS[_c.config.fg_data.alternate_card]
+        end
+        if _c.config.fg_data.crossover_label then
+            info_queue[#info_queue+1] = {set = 'Other', key = 'fg_crossover_label', vars = {_c.config.fg_data.crossover_label}}
         end
     end
 '''
