@@ -1304,6 +1304,25 @@ return {
                 "cuando se {C:attention}descartada{}"
                 },
             },
+            -- GIGA COMPAT
+            fg__c_giga_red_plus_seal = {
+                name = 'Sello ¿Rojo+?',
+                text = {
+                    "Reactiva esta carta {C:attention}#1#{} veces",
+                    "Esta cantidad disminuye en {C:attention}#2#{} cada {C:attention}#4#{} veces jugada",
+                    "{C:inactive}(Empeora el sello cuando llega a {C:attention}0{C:inactive}){}",
+                    "{C:inactive}(#3# jugadas restantes){}",
+                },
+            },
+            fg__c_giga_red_plus_plus_seal = {
+                name = 'Sello ¿Rojo++?',
+                text = {
+                    "Reactiva esta carta {C:attention}#1#{} veces",
+                    "Esta cantidad disminuye en {C:attention}#2#{} cada {C:attention}#4#{} veces jugada",
+                    "{C:inactive}(Empeora el sello cuando llega a {C:attention}0{C:inactive}){}",
+                    "{C:inactive}(#3# jugadas restantes){}",
+                },
+            },
         },
         Planet={},
         Spectral={
@@ -1729,6 +1748,9 @@ return {
             fg_gold_seal = 'Sello ¿De oro?',
             fg_blue_seal = 'Sello ¿Azul?',
             fg_purple_seal = 'Sello ¿Morado?',
+            -- GIGA
+            fg__c_giga_red_plus_seal = 'Sello ¿Rojo+?',
+            fg__c_giga_red_plus_plus_seal = 'Sello ¿Rojo++?'
         },
         poker_hand_descriptions={},
         poker_hands={},

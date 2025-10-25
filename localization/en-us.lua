@@ -1350,8 +1350,8 @@ return {
                 name = 'Red? Seal',
                 text = {
                     "Retrigger this card {C:attention}#1#{} times",
-                    "Amount decreases by {C:attention}#2#{} when played.",
-                    "Removes seal when reaches {C:attention}0{}"
+                    "Amount decreases by {C:attention}#2#{} when played",
+                    "{C:inactive}Removes seal when reaches 0{}"
                 },
             },
             fg_blue_seal = {
@@ -1370,6 +1370,25 @@ return {
                 "cards when {C:attention}discarded{}"
                 },
             },
+            -- GIGA COMPAT
+            fg__c_giga_red_plus_seal = {
+                name = 'Red+? Seal',
+                text = {
+                    "Retrigger this card {C:attention}#1#{} times",
+                    "Amount decreases by {C:attention}#2#{} every {C:attention}#4#{} times played",
+                    "{C:inactive}(Downgrades seal when reaches {C:attention}0{C:inactive}){}",
+                    "{C:inactive}(#3# plays left){}",
+                },
+            },
+            fg__c_giga_red_plus_plus_seal = {
+                name = 'Red++? Seal',
+                text = {
+                    "Retrigger this card {C:attention}#1#{} times",
+                    "Amount decreases by {C:attention}#2#{} every {C:attention}#4#{} times played",
+                    "{C:inactive}(Downgrades seal when reaches {C:attention}0{C:inactive}){}",
+                    "{C:inactive}(#3# plays left){}",
+                },
+            }
         },
         Planet = {},
         Spectral = {
@@ -1810,6 +1829,9 @@ return {
             fg_gold_seal = 'Gold? Seal',
             fg_blue_seal = 'Blue? Seal',
             fg_purple_seal = 'Blue? Seal',
+            -- GIGA
+            fg__c_giga_red_plus_seal = 'Red+? Seal',
+            fg__c_giga_red_plus_plus_seal = 'Red++? Seal'
         },
         poker_hand_descriptions = {},
         poker_hands = {},

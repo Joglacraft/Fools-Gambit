@@ -51,6 +51,7 @@ local mod_contents = {
 	{path = 'challenges', deps = {}},
 	-- Compat entries
 	{path = 'compat/joker_display', deps = {"JokerDisplay"}},
+	{path = 'compat/giga/seals', deps = {"GIGA"}}
 }
 
 for k, v in ipairs(mod_contents) do -- Load this mod's files

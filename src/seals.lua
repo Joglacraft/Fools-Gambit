@@ -27,6 +27,13 @@ SMODS.Seal{
             card.ability.seal.give,
         }}
     end,
+    draw = function (self, card, layer)
+         if (layer == 'card' or layer == 'both') and card.sprite_facing == 'front' then
+            G.shared_seals[card.seal].role.draw_major = card
+            G.shared_seals[card.seal]:draw_shader('dissolve', nil, nil, nil, card.children.center)
+            G.shared_seals[card.seal]:draw_shader('voucher', nil, card.ARGS.send_to_shader, nil, card.children.center)
+        end
+    end,
     calculate = function (self, card, context)
         if context.after and not context.repetition and context.cardarea == G.play then
             if card.ability.seal.should_give then
@@ -73,7 +80,7 @@ SMODS.Seal{
                 func = function ()
                     card.ability.seal.retriggers = card.ability.seal.retriggers - card.ability.seal.retriggers_d
                     if card.ability.seal.retriggers <= 0 then 
-                        card:set_seal('fg_red')
+                        card:set_seal(nil,true,true)
                     end
                     return true
                 end
