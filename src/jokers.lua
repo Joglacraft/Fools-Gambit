@@ -2344,11 +2344,12 @@ SMODS.Joker{
 		}
 	},
 	loc_vars = function (self, info_queue, card)
+		local num, denom = SMODS.get_probability_vars(nil, 1, 1)
 		return {
 			vars = {
 				card.ability.extra.xmult,
-				G.GAME.probabilities.normal or 1,
-				card.ability.extra.max_chance
+				num,
+				card.ability.extra.max_chance * denom
 			}
 		}
 	end,
@@ -2515,10 +2516,11 @@ SMODS.Joker {
 		}
 	},
 	loc_vars = function (self, info_queue, card)
+		local num, denom = SMODS.get_probability_vars(nil, 1, 1)
 		return {
 			vars = {
-				G.GAME.probabilities.normal or 1,
-				card.ability.extra.max_chance
+				num,
+				card.ability.extra.max_chance * denom
 			}
 		}
 	end,
@@ -2836,12 +2838,13 @@ SMODS.Joker{
 		}
 	},
 	loc_vars = function (self, info_queue, card)
+		local num, denom = SMODS.get_probability_vars(nil, 1, 1)
 		return {
 			vars = {
 				card.ability.extra.xmult,
 				card.ability.extra.xmult_r,
-				G.GAME.probabilities.normal or 1,
-				card.ability.extra.xmult_c
+				num,
+				card.ability.extra.xmult_c * denom
 			}
 		}		
 	end,
@@ -2941,11 +2944,12 @@ SMODS.Joker{
 		}
     },
     loc_vars = function (self, info_queue, card)
+		local num, denom = SMODS.get_probability_vars(nil, 1, 1)
         return {
             vars = {
-				G.GAME.probabilities.normal or 1,
-				card.ability.extra.uncommon_chance,
-				card.ability.extra.rare_chance
+				num,
+				card.ability.extra.uncommon_chance * denom,
+				card.ability.extra.rare_chance * denom
 			}
         }
     end,
@@ -3018,7 +3022,13 @@ SMODS.Joker{
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = {x=4,y=12},
-	soul_pos = {x=2, y=9},
+	soul_pos = {x=2, y=9,
+        draw = function(card, scale_mod, rotate_mod)
+            card.hover_tilt = card.hover_tilt * 1.5
+            card.children.floating_sprite:draw_shader('hologram', nil, card.ARGS.send_to_shader, nil,
+                card.children.center, 2 * scale_mod, 2 * rotate_mod)
+            card.hover_tilt = card.hover_tilt / 1.5
+        end},
 	rarity = 'fg_uncommon_alt',
 	cost = 6,
 	config = {
@@ -3038,14 +3048,6 @@ SMODS.Joker{
 				card.ability.extra.xmult_i
 			}
 		}
-	end,
-	draw = function (self, card, layer)
-		local scale_mod = 0.07 + 0.02*math.sin(1.8*G.TIMERS.REAL) + 0.00*math.sin((G.TIMERS.REAL - math.floor(G.TIMERS.REAL))*math.pi*14)*(1 - (G.TIMERS.REAL - math.floor(G.TIMERS.REAL)))^3
-        local rotate_mod = 0.05*math.sin(1.219*G.TIMERS.REAL) + 0.00*math.sin((G.TIMERS.REAL)*math.pi*5)*(1 - (G.TIMERS.REAL - math.floor(G.TIMERS.REAL)))^2
-
-		card.hover_tilt = card.hover_tilt*1.5
-		card.children.floating_sprite:draw_shader('hologram', nil, card.ARGS.send_to_shader, nil, card.children.center, 2*scale_mod, 2*rotate_mod)
-		card.hover_tilt = card.hover_tilt/1.5
 	end,
 	blueprint_compat = true,
 	calculate = function (self, card, context)
@@ -3457,13 +3459,14 @@ SMODS.Joker{
 		}
 	},
 	loc_vars = function (self, info_queue, card)
+		local num, denom = SMODS.get_probability_vars(nil, 1, 1)
 		return {
 			vars = {
 				card.ability.extra.pluschips,
 				card.ability.extra.plusmult,
 				card.ability.extra.plusmoney,
-				G.GAME.probabilities.normal or 1,
-				card.ability.extra.chancemax
+				num,
+				card.ability.extra.chancemax * denom
 			}
 		}		
 	end,
@@ -4292,14 +4295,15 @@ SMODS.Joker{
 	},
 	blueprint_compat = false,
 	loc_vars = function (self, info_queue, card)
+		local num, denom = SMODS.get_probability_vars(nil, 1, 1)
 		return {
 			vars = {
-				G.GAME.probabilities.normal or 1,
-				card.ability.extra.enhancement_max,
-				G.GAME.probabilities.normal or 1,
-				card.ability.extra.seal_max,
-				G.GAME.probabilities.normal or 1,
-				card.ability.extra.edition_max
+				num,
+				card.ability.extra.enhancement_max * denom,
+				num,
+				card.ability.extra.seal_max * denom,
+				num,
+				card.ability.extra.edition_max * denom
 			}
 		}
 	end,
@@ -6004,10 +6008,11 @@ SMODS.Joker{
 		}
 	},
 	loc_vars = function (self, info_queue, card)
+		local num, denom = SMODS.get_probability_vars(nil, 1, 1)
 		return {
 			vars = {
-				G.GAME.probabilities.normal,
-				card.ability.extra.max_chance,
+				num,
+				card.ability.extra.max_chance * denom,
 			}
 		}
 	end,
