@@ -2921,6 +2921,45 @@ SMODS.Joker{
 }
 -- Madness
 -- Square
+SMODS.Joker{
+	key = 'square',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
+	pos = {x=9,y=11},
+	pixel_size = { h = 71 },
+	config = {
+		fg_data = {
+			is_alternate = true,
+			alternate_card = 'j_square'
+		},
+		extra = {
+			base = 1,
+			exp = 2,
+			base_i = 1
+		}
+	},
+	cost = 5,
+	rarity = 'fg_uncommon_alt',
+	loc_vars = function (self, info_queue, card)
+		return {vars = {
+			card.ability.extra.base,
+			card.ability.extra.exp,
+			card.ability.extra.base_i
+		}}
+	end,
+	blueprint_compat = true,
+	calculate = function (self, card, context)
+		if not context.blueprint
+		and context.before and context.poker_hands['Four of a Kind'] and context.poker_hands['Five of a Kind']
+		and next(context.poker_hands['Four of a Kind']) and not next(context.poker_hands['Five of a Kind']) then
+			card.ability.extra.base = card.ability.extra.base + card.ability.extra.base_i
+			return {
+				message = localize('k_upgrade_ex')
+			}
+		end
+		if context.joker_main then return {mult = card.ability.extra.base^card.ability.extra.exp} end
+	end
+}
 -- Seance
 -- Riff-raff
 SMODS.Joker{

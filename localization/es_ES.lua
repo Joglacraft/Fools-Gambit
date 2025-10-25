@@ -731,6 +731,14 @@ return {
                     "{C:inactive,s:0.8}(Se aplica tras jugar las cartas){}"
                 }
             },
+            j_fg_square = {
+                name = '¿Comodín cuadrado?',
+                text = {
+                    "{X:edition,C:mult}+#1#^#2#{} Multi",
+                    "Aumenta la {C:attention}base{} en {X:edition,C:mult}+#3#{} si la",
+                    "mano jugada es un {C:attention}Póker{}"
+                }
+            },
             j_fg_riff_raff = {
                 name = "¿Gentuza?",
                 text = {

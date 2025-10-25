@@ -767,8 +767,16 @@ return {
                     "{C:inactive,s:0.8}(Effect applies after scoring){}"
                 }
             },
+            j_fg_square = {
+                name = 'Square Joker?',
+                text = {
+                    "{X:edition,C:mult}+#1#^#2#{} Mult",
+                    "Increase {C:attention}base{} by {X:edition,C:mult}+#3#{} if played",
+                    "hand is a {C:attention}Four of a Kind{}"
+                }
+            },
             j_fg_riff_raff = {
-                name = "Riff-raff",
+                name = "Riff-raff?",
                 text = {
                     "{C:green}#1# in #2#{} chance of creating a random",
                     "{C:green}Uncommon{} joker when bind is {C:attention}selected{}",
@@ -1077,7 +1085,7 @@ return {
                 }
             },
             j_fg_brainstorm = {
-                name = 'Brainstorm',
+                name = 'Brainstorm?',
                 text = {
                     "Copies the ability of the {C:attention}#1#{} leftmost joker",
                     "Copies the next joker at {C:attention}end of round{}",
