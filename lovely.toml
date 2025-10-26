@@ -1,6 +1,6 @@
 [manifest]
 version = "1.0.0"
-priority = 0
+priority = -300000
 
 # INJECT ALT JOKER DATA
 
