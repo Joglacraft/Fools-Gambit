@@ -2,6 +2,8 @@
 version = "1.0.0"
 priority = 0
 
+# INJECT ALT JOKER DATA
+
 [[patches]]
 [patches.pattern]
 target = "game.lua"
@@ -30,6 +32,8 @@ end
 '''
 match_indent = false
 times = 1
+
+# INFO QUEUE STUFF
 
 [[patches]]
 [patches.pattern]
@@ -83,20 +87,8 @@ payload = '''
 match_indent = false
 times = 1
 
-[[patches]]
-[patches.pattern]
-target = "functions/common_events.lua"
-pattern = '''
-    for _, v in ipairs(info_queue) do
-        generate_card_ui(v, full_UI_table)
-    end
-'''
-position = "after"
-payload = '''
 
-'''
-match_indent = false
-times = 1
+# CHALLENGES UNCHANGEABLE PATCH
 
 [[patches]]
 [patches.pattern]
@@ -125,3 +117,34 @@ payload = '''
 '''
 match_indent = false
 times = 3
+
+# PREVENT REPEAT CENTERS
+
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = '''
+G.GAME.used_jokers[self.config.center.key] = true
+'''
+position = "after"
+payload = '''
+    if self.config.center.config.fg_data and self.config.center.config.fg_data then G.GAME.used_jokers[self.config.center.config.fg_data.alternate_card] = true end
+'''
+match_indent = false
+times = 1
+
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = '''
+    G.GAME.used_jokers[self.config.center.key] = nil
+'''
+position = "at"
+payload = '''
+    if self.config.center.config.fg_data and not next(find_joker(self.config.center.config.fg_data.alternate_card, true)) then 
+        G.GAME.used_jokers[self.config.center.key] = nil
+        G.GAME.used_jokers[self.config.center.config.fg_data.alternate_card] = nil
+    end
+'''
+match_indent = false
+times = 1
