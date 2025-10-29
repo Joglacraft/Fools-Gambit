@@ -122,7 +122,7 @@ SMODS.Seal{
     end
 }
 
--- Blue++
+-- Blue+
 SMODS.Seal{
     key = '_c_giga_blue_plus',
     atlas = 'giga_Seals',

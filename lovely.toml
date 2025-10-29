@@ -29,6 +29,7 @@ for k,v in pairs(self.P_SEALS) do
         alternate_card = 'fg_'..string.lower(k)
     }
 end
+self.P_CENTERS['c_base'].config.fg_data = nil
 '''
 match_indent = false
 times = 1
