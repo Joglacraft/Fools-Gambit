@@ -97,6 +97,23 @@ return {
                 }
             },
         },
+        Giga_Food = {
+            c_fg_birthday_cake = {
+                name = 'Cake?',
+                text = {
+                    ""
+                }
+            },
+            c_fg_turkey = {
+                name = 'Turkey?',
+                text = {
+                    "A delicious Turkey that will",
+                    "add {C:dark_edition}negative{} and {C:attention}eternal{}",
+                    "to {C:attention}#1#{} random Joker in {C:attention}#2#{} rounds",
+                    "{C:inactive}#3#{}"
+                }
+            }
+        },
         Back = {},
         Blind = {},
         Edition = {},
