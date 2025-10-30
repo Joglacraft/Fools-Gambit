@@ -99,9 +99,12 @@ return {
         },
         Giga_Food = {
             c_fg_birthday_cake = {
-                name = 'Cake?',
+                name = 'Birthday Cake?',
                 text = {
-                    ""
+                    "A delicious Birthday Cake that will",
+                    "create {C:attention}#1#{} {C:dark_edition}negative{} copies",
+                    "of the leftmost consumable",
+                    "{C:inactive}Can be used immediately{}"
                 }
             },
             c_fg_turkey = {

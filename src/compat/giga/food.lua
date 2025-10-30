@@ -2,6 +2,50 @@ sendInfoMessage("Giga/Food compat loaded!","FoolsGambit/Compat")
 
 
 SMODS.Consumable{
+    key = 'birthday_cake',
+    set = 'Giga_Food',
+    atlas = 'giga_Foods',
+    prefix_config = {atlas = false},
+    pos = {x = 2, y = 1},
+    soul_pos = {x = 3, y = 1},
+    rarity = 4,
+    cost = 4,
+    hidden = true,
+    soul_set = 'Giga_Food',
+    config = {
+        fg_data = {
+            is_alternate = true,
+            alternate_card = 'c_giga_birthdayCake',
+            crossover_label = 'GIGA'
+        },
+        extra = 4
+    },
+    loc_vars = function (self, info_queue, card)
+        info_queue[#info_queue+1] = {key = 'e_negative_consumable', set = 'Edition', config = {extra = 1}}
+        return { vars = {
+            card.ability.extra
+        }}
+    end,
+    can_use = function (self, card)
+        return #G.consumeables.cards >= 2
+    end,
+    use = function (self, card, area, copier)
+        if not G.consumeables then return end
+        local index = 1
+        if G.consumeables.cards[1] == card then index = 2 end
+        
+        for i=1, card.ability.extra do
+            local key = FG.FUNCS.get_card_info(G.consumeables.cards[index]).key
+            SMODS.add_card{
+                key = key,
+                edition = 'e_negative'
+            }
+        end
+    end
+}
+
+
+SMODS.Consumable{
     key = 'turkey',
     set = 'Giga_Food',
     atlas = 'giga_Foods',
