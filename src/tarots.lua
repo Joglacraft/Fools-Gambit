@@ -721,7 +721,9 @@ SMODS.Consumable{
         }}
     end,
     can_use = function (self, card)
-        if G.consumeables and #G.consumeables.cards > 1 then return true end
+        local exists = 0
+        for _,v in ipairs(G.consumeables.cards) do if v == card then exists = 1 end end
+        if G.consumeables and #G.consumeables.cards > exists then return true end
     end,
     use = function (self, card, area, copier)
         card.ability.extra.value = 0
