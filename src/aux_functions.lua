@@ -268,14 +268,19 @@ function FG.FUNCS.get_card_info(card)
 	return ret
 end
 
+
 ---Simple function to check for any given chance.
 ---@param max number 1 in N chance, where N is `max`
 ---@return boolean success If the random chance succeeds
 function FG.FUNCS.random_chance(max)
-	local boolean = pseudorandom('mila', SMODS.get_probability_vars(nil, 1, max)) <= G.GAME.probabilities.normal
-	SMODS.calculate_context({pseudorandom_result = true, result = boolean})
-	return boolean
+	return pseudorandom('mila', G.GAME.probabilities.normal, math.max(max,G.GAME.probabilities.normal,1)) <= G.GAME.probabilities.normal
 end
+--[[ -- new broken function. GoldenLeaf fucking fix this ty
+function FG.FUNCS.random_chance(max)
+	local boolean = pseudorandom('mila', SMODS.get_probability_vars(nil, 1, max)) <= G.GAME.probabilities.normal
+	--SMODS.calculate_context({pseudorandom_result = true, result = boolean})
+	return boolean
+end]]
 
 function FG.FUNCS.allow_duplicate (card)
 	if not G.jokers then sendWarnMessage("G.jokers doesn't exist!","FG.FUNCS.allow_duplicate") return end

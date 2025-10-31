@@ -153,7 +153,7 @@ SMODS.Seal{
         }
     },
     calculate = function (self, card, context)
-        if context.discard and context.cardarea == G.hand then
+        if context.discard and context.cardarea == G.hand and context.other_card == card then
             local c = 0
             for i=1, G.consumeables.config.card_limit - #G.consumeables.cards do
                 G.E_MANAGER:add_event(Event{
