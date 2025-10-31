@@ -17,7 +17,8 @@ SMODS.Enhancement{
 	config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = 'm_bonus'
+			alternate_card = 'm_bonus',
+			base_enhancement = true,
 		},
 		extra = {
 			grant_max = 2,
@@ -59,7 +60,8 @@ SMODS.Enhancement{
 	config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = 'm_mult'
+			alternate_card = 'm_mult',
+			base_enhancement = true,
 		},
 		extra = {
 			grant_max = 2,
@@ -101,7 +103,8 @@ SMODS.Enhancement{
 	config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = 'm_wild'
+			alternate_card = 'm_wild',
+			base_enhancement = true,
 		},
 		extra = {
 			chips = 20,
@@ -144,7 +147,8 @@ SMODS.Enhancement{
 	config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = 'm_glass'
+			alternate_card = 'm_glass',
+			base_enhancement = true,
 		},
 		bonus = 0,
 		x_mult = 0,
@@ -189,7 +193,8 @@ SMODS.Enhancement{
 	config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = 'm_steel'
+			alternate_card = 'm_steel',
+			base_enhancement = true,
 		},
 		extra = {
 			card_gain = 0.05, -- How much Xmult is gained per steel card.
@@ -261,7 +266,8 @@ SMODS.Enhancement{
 	config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = 'm_stone'
+			alternate_card = 'm_stone',
+			base_enhancement = true,
 		},
 		h_chips = 30,
 		extra = {
@@ -303,7 +309,8 @@ SMODS.Enhancement{
 	config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = 'm_gold'
+			alternate_card = 'm_gold',
+			base_enhancement = true,
 		},
 		extra = {
 			dollars = 0
@@ -369,7 +376,8 @@ SMODS.Enhancement{
 	config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = 'm_lucky'
+			alternate_card = 'm_lucky',
+			base_enhancement = true,
 		},
 		extra = {
 			chips_max = 3,

@@ -1341,13 +1341,10 @@ return {
             c_fg_chariot = {
                 name = "¿El carro?",
                 text = {
-                    "Reemplaza la mejora de",
-                    "hasta {C:attention}#1#{} cartas seleccionadas",
-                    "en {C:attention}cartas de ¿Acero?{}",
-                    "Crea una copia de cada carta",
-                    "{C:attention}sin{} ninguna mejora",
-                    "{C:inactive}(Las cartas copiadas han de{}",
-                    "{C:inactive}tener una mejora){}"
+                    "Mejora {C:attention}#1#{} cartas seleccionadas",
+                    "a cartas de {C:attention}¿Acero?",
+                    "Mejora el resto de la {C:attention}mano{}",
+                    "a una mejora {C:attention}aleatoria",
                 }
             },
             c_fg_death = {
@@ -1362,13 +1359,10 @@ return {
             c_fg_devil = {
                 name = "¿El diablo?",
                 text = {
-                    "Reemplaza la mejora de",
-                    "hasta {C:attention}#1#{} cartas seleccionadas",
-                    "en {C:attention}cartas de ¿Oro?{}",
-                    "Crea una copia de cada carta",
-                    "{C:attention}sin{} ninguna mejora",
-                    "{C:inactive}(Las cartas copiadas han de{}",
-                    "{C:inactive}tener una mejora){}"
+                    "Mejora {C:attention}#1#{} cartas seleccionadas",
+                    "a cartas de {C:attention}¿Oro?",
+                    "Mejora el resto de la {C:attention}mano{}",
+                    "a una mejora {C:attention}aleatoria",
                 }
             },
             c_fg_emperor = {
@@ -1381,13 +1375,10 @@ return {
             c_fg_empress = {
                 name = "¿La emperatriz?",
                 text = {
-                    "Reemplaza la mejora de",
-                    "hasta {C:attention}#1#{} cartas seleccionadas",
-                    "en {C:attention}cartas ¿Multi?{}",
-                    "Crea una copia de cada carta",
-                    "{C:attention}sin{} ninguna mejora",
-                    "{C:inactive}(Las cartas copiadas han de{}",
-                    "{C:inactive}tener una mejora){}"
+                    "Mejora {C:attention}#1#{} cartas seleccionadas",
+                    "a cartas de {C:attention}¿Multi?",
+                    "Mejora el resto de la {C:attention}mano{}",
+                    "a una mejora {C:attention}aleatoria",
                 }
             },
             c_fg_fool = {
@@ -1417,13 +1408,10 @@ return {
             c_fg_hierophant = {
                 name = "¿El hierofante?",
                 text = {
-                    "Reemplaza la mejora de",
-                    "hasta {C:attention}#1#{} cartas seleccionadas",
-                    "en {C:attention}cartas de ¿Bonus?{}",
-                    "Crea una copia de cada carta",
-                    "{C:attention}sin{} ninguna mejora",
-                    "{C:inactive}(Las cartas copiadas han de{}",
-                    "{C:inactive}tener una mejora){}"
+                    "Mejora {C:attention}#1#{} cartas seleccionadas",
+                    "a cartas {C:attention}¿Bonus?",
+                    "Mejora el resto de la {C:attention}mano{}",
+                    "a una mejora {C:attention}aleatoria",
                 }
             },
             c_fg_high_priestess = {
@@ -1447,37 +1435,28 @@ return {
             c_fg_justice = {
                 name = "¿La justicia?",
                 text = {
-                    "Reemplaza la mejora de",
-                    "hasta {C:attention}#1#{} cartas seleccionadas",
-                    "en {C:attention}cartas de +Vidrio?{}",
-                    "Crea una copia de cada carta",
-                    "{C:attention}sin{} ninguna mejora",
-                    "{C:inactive}(Las cartas copiadas han de{}",
-                    "{C:inactive}tener una mejora){}"
+                    "Mejora {C:attention}#1#{} cartas seleccionadas",
+                    "a cartas de {C:attention}¿Vidrio?",
+                    "Mejora el resto de la {C:attention}mano{}",
+                    "a una mejora {C:attention}aleatoria",
                 }
             },
             c_fg_lovers = {
                 name = "¿Los enamorados?",
                 text = {
-                    "Reemplaza la mejora de",
-                    "hasta {C:attention}#1#{} cartas seleccionadas",
-                    "en {C:attention}cartas ¿Versatil?{}",
-                    "Crea una copia de cada carta",
-                    "{C:attention}sin{} ninguna mejora",
-                    "{C:inactive}(Las cartas copiadas han de{}",
-                    "{C:inactive}tener una mejora){}"
+                    "Mejora {C:attention}#1#{} cartas seleccionadas",
+                    "a cartas de {C:attention}¿Versátil?",
+                    "Mejora el resto de la {C:attention}mano{}",
+                    "a una mejora {C:attention}aleatoria",
                 }
             },
             c_fg_magician = {
                 name = "¿El mago?",
                 text = {
-                    "Reemplaza la mejora de",
-                    "hasta {C:attention}#1#{} cartas seleccionadas",
-                    "en {C:attention}cartas ¿De la suerte?{}",
-                    "Crea una copia de cada carta",
-                    "{C:attention}sin{} ninguna mejora",
-                    "{C:inactive}(Las cartas copiadas han de{}",
-                    "{C:inactive}tener una mejora){}"
+                    "Mejora {C:attention}#1#{} cartas seleccionadas",
+                    "a cartas de {C:attention}¿De la suerte?",
+                    "Mejora el resto de la {C:attention}mano{}",
+                    "a una mejora {C:attention}aleatoria",
                 }
             },
             c_fg_moon = {
@@ -1531,13 +1510,10 @@ return {
             c_fg_tower = {
                 name = "¿La torre?",
                 text = {
-                    "Reemplaza la mejora de",
-                    "hasta {C:attention}#1#{} cartas seleccionadas",
-                    "en {C:attention}cartas de ¿Piedra?{}",
-                    "Crea una copia de cada carta",
-                    "{C:attention}sin{} ninguna mejora",
-                    "{C:inactive}(Las cartas copiadas han de{}",
-                    "{C:inactive}tener una mejora){}"
+                    "Mejora {C:attention}#1#{} cartas seleccionadas",
+                    "a cartas de {C:attention}¿Piedra?",
+                    "Mejora el resto de la {C:attention}mano{}",
+                    "a una mejora {C:attention}aleatoria",
                 }
             },
             c_fg_wheel_of_fortune = {
@@ -1545,7 +1521,7 @@ return {
                 text = {
                     "{C:green}#1# en #2#{} probabilidades de",
                     "añadir {C:dark_edition}negativo{} a",
-                    "un {C:attention}Joker{} aleatorio"
+                    "un {C:attention}Comodín{} aleatorio"
                 }
             },
             c_fg_world = {

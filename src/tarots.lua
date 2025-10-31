@@ -1,81 +1,57 @@
---[[FG.ALTS.tarot_equivalents = {
-    c_chariot = "c_fg_chariot",
-    c_death = "c_fg_death",
-    c_devil = "c_fg_devil",
-    c_emperor = "c_fg_emperor",
-    c_empress = "c_fg_empress",
-    c_fool = "c_fg_fool",
-    c_hanged_man = "c_fg_hanged_man",
-    c_hierophant = "c_fg_hierophant",
-    c_hermit = "c_fg_hermit",
-    c_high_priestess = "c_fg_high_priestess",
-    c_jodgment = "c_fg_judgment",
-    c_justice = "c_fg_justice",
-    c_lovers = "c_fg_lovers",
-    c_magician = "c_fg_magician",
-    c_moon = "c_fg_moon",
-    c_star = "c_fg_star",
-    c_strength = "c_fg_strength",
-    c_sun = "c_fg_sun",
-    c_temperance = "c_fg_temperance",
-    c_tower = "c_fg_tower",
-    c_wheel_of_fortune = "c_fg_wheel_of_fortune",
-    c_world = "c_fg_world"
-}]]
-
 --
 -- AUX FUNCTIONS | DO NOT TOUCH
 --
 
 -- Used to create alternative enhancements. 
--- It sucks ass.`target_enhancement` sets the enhancement to add
-local function tarot_convert (target_enhancement)
-    local cards = {}
+-- It sucks ass.`target` sets the enhancement to add, 'other' is for a fixed enhancement of the rest of the hand
+local function tarot_convert (target,other)
     play_sound("tarot1",1)
     local pitch = 0.9
-    for _,v in ipairs(G.hand.highlighted) do -- Flip cards
-        if next(SMODS.get_enhancements(v)) then
-            cards[#cards+1] = v
-            G.E_MANAGER:add_event(Event({
-                trigger = "after",
-                delay = 0.2,
-                func = function()
-                    v:flip()
-                    play_sound("tarot2",pitch)
-                    pitch = pitch + 0.2
-                    return true
-                end
-            }))
-        end
+    for _,v in ipairs(G.hand.cards) do -- Flip cards
+        G.E_MANAGER:add_event(Event({
+            trigger = "after",
+            delay = 0.2,
+            func = function()
+                v:flip()
+                play_sound("tarot2",pitch)
+                pitch = pitch + 0.1
+                return true
+            end
+        }))
     end
-    for _,v in ipairs(G.hand.highlighted) do -- Duplicate and add enhancement
-        if next(SMODS.get_enhancements(v)) then
-            G.E_MANAGER:add_event(Event({
-                trigger = "after",
-                delay = 0.2,
-                func = function()
-                    local new_card = FG.FUNCS.duplicate_playing_card(v)
-                    cards[#cards+1] = new_card
-                    new_card:set_ability(G.P_CENTERS.c_base)
-                    v:set_ability(target_enhancement)
-                    return true
-                end
-            }))
-        end
-    end
-    for _,v in ipairs(cards) do -- Flip cards
-        if next(SMODS.get_enhancements(v)) then
-            G.E_MANAGER:add_event(Event({
-                trigger = "after",
-                delay = 0.2,
-                func = function()
-                    v:flip()
-                    play_sound("tarot2",pitch)
-                    pitch = pitch + 0.2
-                    return true
-                end
-            }))
-        end
+    G.E_MANAGER:add_event(Event{
+        func = function ()
+            -- Prevents repeating the same enhancement unless there is no other option
+            local function pick_random ()
+                local choosen = FG.POOLS.base_enhancement[pseudorandom('mila',1,#FG.POOLS.base_enhancement)]
+                if choosen == target and #FG.POOLS.base_enhancement > 1 then choosen =  pick_random() end
+                return choosen
+            end
+            other = other or pick_random()
+            for _,v in ipairs(G.hand.cards) do
+                v:set_ability(other)
+            end
+        return true end
+    })
+    G.E_MANAGER:add_event(Event{
+        func = function ()
+            for _,v in ipairs(G.hand.highlighted) do
+                v:set_ability(target)
+            end
+        return true end
+    })
+    pitch = pitch + 0.3
+    for _,v in ipairs(G.hand.cards) do -- Flip cards
+        G.E_MANAGER:add_event(Event({
+            trigger = "after",
+            delay = 0.2,
+            func = function()
+                v:flip()
+                play_sound("tarot2",pitch)
+                pitch = pitch + 0.1
+                return true
+            end
+        }))
     end
 end
 
@@ -175,7 +151,7 @@ SMODS.Consumable{
             alternate_card = "c_magician"
         },
         extra = {
-            convert = 2,
+            convert = 4,
         }
     },
     loc_vars = function (self, info_queue, card)
@@ -186,16 +162,7 @@ SMODS.Consumable{
             }
         }
     end,
-    can_use = function (self, card)
-        if #G.hand.highlighted > 0 and #G.hand.highlighted <= card.ability.extra.convert then
-            for _,v in ipairs(G.hand.highlighted) do
-                if not next(SMODS.get_enhancements(v)) then
-                    return false
-                end
-            end
-            return true
-        else return false end
-    end,
+    can_use = function (self, card) return #G.hand.highlighted == card.ability.extra.convert end,
     use = function (self, card, area, copier)
         tarot_convert("m_fg_lucky")
     end
@@ -259,7 +226,7 @@ SMODS.Consumable{
             alternate_card = "c_empress"
         },
         extra = {
-            convert = 2,
+            convert = 4,
         }
     },
     loc_vars = function (self, info_queue, card)
@@ -270,16 +237,7 @@ SMODS.Consumable{
             }
         }
     end,
-    can_use = function (self, card)
-        if #G.hand.highlighted > 0 and #G.hand.highlighted <= card.ability.extra.convert then
-            for _,v in ipairs(G.hand.highlighted) do
-                if not next(SMODS.get_enhancements(v)) then
-                    return false
-                end
-            end
-            return true
-        else return false end
-    end,
+    can_use = function (self, card) return #G.hand.highlighted == card.ability.extra.convert end,
     use = function (self, card, area, copier)
         tarot_convert("m_fg_mult")
     end
@@ -342,7 +300,7 @@ SMODS.Consumable{
             alternate_card = "c_hierophant"
         },
         extra = {
-            convert = 2,
+            convert = 4,
         }
     },
     loc_vars = function (self, info_queue, card)
@@ -353,15 +311,7 @@ SMODS.Consumable{
             }
         }
     end,
-    can_use = function (self, card)
-        if #G.hand.highlighted > 0 and #G.hand.highlighted <= card.ability.extra.convert then
-            for _,v in ipairs(G.hand.highlighted) do
-                if next(SMODS.get_enhancements(v)) then
-                    return true
-                end
-            end
-        else return false end
-    end,
+    can_use = function (self, card) return #G.hand.highlighted == card.ability.extra.convert end,
     use = function (self, card, area, copier)
         tarot_convert("m_fg_bonus")
     end
@@ -379,7 +329,7 @@ SMODS.Consumable{
             alternate_card = "c_lovers"
         },
         extra = {
-            convert = 2,
+            convert = 4,
         }
     },
     loc_vars = function (self, info_queue, card)
@@ -390,15 +340,8 @@ SMODS.Consumable{
             }
         }
     end,
-    can_use = function (self, card)
-        if #G.hand.highlighted > 0 and #G.hand.highlighted <= card.ability.extra.convert then
-            for _,v in ipairs(G.hand.highlighted) do
-                if next(SMODS.get_enhancements(v)) then
-                    return true
-                end
-            end
-        else return false end
-    end,
+    can_use = function (self, card) return #G.hand.highlighted == card.ability.extra.convert end,
+
     use = function (self, card, area, copier)
         tarot_convert("m_fg_wild")
     end
@@ -416,7 +359,7 @@ SMODS.Consumable{
             alternate_card = "c_chariot"
         },
         extra = {
-            convert = 2,
+            convert = 4,
         }
     },
     loc_vars = function (self, info_queue, card)
@@ -427,15 +370,7 @@ SMODS.Consumable{
             }
         }
     end,
-    can_use = function (self, card)
-        if #G.hand.highlighted > 0 and #G.hand.highlighted <= card.ability.extra.convert then
-            for _,v in ipairs(G.hand.highlighted) do
-                if next(SMODS.get_enhancements(v)) then
-                    return true
-                end
-            end
-        else return false end
-    end,
+    can_use = function (self, card) return #G.hand.highlighted == card.ability.extra.convert end,
     use = function (self, card, area, copier)
         tarot_convert("m_fg_steel")
     end
@@ -453,7 +388,7 @@ SMODS.Consumable{
             alternate_card = "c_justice"
         },
         extra = {
-            convert = 2,
+            convert = 4,
         }
     },
     loc_vars = function (self, info_queue, card)
@@ -464,15 +399,7 @@ SMODS.Consumable{
             }
         }
     end,
-    can_use = function (self, card)
-        if #G.hand.highlighted > 0 and #G.hand.highlighted <= card.ability.extra.convert then
-            for _,v in ipairs(G.hand.highlighted) do
-                if next(SMODS.get_enhancements(v)) then
-                    return true
-                end
-            end
-        else return false end
-    end,
+    can_use = function (self, card) return #G.hand.highlighted == card.ability.extra.convert end,
     use = function (self, card, area, copier)
         tarot_convert("m_fg_glass")
     end
@@ -820,7 +747,7 @@ SMODS.Consumable{
             alternate_card = "c_devil"
         },
         extra = {
-            convert = 2,
+            convert = 4,
         }
     },
     loc_vars = function (self, info_queue, card)
@@ -831,16 +758,7 @@ SMODS.Consumable{
             }
         }
     end,
-    can_use = function (self, card)
-        if #G.hand.highlighted > 0 and #G.hand.highlighted <= card.ability.extra.convert then
-            for _,v in ipairs(G.hand.highlighted) do
-                if not next(SMODS.get_enhancements(v)) then
-                    return false
-                end
-            end
-            return true
-        else return false end
-    end,
+    can_use = function (self, card) return #G.hand.highlighted == card.ability.extra.convert end,
     use = function (self, card, area, copier)
         tarot_convert("m_fg_gold")
     end
@@ -859,7 +777,7 @@ SMODS.Consumable{
             alternate_card = "c_tower"
         },
         extra = {
-            convert = 2,
+            convert = 4,
         }
     },
     loc_vars = function (self, info_queue, card)
@@ -870,16 +788,7 @@ SMODS.Consumable{
             }
         }
     end,
-    can_use = function (self, card)
-        if #G.hand.highlighted > 0 and #G.hand.highlighted <= card.ability.extra.convert then
-            for _,v in ipairs(G.hand.highlighted) do
-                if not next(SMODS.get_enhancements(v)) then
-                    return false
-                end
-            end
-            return true
-        else return false end
-    end,
+    can_use = function (self, card) return #G.hand.highlighted == card.ability.extra.convert end,
     use = function (self, card, area, copier)
         tarot_convert("m_fg_stone")
     end

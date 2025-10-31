@@ -31,6 +31,7 @@ G.C.FG_ORIGINAL = HEX('FE5F55')
 -- im splitting jokers and stuff into sections to make this easier later - jenku
 local mod_contents = {
 	{path = 'special_editions/sendien', deps = {}},
+	{path = 'pools', deps = {}},
 	{path = 'aux_functions', deps = {}},
 	{path = 'overrides', deps = {}},
 	{path = 'jokers', deps = {}},

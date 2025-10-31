@@ -214,8 +214,10 @@ function Game:init_game_object()
 	local ret = ref(self)
 	self.P_CENTERS['m_lucky'].config.fg_data = {
 		is_alternate = false,
-		alternate_card = 'm_fg_lucky'
+		alternate_card = 'm_fg_lucky',
+		base_enhancement = true,
 	}
+	FG.FUNCS.recalculate_pools()
 	return ret
 end
 

@@ -1455,13 +1455,10 @@ return {
             c_fg_chariot = {
                 name = "The Chariot?",
                 text = {
-                    "Replaces the enhancement of",
-                    "up to {C:attention}#1#{} selected cards",
-                    "into {C:attention}Steel? Cards{}",
-                    "Create a copy of each card",
-                    "{C:attention}without{} any enhancement",
-                    "{C:inactive}(Copied cards must have{}",
-                    "{C:inactive}an enhancement){}"
+                    "Enhances {C:attention}#1#{} selected cards",
+                    "into {C:attention}Steel?{} cards",
+                    "Enhances the rest of the {C:attention}hand{}",
+                    "into a {C:attention}random{} enhancement"
                 }
             },
             c_fg_death = {
@@ -1476,13 +1473,10 @@ return {
             c_fg_devil = {
                 name = "The Devil?",
                 text = {
-                    "Replaces the enhancement of",
-                    "up to {C:attention}#1#{} selected cards",
-                    "into {C:attention}Gold? Cards{}",
-                    "Create a copy of each card",
-                    "{C:attention}without{} any enhancement",
-                    "{C:inactive}(Copied cards must have{}",
-                    "{C:inactive}an enhancement){}"
+                    "Enhances {C:attention}#1#{} selected cards",
+                    "into {C:attention}Gold?{} cards",
+                    "Enhances the rest of the {C:attention}hand{}",
+                    "into a {C:attention}random{} enhancement"
                 }
             },
             c_fg_emperor = {
@@ -1495,13 +1489,10 @@ return {
             c_fg_empress = {
                 name = "The Empress?",
                 text = {
-                    "Replaces the enhancement of",
-                    "up to {C:attention}#1#{} selected cards",
-                    "into {C:attention}Mult? Cards{}",
-                    "Create a copy of each card",
-                    "{C:attention}without{} any enhancement",
-                    "{C:inactive}(Copied cards must have{}",
-                    "{C:inactive}an enhancement){}"
+                    "Enhances {C:attention}#1#{} selected cards",
+                    "into {C:attention}Mult?{} cards",
+                    "Enhances the rest of the {C:attention}hand{}",
+                    "into a {C:attention}random{} enhancement"
                 }
             },
             c_fg_fool = {
@@ -1531,13 +1522,10 @@ return {
             c_fg_hierophant = {
                 name = "The Hierophant?",
                 text = {
-                    "Replaces the enhancement of",
-                    "up to {C:attention}#1#{} selected cards",
-                    "into {C:attention}Bonus? Cards{}",
-                    "Create a copy of each card",
-                    "{C:attention}without{} any enhancement",
-                    "{C:inactive}(Copied cards must have{}",
-                    "{C:inactive}an enhancement){}"
+                    "Enhances {C:attention}#1#{} selected cards",
+                    "into {C:attention}Bonus?{} cards",
+                    "Enhances the rest of the {C:attention}hand{}",
+                    "into a {C:attention}random{} enhancement"
                 }
             },
             c_fg_high_priestess = {
@@ -1560,37 +1548,28 @@ return {
             c_fg_justice = {
                 name = "Justice?",
                 text = {
-                    "Replaces the enhancement of",
-                    "up to {C:attention}#1#{} selected cards",
-                    "into {C:attention}Glass? Cards{}",
-                    "Create a copy of each card",
-                    "{C:attention}without{} any enhancement",
-                    "{C:inactive}(Copied cards must have{}",
-                    "{C:inactive}an enhancement){}"
+                    "Enhances {C:attention}#1#{} selected cards",
+                    "into {C:attention}Glass?{} cards",
+                    "Enhances the rest of the {C:attention}hand{}",
+                    "into a {C:attention}random{} enhancement"
                 }
             },
             c_fg_lovers = {
                 name = "The Lovers?",
                 text = {
-                    "Replaces the enhancement of",
-                    "up to {C:attention}#1#{} selected cards",
-                    "into {C:attention}Wild? Cards{}",
-                    "Create a copy of each card",
-                    "{C:attention}without{} any enhancement",
-                    "{C:inactive}(Copied cards must have{}",
-                    "{C:inactive}an enhancement){}"
+                    "Enhances {C:attention}#1#{} selected cards",
+                    "into {C:attention}Wild?{} cards",
+                    "Enhances the rest of the {C:attention}hand{}",
+                    "into a {C:attention}random{} enhancement"
                 }
             },
             c_fg_magician = {
                 name = "The Magician?",
                 text = {
-                    "Replaces the enhancement of",
-                    "up to {C:attention}#1#{} selected cards",
-                    "into {C:attention}Lucky? Cards{}",
-                    "Create a copy of each card",
-                    "{C:attention}without{} any enhancement",
-                    "{C:inactive}(Copied cards must have{}",
-                    "{C:inactive}an enhancement){}"
+                    "Enhances {C:attention}#1#{} selected cards",
+                    "into {C:attention}Lucky?{} cards",
+                    "Enhances the rest of the {C:attention}hand{}",
+                    "into a {C:attention}random{} enhancement"
                 }
             },
             c_fg_moon = {
@@ -1644,13 +1623,10 @@ return {
             c_fg_tower = {
                 name = "The Tower?",
                 text = {
-                    "Replaces the enhancement of",
-                    "up to {C:attention}#1#{} selected cards",
-                    "into {C:attention}Stone? Cards{}",
-                    "Create a copy of each card",
-                    "{C:attention}without{} any enhancement",
-                    "{C:inactive}(Copied cards must have{}",
-                    "{C:inactive}an enhancement){}"
+                    "Enhances {C:attention}#1#{} selected cards",
+                    "into {C:attention}Stone?{} cards",
+                    "Enhances the rest of the {C:attention}hand{}",
+                    "into a {C:attention}random{} enhancement"
                 }
             },
             c_fg_wheel_of_fortune = {

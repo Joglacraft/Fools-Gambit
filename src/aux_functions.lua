@@ -392,6 +392,11 @@ function FG.FUNCS.recalculate_alt_rates(rate)
 	return true
 end
 
+function FG.FUNCS.recalculate_pool (pool) return FG.POOLS[pool]._calculate() end
+
+function FG.FUNCS.recalculate_pools () for k,_ in pairs(FG.POOLS) do FG.FUNCS.recalculate_pool(k) end end
+
+
 -- CALLBACK FUNCTIONS FOR BUTTONS AND SHIT
 
 -- Settings, special edition
