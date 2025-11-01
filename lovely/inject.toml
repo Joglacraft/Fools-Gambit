@@ -15,22 +15,20 @@ end
 position = "after"
 payload = '''
 for k,v in pairs(self.P_CENTERS) do
-    v.config = v.config or {}
-    v.config.fg_data = v.config.fg_data or {
+    v.fg_data = v.fg_data or {
         is_alternate = false,
-        alternate_card = string.sub(k,1,1).."_fg_"..string.sub(k,3),
+        alternate_key = string.sub(k,1,1).."_fg_"..string.sub(k,3),
         vars = {}
     }
-    if string.sub(v.key,1,2) == 'm_' then v.config.fg_data.base_enhancement = true end
+    if string.sub(v.key,1,2) == 'm_' then v.fg_data.base_enhancement = true end
 end
 for k,v in pairs(self.P_SEALS) do
-    v.config = v.config or {}
-    v.config.fg_data = v.config.fg_data or {
+    v.fg_data = v.fg_data or {
         is_alternate = false,
-        alternate_card = 'fg_'..string.lower(k)
+        alternate_key ='fg_'..string.lower(k)
     }
 end
-self.P_CENTERS['c_base'].config.fg_data = nil
+self.P_CENTERS['c_base'].fg_data = nil
 '''
 match_indent = false
 times = 1
@@ -47,7 +45,10 @@ G.GAME.used_jokers[self.config.center.key] = true
 '''
 position = "after"
 payload = '''
-        if self.config and self.config.center and self.config.center.config and self.config.center.config.fg_data and self.config.center.config.fg_data and G.P_CENTERS[self.config.center.config.fg_data.alternate_card] then G.GAME.used_jokers[self.config.center.config.fg_data.alternate_card] = true end
+        if self.config and self.config.center and self.config.center.fg_data and 
+        G.P_CENTERS[self.config.center.fg_data.alternate_card] then 
+        G.GAME.used_jokers[self.config.center.fg_data.alternate_card] = true 
+        end
 '''
 match_indent = false
 times = 1
@@ -60,9 +61,9 @@ pattern = '''
 '''
 position = "at"
 payload = '''
-    if self.config.center.config.fg_data and not next(find_joker(self.config.center.config.fg_data.alternate_card, true)) then 
+    if self.config.center.fg_data and not next(find_joker(self.config.center.fg_data.alternate_card, true)) then 
         G.GAME.used_jokers[self.config.center.key] = nil
-        if self.config.center.config.fg_data.alternate_card then G.GAME.used_jokers[self.config.center.config.fg_data.alternate_card] = nil end
+        if self.config.center.fg_data.alternate_card then G.GAME.used_jokers[self.config.center.fg_data.alternate_card] = nil end
     end
 '''
 match_indent = false

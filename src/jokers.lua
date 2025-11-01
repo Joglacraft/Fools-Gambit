@@ -256,12 +256,11 @@ SMODS.Joker {
 --Concert Ticket
 SMODS.Joker {
 	key = 'concert',
-	config = { 
-		fg_data = {
-			is_alternate = false,
-			alternate_card = 'j_fg_concertalt'
-		},
-		extra = { item_amount = 15, item_amount2 = 0 } },
+	fg_data = {
+		is_alternate = false,
+		alternate_key ='j_fg_concertalt'
+	},	
+	config = { extra = { item_amount = 15, item_amount2 = 0 } },
 	loc_vars = function(self, info_queue, card)
 		return { vars = { card.ability.extra.item_amount, card.ability.extra.item_amount2 } }
 	end,
@@ -309,16 +308,15 @@ SMODS.Joker {
 -- Mango
 SMODS.Joker {
 	key = 'mango',
+	fg_data = {
+		is_alternate = false,
+		alternate_key ='j_fg_mangoalt'
+	},	
 	rarity = 2,
 	atlas = 'newjokers',
 	pos = { x = 8, y = 0 },
 	cost = 1,
-	config = {
-		fg_data = {
-			is_alternate = false,
-			alternate_card = 'j_fg_mangoalt'
-		},
-		extra = { mult = 15, lessmult = 2.5 } },
+	config = { extra = { mult = 15, lessmult = 2.5 } },
 	in_pool = function (self, args)
 		if FG.config.extra_jokers and FG.FUNCS.allow_duplicate(self) and not G.GAME.pool_flags.alternate_spawn then return true else return false end
 	end,
@@ -356,12 +354,11 @@ SMODS.Joker {
 --Disc Joker
 SMODS.Joker {
 	key = 'disc',
-	config = { 
-		fg_data = {
-			is_alternate = false,
-			alternate_card = 'j_fg_discalt'
-		},
-		extra = { chips = 25 } },
+	fg_data = {
+		is_alternate = false,
+		alternate_key ='j_fg_discalt'
+	},	
+	config = { extra = { chips = 25 } },
 	rarity = 2,
 	atlas = 'newjokers',
 	pos = { x = 2, y = 0 }, -- read above
@@ -397,10 +394,16 @@ SMODS.Joker{
 	pos = { x = 0, y = 1},
 	rarity = 1,
 	cost = 3,
-	config = {
 		fg_data = {
 			is_alternate = false,
-			alternate_card = "j_fg_oscillator_alt",
+			alternate_key ="j_fg_oscillator_alt",
+			vars = {
+				chips = 50,
+				y_frame = 1,
+			}
+		},	
+	config = {
+		fg_data = {
 			vars = {
 				chips = 50,
 				y_frame = 1,
@@ -471,14 +474,12 @@ SMODS.Joker{
 -- Delinquent
 SMODS.Joker {
 	key = 'delinquent',
+	fg_data = {
+		is_alternate = false,
+		alternate_key ='j_fg_delinquentalt'
+	},	
 	rarity = 2,
 	atlas = 'newjokers',
-	config = {
-		fg_data = {
-			is_alternate = false,
-			alternate_card = 'j_fg_delinquentalt'
-		},
-	},
 	pos = { x = 1, y = 0 },
 	cost = 7,
 	no_pool_flag = 'alternate_spawn',
@@ -512,11 +513,12 @@ SMODS.Joker {
 --Orchestral Joker
 SMODS.Joker {
 	key = 'orchestral',
-	config = { 
 		fg_data = {
 			is_alternate = false,
-			alternate_card = 'j_fg_orchestralalt'
-		},
+			alternate_key ='j_fg_orchestralalt'
+		},	
+	config = { 
+
 		extra = { mult = 10 } },
 	rarity = "fg_common_alt",
 	atlas = 'newjokers',
@@ -549,11 +551,12 @@ SMODS.Joker {
 --Orchestral alt
 SMODS.Joker {
 	key = 'orchestralalt',
-	config = { 
 		fg_data = {
 			is_alternate = true,
-			alternate_card = 'j_fg_orchestral'
-		},
+			alternate_key ='j_fg_orchestral'
+		},	
+	config = { 
+
 		extra = { mult = 5 } },
 	rarity = "fg_common_alt",
 	atlas = 'newjokers',
@@ -583,13 +586,14 @@ SMODS.Joker {
 	atlas = 'newjokers',
 	pos = { x = 9, y = 0 },
 	soul_pos = { x = 9, y = 1 },
-	cost = 20,
-	config = {
 		fg_data = {
 			--[[is_alternate = false,
-			alternate_card = 'j_fg_kevinalt']]
-			alternate_card = 'j_fg_kevin'
-		},
+			alternate_key ='j_fg_kevinalt']]
+			alternate_key ='j_fg_kevin'
+		},	
+	cost = 20,
+	config = {
+
 		extra = { mult = 10, lessmult = 0.25 } },
 	in_pool = function (self, args)
 		if FG.config.extra_jokers and FG.FUNCS.allow_duplicate(self) and not G.GAME.pool_flags.alternate_spawn then return true else return false end
@@ -618,13 +622,14 @@ SMODS.Joker {
 	rarity = "fg_uncommon_alt",
 	atlas = 'newjokers',
 	pos = { x = 4, y = 0 }, -- read above
+		fg_data = {
+			is_alternate = true,
+			alternate_key ='j_fg_conductor'
+		},	
 	cost = 5,
 	
 	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = 'j_fg_conductor'
-		},
+
 		extra = { amount = 2 } },
 	loc_vars = function(self, info_queue, card)
 		return { vars = { card.ability.extra.amount } }
@@ -665,12 +670,13 @@ SMODS.Joker {
 	rarity = 2,
 	atlas = 'newjokers',
 	pos = { x = 4, y = 0 }, -- read above
-	cost = 5,
-	config = { 
 		fg_data = {
 			is_alternate = false,
-			alternate_card = 'j_fg_conductoralt'
-		},
+			alternate_key ='j_fg_conductoralt'
+		},	
+	cost = 5,
+	config = { 
+
 		extra = { amount = 1 } },
 	loc_vars = function(self, info_queue, card)
 		return { vars = { card.ability.extra.amount } }
@@ -712,12 +718,10 @@ SMODS.Joker {
 -- Concert ticket alt
 SMODS.Joker {
 	key = 'concertalt',
-	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = 'j_fg_concert'
-		},
-	},
+	fg_data = {
+		is_alternate = true,
+		alternate_key ='j_fg_concert'
+	},	
 	rarity = "fg_uncommon_alt",
 	atlas = 'newjokers',
 	pos = { x = 0, y = 0 },
@@ -754,14 +758,12 @@ SMODS.Joker {
 -- Mango alt
 SMODS.Joker {
 	key = 'mangoalt',
-	rarity = "fg_common_alt",
-	atlas = 'newjokers',
-	config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = 'j_fg_mango'
-		},
-	},
+			alternate_key ='j_fg_mango'
+		},	
+	rarity = "fg_common_alt",
+	atlas = 'newjokers',
 	in_pool = function (self, args)
 		if FG.config.extra_jokers and FG.FUNCS.allow_duplicate(self) and not G.GAME.pool_flags.alternate_spawn then return true else return false end
 	end,
@@ -770,7 +772,7 @@ SMODS.Joker {
 	config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_fg_mango",
+			alternate_key ="j_fg_mango",
 			vars = {}
 		},
 		extra = {
@@ -812,12 +814,11 @@ SMODS.Joker {
 -- Disk alt
 SMODS.Joker {
 	key = 'discalt',
-	config = { 
 		fg_data = {
 			is_alternate = true,
-			alternate_card = 'j_fg_disc'
-		},
-		extra = { chips = 10 } },
+			alternate_key ='j_fg_disc'
+		},	
+	config = { extra = { chips = 10 } },
 	rarity = 2,
 	atlas = 'newjokers',
 	pos = { x = 2, y = 0 }, -- read above
@@ -843,11 +844,16 @@ SMODS.Joker{
 	pos = { x = 0, y = 1},
 	rarity = "fg_common_alt",
 	cost = 3,
-	
+	fg_data = {
+		is_alternate = true,
+		alternate_key ="j_fg_oscillator",
+		vars = {
+			chips = 50,
+			y_frame = 1,
+		}
+	},	
 	config = {
 		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_fg_oscillator",
 			vars = {
 				chips = 50,
 				y_frame = 1,
@@ -917,14 +923,12 @@ SMODS.Joker{
 -- Delinquent alt
 SMODS.Joker {
 	key = 'delinquentalt',
-	rarity = "fg_uncommon_alt",
-	atlas = 'newjokers',
-	config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = 'j_fg_delinquent'
+			alternate_key ='j_fg_delinquent'
 		},
-	},
+	rarity = "fg_uncommon_alt",
+	atlas = 'newjokers',
 	pos = { x = 1, y = 0 },
 	cost = 8,
 	in_pool = function (self, args)
@@ -1002,7 +1006,7 @@ SMODS.Joker {
 	config = {
 		fg_data = {
 			is_alternate = false,
-			alternate_card = 'j_fg_equalizeralt'
+			alternate_key ='j_fg_equalizeralt'
 		},
 		extra = { mult = 20, addmult = 4, odds = 4} },
 	in_pool = function (self, args)
@@ -1033,7 +1037,7 @@ SMODS.Joker {
 	config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = 'j_fg_equalizer'
+			alternate_key ='j_fg_equalizer'
 		},
 		extra = 1/5
 	},
@@ -1062,13 +1066,13 @@ SMODS.Joker {
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = { x = 0, y = 0 },
+		fg_data = {
+			is_alternate = true,
+			alternate_key ="j_joker",
+		},	
 	rarity = "fg_common_alt",
 	cost = 2,
 	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_joker",
-		},
 		extra = { mult = 1 } 
 	},
 	loc_vars = function(self, info_queue, card)
@@ -1092,13 +1096,13 @@ SMODS.Joker {
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = { x = 6, y = 1 },
+		fg_data = {
+			is_alternate = true,
+			alternate_key ="j_greedy_joker",
+		},	
 	rarity = "fg_common_alt",
 	cost = 0,
 	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_greedy_joker",
-		},
 		extra = {
 			mult_gain = 1,
 			currentMult = 0
@@ -1137,13 +1141,14 @@ SMODS.Joker {
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = { x = 7, y = 1 },
+		fg_data = {
+			is_alternate = true,
+			alternate_key ="j_lusty_joker"
+		},	
 	rarity = "fg_common_alt",
 	cost = 0,
 	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_lusty_joker"
-		},
+
 		extra = {
 			mult_gain = 1,
 		currentMult = 0
@@ -1182,13 +1187,13 @@ SMODS.Joker {
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = { x = 8, y = 1 },
+		fg_data = {
+			is_alternate = true,
+			alternate_key ="j_wrathful_joker"
+		},	
 	rarity = "fg_common_alt",
 	cost = 0,
 	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_wrathful_joker"
-		},
 		extra = {
 			mult_gain = 1,
 			currentMult = 0
@@ -1227,13 +1232,13 @@ SMODS.Joker {
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = { x = 9, y = 1 },
+		fg_data = {
+			is_alternate = true,
+			alternate_key ="j_gluttenous_joker"
+		},	
 	rarity = "fg_common_alt",
 	cost = 0,
 	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_gluttenous_joker"
-		},
 		extra = {
 			mult_gain = 1,
 			currentMult = 0
@@ -1272,13 +1277,13 @@ SMODS.Joker {
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = { x = 2, y = 0 },
+		fg_data = {
+			is_alternate = true,
+			alternate_key ="j_jolly"
+		},	
 	rarity = "fg_common_alt",
 	cost = 2,
 	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_jolly"
-		},
 		t_mult = 4,
 		type = 'Pair',
 		extra = {
@@ -1307,13 +1312,14 @@ SMODS.Joker {
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = { x = 3, y = 0 },
+		fg_data = {
+			is_alternate = true,
+			alternate_key ="j_zany"
+		},	
 	rarity = "fg_common_alt",
 	cost = 2,
 	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_zany"
-		},
+
 		t_mult = 6,
 		type = 'Three of a Kind',
 		extra = {
@@ -1341,13 +1347,14 @@ SMODS.Joker {
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = { x = 4, y = 0 },
+		fg_data = {
+			is_alternate = true,
+			alternate_key ="j_mad"
+		},	
 	rarity = "fg_common_alt",
 	cost = 2,
 	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_mad"
-		},
+
 		t_mult = 5,
 		type = 'Two Pair',
 		extra = {
@@ -1375,13 +1382,14 @@ SMODS.Joker {
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = { x = 5, y = 0 },
+		fg_data = {
+			is_alternate = true,
+			alternate_key ="j_crazy"
+		},	
 	rarity = "fg_common_alt",
 	cost = 2,
 	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_crazy"
-		},
+
 		t_mult = 6,
 		type = 'Straight',
 		extra = {
@@ -1409,13 +1417,14 @@ SMODS.Joker {
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = { x = 6, y = 0 },
+		fg_data = {
+			is_alternate = true,
+			alternate_key ="j_droll"
+		},	
 	rarity = "fg_common_alt",
 	cost = 2,
 	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_droll"
-		},
+
 		t_mult = 5,
 		type = 'Flush',
 		extra = {
@@ -1444,13 +1453,14 @@ SMODS.Joker {
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = { x = 0, y = 14 },
+		fg_data = {
+			is_alternate = true,
+			alternate_key ="j_sly"
+		},	
 	rarity = "fg_common_alt",
 	cost = 2,
 	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_sly"
-		},
+
 		t_chips = 25,
 		type = 'Pair',
 		extra = {
@@ -1479,13 +1489,14 @@ SMODS.Joker {
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = { x = 1, y = 14 },
+		fg_data = {
+			is_alternate = true,
+			alternate_key ="j_wily"
+		},	
 	rarity = "fg_common_alt",
 	cost = 2,
 	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_wily"
-		},
+
 		t_chips = 50,
 		type = 'Three of a Kind',
 		extra = {
@@ -1514,13 +1525,14 @@ SMODS.Joker {
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = { x = 2, y = 14 },
+		fg_data = {
+			is_alternate = true,
+			alternate_key ="j_clever"
+		},	
 	rarity = "fg_common_alt",
 	cost = 2,
 	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_clever"
-		},
+
 		t_chips = 40,
 		type = 'Two Pair',
 		extra = {
@@ -1549,13 +1561,14 @@ SMODS.Joker {
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = { x = 3, y = 14 },
+		fg_data = {
+			is_alternate = true,
+			alternate_key ="j_devious"
+		},	
 	rarity = "fg_common_alt",
 	cost = 2,
 	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_devious"
-		},
+
 		t_chips = 50,
 		type = 'Straight',
 		extra = {
@@ -1584,13 +1597,14 @@ SMODS.Joker {
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = { x = 4, y = 14 },
+		fg_data = {
+			is_alternate = true,
+			alternate_key ="j_crafty"
+		},	
 	rarity = "fg_common_alt",
 	cost = 2,
 	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_crafty"
-		},
+
 		t_chips = 40,
 		type = 'Flush',
 		extra = {
@@ -1623,14 +1637,12 @@ SMODS.Joker{
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = {x=5,y=1},
-	rarity = 'fg_uncommon_alt',
-	cost = 3,
-	config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = 'j_credit_card'
-		}
-	},
+			alternate_key ='j_credit_card'
+		},
+	rarity = 'fg_uncommon_alt',
+	cost = 3,
 	calculate = function (self, card, context)
 		if context.selling_card and context.card == card
 		and G.GAME and G.GAME.dollars < 0 then
@@ -1657,13 +1669,14 @@ SMODS.Joker {
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = { x = 5, y = 5 },
+		fg_data = {
+			is_alternate = true,
+			alternate_key ="j_ceremonial"
+		},	
 	rarity = "fg_common_alt",
 	cost = 2,
 	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_ceremonial"
-		},
+
 		extra = {
 			chips = 0,
 			mult = 4
@@ -1720,13 +1733,14 @@ SMODS.Joker {
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = { x = 1, y = 2 },
+		fg_data = {
+			is_alternate = true,
+			alternate_key ="j_banner"
+		},	
 	rarity = "fg_common_alt",
 	cost = 2,
 	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_banner"
-		},
+
 		extra = {
 			chips = 20,
 			discards = 1
@@ -1759,13 +1773,13 @@ SMODS.Joker {
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = { x = 2, y = 2 },
+		fg_data = {
+			is_alternate = true,
+			alternate_key ="j_mystic_summit"
+		},	
 	rarity = "fg_common_alt",
 	cost = 2,
 	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_mystic_summit"
-		},
 		extra = {
 			mult = 30,
 			discards = 1,
@@ -1800,13 +1814,14 @@ SMODS.Joker {
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = { x = 3, y = 2 },
+		fg_data = {
+			is_alternate = true,
+			alternate_key ="j_marble"
+		},	
 	rarity = "fg_common_alt",
 	cost = 2,
 	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_marble"
-		},
+
 		extra = {
 			replace = 1
 		}
@@ -1838,13 +1853,14 @@ SMODS.Joker {
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = { x = 4, y = 2 },
+		fg_data = {
+			is_alternate = true,
+			alternate_key ="j_loyalty_card"
+		},	
 	rarity = "fg_common_alt",
 	cost = 2,
 	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_loyalty_card"
-		},
+
 		loyalty_remaining = 10,
 		extra = {
 			item_amount = 10
@@ -1907,13 +1923,13 @@ SMODS.Joker {
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = { x = 0, y = 5 },
+		fg_data = {
+			is_alternate = true,
+			alternate_key ="j_8ball"
+		},	
 	rarity = "fg_common_alt",
 	cost = 2,
 	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_8ball"
-		},
 		extra = {
 			max = 8,
 			cur = 0
@@ -1975,13 +1991,13 @@ SMODS.Joker {
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = { x = 6, y = 2 },
+		fg_data = {
+			is_alternate = true,
+			alternate_key ="j_misprint"
+		},	
 	rarity = "fg_uncommon_alt",
 	cost = 6,
 	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_misprint"
-		},
 		extra = {
 			Xmult = 1,
 			Xmult_min = 75,
@@ -2045,13 +2061,14 @@ SMODS.Joker {
     atlas = 'Joker',
 	prefix_config = {atlas = false},
     pos = { x = 8, y = 2 },
+		fg_data= {
+			is_alternate = true,
+			alternate_key ="j_raised_fist"
+		},	
     rarity = "fg_common_alt",
     cost = 2,
     config = {
-		fg_data= {
-			is_alternate = true,
-			alternate_card = "j_raised_fist"
-		},
+
 		extra = {
 			mult = 0
 		}
@@ -2079,13 +2096,13 @@ SMODS.Joker {
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = { x = 1, y = 5 },
+		fg_data = {
+			is_alternate = true,
+			alternate_key ="j_fibonacci"
+		},	
 	rarity = "fg_common_alt",
 	cost = 2,
 	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_fibonacci"
-		},
 		extra = {
 			retriggers = 1
 		}
@@ -2213,13 +2230,13 @@ SMODS.Joker {
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = { x = 2, y = 3 },
+		fg_data = {
+			is_alternate = true,
+			alternate_key ="j_scary_face"
+		},	
 	rarity = "fg_common_alt",
 	cost = 2,
 	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_scary_face"
-		},
 		extra = {
 			chips = 0,
 			chip_gain = 5
@@ -2254,13 +2271,14 @@ SMODS.Joker {
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = { x = 3, y = 3 },
+		fg_data = {
+			is_alternate = true,
+			alternate_key ="j_abstract"
+		},	
 	rarity = "fg_common_alt",
 	cost = 2,
 	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_abstract"
-		},
+
 		extra = {
 			mult_gain = 4,
 			mult = 0,
@@ -2298,16 +2316,12 @@ SMODS.Joker {
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = { x = 4, y = 3 },
-	rarity = "fg_common_alt",
-	cost = 2,
-	config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_delayed_grat"
-		},
-		extra = {
-		}
-	},
+			alternate_key ="j_delayed_grat"
+		},	
+	rarity = "fg_common_alt",
+	cost = 2,
 	loc_vars = function(self, info_queue, card)
 		return {
 			vars = {
@@ -2329,15 +2343,14 @@ SMODS.Joker{
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = { x = 7, y = 6},
-	rarity = "fg_common_alt",
-	cost = 4,
-	
-	no_pool_flag = "fg_gros_michel_extinct",
-	config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_gros_michel"
-		},
+			alternate_key ="j_gros_michel"
+		},	
+	rarity = "fg_common_alt",
+	cost = 4,
+	no_pool_flag = "fg_gros_michel_extinct",
+	config = {
 		extra = {
 			xmult = 1.5,
 			max_chance = 6
@@ -2378,13 +2391,13 @@ SMODS.Joker{
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = { x = 8, y = 3},
+		fg_data = {
+			is_alternate = true,
+			alternate_key ="j_even_steven"
+		},	
 	rarity = "fg_common_alt",
 	cost = 2,
 	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_even_steven"
-		},
 		extra = {
 			mult_i = 2, -- Mult increase
 			mult_t = 0  -- Mult total
@@ -2421,12 +2434,12 @@ SMODS.Joker{
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = { x = 9, y = 3},
-	rarity = "fg_common_alt",
-	config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_odd_todd"
-		},
+			alternate_key ="j_odd_todd"
+		},	
+	rarity = "fg_common_alt",
+	config = {
 		extra = {
 			chips_i = 8, -- Chips increase
 			chips_t = 0  -- Chips total
@@ -2463,13 +2476,13 @@ SMODS.Joker{
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = { x = 3, y = 6},
+		fg_data = {
+			is_alternate = true,
+			alternate_key ="j_scholar"
+		},	
 	rarity = "fg_uncommon_alt",
 	cost = 4,
 	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_scholar"
-		},
 		extra = {
 			xmult = 3,
 			amount = 4,
@@ -2504,13 +2517,13 @@ SMODS.Joker {
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = { x = 1, y = 4},
+		fg_data = {
+			is_alternate = true,
+			alternate_key ="j_business"
+		},	
 	rarity = "fg_uncommon_alt",
 	cost = 4,
 	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_business"
-		},
 		extra = {
 			max_chance = 4
 		}
@@ -2555,14 +2568,13 @@ SMODS.Joker{
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = { x = 1, y = 6},
-	rarity = "fg_common_alt",
-	cost = 3,
-
-	config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_ride_the_bus"
-		},
+			alternate_key ="j_ride_the_bus"
+		},	
+	rarity = "fg_common_alt",
+	cost = 3,
+	config = {
 		extra = {
 			mult = 25,
 			mult_d = 1,
@@ -2611,13 +2623,13 @@ SMODS.Joker {
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = { x = 0, y = 10 },
+		fg_data = {
+			is_alternate = true,
+			alternate_key ="j_egg"
+		},	
 	rarity = "fg_common_alt",
 	cost = 2,
 	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_egg"
-		},
 		extra = {
 			sell_value = 50,
 			hands = -1,
@@ -2654,15 +2666,14 @@ SMODS.Joker{
     atlas = 'Joker',
 	prefix_config = {atlas = false},
     pos = { x = 4, y = 10},
-    rarity = "fg_common_alt",
-    cost = 2,
-	
-     -- Custom logic for spawning
-    config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_ice_cream"
-		},
+			alternate_key ="j_ice_cream"
+		},	
+    rarity = "fg_common_alt",
+    cost = 2,
+    -- Custom logic for spawning
+    config = {
         fg_alternate = {}, -- Kept between alternations
         extra = { -- Astro is very extre, yes
 			chips = 120,
@@ -2711,13 +2722,13 @@ SMODS.Joker{
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = {x = 7, y = 10},
+		fg_data = {
+			is_alternate = true,
+			alternate_key ='j_blue_joker'
+		},	
 	rarity = 'fg_common_alt',
 	cost = 4,
 	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = 'j_blue_joker'
-		},
 		extra = {
 			chips = 1,
 		}
@@ -2743,13 +2754,13 @@ SMODS.Joker{
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = {x = 9, y = 10},
+		fg_data = {
+			is_alternate = true,
+			alternate_key ='j_constellation'
+		},	
 	rarity = 'fg_common_alt',
 	cost = 6,
 	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = 'j_constellation'
-		},
 		extra = {
 			mult = 0,
 			mult_i = 5,
@@ -2780,15 +2791,13 @@ SMODS.Joker{
     atlas = 'Joker',
 	prefix_config = {atlas = false},
     pos = { x = 1, y = 11 },
-    rarity = "fg_common_alt",
-    cost = 2,
-	
-     -- Custom logic for spawning
-    config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_faceless"
-		},
+			alternate_key ="j_faceless"
+		},	
+    rarity = "fg_common_alt",
+    cost = 2,
+    config = {
         fg_alternate = {}, -- Kept between alternations
         extra = {
 			xmult = 1.5
@@ -2821,16 +2830,15 @@ SMODS.Joker{
 SMODS.Joker{
 	key = "cavendish",
 	atlas = 'Joker',
-	prefix_config = {atlas = false},
-	pos = { x = 5, y = 11},
-	yes_pool_flag = "fg_gros_michel_extinct",
-	
-	rarity = "fg_uncommon_alt",
-	config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_cavendish"
-		},
+			alternate_key ="j_cavendish"
+		},	prefix_config = {atlas = false},
+	pos = { x = 5, y = 11},
+	yes_pool_flag = "fg_gros_michel_extinct",	
+	rarity = "fg_uncommon_alt",
+	config = {
+
 		extra = {
 			xmult = 10,
 			xmult_r = 1,
@@ -2882,15 +2890,13 @@ SMODS.Joker{
     atlas = 'Joker',
 	prefix_config = {atlas = false},
     pos = { x = 7, y = 11},
-    rarity = "fg_common_alt",
-    cost = 2,
-	
-     -- Custom logic for spawning
-    config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_red_card"
-		},
+			alternate_key ="j_red_card"
+		},	
+    rarity = "fg_common_alt",
+    cost = 2,
+    config = {
         fg_alternate = {}, -- Kept between alternations
         extra = {
 			mult = 0,
@@ -2927,11 +2933,11 @@ SMODS.Joker{
 	prefix_config = {atlas = false},
 	pos = {x=9,y=11},
 	pixel_size = { h = 71 },
-	config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = 'j_square'
-		},
+			alternate_key ='j_square'
+		},	
+	config = {
 		extra = {
 			base = 1,
 			exp = 2,
@@ -2968,15 +2974,13 @@ SMODS.Joker{
     atlas = 'Joker',
 	prefix_config = {atlas = false},
     pos = { x = 1, y = 12},
-    rarity = "fg_common_alt",
-    cost = 5,
-	
-     -- Custom logic for spawning
-    config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_riff_raff",
-		},
+			alternate_key ="j_riff_raff",
+		},	
+    rarity = "fg_common_alt",
+    cost = 5,
+    config = {
         fg_alternate = {}, -- Kept between alternations
         extra = {
 			uncommon_chance = 3,
@@ -3012,7 +3016,7 @@ SMODS.Joker{
 	config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = 'j_vampire'
+			alternate_key ='j_vampire'
 		},
 		extra = {
 			xmult = 1,
@@ -3063,6 +3067,10 @@ SMODS.Joker{
 	prefix_config = {atlas = false},
 	pos = {x=4,y=12},
 	soul_pos = {x=2, y=9,
+		fg_data = {
+			is_alternate = true,
+			alternate_key ='j_hologram'
+		},	
         draw = function(card, scale_mod, rotate_mod)
             card.hover_tilt = card.hover_tilt * 1.5
             card.children.floating_sprite:draw_shader('hologram', nil, card.ARGS.send_to_shader, nil,
@@ -3072,10 +3080,6 @@ SMODS.Joker{
 	rarity = 'fg_uncommon_alt',
 	cost = 6,
 	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = 'j_hologram'
-		},
 		extra = {
 			xmult = 1,
 			xmult_i = 0.5
@@ -3111,15 +3115,13 @@ SMODS.Joker{
     atlas = 'Joker',
 	prefix_config = {atlas = false},
     pos = { x = 6, y = 12},
-    rarity = "fg_rare_alt",
-    cost = 6,
-	
-     -- Custom logic for spawning
-    config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_baron",
-		},
+			alternate_key ="j_baron",
+		},	
+    rarity = "fg_rare_alt",
+    cost = 6,
+    config = {
         fg_alternate = {}, -- Kept between alternations
         extra = {
 			xmult = 1,
@@ -3164,15 +3166,13 @@ SMODS.Joker{
     atlas = 'Joker',
 	prefix_config = {atlas = false},
     pos = { x = 7, y = 12},
-    rarity = "fg_common_alt",
-    cost = 2,
-	
-     -- Custom logic for spawning
-    config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_cloud_9"
+			alternate_key ="j_cloud_9"
 		},
+    rarity = "fg_common_alt",
+    cost = 2,
+    config = {
         fg_alternate = {}, -- Kept between alternations
         extra = {
 			dollars = 4
@@ -3198,15 +3198,13 @@ SMODS.Joker{
     atlas = 'Joker',
 	prefix_config = {atlas = false},
     pos = { x = 8, y = 12},
-    rarity = "fg_common_alt",
-    cost = 2,
-	
-     -- Custom logic for spawning
-    config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_rocket"
-		},
+			alternate_key ="j_rocket"
+		},	
+    rarity = "fg_common_alt",
+    cost = 2,
+    config = {
         fg_alternate = {}, -- Kept between alternations
         extra = {
 			payout = 10,
@@ -3247,15 +3245,13 @@ SMODS.Joker{
     atlas = 'Joker',
 	prefix_config = {atlas = false},
     pos = { x = 3, y = 13},
-    rarity = "fg_common_alt",
-    cost = 4,
-    
-     -- Custom logic for spawning
-    config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_gift"
-		},
+			alternate_key ="j_gift"
+		},	
+    rarity = "fg_common_alt",
+    cost = 4,
+    config = {
         fg_alternate = {}, -- Kept between alternations
         extra = {}
     },
@@ -3285,13 +3281,13 @@ SMODS.Joker{
 SMODS.Joker{
 	key = 'turtle_bean',
 	pos = {x=4,y=13},
+		fg_data = {
+			is_alternate = true,
+			alternate_key ='j_turtle_bean'
+		},	
 	rarity = 'fg_uncommon_alt',
 	cost = 5,
 	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = 'j_turtle_bean'
-		},
 		extra = {
 			original_limit = G.hand and G.hand.config.card_limit or 0,
 			hand_size = 1,
@@ -3345,15 +3341,13 @@ SMODS.Joker{
     atlas = 'Joker',
 	prefix_config = {atlas = false},
     pos = { x = 5, y = 13},
-    rarity = "fg_uncommon_alt",
-    cost = 5,
-    
-     -- Custom logic for spawning
-    config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_erosion"
-		},
+			alternate_key ="j_erosion"
+		},	
+    rarity = "fg_uncommon_alt",
+    cost = 5,
+    config = {
         fg_alternate = {}, -- Kept between alternations
         extra = {
 			xmult = 4,
@@ -3384,15 +3378,13 @@ SMODS.Joker{
     atlas = 'Joker',
 	prefix_config = {atlas = false},
     pos = { x = 0, y = 1},
-    rarity = "fg_common_alt",
-    cost = 4,
-    
-     -- Custom logic for spawning
-    config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_juggler"
-		},
+			alternate_key ="j_juggler"
+		},	
+    rarity = "fg_common_alt",
+    cost = 4,
+    config = {
         fg_alternate = {}, -- Kept between alternations
         extra = {
 			slots = 1
@@ -3421,15 +3413,13 @@ SMODS.Joker{
     atlas = 'Joker',
 	prefix_config = {atlas = false},
     pos = { x = 1, y = 1},
-    rarity = "fg_uncommon_alt",
-    cost = 5,
-    
-     -- Custom logic for spawning
-    config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_drunkard"
-		},
+			alternate_key ="j_drunkard"
+		},	
+    rarity = "fg_uncommon_alt",
+    cost = 5,
+    config = {
 		extra = {
 			d_size = -2,
 			h_size = 1
@@ -3458,15 +3448,12 @@ SMODS.Joker{
     atlas = 'Joker',
 	prefix_config = {atlas = false},
     pos = { x = 9, y = 0},
-    rarity = "fg_common_alt",
-    cost = 2,
-	config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_stone"
-		},
-	},
-     -- Custom logic for spawning
+			alternate_key ="j_stone"
+		},	
+    rarity = "fg_common_alt",
+    cost = 2,
 	calculate = function (self, card, context)
 		if context.individual and context.cardarea == G.play then
 			if FG.FUNCS.get_card_info(context.other_card).key == "m_fg_stone" then
@@ -3484,13 +3471,13 @@ SMODS.Joker{
     atlas = 'Joker',
 	prefix_config = {atlas = false},
     pos = { x = 5, y = 14},
+		fg_data = {
+			is_alternate = true,
+			alternate_key ="j_lucky_cat"
+		},	
     rarity = "fg_common_alt",
     cost = 2,
 	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_lucky_cat"
-		},
 		extra = {
 			pluschips = 30,
 			plusmult = 5,
@@ -3565,13 +3552,13 @@ SMODS.Joker{
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = {x=7,y=14},
+		fg_data = {
+			is_alternate = true,
+			alternate_key ='j_bull'
+		},	
 	rarity = 'fg_common_alt',
 	cost = 5,
 	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = 'j_bull'
-		},
 		extra = {
 			chips = 0,
 			chips_i = 4,
@@ -3615,13 +3602,13 @@ SMODS.Joker{
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = {x=9,y=14},
+		fg_data = {
+			is_alternate = true,
+			alternate_key ='j_trading'
+		},	
 	rarity = 'fg_uncommon_alt',
 	cost = 6,
 	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = 'j_trading'
-		},
 		extra = {
 			money = 4
 		}
@@ -3656,15 +3643,13 @@ SMODS.Joker{
     atlas = 'Joker',
 	prefix_config = {atlas = false},
     pos = { x = 1, y = 15},
-    rarity = "fg_common_alt",
-    cost = 2,
-	
-     -- Custom logic for spawning
-    config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_popcorn"
-		},
+			alternate_key ="j_popcorn"
+		},	
+    rarity = "fg_common_alt",
+    cost = 2,
+    config = {
         fg_alternate = {}, -- Kept between alternations
         extra = {
 			mult = 25,
@@ -3717,7 +3702,7 @@ SMODS.Joker{
 	config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_ancient"
+			alternate_key ="j_ancient"
 		},
 		extra = {
 			suit = nil,
@@ -3764,15 +3749,13 @@ SMODS.Joker{
     atlas = 'Joker',
 	prefix_config = {atlas = false},
     pos = { x = 2, y = 15},
-    rarity = "fg_common_alt",
-    cost = 2,
-      
-     -- Custom logic for spawning
-    config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_ramen"
-		},
+			alternate_key ="j_ramen"
+		},	
+    rarity = "fg_common_alt",
+    cost = 2,
+    config = {
         fg_alternate = {}, -- Kept between alternations
         extra = {
 			xmult = 3,
@@ -3832,15 +3815,13 @@ SMODS.Joker{
     atlas = 'Joker',
 	prefix_config = {atlas = false},
     pos = { x = 8, y = 15},
-    rarity = "fg_common_alt",
-    cost = 4,
-    
-     -- Custom logic for spawning
-    config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_walkie_talkie"
-		},
+			alternate_key ="j_walkie_talkie"
+		},	
+    rarity = "fg_common_alt",
+    cost = 4,
+    config = {
         fg_alternate = {}, -- Kept between alternations
         extra = {
 			chips = 0,
@@ -3906,15 +3887,13 @@ SMODS.Joker{
     atlas = 'Joker',
 	prefix_config = {atlas = false},
     pos = { x = 3, y = 15},
-    rarity = "fg_uncommon_alt",
-    cost = 5,
-    
-     -- Custom logic for spawning
-    config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_selzer"
-		},
+			alternate_key ="j_selzer"
+		},	
+    rarity = "fg_uncommon_alt",
+    cost = 5,
+    config = {
         fg_alternate = {}, -- Kept between alternations
         extra = {
 			repetitions = 2,
@@ -3969,7 +3948,7 @@ SMODS.Joker{
     config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_castle"
+			alternate_key ="j_castle"
 		},
         fg_alternate = {}, -- Kept between alternations
         extra = {
@@ -4005,15 +3984,13 @@ SMODS.Joker{
     atlas = 'Joker',
 	prefix_config = {atlas = false},
     pos = { x = 6, y = 15},
-    rarity = "fg_common_alt",
-    cost = 2,
-      
-     -- Custom logic for spawning
-    config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_smiley"
-		},
+			alternate_key ="j_smiley"
+		},	
+    rarity = "fg_common_alt",
+    cost = 2,
+    config = {
         fg_alternate = {}, -- Kept between alternations
         extra = {
 			mult = 0,
@@ -4048,15 +4025,13 @@ SMODS.Joker{
     atlas = 'Joker',
 	prefix_config = {atlas = false},
     pos = { x = 5, y = 15},
-    rarity = "fg_rare_alt",
-    cost = 6,
-    
-     -- Custom logic for spawning
-    config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_campfire"
-		},
+			alternate_key ="j_campfire"
+		},	
+    rarity = "fg_rare_alt",
+    cost = 6,
+    config = {
         fg_alternate = {}, -- Kept between alternations
         extra = {
 			xmult = 1,
@@ -4106,13 +4081,13 @@ SMODS.Joker{
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = {x=3,y=4},
+		fg_data = {
+			is_alternate = true,
+			alternate_key ='j_mr_bones'
+		},	
 	rarity = 'fg_rare_alt',
 	cost = 6,
 	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = 'j_mr_bones'
-		},
 		extra = {
 			chips = 0.25,
 			max_chance = 2,
@@ -4159,15 +4134,13 @@ SMODS.Joker{
     atlas = 'Joker',
 	prefix_config = {atlas = false},
     pos = { x = 2, y = 1},
-    rarity = "fg_uncommon_alt",
-    cost = 6,
-    
-     -- Custom logic for spawning
-    config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_acrobat"
-		},
+			alternate_key ="j_acrobat"
+		},	
+    rarity = "fg_uncommon_alt",
+    cost = 6,
+    config = {
         fg_alternate = {}, -- Kept between alternations
         extra = {
 			xmult = 1,
@@ -4204,11 +4177,11 @@ SMODS.Joker{
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
     pos = { x = 9, y = 5 },
-    config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_swashbuckler"
-		},
+			alternate_key ="j_swashbuckler"
+		},	
+    config = {
 		extra = {
 			sell_value = 1
 		}
@@ -4244,11 +4217,11 @@ SMODS.Joker{
 	prefix_config = {atlas = false},
 	blueprint_compat = false,
     pos = { x = 0, y = 2 },
-    config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_troubadour"
-		},
+			alternate_key ="j_troubadour"
+		},	
+    config = {
 		extra = {
 			h_size = -2,
 			h_plays = 1
@@ -4274,13 +4247,13 @@ SMODS.Joker{
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = { x = 5 , y = 7},
+		fg_data = {
+			is_alternate = true,
+			alternate_key ="j_throwback"
+		},	
 	rarity = "fg_uncommon_alt",
     cost = 2,
 	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_throwback"
-		},
 		extra = {
 			xmult = 1,
 			xmult_i = 0.35,
@@ -4321,12 +4294,12 @@ SMODS.Joker{
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = { x = 9, y = 6},
-	rarity = "fg_rare_alt",
-	config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_hanging_chad"
-		},
+			alternate_key ="j_hanging_chad"
+		},	
+	rarity = "fg_rare_alt",
+	config = {
 		extra = {
 			enhancement_max = 3,
 			seal_max = 6,
@@ -4401,11 +4374,11 @@ SMODS.Joker{
 -- Rough Gem
 SMODS.Joker {
 	key = 'rough_gem',
-	config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_rough_gem"
-		},
+			alternate_key ="j_rough_gem"
+		},	
+	config = {
 		type = 'Flush',
 		extra = {
 			dollars = 10
@@ -4446,11 +4419,11 @@ SMODS.Joker {
 -- Bloodstone
 SMODS.Joker {
 	key = 'bloodstone',
-	config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_bloodstone"
-		},
+			alternate_key ="j_bloodstone"
+		},	
+	config = {
 		type = 'Flush',
 		extra = {
 			Xmult_gain = 0.4,
@@ -4499,11 +4472,11 @@ SMODS.Joker {
 -- Arrowhead
 SMODS.Joker {
 	key = 'arrowhead',
-	config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_arrowhead"
-		},
+			alternate_key ="j_arrowhead"
+		},	
+	config = {
 		type = 'Flush',
 		extra = {
 			chip_gain = 25,
@@ -4549,11 +4522,11 @@ SMODS.Joker {
 -- Onyx Agate
 SMODS.Joker {
 	key = 'onyx_agate',
-	config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_onyx_agate"
-		},
+			alternate_key ="j_onyx_agate"
+		},	
+	config = {
 		type = 'Flush',
 		extra = {
 			mult_gain = 12,
@@ -4606,15 +4579,13 @@ SMODS.Joker{
     atlas = 'Joker',
 	prefix_config = {atlas = false},
     pos = { x = 0, y = 6 },
-    rarity = "fg_uncommon_alt",
-    cost = 5,
-    
-     -- Custom logic for spawning
-    config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_flower_pot"
-		},
+			alternate_key ="j_flower_pot"
+		},	
+    rarity = "fg_uncommon_alt",
+    cost = 5,
+    config = {
         fg_alternate = {}, -- Kept between alternations
         extra = {
 			xmult = 12
@@ -4657,15 +4628,13 @@ SMODS.Joker{
     atlas = 'Joker',
 	prefix_config = {atlas = false},
     pos = { x = 0, y = 3 },
-    rarity = "fg_uncommon_alt",
-    cost = 5,
-    
-     -- Custom logic for spawning
-    config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_blueprint"
-		},
+			alternate_key ="j_blueprint"
+		},	
+    rarity = "fg_uncommon_alt",
+    cost = 5,
+    config = {
         fg_alternate = {}, -- Kept between alternations
         extra = {
 			copying_card = nil,
@@ -4747,14 +4716,14 @@ SMODS.Joker{
 -- oops all 6s
 SMODS.Joker {
 	key = 'oops',
+		fg_data = {
+			is_alternate = true,
+			alternate_key ="j_oops"
+		},	
 	rarity = "fg_uncommon_alt",
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_oops"
-		},
 		extra = {
 			den_gain = 1,
 			num_gain = 1,
@@ -4796,15 +4765,13 @@ SMODS.Joker{
     atlas = 'Joker',
 	prefix_config = {atlas = false},
     pos = { x = 4, y = 4 },
-    rarity = "fg_uncommon_alt",
-    cost = 5,
-    
-     -- Custom logic for spawning
-    config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_seeing_double"
-		},
+			alternate_key ="j_seeing_double"
+		},	
+    rarity = "fg_uncommon_alt",
+    cost = 5,
+    config = {
         fg_alternate = {}, -- Kept between alternations
         extra = {
 			xmult = 1.5
@@ -4843,15 +4810,13 @@ SMODS.Joker{
     atlas = 'Joker',
 	prefix_config = {atlas = false},
     pos = { x = 4, y = 5 },
-    rarity = "fg_uncommon_alt",
-    cost = 5,
-    
-     -- Custom logic for spawning
-    config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_matador"
-		},
+			alternate_key ="j_matador"
+		},	
+    rarity = "fg_uncommon_alt",
+    cost = 5,
+    config = {
         fg_alternate = {}, -- Kept between alternations
         extra = {
 			money = 5,
@@ -4893,15 +4858,13 @@ SMODS.Joker{
     atlas = 'Joker',
 	prefix_config = {atlas = false},
     pos = { x = 8, y = 5},
-    rarity = "fg_rare_alt",
-    cost = 6,
-    
-     -- Custom logic for spawning
-    config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_hit_the_road"
-		},
+			alternate_key ="j_hit_the_road"
+		},	
+    rarity = "fg_rare_alt",
+    cost = 6,
+    config = {
         fg_alternate = {}, -- Kept between alternations
         extra = {
 			xmult = 1,
@@ -4935,11 +4898,11 @@ SMODS.Joker{
 -- Duo
 SMODS.Joker {
 	key = 'duo',
-	config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_duo"
-		},
+			alternate_key ="j_duo"
+		},	
+	config = {
 		type = 'Pair',
 		extra = {
 			Xmult_mod = 0.1,
@@ -4980,11 +4943,11 @@ SMODS.Joker {
 -- Trio
 SMODS.Joker {
 	key = 'trio',
-	config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_trio"
-		},
+			alternate_key ="j_trio"
+		},	
+	config = {
 		type = 'Three of a Kind',
 		extra = {
 			Xmult_mod = 0.15,
@@ -5025,11 +4988,11 @@ SMODS.Joker {
 -- Family
 SMODS.Joker {
 	key = 'family',
-	config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_family"
-		},
+			alternate_key ="j_family"
+		},	
+	config = {
 		type = 'Four of a Kind',
 		extra = {
 			Xmult_mod = 0.2,
@@ -5070,11 +5033,11 @@ SMODS.Joker {
 -- Order
 SMODS.Joker {
 	key = 'order',
-	config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_order"
-		},
+			alternate_key ="j_order"
+		},	
+	config = {
 		type = 'Straight',
 		extra = {
 			Xmult_mod = 0.15,
@@ -5116,15 +5079,15 @@ SMODS.Joker{
     atlas = 'Joker',
 	prefix_config = {atlas = false},
     pos = { x = 9, y = 4},
+		fg_data = {
+			is_alternate = true,
+			alternate_key ="j_tribe"
+		},	
     rarity = "fg_rare_alt",
     cost = 7,
     
      -- Custom logic for spawning
     config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = "j_tribe"
-		},
         fg_alternate = {}, -- Kept between alternations
         extra = {
 			xmult = 12
@@ -5166,13 +5129,13 @@ SMODS.Joker{
 	atlas = 'Joker',
 	pos = {x=8,y=6},
 	prefix_config = {atlas = false},
+		fg_data = {
+			is_alternate = true,
+			alternate_key ='j_stuntman'
+		},	
 	rarity = 'fg_rare_alt',
 	cost = 7,
 	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = 'j_stuntman'
-		},
 		extra = {
 			chips = 750
 		},
@@ -5199,13 +5162,10 @@ FG.cards.invisible = {
 }
 SMODS.Joker{
 	key = "invisible",
-	config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_invisible"
-		},
-
-	},
+			alternate_key ="j_invisible"
+		},	
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = { x = 1, y = 7},
@@ -5290,11 +5250,11 @@ SMODS.Joker{
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = {x = 7, y = 7},
-	config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = 'j_brainstorm'
-		},
+			alternate_key ='j_brainstorm'
+		},	
+	config = {
 		extra = 1,
 	},
 	cost = 7,
@@ -5328,13 +5288,13 @@ SMODS.Joker{
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = {x=2,y=6},
+		fg_data = {
+			is_alternate = true,
+			alternate_key ='j_shoot_the_moon'
+		},	
 	rarity = 'fg_common_alt',
 	cost = 4,
 	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = 'j_shoot_the_moon'
-		},
 		extra = {
 			mult = 0,
 			mult_i = 1
@@ -5378,15 +5338,13 @@ SMODS.Joker{
     atlas = 'Joker',
 	prefix_config = {atlas = false},
     pos = { x = 0, y = 7},
-    rarity = "fg_rare_alt",
-    cost = 6,
-    
-     -- Custom logic for spawning
-    config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_drivers_license"
-		},
+			alternate_key ="j_drivers_license"
+		},	
+    rarity = "fg_rare_alt",
+    cost = 6,
+    config = {
         fg_alternate = {}, -- Kept between alternations
         extra = {
 			xmult = 3
@@ -5425,15 +5383,13 @@ SMODS.Joker{
     atlas = 'Joker',
 	prefix_config = {atlas = false},
     pos = { x = 9, y = 8},
-    rarity = "fg_uncommon_alt",
-    cost = 5,
-      
-     -- Custom logic for spawning
-    config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_bootstraps"
-		},
+			alternate_key ="j_bootstraps"
+		},	
+    rarity = "fg_uncommon_alt",
+    cost = 5,
+    config = {
         fg_alternate = {}, -- Kept between alternations
         extra = {
 			mult = 0,
@@ -5482,15 +5438,13 @@ SMODS.Joker{
 	prefix_config = {atlas = false},
     pos = { x = 3, y = 8},
 	soul_pos = { x = 3, y = 9},
-    rarity = "fg_legendary_alt",
-    cost = 20,
-    
-     -- Custom logic for spawning
-    config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_caino"
-		},
+			alternate_key ="j_caino"
+		},	
+    rarity = "fg_legendary_alt",
+    cost = 20,
+    config = {
         fg_alternate = {}, -- Kept between alternations
         extra = {
 			xmult = 1,
@@ -5526,15 +5480,13 @@ SMODS.Joker{
 	prefix_config = {atlas = false},
     pos = { x = 4, y = 8},
 	soul_pos = { x = 4, y = 9},
-    rarity = "fg_legendary_alt",
-    cost = 20,
-    
-     -- Custom logic for spawning
-    config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_triboulet"
-		},
+			alternate_key ="j_triboulet"
+		},	
+    rarity = "fg_legendary_alt",
+    cost = 20,
+    config = {
         fg_alternate = {}, -- Kept between alternations
         extra = {
 			xmult = 1,
@@ -5570,15 +5522,13 @@ SMODS.Joker{
 	prefix_config = {atlas = false},
     pos = { x = 5, y = 8},
 	soul_pos = { x = 5, y = 9},
-    rarity = "fg_legendary_alt",
-    cost = 20,
-    
-     -- Custom logic for spawning
-    config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_yorick"
-		},
+			alternate_key ="j_yorick"
+		},	
+    rarity = "fg_legendary_alt",
+    cost = 20,
+    config = {
         fg_alternate = {}, -- Kept between alternations
         extra = {
 			xmult = 1,
@@ -5622,15 +5572,13 @@ SMODS.Joker{
 	prefix_config = {atlas = false},
     pos = { x = 6, y = 8},
 	soul_pos = { x = 6, y = 9},
-    rarity = "fg_legendary_alt",
-    cost = 20,
-    
-     -- Custom logic for spawning
-    config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_chicot"
-		},
+			alternate_key ="j_chicot"
+		},	
+    rarity = "fg_legendary_alt",
+    cost = 20,
+    config = {
         fg_alternate = {}, -- Kept between alternations
         extra = {
 			discards = 0,
@@ -5669,15 +5617,13 @@ SMODS.Joker{
 	prefix_config = {atlas = false},
     pos = { x = 7, y = 8},
 	soul_pos = { x = 7, y = 9},
-    rarity = "fg_legendary_alt",
-    cost = 20,
-    
-     -- Custom logic for spawning
-    config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = "j_perkeo"
-		},
+			alternate_key ="j_perkeo"
+		},	
+    rarity = "fg_legendary_alt",
+    cost = 20,
+    config = {
         fg_alternate = {}, -- Kept between alternations
         extra = {
 			count = 1
@@ -5731,11 +5677,11 @@ SMODS.Joker {
 	cost = 30,
 	atlas = "collective",
 	pos = { x = 3, y = 0 },
-	config = {
 	fg_data = {
 		is_alternate = false,
-		alternate_card = "j_fg_deathmoderealalt"
-	}, extra = { Xmult = 20, blindchipmult = 2 } },
+		alternate_key ="j_fg_deathmoderealalt"
+	},
+	config = { extra = { Xmult = 20, blindchipmult = 2 } },
 	loc_vars = function(self, info_queue, card)
 		return {
 			vars = {
@@ -5771,11 +5717,11 @@ SMODS.Joker {
 -- Deathmodereal alt
 SMODS.Joker {
 	key = 'deathmoderealalt',
-	config = {
 	fg_data = {
 		is_alternate = true,
-		alternate_card = "j_fg_deathmodereal"
-	}, extra = { Xmult = 1.25 } },
+		alternate_key ="j_fg_deathmodereal"
+	},
+	config = { extra = { Xmult = 1.25 } },
 	loc_vars = function(self, info_queue, card)
 		return { vars = { card.ability.extra.Xmult } }
 	end,
@@ -5794,11 +5740,11 @@ SMODS.Joker {
 -- Jogla (I was told he was op, but I decided to not change it lol)
 SMODS.Joker {
 	key = 'jogla',
-	config = {
 	fg_data = {
 		is_alternate = false,
-		alternate_card = "j_fg_jogla_alt"
-	}, extra = { duplicate = 2, name = "None"} },
+		alternate_key ="j_fg_jogla_alt"
+	},
+	config = { extra = { duplicate = 2, name = "None"} },
 	update = function (self, card, dt)
 		if G.consumeables then
 			if G.consumeables.cards[1] then
@@ -5852,11 +5798,11 @@ SMODS.Joker {
 }
 SMODS.Joker {
 	key = 'jogla_alt',
-	config = {
 	fg_data = {
 		is_alternate = true,
-		alternate_card = "j_fg_jogla"
-	}, extra = { increase = 1, extra_size = 2} },
+		alternate_key ="j_fg_jogla"
+	},
+	config = { extra = { increase = 1, extra_size = 2} },
 	loc_vars = function(self, info_queue, card)
 		return {
 			vars = {
@@ -5890,11 +5836,11 @@ SMODS.Joker {
 }
 SMODS.Joker {
 	key = 'goldenleaf',
-	config = {
-		fg_data = {
-			is_alternate = false,
-			alternate_card = "j_fg_goldenleafalt"
-		}, extra = { Xmult = 3 } },
+	fg_data = {
+		is_alternate = false,
+		alternate_key ="j_fg_goldenleafalt"
+	},
+	config = { extra = { Xmult = 3 } },
 	loc_vars = function(self, info_queue, card)
 		table.insert(info_queue,G.P_CENTERS.m_gold)
 		table.insert(info_queue,G.P_CENTERS.m_fg_gold)
@@ -5919,11 +5865,11 @@ SMODS.Joker {
 -- goldenleaf alt
 SMODS.Joker {
 	key = 'goldenleafalt',
-	config = {
 	fg_data = {
 		is_alternate = true,
-		alternate_card = "j_fg_goldenleaf"
-	}, extra = { increase = 1, extra_size = 0} },
+		alternate_key ="j_fg_goldenleaf"
+	},	
+	config = { extra = { increase = 1, extra_size = 0} },
 	loc_vars = function(self, info_queue, card)
 		return {
 			vars = {
@@ -5953,11 +5899,11 @@ SMODS.Joker {
 -- devlog time!!! violin voucher flashbacks
 SMODS.Joker {
 	key = 'jenker',
-	config = {
 	fg_data = {
 		is_alternate = false,
-		alternate_card = "j_fg_jenkeralt"
-	}, extra = { repetitions = 1, increase = false } },
+		alternate_key ="j_fg_jenkeralt"
+	},	
+	config = { extra = { repetitions = 1, increase = false } },
 	loc_vars = function(self, info_queue, card)
 		return {
 			vars = {
@@ -5989,11 +5935,11 @@ SMODS.Joker {
 -- Jenku alt
 SMODS.Joker {
 	key = 'jenkeralt',
-	config = {
 	fg_data = {
 		is_alternate = true,
-		alternate_card = "j_fg_jenker"
-	}, extra = { name = "jenku", repetitions = 5, odds = 4} },
+		alternate_key ="j_fg_jenker"
+	},	
+	config = { extra = { name = "jenku", repetitions = 5, odds = 4} },
 	rarity = "fg_collective_alt",
 	atlas = 'collective',
 	loc_txt = {
@@ -6125,14 +6071,14 @@ SMODS.Joker {
 -- Samuran
 SMODS.Joker{
 	key = 'samuran',
-	-- missing atlas key
+	-- missing atlas ke
+		fg_data = {
+			is_alternate = false,
+			alternate_key ='j_fg_samuran_alt'
+		},
 	rarity = 'fg_collective',
 	cost = 30,
 	config = {
-		fg_data = {
-			is_alternate = false,
-			alternate_card = 'j_fg_samuran_alt'
-		},
 		extra = {
 			max_chance = 2
 		}
@@ -6168,13 +6114,13 @@ SMODS.Joker{
 SMODS.Joker{
 	key = 'samuran_alt',
 	-- Missing atlas data
+		fg_data = {
+			is_alternate = true,
+			alternate_key ='j_fg_samuran'
+		},	
 	rarity = 'fg_collective_alt',
 	cost = 30,
 	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_card = 'j_fg_samuran'
-		},
 		extra = {
 			inflation = 1,
 		}

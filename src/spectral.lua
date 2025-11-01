@@ -23,7 +23,7 @@ SMODS.Consumable{
     config = {
         fg_data = {
 			is_alternate = true,
-			alternate_card = 'c_soul'
+			alternate_key ='c_soul'
 		},
     },
     set_sprites = function (self, card, front)

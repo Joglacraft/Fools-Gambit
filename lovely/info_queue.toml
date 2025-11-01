@@ -15,12 +15,12 @@ pattern = '''
 '''
 position = "after"
 payload = '''
-    if first_pass and FG.config.extended_tooltips and _c.config and _c.config.fg_data then
-        if _c.config.fg_data.alternate_card then
-            info_queue[#info_queue+1] = G.P_CENTERS[_c.config.fg_data.alternate_card]
+    if first_pass and FG.config.extended_tooltips and _c.fg_data then
+        if _c.fg_data.alternate_key then
+            info_queue[#info_queue+1] = G.P_CENTERS[_c.fg_data.alternate_key]
         end
-        if _c.config.fg_data.crossover_label then
-            info_queue[#info_queue+1] = {set = 'Other', key = 'fg_crossover_label', vars = {_c.config.fg_data.crossover_label}}
+        if _c.fg_data.crossover_label then
+            info_queue[#info_queue+1] = {set = 'Other', key = 'fg_crossover_label', vars = {_c.fg_data.crossover_label}}
         end
     end
 '''
@@ -43,12 +43,12 @@ payload = '''
         elseif temp == 'purple_seal' then temp = 'Purple' 
         else temp = string.sub(temp,1,string.len(temp)-5)
         end
-        if G.P_SEALS[temp] and G.P_SEALS[temp].config and G.P_SEALS[temp].config.fg_data then
-            if G.P_SEALS[temp].config.fg_data.alternate_card then
-                info_queue[#info_queue+1] = G.P_SEALS[G.P_SEALS[temp].config.fg_data.alternate_card]
+        if G.P_SEALS[temp] and G.P_SEALS[temp].fg_data then
+            if G.P_SEALS[temp].fg_data.alternate_key then
+                info_queue[#info_queue+1] = G.P_SEALS[G.P_SEALS[temp].fg_data.alternate_key]
             end
-            if first_pass and G.P_SEALS[temp].config.fg_data.crossover_label then
-                info_queue[#info_queue+1] = {set = 'Other', key = 'fg_crossover_label', vars = {G.P_SEALS[temp].config.fg_data.crossover_label}}
+            if first_pass and G.P_SEALS[temp].fg_data.crossover_label then
+                info_queue[#info_queue+1] = {set = 'Other', key = 'fg_crossover_label', vars = {G.P_SEALS[temp].fg_data.crossover_label}}
             end
         end 
     end

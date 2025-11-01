@@ -36,9 +36,9 @@ local function tonal_loc_vars (params,extra)
     if not G[cardarea] then return {vars = {math.ceil(card.ability.extra.cards),jk_txt}} end
     for i=1, math.min(math.ceil(card.ability.extra.cards),#G[cardarea].cards) do
         if not card.fake_card and #G[cardarea].cards >= 1
-        and G[cardarea].cards[i].ability.fg_data
+        and G[cardarea].cards[i].config.center.fg_data
         and not FG.FUNCS.get_card_info(G[cardarea].cards[i]).stickers['fg_unchangeable'] then
-            info_queue[#info_queue+1] = G.P_CENTERS[G[cardarea].cards[i].ability.fg_data.alternate_card]
+            info_queue[#info_queue+1] = G.P_CENTERS[G[cardarea].cards[i].config.center.fg_data.alternate_key]
         end
     end
     
@@ -55,9 +55,9 @@ local function tonal_can (param,extra)
     if G[cardarea] and #G[cardarea].cards >= 1 then
         if not card.ability then card.ability = {extra = { cards = 1}} end
         for i=1, math.min(math.ceil(card.ability.extra.cards or 1),#G[cardarea].cards) do
-            if G[cardarea].cards[i].ability.fg_data
+            if G[cardarea].cards[i].config.center.fg_data
             and not FG.FUNCS.get_card_info(G[cardarea].cards[i]).stickers['fg_unchangeable']
-            and FG.FUNCS.check_exists(G[cardarea].cards[i].ability.fg_data.alternate_card) then return true end
+            and FG.FUNCS.check_exists(G[cardarea].cards[i].config.center.fg_data.alternate_key) then return true end
         end
     end
 end
@@ -78,11 +78,11 @@ local function tonal_use (param,extra)
         func = function()
             for i=1, math.min(math.ceil(card.ability.extra.cards or 1),#G[cardarea].cards) do
                 if not FG.FUNCS.get_card_info(G[cardarea].cards[i]).stickers['fg_unchangeable']
-                and FG.FUNCS.check_exists(G[cardarea].cards[i].ability.fg_data.alternate_card) then
+                and FG.FUNCS.check_exists(G[cardarea].cards[i].config.center.fg_data.alternate_key) then
                     local c = FG.FUNCS.alternate_card(G[cardarea].cards[i])
                     FG.FUNCS.update_edition(c.original,c.alternate)
                     FG.FUNCS.update_alternate_values(c.original,c.alternate)
-                    card:juice_up()        
+                    card:juice_up()
                 end
             end
             play_sound("tarot1")
@@ -106,8 +106,8 @@ local function bulk_loc (param,extra)
         local can = false
         for _,vv in ipairs(extra.rarity) do if FG.FUNCS.get_card_info(v).rarity == vv then can = true end end
         for _,vv in ipairs(extra.rarity) do if FG.FUNCS.get_card_info(v).rarity == vv then can = true end end
-        if not FG.FUNCS.get_card_info(v).stickers['fg_unchangeable'] and can and v.ability.fg_data then
-            info_queue[#info_queue+1] = G.P_CENTERS[v.ability.fg_data.alternate_card]
+        if not FG.FUNCS.get_card_info(v).stickers['fg_unchangeable'] and can and v.config.center.fg_data then
+            info_queue[#info_queue+1] = G.P_CENTERS[v.config.center.fg_data.alternate_key]
         end
     end
 end
@@ -144,8 +144,8 @@ local function bulk_use (param,extra)
                 for _,vv in ipairs(extra.rarity) do if FG.FUNCS.get_card_info(G[cardarea].cards[i]).rarity == vv then can = true end end
 
                 if not FG.FUNCS.get_card_info(G[cardarea].cards[i]).stickers['fg_unchangeable']
-                and G[cardarea].cards[i].ability.fg_data
-                and FG.FUNCS.check_exists(G[cardarea].cards[i].ability.fg_data.alternate_card)
+                and G[cardarea].cards[i].config.center.fg_data
+                and FG.FUNCS.check_exists(G[cardarea].cards[i].config.center.fg_data.alternate_key)
                 and can then
                     local c = FG.FUNCS.alternate_card(G[cardarea].cards[i])
                     FG.FUNCS.update_edition(c.original,c.alternate)
@@ -169,7 +169,7 @@ SMODS.Consumable{
         fg_data = {
             fg_data = {
                 is_alternate = false,
-                alternate_card = "c_fg_tonal_alt"
+                alternate_key ="c_fg_tonal_alt"
 		    },
         },
         extra = {cards = 1
@@ -187,7 +187,7 @@ SMODS.Consumable{
     config = {
         fg_data = {
             is_alternate = false,
-            alternate_card = "c_fg_atonal_alt"
+            alternate_key ="c_fg_atonal_alt"
         },
         extra = {cards = 1
     }},
@@ -204,7 +204,7 @@ SMODS.Consumable{
     config = {
         fg_data = {
             is_alternate = false,
-            alternate_card = ""
+            alternate_key =""
         },
         extra = {
             max_highllight = 3
@@ -218,7 +218,7 @@ SMODS.Consumable{
         }
         if not G.hand then return ret end
         for _,v in ipairs(G.hand.highlighted) do
-            info_queue[#info_queue+1] = G.P_CENTERS[v.ability and v.ability.fg_data and v.ability.fg_data.alternate_card]
+            info_queue[#info_queue+1] = G.P_CENTERS[v.ability and v.config.center.fg_data and v.config.center.fg_data.alternate_key]
         end
         return ret
     end,
@@ -253,7 +253,7 @@ SMODS.Consumable{
             func = function()
                     for k,v in pairs(G.hand.highlighted) do
                         -- FG.FUNCS.flip_editions(G.hand.highlighted[i]) -- change to alternate editions when theyre implemented
-                        if FG.FUNCS.get_card_info(v).key ~= 'c_base' and v.ability and v.ability.fg_data then FG.FUNCS.alternate_enhancement(v) end
+                        if FG.FUNCS.get_card_info(v).key ~= 'c_base' and v.ability and v.config.center.fg_data then FG.FUNCS.alternate_enhancement(v) end
                         --FG.FUNCS.alternate_edition(v)
                         if FG.FUNCS.get_card_info(v).seal and v.ability.seal.fg_data then FG.FUNCS.alternate_seal(v) end
                     end
@@ -283,7 +283,7 @@ SMODS.Consumable{
     config = {
         fg_data = {
             is_alternate = false,
-            alternate_card = "c_fg_treble_alt"
+            alternate_key ="c_fg_treble_alt"
         },
     },
     loc_vars = function (self, info_queue, card) return bulk_loc({self,info_queue,card},{area = "jokers", rarity = {1,"fg_common_alt"}}) end,
@@ -299,7 +299,7 @@ SMODS.Consumable{
     config = {
         fg_data = {
             is_alternate = false,
-            alternate_card = "c_fg_bass_alt"
+            alternate_key ="c_fg_bass_alt"
         },
     },
     loc_vars = function (self, info_queue, card) return bulk_loc({self,info_queue,card},{area = "jokers", rarity = {2,"fg_uncommon_alt"}}) end,
@@ -315,7 +315,7 @@ SMODS.Consumable{
     config = {
         fg_data = {
             is_alternate = false,
-            alternate_card = "c_fg_alto_alt"
+            alternate_key ="c_fg_alto_alt"
         },
     },
     loc_vars = function (self, info_queue, card) return bulk_loc({self,info_queue,card},{area = "jokers", rarity = {3,"fg_rare_alt"}}) end,
@@ -385,7 +385,7 @@ SMODS.Consumable{
     can_use = function(self, card) return G.jokers and G.jokers.cards and #G.jokers.cards > 0 end,
     use = function(self, card, area, copier)
         for _,v in ipairs(G.jokers.cards) do
-            if v.ability.fg_data and FG.FUNCS.is_alternate(v) then
+            if v.config.center.fg_data and FG.FUNCS.is_alternate(v) then
                 G.E_MANAGER:add_event(Event({func = function()
                 play_sound('timpani')
                 card:juice_up()
@@ -419,7 +419,7 @@ SMODS.Consumable{
     config = {
         fg_data = {
             is_alternate = true,
-            alternate_card = "c_fg_tonal"
+            alternate_key ="c_fg_tonal"
         },
         extra = {cards = 1}
     },
@@ -436,7 +436,7 @@ SMODS.Consumable{
     config = {
         fg_data = {
             is_alternate = true,
-            alternate_card = "c_fg_atonal_alt"
+            alternate_key ="c_fg_atonal_alt"
         },
         extra = {cards = 1}
     },
@@ -453,7 +453,7 @@ SMODS.Consumable{
     config = {
         fg_data = {
             is_alternate = true,
-            alternate_card = "c_fg_treble"
+            alternate_key ="c_fg_treble"
         },
     },
 	pos = { x = 2, y = 0 },
@@ -469,7 +469,7 @@ SMODS.Consumable{
     config = {
         fg_data = {
             is_alternate = true,
-            alternate_card = "c_fg_bass"
+            alternate_key ="c_fg_bass"
         },
     },
 	pos = { x = 0, y = 0 },
@@ -485,7 +485,7 @@ SMODS.Consumable{
     config = {
         fg_data = {
             is_alternate = true,
-            alternate_card = "c_fg_tonal_alt"
+            alternate_key ="c_fg_tonal_alt"
         },
     },
 	pos = { x = 1, y = 0 },

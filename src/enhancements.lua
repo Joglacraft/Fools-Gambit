@@ -14,12 +14,12 @@ SMODS.Enhancement{
 	atlas = "centers",
 	prefix_config = {atlas = false},
 	pos = { x = 1, y = 1 },
-	config = {
-		fg_data = {
+			fg_data = {
 			is_alternate = true,
-			alternate_card = 'm_bonus',
+			alternate_key ='m_bonus',
 			base_enhancement = true,
 		},
+	config = {
 		extra = {
 			grant_max = 2,
 			grant_amount = 60,
@@ -57,12 +57,12 @@ SMODS.Enhancement{
 	atlas = "centers",
 	prefix_config = {atlas = false},
 	pos = { x = 2, y = 1 },
-	config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = 'm_mult',
+			alternate_key ='m_mult',
 			base_enhancement = true,
-		},
+		},	
+	config = {
 		extra = {
 			grant_max = 2,
 			grant_amount = 8,
@@ -100,12 +100,12 @@ SMODS.Enhancement{
 	atlas = "centers",
 	prefix_config = {atlas = false},
 	pos = { x = 3, y = 1},
-	config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = 'm_wild',
+			alternate_key ='m_wild',
 			base_enhancement = true,
-		},
+		},	
+	config = {
 		extra = {
 			chips = 20,
 			mult = 6,
@@ -144,12 +144,12 @@ SMODS.Enhancement{
 	atlas = "centers",
 	prefix_config = {atlas = false},
 	pos = { x = 5, y = 1 },
-	config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = 'm_glass',
+			alternate_key ='m_glass',
 			base_enhancement = true,
-		},
+		},	
+	config = {
 		bonus = 0,
 		x_mult = 0,
 	},
@@ -190,12 +190,12 @@ SMODS.Enhancement{
 	atlas = "centers",
 	prefix_config = {atlas = false},
 	pos = { x = 6, y = 1},
-	config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = 'm_steel',
+			alternate_key ='m_steel',
 			base_enhancement = true,
-		},
+		},	
+	config = {
 		extra = {
 			card_gain = 0.05, -- How much Xmult is gained per steel card.
 			card_mult = 1 -- How much Xmult all steel cards give.
@@ -263,12 +263,12 @@ SMODS.Enhancement{
 	key = "stone",
 	atlas = 'stone_alt',
 	pos = { x = 0, y = 0 },
-	config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = 'm_stone',
+			alternate_key ='m_stone',
 			base_enhancement = true,
-		},
+		},	
+	config = {
 		h_chips = 30,
 		extra = {
 			chips = 30,
@@ -306,12 +306,12 @@ SMODS.Enhancement{
 	atlas = "centers",
 	prefix_config = {atlas = false},
 	pos = { x = 6, y = 0},
-	config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = 'm_gold',
+			alternate_key ='m_gold',
 			base_enhancement = true,
-		},
+		},	
+	config = {
 		extra = {
 			dollars = 0
 		}
@@ -373,12 +373,12 @@ SMODS.Enhancement{
 	atlas = "centers",
 	prefix_config = {atlas = false},
 	pos = {x = 4, y = 1},
-	config = {
 		fg_data = {
 			is_alternate = true,
-			alternate_card = 'm_lucky',
+			alternate_key ='m_lucky',
 			base_enhancement = true,
-		},
+		},	
+	config = {
 		extra = {
 			chips_max = 3,
 			chips = 30,

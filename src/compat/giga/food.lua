@@ -8,18 +8,16 @@ SMODS.Consumable{
     prefix_config = {atlas = false},
     pos = {x = 2, y = 1},
     soul_pos = {x = 3, y = 1},
+    fg_data = {
+        is_alternate = true,
+        alternate_key ='c_giga_birthdayCake',
+        crossover_label = 'GIGA'
+    },    
     rarity = 4,
     cost = 4,
     hidden = true,
     soul_set = 'Giga_Food',
-    config = {
-        fg_data = {
-            is_alternate = true,
-            alternate_card = 'c_giga_birthdayCake',
-            crossover_label = 'GIGA'
-        },
-        extra = 4
-    },
+    config = {extra = 4},
     loc_vars = function (self, info_queue, card)
         info_queue[#info_queue+1] = {key = 'e_negative_consumable', set = 'Edition', config = {extra = 1}}
         return { vars = {
@@ -52,16 +50,17 @@ SMODS.Consumable{
     prefix_config = {atlas = false},
     pos = {x = 2, y = 1},
     soul_pos = {x = 3, y = 4},
+    fg_data = {
+        is_alternate = true,
+        alternate_key ='c_giga_turkey',
+        crossover_label = 'GIGA'
+    },
     rarity = 4,
     cost = 4,
     hidden = true,
     soul_set = 'Giga_Food',
     config = {
-        fg_data = {
-            is_alternate = true,
-            alternate_card = 'c_giga_turkey',
-            crossover_label = 'GIGA'
-        },
+
         extra = {
             round = 3,
             round_left = 3,

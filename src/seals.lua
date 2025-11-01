@@ -10,13 +10,13 @@ SMODS.Seal{
     key = 'gold',
     atlas = "Enhancers",
     pos = {x = 2, y = 0},
+        fg_data = {
+            is_alternate = true,
+            alternate_key ='Gold'
+        },    
     badge_colour = G.C.GOLD,
     prefix_config = {atlas = false},
     config = {
-        fg_data = {
-            is_alternate = true,
-            alternate_card = 'Gold'
-        },
         should_give = false,
         take = 3,
         give = 8,
@@ -52,11 +52,11 @@ SMODS.Seal{
     pos = {x = 5, y = 4},
     badge_colour = G.C.RED,
     prefix_config = {atlas = false},
-    config = {
         fg_data = {
             is_alternate = true,
-            alternate_card = 'Red'
-        },
+            alternate_key ='Red'
+        },    
+    config = {
         retriggers = 3,
         retriggers_d = 1,
     },
@@ -103,14 +103,13 @@ SMODS.Seal{
     key = 'blue',
     atlas = "Enhancers",
     pos = {x = 6, y = 4},
+    fg_data = {
+        is_alternate = true,
+        alternate_key ='Blue'
+    },
+    config = {repetitions = 1},
     badge_colour = G.C.BLUE,
     prefix_config = {atlas = false},
-    config = {
-        fg_data = {
-            is_alternate = true,
-            alternate_card = 'Blue'
-        },
-    },
     loc_vars = function (self, info_queue, card)
         return {vars = {
             card.ability.seal.repetitions
@@ -165,14 +164,13 @@ SMODS.Seal{
     key = 'purple',
     atlas = "Enhancers",
     pos = {x = 4, y = 4},
+    fg_data = {
+        is_alternate = true,
+        alternate_key ='Purple'
+    },
+    config = {repetitions = 1},
     badge_colour = G.C.PURPLE,
     prefix_config = {atlas = false},
-    config = {
-        fg_data = {
-            is_alternate = true,
-            alternate_card = 'Purple'
-        },
-    },
     loc_vars = function (self, info_queue, card)
         return {vars = {
             card.ability.seal.repetitions
@@ -202,12 +200,12 @@ SMODS.Seal{
         end
     end
 }
---[[`
+
 SMODS.Seal {
     name = "Tune",
     key = "Tune",
     badge_colour = HEX("1d4fd7"),
-	config = { mult = 5, chips = 20, money = 1, x_mult = 1.5  },
+	config = { extra = 1  },
     loc_txt = {
         label = 'Tune',
         name = 'Tune',
@@ -220,10 +218,19 @@ SMODS.Seal {
     pos = {x=0, y=0},
 
     calculate = function(self, card, context)
-        if context.main_scoring and context.cardarea == G.play then
-            return create_card("aberration", G.consumeables, nil, nil, false, true, nil)
+        if context.before and context.cardarea == "unscored" then
+            for i=1, math.min(card.ability.seal.extra or 1, G.consumeables.config.card_limit-#G.consumeables.cards) do
+                SMODS.add_card{
+                    set = 'aberration'
+                }
+                FG.FUNCS.card_eval_status_text{
+                    card = card,
+                    message = "+1 aberration",
+                    colour = 'purple',
+                    mode = "literal"
+                }
+            end
         end
         -- does not work, i cant get it to calculate without being scored
     end
 }
-]]

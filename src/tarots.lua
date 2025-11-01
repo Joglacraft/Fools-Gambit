@@ -106,12 +106,11 @@ SMODS.Consumable{
     atlas = "Tarot",
     prefix_config = {atlas = false},
     pos = {x = 0, y = 0},
-    config = {
         fg_data = {
             is_alternate = true,
-            alternate_card = "c_fool"
-        },
-        extra = {amount = 1}},
+            alternate_key ="c_fool"
+        },    
+    config = { extra = {amount = 1}},
     loc_vars = function (self, info_queue, card)
         return {vars = {card.ability.extra.amount}}
     end,
@@ -145,11 +144,11 @@ SMODS.Consumable{
     atlas = "Tarot",
     prefix_config = {atlas = false},
     pos = {x = 1 , y = 0},
-    config = {
         fg_data = {
             is_alternate = true,
-            alternate_card = "c_magician"
-        },
+            alternate_key ="c_magician"
+        },    
+    config = {
         extra = {
             convert = 4,
         }
@@ -174,11 +173,11 @@ SMODS.Consumable{
     atlas = "Tarot",
     prefix_config = {atlas = false},
     pos = {x = 2, y = 0},
-    config = {
     fg_data = {
             is_alternate = true,
-            alternate_card = "c_high_priestess"
-        },
+            alternate_key ="c_high_priestess"
+        },    
+    config = {
         extra = {
             min = 1,
             max = 8
@@ -220,11 +219,11 @@ SMODS.Consumable{
     atlas = "Tarot",
     prefix_config = {atlas = false},
     pos = {x = 3 , y = 0},
-    config = {
         fg_data = {
             is_alternate = true,
-            alternate_card = "c_empress"
-        },
+            alternate_key ="c_empress"
+        },    
+    config = {
         extra = {
             convert = 4,
         }
@@ -249,11 +248,11 @@ SMODS.Consumable{
     atlas = "Tarot",
     prefix_config = {atlas = false},
     pos = {x = 4, y = 0},
-    config = {
         fg_data = {
             is_alternate = true,
-            alternate_card = "c_emperor"
-        },
+            alternate_key ="c_emperor"
+        },    
+    config = {
         extra = {
             min = 1,
             max = 16
@@ -294,11 +293,11 @@ SMODS.Consumable{
     atlas = "Tarot",
     prefix_config = {atlas = false},
     pos = {x = 5 , y = 0},
-    config = {
         fg_data = {
             is_alternate = true,
-            alternate_card = "c_hierophant"
-        },
+            alternate_key ="c_hierophant"
+        },    
+    config = {
         extra = {
             convert = 4,
         }
@@ -323,11 +322,11 @@ SMODS.Consumable{
     atlas = "Tarot",
     prefix_config = {atlas = false},
     pos = {x = 6 , y = 0},
-    config = {
         fg_data = {
             is_alternate = true,
-            alternate_card = "c_lovers"
-        },
+            alternate_key ="c_lovers"
+        },    
+    config = {
         extra = {
             convert = 4,
         }
@@ -353,11 +352,11 @@ SMODS.Consumable{
     atlas = "Tarot",
     prefix_config = {atlas = false},
     pos = {x = 7 , y = 0},
-    config = {
         fg_data = {
             is_alternate = true,
-            alternate_card = "c_chariot"
-        },
+            alternate_key ="c_chariot"
+        },    
+    config = {
         extra = {
             convert = 4,
         }
@@ -382,11 +381,11 @@ SMODS.Consumable{
     atlas = "Tarot",
     prefix_config = {atlas = false},
     pos = {x = 8 , y = 0},
-    config = {
         fg_data = {
             is_alternate = true,
-            alternate_card = "c_justice"
-        },
+            alternate_key ="c_justice"
+        },    
+    config = {
         extra = {
             convert = 4,
         }
@@ -411,11 +410,11 @@ SMODS.Consumable{
     atlas = "Tarot",
     prefix_config = {atlas = false},
     pos = {x = 9, y = 0},
-    config = {
         fg_data = {
             is_alternate = true,
-            alternate_card = "c_hermit"
-        },
+            alternate_key ="c_hermit"
+        },    
+    config = {
         extra = {highlight = 3, subtract_max = 30
     }},
     loc_vars = function (self, info_queue, card)
@@ -474,11 +473,11 @@ SMODS.Consumable{
     atlas = "Tarot",
     prefix_config = {atlas = false},
     pos = {x = 0, y = 1},
-    config = {
         fg_data = {
             is_alternate = true,
-            alternate_card = "c_wheel_of_fortune"
-        },
+            alternate_key ="c_wheel_of_fortune"
+        },    
+    config = {
         extra = {
             min_chance = 1,
             max_chance = 18
@@ -540,11 +539,11 @@ SMODS.Consumable{
     atlas = "Tarot",
     prefix_config = {atlas = false},
     pos = {x = 1, y = 1},
-    config = {
         fg_data = {
             is_alternate = true,
-            alternate_card = "c_strength"
-        },
+            alternate_key ="c_strength"
+        },    
+    config = {
         extra = {
             ranks = 2
         }
@@ -594,11 +593,11 @@ SMODS.Consumable{
     atlas = "Tarot",
     prefix_config = {atlas = false},
     pos = {x = 2, y = 1},
-    config = {
         fg_data = {
             is_alternate = true,
-            alternate_card = "c_hanged_man"
-        },
+            alternate_key ="c_hanged_man"
+        },    
+    config = {
         extra = {destroy = 4}
     },
     loc_vars = function (self, info_queue, card)
@@ -640,11 +639,11 @@ SMODS.Consumable{
     atlas = "Tarot",
     prefix_config = {atlas = false},
     pos = {x = 3, y = 1},
-    config = {
         fg_data = {
             is_alternate = true,
-            alternate_card = "c_death"
-        },
+            alternate_key ="c_death"
+        },    
+    config = {
         extra = {highlight = 4}
     },
     loc_vars = function (self, info_queue, card)
@@ -698,11 +697,11 @@ SMODS.Consumable{
     atlas = "Tarot",
     prefix_config = {atlas = false},
     pos = {x = 4, y = 1},
-    config = {
         fg_data = {
             is_alternate = true,
-            alternate_card = "c_temperance"
-        },
+            alternate_key ="c_temperance"
+        },    
+    config = {
         extra = {value = 0, max = 50}
     },
     loc_vars = function (self, info_queue, card)
@@ -743,11 +742,11 @@ SMODS.Consumable{
     atlas = "Tarot",
     prefix_config = {atlas = false},
     pos = {x = 5 , y = 1},
-    config = {
         fg_data = {
             is_alternate = true,
-            alternate_card = "c_devil"
-        },
+            alternate_key ="c_devil"
+        },    
+    config = {
         extra = {
             convert = 4,
         }
@@ -773,11 +772,11 @@ SMODS.Consumable{
     atlas = "Tarot",
     prefix_config = {atlas = false},
     pos = {x = 6 , y = 1},
-    config = {
         fg_data = {
             is_alternate = true,
-            alternate_card = "c_tower"
-        },
+            alternate_key ="c_tower"
+        },    
+    config = {
         extra = {
             convert = 4,
         }
@@ -802,11 +801,11 @@ SMODS.Consumable{
     atlas = "Tarot",
     prefix_config = {atlas = false},
     pos = {x = 7, y = 1},
-    config = {
         fg_data = {
             is_alternate = true,
-            alternate_card = "c_star"
-        },
+            alternate_key ="c_star"
+        },    
+    config = {
         extra = {highlight = 4}
     },
     loc_vars = function (self, info_queue, card)
@@ -843,11 +842,11 @@ SMODS.Consumable{
     atlas = "Tarot",
     prefix_config = {atlas = false},
     pos = {x = 8, y = 1},
-    config = {
         fg_data = {
             is_alternate = true,
-            alternate_card = "c_moon"
-        },
+            alternate_key ="c_moon"
+        },    
+    config = {
         extra = {highlight = 4}
     },
     loc_vars = function (self, info_queue, card)
@@ -867,11 +866,11 @@ SMODS.Consumable{
     atlas = "Tarot",
     prefix_config = {atlas = false},
     pos = {x = 9, y = 1},
-    config = {
         fg_data = {
             is_alternate = true,
-            alternate_card = "c_sun"
-        },
+            alternate_key ="c_sun"
+        },    
+    config = {
         extra = {highlight = 4}
     },
     loc_vars = function (self, info_queue, card)
@@ -891,11 +890,11 @@ SMODS.Consumable{
     atlas = "Tarot",
     prefix_config = {atlas = false},
     pos = {x = 0, y = 2},
-    config = {
         fg_data = {
             is_alternate = true,
-            alternate_card = "c_judgement"
-        },
+            alternate_key ="c_judgement"
+        },    
+    config = {
         extra = {low_chance = 2, count = 2}
     },
     loc_vars = function (self, info_queue, card)
@@ -944,11 +943,11 @@ SMODS.Consumable{
     atlas = "Tarot",
     prefix_config = {atlas = false},
     pos = {x = 1, y = 2},
-    config = {
         fg_data = {
             is_alternate = true,
-            alternate_card = "c_world"
-        },
+            alternate_key ="c_world"
+        },    
+    config = {
         extra = {highlight = 4}
     },
     loc_vars = function (self, info_queue, card)

@@ -15,7 +15,7 @@ end
 --- Checks if a card is an alternate or not in the given table. Stops at the first instance of it's key.
 --- @param card table
 --- @return boolean
-function FG.FUNCS.is_alternate(card) return (card and card.ability and card.ability.fg_data and card.ability.fg_data.is_alternate) or false end
+function FG.FUNCS.is_alternate(card) return (card and card.ability and card.config.center.fg_data and card.config.center.fg_data.is_alternate) or false end
 
 --- Gets the key/value pair associated with the passing data.
 ---@param key string The provided card key.
@@ -48,7 +48,7 @@ end
 ---@return table|card table A table containing the old card and the new card.
 function FG.FUNCS.alternate_card(card)
 	local legacy = false -- Temporary thing for legacy code
-	local key = card.ability.fg_data.alternate_card or "j_joker"
+	local key = card.config.center.fg_data.alternate_card or "j_joker"
 	local found = FG.FUNCS.check_exists(key)
 
 	if not found then key = "j_joker" end
@@ -95,7 +95,7 @@ function FG.FUNCS.alternate_edition(source,target,ref)
 	ref = ref or FG.ALTS.edition_equivalents
 	target = target or source
 	if source.edition then
-		target:set_edition(source.ability.fg_data.alternate_card)
+		target:set_edition(source.config.center.fg_data.alternate_card)
 	else
 		target:set_edition(nil,true,true)
 	end
@@ -120,7 +120,7 @@ end
 function FG.FUNCS.alternate_enhancement(source,target,ref)
 	ref = ref or FG.ALTS.enhancement_equivalents
 	target = target or source
-	local enhancement = source.ability.fg_data.alternate_card
+	local enhancement = source.config.center.fg_data.alternate_key
 	if enhancement then target:set_ability(G.P_CENTERS[enhancement]) end
 end
 
@@ -128,7 +128,7 @@ end
 function FG.FUNCS.update_seal(source,target) end
 function FG.FUNCS.alternate_seal(source,target)
 	target = target or source
-	local seal = source.ability.seal.fg_data.alternate_card
+	local seal = G.P_SEALS[source:get_seal()].config.fg_data.alternate_key
 	if seal then target:set_seal(seal) end
 end
 
@@ -136,8 +136,8 @@ end
 ---@param source table|card is the old card, that is being deleted
 ---@param target table|card is the new card created for alternating.
 function FG.FUNCS.update_alternate_values(source,target,mode)
-	target.ability.fg_data = target.ability.fg_data or {}
-	target.ability.fg_data.vars = source.ability.fg_data and source.ability.fg_data.vars or {}
+	target.config.center.fg_data = target.config.center.fg_data or {}
+	target.config.center.fg_data.vars = source.config.center.fg_data and source.config.center.fg_data.vars or {}
 end
 
 --- Allows to integrate original<>alternate entries to the mod's tables.
@@ -409,6 +409,23 @@ G.FUNCS.FG_link_website = function(args)
 	love.system.openURL(args.config.ref_table)
 end
 
+function printt(tbl,max_indent,indent)
+	indent = indent or 0
+	max_indent = max_indent or 3
+	local spaces = string.rep("  ",2*indent)
+	for k,v in pairs(tbl) do
+		if type(v) ~= "table" then
+			print(spaces..k..": "..tostring(v))
+		else 
+			if indent < max_indent then
+				print(spaces..k..": [TABLE]")
+				printt(v,max_indent,indent+1)
+			else
+				return
+			end
+		end
+	end
+end
 
 
 --FG.fuck = math.pi/math.sqrt(-1)

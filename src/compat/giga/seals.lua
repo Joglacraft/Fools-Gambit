@@ -6,13 +6,13 @@ SMODS.Seal{
     atlas = 'giga_Seals',
     prefix_config = {atlas = false},
     pos = {x = 0, y = 1},
+    fg_data = {
+        is_alternate = true,
+        alternate_key ='giga_redplus',
+        crossover_label = 'GIGA',
+    },    
     badge_colour = G.C.RED,
     config = {
-        fg_data = {
-            is_alternate = true,
-            alternate_card = 'giga_redplus',
-            crossover_label = 'GIGA',
-        },
         retriggers = 3,
         retriggers_d = 1,
         plays_max = 2,
@@ -67,13 +67,13 @@ SMODS.Seal{
     atlas = 'giga_Seals',
     prefix_config = {atlas = false},
     pos = {x = 3, y = 1},
+    fg_data = {
+        is_alternate = true,
+        alternate_key ='giga_redplusplus',
+        crossover_label = 'GIGA',
+    },    
     badge_colour = G.C.RED,
     config = {
-        fg_data = {
-            is_alternate = true,
-            alternate_card = 'giga_redplusplus',
-            crossover_label = 'GIGA',
-        },
         retriggers = 4,
         retriggers_d = 1,
         plays_max = 3,
@@ -128,14 +128,12 @@ SMODS.Seal{
     atlas = 'giga_Seals',
     prefix_config = {atlas = false},
     pos = {x = 1, y = 1},
+    fg_data = {
+        is_alternate = true,
+        alternate_key ='giga_blueplus',
+        crossover_label = 'GIGA'
+    },
     badge_colour = G.C.BLUE,
-    config = {
-        fg_data = {
-            is_alternate = true,
-            alternate_card = 'giga_blueplus',
-            crossover_label = 'GIGA'
-        }
-    }
 }
 
 -- Purple+
@@ -144,14 +142,12 @@ SMODS.Seal{
     atlas = 'giga_Seals',
     prefix_config = {atlas = false},
     pos = {x = 3, y = 0},
+    fg_data = {
+        is_alternate = true,
+        alternate_key ='giga_purpleplus',
+        crossover_label = 'GIGA',
+    }   , 
     badge_colour = G.C.PURPLE,
-    config = {
-        fg_data = {
-            is_alternate = true,
-            alternate_card = 'giga_purpleplus',
-            crossover_label = 'GIGA',
-        }
-    },
     calculate = function (self, card, context)
         if context.discard and context.cardarea == G.hand and context.other_card == card then
             local c = 0
@@ -182,13 +178,13 @@ SMODS.Seal{
     atlas = 'giga_Seals',
     prefix_config = {atlas = false},
     pos = {x = 1, y = 2},
+    fg_data = {
+        is_alternate = true,
+        alternate_key ='giga_purpleplusplus',
+        crossover_label = 'GIGA',
+    },
     badge_colour = G.C.PURPLE,
     config = {
-        fg_data = {
-            is_alternate = true,
-            alternate_card = 'giga_purpleplusplus',
-            crossover_label = 'GIGA',
-        },
         minimum = 3,
         extra = 1,
     },

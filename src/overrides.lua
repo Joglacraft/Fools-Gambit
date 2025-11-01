@@ -199,7 +199,7 @@ local ref = Card.update
 
 function Card:update(dt)
 	local ret = ref(self,dt)
-	if self.ability and self.ability.fg_data and self.ability.fg_data.is_alternate then
+	if self.ability and self.config.center.fg_data and self.config.center.fg_data.is_alternate then
 		SMODS.Stickers['fg_alternate_mark']:apply(self,true)
 	else
 		SMODS.Stickers['fg_alternate_mark']:apply(self,false)
@@ -214,7 +214,7 @@ function Game:init_game_object()
 	local ret = ref(self)
 	self.P_CENTERS['m_lucky'].config.fg_data = {
 		is_alternate = false,
-		alternate_card = 'm_fg_lucky',
+		alternate_key ='m_fg_lucky',
 		base_enhancement = true,
 	}
 	FG.FUNCS.recalculate_pools()
