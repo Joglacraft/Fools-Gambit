@@ -226,7 +226,7 @@ SMODS.Consumable{
         if #G.hand.highlighted > 0 and #G.hand.highlighted <= card.ability.extra.max_highllight then
             for _,v in ipairs(G.hand.highlighted) do
                 if FG.FUNCS.get_card_info(v).key ~= 'c_base' 
-                or (FG.FUNCS.get_card_info(v).seal and v.ability.seal.fg_data) then 
+                or (FG.FUNCS.get_card_info(v).seal and G.P_SEALS[v:get_seal()].fg_data) then 
                     return true 
                 end
             end
@@ -255,7 +255,7 @@ SMODS.Consumable{
                         -- FG.FUNCS.flip_editions(G.hand.highlighted[i]) -- change to alternate editions when theyre implemented
                         if FG.FUNCS.get_card_info(v).key ~= 'c_base' and v.ability and v.config.center.fg_data then FG.FUNCS.alternate_enhancement(v) end
                         --FG.FUNCS.alternate_edition(v)
-                        if FG.FUNCS.get_card_info(v).seal and v.ability.seal.fg_data then FG.FUNCS.alternate_seal(v) end
+                        if FG.FUNCS.get_card_info(v).seal and G.P_SEALS[v:get_seal()].fg_data then FG.FUNCS.alternate_seal(v) end
                     end
                 return true
             end

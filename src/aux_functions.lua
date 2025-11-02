@@ -128,7 +128,7 @@ end
 function FG.FUNCS.update_seal(source,target) end
 function FG.FUNCS.alternate_seal(source,target)
 	target = target or source
-	local seal = G.P_SEALS[source:get_seal()].config.fg_data.alternate_key
+	local seal = G.P_SEALS[source:get_seal()].fg_data.alternate_key
 	if seal then target:set_seal(seal) end
 end
 

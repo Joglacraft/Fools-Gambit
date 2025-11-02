@@ -10,7 +10,11 @@ SMODS.Seal{
         is_alternate = true,
         alternate_key ='giga_redplus',
         crossover_label = 'GIGA',
-    },    
+    },
+    giga_data = {
+        is_upgrade = true,
+        seal_upgrade = 'fg__c_giga_red_plus_plus'
+    },
     badge_colour = G.C.RED,
     config = {
         retriggers = 3,
@@ -71,7 +75,11 @@ SMODS.Seal{
         is_alternate = true,
         alternate_key ='giga_redplusplus',
         crossover_label = 'GIGA',
-    },    
+    },
+    giga_data = {
+        is_upgrade = true,
+        seal_upgrade = nil
+    },
     badge_colour = G.C.RED,
     config = {
         retriggers = 4,
@@ -146,7 +154,11 @@ SMODS.Seal{
         is_alternate = true,
         alternate_key ='giga_purpleplus',
         crossover_label = 'GIGA',
-    }   , 
+    },
+    giga_data = {
+        is_upgrade = false,
+        seal_upgrade = 'fg__c_giga_purple_plus_plus'
+    },
     badge_colour = G.C.PURPLE,
     calculate = function (self, card, context)
         if context.discard and context.cardarea == G.hand and context.other_card == card then

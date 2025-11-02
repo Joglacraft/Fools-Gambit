@@ -10,10 +10,14 @@ SMODS.Seal{
     key = 'gold',
     atlas = "Enhancers",
     pos = {x = 2, y = 0},
-        fg_data = {
-            is_alternate = true,
-            alternate_key ='Gold'
-        },    
+    fg_data = {
+        is_alternate = true,
+        alternate_key ='Gold'
+    },
+    giga_data = {
+        is_upgrade = false,
+        seal_upgrade = 'fg__c_giga_gold_plus'
+    },
     badge_colour = G.C.GOLD,
     prefix_config = {atlas = false},
     config = {
@@ -52,10 +56,14 @@ SMODS.Seal{
     pos = {x = 5, y = 4},
     badge_colour = G.C.RED,
     prefix_config = {atlas = false},
-        fg_data = {
-            is_alternate = true,
-            alternate_key ='Red'
-        },    
+    fg_data = {
+        is_alternate = true,
+        alternate_key ='Red'
+    },
+    giga_data = {
+        is_upgrade = false,
+        seal_upgrade = 'fg__c_giga_red_plus'
+    },
     config = {
         retriggers = 3,
         retriggers_d = 1,
@@ -106,6 +114,10 @@ SMODS.Seal{
     fg_data = {
         is_alternate = true,
         alternate_key ='Blue'
+    },
+    giga_data = {
+        is_upgrade = false,
+        seal_upgrade = 'fg__c_giga_blue_plus'
     },
     config = {repetitions = 1},
     badge_colour = G.C.BLUE,
@@ -167,6 +179,10 @@ SMODS.Seal{
     fg_data = {
         is_alternate = true,
         alternate_key ='Purple'
+    },
+    giga_data = {
+        is_upgrade = false,
+        seal_upgrade = 'fg__c_giga_purple_plus'
     },
     config = {repetitions = 1},
     badge_colour = G.C.PURPLE,
