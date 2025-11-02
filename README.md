@@ -26,7 +26,7 @@ Fool's Gambit is an unused title for Balatro. This mod aims to add (some)new jok
 - ~~An alternate soundtrack and SFX~~ (moved to [Tonsmith](https://github.com/Goldofleaves/Tonsmith)).
 ## Crossmod
 Fool's Gambit also features some additional content when paired with other mods, namely:
-### [GIGA](https://github.com/MrYamiTsu/Giga-Balatro_Mod) by **mryamitsu**.
+### [GIGA](https://github.com/MrYamiTsu/Giga-Balatro_Mod) by **MrYamiTsu**
 The largest crossmod with Fool's Gambit so far. When pairing Fool's Gambit and Giga, combined they add:
 - Even more alternate Jokers.
 - Alternate **food** cards.
@@ -34,7 +34,7 @@ The largest crossmod with Fool's Gambit so far. When pairing Fool's Gambit and G
 - Alternate **upgraded** enhancements.
 
 "You should also check out Giga on its own, it is very neat!" -Jogla, Fool's Gambit Lead Developer
-### [JokerDisplay](https://github.com/nh6574/JokerDisplay) by **nh6574**.
+### [JokerDisplay](https://github.com/nh6574/JokerDisplay) by **nh6574**
 Fool's Gambit has Joker display on alternate jokers, as well as its own new Jokers.
 
 # Contributors
