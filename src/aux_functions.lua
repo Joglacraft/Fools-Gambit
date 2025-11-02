@@ -48,7 +48,7 @@ end
 ---@return table|card table A table containing the old card and the new card.
 function FG.FUNCS.alternate_card(card)
 	local legacy = false -- Temporary thing for legacy code
-	local key = card.config.center.fg_data.alternate_card or "j_joker"
+	local key = card.config.center.fg_data.alternate_key or "j_joker"
 	local found = FG.FUNCS.check_exists(key)
 
 	if not found then key = "j_joker" end
