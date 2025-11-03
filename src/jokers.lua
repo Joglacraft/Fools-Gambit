@@ -2319,20 +2319,27 @@ SMODS.Joker {
 		fg_data = {
 			is_alternate = true,
 			alternate_key ="j_delayed_grat"
-		},	
+		},
+		config = {
+			extra = {
+				money = 20,
+				active = true
+			}
+		},
 	rarity = "fg_common_alt",
 	cost = 2,
 	loc_vars = function(self, info_queue, card)
 		return {
 			vars = {
-				card.ability.extra.mult_gain,
-				card.ability.extra.mult
+				card.ability.extra.money
 			}
 		}
 	end,
 	blueprint_compat = true,
 	calculate = function(self, card, context)
-		if context.end_of_round and G.GAME.current_round.discards == 1 then return {dollars = 5} end
+		if context.setting_blind and not G.GAME.blind.boss then card.ability.extra.active = false end
+		if context.ante_end then card.ability.extra.active = true end
+		if context.end_of_round then return {dollars = card.ability.extra.dollars} end
 	end
 }
 -- Hack

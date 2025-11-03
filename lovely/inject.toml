@@ -45,10 +45,10 @@ G.GAME.used_jokers[self.config.center.key] = true
 '''
 position = "after"
 payload = '''
-        if self.config and self.config.center and self.config.center.fg_data and 
-        G.P_CENTERS[self.config.center.fg_data.alternate_card] then 
-        G.GAME.used_jokers[self.config.center.fg_data.alternate_card] = true 
-        end
+            if self.config and self.config.center and self.config.center.fg_data and 
+            G.P_CENTERS[self.config.center.fg_data.alternate_key] then 
+                G.GAME.used_jokers[self.config.center.fg_data.alternate_key] = true 
+            end
 '''
 match_indent = false
 times = 1
@@ -59,11 +59,11 @@ target = "card.lua"
 pattern = '''
     G.GAME.used_jokers[self.config.center.key] = nil
 '''
-position = "at"
+position = "after"
 payload = '''
-    if self.config.center.fg_data and not next(find_joker(self.config.center.fg_data.alternate_card, true)) then 
+    if self.config.center.fg_data and not next(find_joker(self.config.center.fg_data.alternate_key, true)) then 
         G.GAME.used_jokers[self.config.center.key] = nil
-        if self.config.center.fg_data.alternate_card then G.GAME.used_jokers[self.config.center.fg_data.alternate_card] = nil end
+        if self.config.center.fg_data.alternate_key then G.GAME.used_jokers[self.config.center.fg_data.alternate_key] = nil end
     end
 '''
 match_indent = false
