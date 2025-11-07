@@ -98,7 +98,36 @@ return {
             },
         },
         Giga_Food = {
-            c_fg_birthday_cake = {
+            c_fg__c_giga_tacos = {},
+            c_fg__c_giga_guacamole = {},
+            c_fg__c_giga_hot_dog = {},
+            c_fg__c_giga_caesar_salad = {},
+            c_fg__c_giga_club_sandwich = {},
+            c_fg__c_giga_pho = {},
+            c_fg__c_giga_spaghetti = {},
+            c_fg__c_giga_steak = {},
+            c_fg__c_giga_sushis = {},
+            c_fg__c_giga_sugar_pie = {},
+            c_fg__c_giga_durian = {},
+            c_fg__c_giga_salmon = {},
+            c_fg__c_giga_waffle = {},
+            c_fg__c_giga_lillipop = {},
+            c_fg__c_giga_quiche_lorraine = {},
+            c_fg__c_giga_paella = {},
+            c_fg__c_giga_gummy_bear = {},
+            c_fg__c_giga_empanadas = {},
+            c_fg__c_giga_pbj_sandwich = {},
+            c_fg__c_giga_burger = {},
+            c_fg__c_giga_fruit_salad = {},
+            c_fg__c_giga_ramen = {},
+            c_fg__c_giga_chocolate_bar = {},
+            c_fg__c_giga_mac_n_cheese = {},
+            c_fg__c_giga_blueberry_muffin = {},
+            c_fg__c_giga_donut = {},
+            c_fg__c_giga_cranberry_joice = {},
+            c_fg__c_giga_bubble_tea = {},
+            c_fg__c_giga_bag_of_candy = {},
+            c_fg__c_giga_birthday_cake = {
                 name = 'Birthday Cake?',
                 text = {
                     "A delicious Birthday Cake that will",
@@ -107,7 +136,7 @@ return {
                     "{C:inactive}Can be used immediately{}"
                 }
             },
-            c_fg_turkey = {
+            c_fg__c_giga_turkey = {
                 name = 'Turkey?',
                 text = {
                     "A delicious Turkey that will",

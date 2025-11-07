@@ -1,8 +1,37 @@
 sendInfoMessage("Giga/Food compat loaded!","FoolsGambit/Compat")
 
-
+-- Tacos
+-- Guacamole
+-- Hot-Dog
+-- Caesar salad
+-- Club sandwich
+-- Pho
+-- Spaghetti
+-- Steak
+-- Sushi
+-- Sugar Pie
+-- Durian
+-- Salmon
+-- Waffle
+-- Lollipop
+-- Quiche Lorraine
+-- Paella
+-- Gummy Bear
+-- Empanadas
+-- PB&J Sandwitch
+-- Burger
+-- Fruit salad
+-- Ramen
+-- Chocolate bar
+-- Mac n' Cheese
+-- Blueberry Muffin
+-- Don't ut
+-- Cramberry Juice
+-- Bubble Tea
+-- Bag of Candy
+-- Cake
 SMODS.Consumable{
-    key = 'birthday_cake',
+    key = '_c_giga_birthday_cake',
     set = 'Giga_Food',
     atlas = 'giga_Foods',
     prefix_config = {atlas = false},
@@ -41,10 +70,9 @@ SMODS.Consumable{
         end
     end
 }
-
-
+-- Turkey
 SMODS.Consumable{
-    key = 'turkey',
+    key = '_c_giga_turkey',
     set = 'Giga_Food',
     atlas = 'giga_Foods',
     prefix_config = {atlas = false},
@@ -114,3 +142,4 @@ SMODS.Consumable{
         end
     end
 }
+-- Migas
