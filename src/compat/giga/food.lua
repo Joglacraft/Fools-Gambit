@@ -1,19 +1,259 @@
 sendInfoMessage("Giga/Food compat loaded!","FoolsGambit/Compat")
 
+local function enhancement_can (self, card) return G.hand and #G.hand.highlighted == 2 end
+local function enhancement_use (self, card, area, copier)
+    table.sort(G.hand.highlighted,function (a, b)
+        return a.T.x < b.T.x
+    end)
+    play_sound("tarot1",1)
+    local pitch = 0.9
+    for _,v in ipairs(G.hand.highlighted) do -- Flip cards
+        G.E_MANAGER:add_event(Event({
+            trigger = "after",
+            delay = 0.2,
+            func = function()
+                v:flip()
+                v:juice_up(0.3, 0.5)
+                play_sound("tarot2",pitch)
+                pitch = pitch + 0.1
+                return true
+            end
+        }))
+    end
+    G.E_MANAGER:add_event(Event{
+        func = function ()
+            -- Prevents repeating the same enhancement unless there is no other option
+            local function pick_random ()
+                local choosen = FG.POOLS.base_enhancement[math.random(1,#FG.POOLS.base_enhancement)]
+                if choosen == card.ability.extra.enhancement and #FG.POOLS.base_enhancement <= 1 then choosen = pick_random() end
+                return choosen
+            end
+            local other = pick_random()
+            G.hand.highlighted[2]:set_ability(other)
+        return true end
+    })
+    G.E_MANAGER:add_event(Event{
+        func = function ()
+        G.hand.highlighted[1]:set_ability(card.ability.extra.enhancement)
+        return true end
+    })
+    pitch = pitch + 0.3
+    for _,v in ipairs(G.hand.highlighted) do -- Flip cards
+        G.E_MANAGER:add_event(Event({
+            trigger = "after",
+            delay = 0.2,
+            func = function()
+                v:flip()
+                v:juice_up(0.3, 0.3)
+                play_sound("tarot2",pitch)
+                pitch = pitch + 0.1
+                return true
+            end
+        }))
+    end
+end
 -- Tacos
 -- Guacamole
 -- Hot-Dog
 -- Caesar salad
+SMODS.Consumable{
+    key = '_c_giga_caesar_salad',
+    set = 'Giga_Food',
+    atlas = 'giga_Foods',
+    prefix_config = {atlas = false},
+    pos = {x = 0, y = 0},
+    soul_pos = {x = 4, y = 0},
+    fg_data = {
+        is_alternate = true,
+        alternate_key = 'c_giga_caesarSalad'
+    }
+}
 -- Club sandwich
 -- Pho
 -- Spaghetti
+SMODS.Consumable{
+    key = '_c_giga_spaghetti',
+    set = 'Giga_Food',
+    atlas = 'giga_Foods',
+    prefix_config = {atlas = false},
+    pos = {x = 0, y = 0},
+    soul_pos = {x = 3, y = 2},
+    fg_data = {
+        is_alternate = true,
+        alternate_key = 'c_giga_spaghetti'
+    },
+    config = {extra = {
+        enhancement = 'm_bonus'
+    }},
+    loc_vars = function (self, info_queue, card)
+        return { vars = {
+            localize{type = "name_text", set = 'Enhanced', key = card.ability.extra.enhancement}
+        }}
+    end,
+    can_use = enhancement_can,
+    use = enhancement_use
+}
 -- Steak
+SMODS.Consumable{
+    key = '_c_giga_steak',
+    set = 'Giga_Food',
+    atlas = 'giga_Foods',
+    prefix_config = {atlas = false},
+    pos = {x = 0, y = 0},
+    soul_pos = {x = 2, y = 2},
+    fg_data = {
+        is_alternate = true,
+        alternate_key = 'c_giga_steak'
+    },
+    config = {extra = {
+        enhancement = 'm_stone'
+    }},
+    loc_vars = function (self, info_queue, card)
+        return { vars = {
+            localize{type = "name_text", set = 'Enhanced', key = card.ability.extra.enhancement}
+        }}
+    end,
+    can_use = enhancement_can,
+    use = enhancement_use
+}
 -- Sushi
+SMODS.Consumable{
+    key = '_c_giga_sushis',
+    set = 'Giga_Food',
+    atlas = 'giga_Foods',
+    prefix_config = {atlas = false},
+    pos = {x = 0, y = 0},
+    soul_pos = {x = 1, y = 3},
+    fg_data = {
+        is_alternate = true,
+        alternate_key = 'c_giga_sushis'
+    },
+    config = {extra = {
+        enhancement = 'm_mult'
+    }},
+    loc_vars = function (self, info_queue, card)
+        return { vars = {
+            localize{type = "name_text", set = 'Enhanced', key = card.ability.extra.enhancement}
+        }}
+    end,
+    can_use = enhancement_can,
+    use = enhancement_use
+}
 -- Sugar Pie
+SMODS.Consumable{
+    key = '_c_giga_sugar_pie',
+    set = 'Giga_Food',
+    atlas = 'giga_Foods',
+    prefix_config = {atlas = false},
+    pos = {x = 0, y = 0},
+    soul_pos = {x = 3, y = 3},
+    fg_data = {
+        is_alternate = true,
+        alternate_key = 'c_giga_sugarPie'
+    },
+    config = {extra = {
+        enhancement = 'm_lucky'
+    }},
+    loc_vars = function (self, info_queue, card)
+        return { vars = {
+            localize{type = "name_text", set = 'Enhanced', key = card.ability.extra.enhancement}
+        }}
+    end,
+    can_use = enhancement_can,
+    use = enhancement_use
+}
 -- Durian
+SMODS.Consumable{
+    key = '_c_giga_durian',
+    set = 'Giga_Food',
+    atlas = 'giga_Foods',
+    prefix_config = {atlas = false},
+    pos = {x = 0, y = 0},
+    soul_pos = {x = 6, y = 3},
+    fg_data = {
+        is_alternate = true,
+        alternate_key = 'c_giga_durian'
+    },
+    config = {extra = {
+        enhancement = 'm_glass'
+    }},
+    loc_vars = function (self, info_queue, card)
+        return { vars = {
+            localize{type = "name_text", set = 'Enhanced', key = card.ability.extra.enhancement}
+        }}
+    end,
+    can_use = enhancement_can,
+    use = enhancement_use
+}
 -- Salmon
+SMODS.Consumable{
+    key = '_c_giga_salmon',
+    set = 'Giga_Food',
+    atlas = 'giga_Foods',
+    prefix_config = {atlas = false},
+    pos = {x = 0, y = 0},
+    soul_pos = {x = 0, y = 2},
+    fg_data = {
+        is_alternate = true,
+        alternate_key = 'c_giga_salmon'
+    },
+    config = {extra = {
+        enhancement = 'm_gold'
+    }},
+    loc_vars = function (self, info_queue, card)
+        return { vars = {
+            localize{type = "name_text", set = 'Enhanced', key = card.ability.extra.enhancement}
+        }}
+    end,
+    can_use = enhancement_can,
+    use = enhancement_use
+}
 -- Waffle
+SMODS.Consumable{
+    key = '_c_giga_waffle',
+    set = 'Giga_Food',
+    atlas = 'giga_Foods',
+    prefix_config = {atlas = false},
+    pos = {x = 0, y = 0},
+    soul_pos = {x = 2, y = 3},
+    fg_data = {
+        is_alternate = true,
+        alternate_key = 'c_giga_waffle'
+    },
+    config = {extra = {
+        enhancement = 'm_wild'
+    }},
+    loc_vars = function (self, info_queue, card)
+        return { vars = {
+            localize{type = "name_text", set = 'Enhanced', key = card.ability.extra.enhancement}
+        }}
+    end,
+    can_use = enhancement_can,
+    use = enhancement_use
+}
 -- Lollipop
+SMODS.Consumable{
+    key = '_c_giga_lollipop',
+    set = 'Giga_Food',
+    atlas = 'giga_Foods',
+    prefix_config = {atlas = false},
+    pos = {x = 0, y = 0},
+    soul_pos = {x = 1, y = 1},
+    fg_data = {
+        is_alternate = true,
+        alternate_key = 'c_giga_lollipop'
+    },
+    config = {extra = {
+        enhancement = 'm_steel'
+    }},
+    loc_vars = function (self, info_queue, card)
+        return { vars = {
+            localize{type = "name_text", set = 'Enhanced', key = card.ability.extra.enhancement}
+        }}
+    end,
+    can_use = enhancement_can,
+    use = enhancement_use
+}
 -- Quiche Lorraine
 -- Paella
 -- Gummy Bear
