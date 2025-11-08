@@ -128,73 +128,65 @@ return {
             c_fg__c_giga_spaghetti = {
                 name = 'Spaghetti?',
                 text = {
-                    "A delicious Spagetti that",
-                    "after selecting {C:attention}2{} cards,",
-                    "enhances the left card into a {C:attention}#1#{}",
-                    "enhances the right card into a random enhancement."
+                    "A delicious Spagetti that after selecting {C:attention}2{} cards,",
+                    "Enhances the left card into a {C:attention}#1#{}",
+                    "Enhances the right card into a random enhancement"
                 }
             },
             c_fg__c_giga_steak = {
                 name = 'Steak?',
                 text = {
-                    "A delicious Steak that",
-                    "after selecting {C:attention}2{} cards,",
-                    "enhances the left card into a {C:attention}#1#{}",
-                    "enhances the right card into a random enhancement."
+                    "A delicious Steak that after selecting {C:attention}2{} cards,",
+                    "Enhances the left card into a {C:attention}#1#{}",
+                    "Enhances the right card into a random enhancement"
                 }
             },
             c_fg__c_giga_sushis = {
                 name = 'Sushis?',
                 text = {
-                    "Some delicious Sushis that",
-                    "after selecting {C:attention}2{} cards,",
+                    "Some delicious Sushis that after selecting {C:attention}2{} cards,",
                     "enhances the left card into a {C:attention}#1#{}",
-                    "enhances the right card into a random enhancement."
+                    "enhances the right card into a random enhancement"
                 }
             },
             c_fg__c_giga_sugar_pie = {
                 name = 'Sugar Pie?',
                 text = {
-                    "A delicious Sugar Pie that",
-                    "after selecting {C:attention}2{} cards,",
+                    "A delicious Sugar Pie that after selecting {C:attention}2{} cards,",
                     "enhances the left card into a {C:attention}#1#{}",
-                    "enhances the right card into a random enhancement."
+                    "enhances the right card into a random enhancement"
                 }
             },
             c_fg__c_giga_durian = {
                 name = 'Durian?',
                 text = {
-                    "A delicious Durian that",
-                    "after selecting {C:attention}2{} cards,",
-                    "enhances the left card into a {C:attention}#1#{}",
-                    "enhances the right card into a random enhancement."
+                    "A delicious Durian that after selecting {C:attention}2{} cards,",
+                    "Enhances the left card into a {C:attention}#1#{}",
+                    "Enhances the right card into a random enhancement"
                 }
             },
             c_fg__c_giga_salmon = {
                 name = 'Salmon?',
                 text = {
-                    "A delicious Salmon that",
-                    "after selecting {C:attention}2{} cards,",
-                    "enhances the left card into a {C:attention}#1#{}",
-                    "enhances the right card into a random enhancement."
+                    "A delicious Salmon that after selecting {C:attention}2{} cards,",
+                    "Enhances the left card into a {C:attention}#1#{}",
+                    "Enhances the right card into a random enhancement"
                 }
             },
             c_fg__c_giga_waffle = {
                 name = 'Waffle?',
                 text = {
-                    "A delicious Waffle that",
-                    "after selecting {C:attention}2{} cards,",
-                    "enhances the left card into a {C:attention}#1#{}",
-                    "enhances the right card into a random enhancement."
+                    "A delicious Waffle that after selecting {C:attention}2{} cards,",
+                    "Enhances the left card into a {C:attention}#1#{}",
+                    "Enhances the right card into a random enhancement"
                 }
             },
             c_fg__c_giga_lollipop = {
                 name = 'Lollipop?',
                 text = {
-                    "A delicious Lollipop that",
-                    "after selecting {C:attention}2{} cards,",
-                    "enhances the left card into a {C:attention}#1#{}",
-                    "enhances the right card into a random enhancement."
+                    "A delicious Lollipop that after selecting {C:attention}2{} cards,",
+                    "Enhances the left card into a {C:attention}#1#{}",
+                    "Enhances the right card into a random enhancement"
                 }
             },
             c_fg__c_giga_quiche_lorraine = {

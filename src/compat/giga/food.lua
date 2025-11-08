@@ -77,7 +77,6 @@ local function suit_use (self, card, area, copier)
     for _=1, card.ability.extra.limit do
         if not next(ellegible_cards) then return end
         local card = ellegible_cards[pseudorandom('mila',1,#ellegible_cards)]
-        print(card)
         card:start_dissolve()
     end
 end
