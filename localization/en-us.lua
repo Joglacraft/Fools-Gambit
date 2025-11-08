@@ -106,7 +106,8 @@ return {
                 text = {
                     "A delicious Caesar Salad that",
                     "will give a {C:dark_edition}negative{C:tarot} Tarot{}",
-                    "card in {C:attention}3{} rounds"
+                    "card in {C:attention}#1#{} rounds",
+                    "{C:inactive}#2#{}"
                 }
             },
             c_fg__c_giga_club_sandwich = {
@@ -114,7 +115,8 @@ return {
                 text = {
                     "A delicious Club Sandwich that",
                     "will give a {C:dark_edition}negative{C:planet} Planet{}",
-                    "card in {C:attention}3{} rounds"
+                    "card in {C:attention}#1#{} rounds",
+                    "{C:inactive}#2#{}"
                 }
             },
             c_fg__c_giga_pho = {
@@ -122,7 +124,8 @@ return {
                 text = {
                     "A delicious Pho that",
                     "will give a {C:dark_edition}negative{C:spectral} Spectral{}",
-                    "card in {C:attention}3{} rounds"
+                    "card in {C:attention}#1#{} rounds",
+                    "{C:inactive}#2#{}"
                 },
             },
             c_fg__c_giga_spaghetti = {
