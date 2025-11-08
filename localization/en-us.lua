@@ -197,12 +197,54 @@ return {
                     "enhances the right card into a random enhancement."
                 }
             },
-            c_fg__c_giga_quiche_lorraine = {},
-            c_fg__c_giga_paella = {},
-            c_fg__c_giga_gummy_bear = {},
-            c_fg__c_giga_empanadas = {},
-            c_fg__c_giga_pbj_sandwich = {},
-            c_fg__c_giga_burger = {},
+            c_fg__c_giga_quiche_lorraine = {
+                name = 'Quiche Lorraine?',
+                text = {
+                    "Some delicious Quiche Lorraine",
+                    "that destroys {C:attention}#1#{} random",
+                    "{V:1}#2#{} suit card"
+                }
+            },
+            c_fg__c_giga_paella = {
+                name = 'Paella?',
+                text = {
+                    "A delicious Paella",
+                    "that destroys {C:attention}#1#{} random",
+                    "{V:1}#2#{} suit card"
+                }
+            },
+            c_fg__c_giga_gummy_bear = {
+                name = 'Gummy Bear?',
+                text = {
+                    "A delicious Gummy bear",
+                    "that destroys {C:attention}#1#{} random",
+                    "{V:1}#2#{} suit card"
+                }
+            },
+            c_fg__c_giga_empanadas = {
+                name = 'Empanadas?',
+                text = {
+                    "Some delicious Empanadas",
+                    "that destroys {C:attention}#1#{} random",
+                    "{V:1}#2#{} suit card"
+                }
+            },
+            c_fg__c_giga_pbj_sandwich = {
+                name = 'Sandwich?',
+                text = {
+                    "A delicious Sandwich",
+                    "that destroys {C:attention}#1#{} random",
+                    "{V:1}#2#{} suit card"
+                }
+            },
+            c_fg__c_giga_burger = {
+                name = 'Burger?',
+                text = {
+                    "A delicious Burger",
+                    "that destroys {C:attention}#1#{} random",
+                    "{V:1}#2#{} suit card"
+                }
+            },
             c_fg__c_giga_fruit_salad = {},
             c_fg__c_giga_ramen = {},
             c_fg__c_giga_chocolate_bar = {},

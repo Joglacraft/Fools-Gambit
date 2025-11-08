@@ -52,6 +52,36 @@ local function enhancement_use (self, card, area, copier)
         }))
     end
 end
+
+local function suit_loc (self, info_queue, card)
+    return {vars = {
+        card.ability.extra.limit,
+        localize(card.ability.extra.suit,"suits_plural"),
+        colours = {
+            G.C.SUITS[card.ability.extra.suit]
+        },
+    }}
+end
+local function suit_can (self, card)
+    if not G.hand then return false end
+    for _,v in ipairs(G.hand.cards) do
+        if FG.FUNCS.get_card_info(v).suit == card.ability.extra.suit then return true end
+    end
+    return false
+end
+local function suit_use (self, card, area, copier)
+    local ellegible_cards = {}
+    for _,v in ipairs(G.hand.cards) do
+        if FG.FUNCS.get_card_info(v).suit == card.ability.extra.suit then table.insert(ellegible_cards,v) end
+    end
+    for _=1, card.ability.extra.limit do
+        if not next(ellegible_cards) then return end
+        local card = ellegible_cards[pseudorandom('mila',1,#ellegible_cards)]
+        print(card)
+        card:start_dissolve()
+    end
+end
+
 -- Tacos
 -- Guacamole
 -- Hot-Dog
@@ -255,9 +285,85 @@ SMODS.Consumable{
     use = enhancement_use
 }
 -- Quiche Lorraine
+SMODS.Consumable{
+    key = '_c_giga_quiche_lorraine',
+    set = 'Giga_Food',
+    atlas = 'giga_Foods',
+    prefix_config = {atlas = false},
+    pos = {x = 0, y = 0},
+    soul_pos = {x = 6, y = 4},
+    fg_data = {
+        is_alternate = true,
+        alternate_key = 'c_giga_quicheLorraine'
+    },
+    config = {extra = {
+        limit = 2,
+        suit = 'Hearts'
+    }},
+    loc_vars = suit_loc,
+    can_use = suit_can,
+    use = suit_use
+}
 -- Paella
+SMODS.Consumable{
+    key = '_c_giga_paella',
+    set = 'Giga_Food',
+    atlas = 'giga_Foods',
+    prefix_config = {atlas = false},
+    pos = {x = 0, y = 0},
+    soul_pos = {x = 2, y = 4},
+    fg_data = {
+        is_alternate = true,
+        alternate_key = 'c_giga_paella'
+    },
+    config = {extra = {
+        limit = 2,
+        suit = 'Spades'
+    }},
+    loc_vars = suit_loc,
+    can_use = suit_can,
+    use = suit_use
+}
 -- Gummy Bear
+SMODS.Consumable{
+    key = '_c_giga_gummy_bear',
+    set = 'Giga_Food',
+    atlas = 'giga_Foods',
+    prefix_config = {atlas = false},
+    pos = {x = 0, y = 0},
+    soul_pos = {x = 1, y = 2},
+    fg_data = {
+        is_alternate = true,
+        alternate_key = 'c_giga_gummyBear'
+    },
+    config = {extra = {
+        limit = 2,
+        suit = 'Diamonds'
+    }},
+    loc_vars = suit_loc,
+    can_use = suit_can,
+    use = suit_use
+}
 -- Empanadas
+SMODS.Consumable{
+    key = '_c_giga_empanadas',
+    set = 'Giga_Food',
+    atlas = 'giga_Foods',
+    prefix_config = {atlas = false},
+    pos = {x = 0, y = 0},
+    soul_pos = {x = 4, y = 3},
+    fg_data = {
+        is_alternate = true,
+        alternate_key = 'c_giga_empanadas'
+    },
+    config = {extra = {
+        limit = 2,
+        suit = 'Clubs'
+    }},
+    loc_vars = suit_loc,
+    can_use = suit_can,
+    use = suit_use
+}
 -- PB&J Sandwitch
 -- Burger
 -- Fruit salad
