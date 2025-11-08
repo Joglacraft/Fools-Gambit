@@ -84,6 +84,7 @@ SMODS.current_mod.config_tab = function()
 						ref_table = FG.config,
 						ref_value = "additional_title",
 						callback = function ()
+							if not G.fg_title then return end
 							if FG.config.additional_title then
 								G.fg_title:set_alignment({
 									major = G.SPLASH_LOGO,

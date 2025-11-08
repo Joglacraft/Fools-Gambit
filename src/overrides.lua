@@ -1,8 +1,6 @@
 
 -- Main menu override
 
---- This shit fucks with the entire game engine
-
 local main_menu_ref = Game.main_menu
 
 function Game:main_menu(change_context)
@@ -13,7 +11,7 @@ function Game:main_menu(change_context)
         TITLE_TOP_H = G.CARD_H,
     }
 
-   self.fg_title = CardArea(
+    self.fg_title = CardArea(
         20, 20,
         CAI.TITLE_TOP_W,CAI.TITLE_TOP_H,
         {card_limit = 1, type = 'title'})
