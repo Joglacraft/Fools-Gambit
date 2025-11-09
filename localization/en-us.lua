@@ -324,7 +324,7 @@ return {
                     "{C:green}#1# in #2#{} chance",
                     "for {C:chips}+#3#{} Chips",
                     "{C:green}#4# in #5#{} chance",
-                    "for {C:chips}#6#{} Chips",
+                    "for {C:chips}-#6#{} Chips",
                 }
             },
             m_fg_mult = {
@@ -333,7 +333,7 @@ return {
                     "{C:green}#1# in #2#{} chance",
                     "for {C:mult}+#3#{} Mult",
                     "{C:green}#4# in #5#{} chance",
-                    "for {C:mult}#6#{} Mult",
+                    "for {C:mult}-#6#{} Mult",
                 }
             },
             m_fg_stone = {

@@ -146,7 +146,7 @@ return {
                     "{C:green}#1# en #2#{} probabilidades",
                     "para {C:chips}+#3#{} Fichas",
                     "{C:green}#4# en #5#{} probabilidades",
-                    "para {C:chips}#6#{} Fichas",
+                    "para {C:chips}-#6#{} Fichas",
                 }
             },
             m_fg_mult = {
@@ -155,7 +155,7 @@ return {
                     "{C:green}#1# en #2#{} probabilidades",
                     "para {C:mult}+#3#{} Multi",
                     "{C:green}#4# en #5#{} probabilidades",
-                    "para {C:mult}#6#{} Multi",
+                    "para {C:mult}-#6#{} Multi",
                 }
             },
             m_fg_stone = {

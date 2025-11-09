@@ -42,12 +42,18 @@ SMODS.Enhancement{
 		}
 	end,
 	calculate = function (self, card, context)
-		card.ability.bonus = 0
-		if FG.FUNCS.random_chance(card.ability.extra.grant_max, card) then
-			card.ability.bonus = card.ability.bonus + card.ability.extra.grant_amount
+		if context.before then
+			card.ability.bonus = 0
+			if FG.FUNCS.random_chance(card.ability.extra.grant_max) then
+				card.ability.bonus = card.ability.extra.grant_amount
+			end
+			if FG.FUNCS.random_chance(card.ability.extra.remove_max) then
+				card.ability.bonus = -card.ability.extra.remove_amount
+				if hand_chips - card.ability.extra.remove_amount < 1 then card.ability.chips = -hand_chips end
+			end
 		end
-		if FG.FUNCS.random_chance(card.ability.extra.remove_max, card) then
-			card.ability.bonus = card.ability.bonus - card.ability.extra.remove_amount
+		if context.after then
+			card.ability.bonus = 0
 		end
 	end
 }
@@ -84,12 +90,18 @@ SMODS.Enhancement{
 		}
 	end,
 	calculate = function (self, card, context)
-		card.ability.mult = 0
-		if FG.FUNCS.random_chance(card.ability.extra.grant_max, card) then
-			card.ability.mult = card.ability.mult + card.ability.extra.grant_amount
+		if context.before then
+			card.ability.mult = 0
+			if FG.FUNCS.random_chance(card.ability.extra.grant_max) then
+				card.ability.mult = card.ability.extra.grant_amount
+			end
+			if FG.FUNCS.random_chance(card.ability.extra.remove_max) then
+				card.ability.mult = -card.ability.extra.remove_amount
+				if mult - card.ability.extra.remove_amount < 1 then card.ability.mult = -mult + 1 end
+			end
 		end
-		if FG.FUNCS.random_chance(card.ability.extra.remove_max, card) then
-			card.ability.mult = card.ability.mult - card.ability.extra.remove_amount
+		if context.after then
+			card.ability.mult = 0
 		end
 	end
 }
