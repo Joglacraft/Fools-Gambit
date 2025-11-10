@@ -182,16 +182,10 @@ SMODS.Enhancement{
 			end
 			if card.ability.x_mult <= 0 then card.ability.x_mult = 1 end
 		end
-		if context.after and context.cardarea == G.play then
-			G.E_MANAGER:add_event(Event({
-				trigger = "after",
-				delay = 0.5,
-				func = function ()
-					card:shatter()
-					return true
-				end
-			}))
-		 end
+		if context.destroy_card and context.cardarea == G.play and context.destroy_card == card then
+			card.glass_trigger = true
+			return { remove = true }
+        end
 	end
 }
 
