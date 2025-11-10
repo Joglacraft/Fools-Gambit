@@ -155,6 +155,7 @@ SMODS.Enhancement{
 	key = "glass",
 	atlas = "centers",
 	prefix_config = {atlas = false},
+	shatters = true,
 	pos = { x = 5, y = 1 },
 		fg_data = {
 			is_alternate = true,
