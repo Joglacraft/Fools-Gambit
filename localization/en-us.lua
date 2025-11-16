@@ -225,19 +225,19 @@ return {
                 }
             },
             c_fg__c_giga_pbj_sandwich = {
-                name = 'Sandwich?',
+                name = 'PB&J Sandwitch?',
                 text = {
-                    "A delicious Sandwich",
-                    "that destroys {C:attention}#1#{} random",
-                    "{V:1}#2#{} suit card"
+                    "A delicious PB&J Sandwitch that",
+                    "permanently adds {X:mult,C:white}X#2#{} Mult",
+                    "to {C:attention}#1#{} selected card"
                 }
             },
             c_fg__c_giga_burger = {
                 name = 'Burger?',
                 text = {
-                    "A delicious Burger",
-                    "that destroys {C:attention}#1#{} random",
-                    "{V:1}#2#{} suit card"
+                    "A delicious Burger that",
+                    "permanently adds {C:money}+$1{}",
+                    "to {C:attention}#1#{} selected card"
                 }
             },
             c_fg__c_giga_fruit_salad = {},

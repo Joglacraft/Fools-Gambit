@@ -49,7 +49,7 @@ SMODS.Enhancement{
 			end
 			if FG.FUNCS.random_chance(card.ability.extra.remove_max) then
 				card.ability.bonus = -card.ability.extra.remove_amount
-				if hand_chips - card.ability.extra.remove_amount < 1 then card.ability.chips = -hand_chips end
+				if to_number(hand_chips) - card.ability.extra.remove_amount < 1 then card.ability.chips = -hand_chips end
 			end
 		end
 		if context.after then
@@ -97,7 +97,7 @@ SMODS.Enhancement{
 			end
 			if FG.FUNCS.random_chance(card.ability.extra.remove_max) then
 				card.ability.mult = -card.ability.extra.remove_amount
-				if mult - card.ability.extra.remove_amount < 1 then card.ability.mult = -mult + 1 end
+				if to_number(mult) - card.ability.extra.remove_amount < 1 then card.ability.mult = -mult + 1 end
 			end
 		end
 		if context.after then

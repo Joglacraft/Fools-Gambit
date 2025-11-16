@@ -444,7 +444,67 @@ SMODS.Consumable{
     use = suit_use
 }
 -- PB&J Sandwitch
+SMODS.Consumable{
+    key = '_c_giga_pbj_sandwich',
+    set = 'Giga_Food',
+    atlas = 'giga_Foods',
+    prefix_config = {atlas = false},
+    pos = {x = 0, y = 0},
+    soul_pos = {x = 6, y = 1},
+    fg_data = {
+        is_alternate = true,
+        alternate_key = 'c_giga_pBJSandwich',
+        crossover_label = 'GIGA'
+    },
+    config = {extra = {
+        limit = 1,
+        amount = 0.1
+    }},
+    loc_vars = function (self, info_queue, card)
+        return {vars = {
+            card.ability.extra.limit,
+            card.ability.extra.amount
+        }}
+    end,
+    can_use = function (self, card) return G.hand and #G.hand.highlighted > 0 and #G.hand.highlighted <= card.ability.extra.limit end,
+    use = function (self, card, area, copier)
+        for i,v in ipairs(G.hand.highlighted) do
+            v.ability['perma_x_mult'] = v.ability['perma_x_mult'] + card.ability.extra.amount
+            v:juice_up()
+        end
+    end
+}
 -- Burger
+SMODS.Consumable{
+    key = '_c_giga_burger',
+    set = 'Giga_Food',
+    atlas = 'giga_Foods',
+    prefix_config = {atlas = false},
+    pos = {x = 0, y = 0},
+    soul_pos = {x = 5, y = 3},
+    fg_data = {
+        is_alternate = true,
+        alternate_key = 'c_giga_burger',
+        crossover_label = 'GIGA'
+    },
+    config = {extra = {
+        limit = 1,
+        amount = 1
+    }},
+    loc_vars = function (self, info_queue, card)
+        return {vars = {
+            card.ability.extra.limit,
+            card.ability.extra.amount
+        }}
+    end,
+    can_use = function (self, card) return G.hand and #G.hand.highlighted > 0 and #G.hand.highlighted <= card.ability.extra.limit end,
+    use = function (self, card, area, copier)
+        for i,v in ipairs(G.hand.highlighted) do
+            v.ability['perma_p_dollars'] = v.ability['perma_p_dollars'] + card.ability.extra.amount
+            v:juice_up()
+        end
+    end
+}
 -- Fruit salad
 -- Ramen
 -- Chocolate bar
