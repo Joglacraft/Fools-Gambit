@@ -97,7 +97,71 @@ local function suit_use (self, card, area, copier)
 end
 
 -- Tacos
+SMODS.Consumable{
+    key = '_c_giga_tacos',
+    set = 'Giga_Food',
+    atlas = 'giga_Foods',
+    prefix_config = {atlas = false},
+    pos = {x = 0, y = 0},
+    soul_pos = {x = 1, y = 0},
+    fg_data = {
+        is_alternate = true,
+        alternate_key = 'c_giga_tacos',
+        crossover_label = 'GIGA'
+    },
+    config = { extra = {
+        dollars = 1,
+        cards = 10,
+    }},
+    loc_vars = function (self, info_queue, card)
+        return {vars = {
+            card.ability.extra.dollars,
+            card.ability.extra.cards,
+            G.playing_cards and next(G.playing_cards) and card.ability.extra.dollars*math.floor(#G.playing_cards / card.ability.extra.cards)
+        }}
+    end,
+    can_use = function (self, card) return true end,
+    use = function (self, card, area, copier)
+        ease_dollars(card.ability.extra.dollars*math.floor(#G.playing_cards / card.ability.extra.cards))
+    end,
+}
 -- Guacamole
+SMODS.Consumable{
+    key = '_c_giga_guacamole',
+    set = 'Giga_Food',
+    atlas = 'giga_Foods',
+    prefix_config = {atlas = false},
+    pos = {x = 0, y = 0},
+    soul_pos = {x = 2, y = 0},
+    fg_data = {
+        is_alternate = true,
+        alternate_key = 'c_giga_guacamole',
+        crossover_label = 'GIGA'
+    },
+    config = { extra = 1 },
+    loc_vars = function (self, info_queue, card)
+        return {vars = {
+            card.ability.extra
+        }}
+    end,
+    can_use = function (self, card)
+        return G.GAME and G.GAME.blind and G.GAME.blind.in_blind
+    end,
+    use = function (self, card, area, copier)
+        if G.hand then G.hand.config.card_limit = G.hand.config.card_limit + card.ability.extra end
+        G.GAME.fg_data.compat.giga.tacos_hand_mod = G.GAME.fg_data.compat.giga.tacos_hand_mod + card.ability.extra
+        G.E_MANAGER:add_event(Event({
+            trigger = 'after',
+            delay = 0.2,
+            func = function()
+                for i = 1, card.ability.extra do
+                    draw_card(G.deck, G.hand, i * 100 / 2, 'up', true)
+                end
+                return true
+            end
+        }))
+    end,
+}
 -- Hot-Dog
 -- Caesar salad
 SMODS.Consumable{

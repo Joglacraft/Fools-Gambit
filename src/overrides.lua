@@ -65,6 +65,12 @@ function Game:start_run(args,...)
 		credit_card_data = {
 			active = false,
 			trigger_ante = 4,
+		},
+		-- For compatibility with other mods
+		compat = {
+			giga = SMODS and next(SMODS.find_mod('GIGA')) and {
+				tacos_hand_mod = 0
+			} or nil
 		}
 	}
 
@@ -332,6 +338,17 @@ function G.FUNCS.reroll_boss_button(e)
 			e.children[1].children[1].config.shadow = true
 			if e.children[2] then e.children[2].children[1].config.shadow = true end 
 	  	end
+	end
+	return ret
+end
+
+local ref = end_round
+
+function end_round(...)
+	local ret = ref(...)
+	if next(SMODS.find_mod('GIGA')) then
+		if G.hand then G.hand.config.card_limit = G.hand.config.card_limit - G.GAME.fg_data.compat.giga.tacos_hand_mod end
+		G.GAME.fg_data.compat.giga.tacos_hand_mod = 0
 	end
 	return ret
 end

@@ -98,8 +98,23 @@ return {
             },
         },
         Giga_Food = {
-            c_fg__c_giga_tacos = {},
-            c_fg__c_giga_guacamole = {},
+            c_fg__c_giga_tacos = {
+                name = 'Tacos?',
+                text = {
+                    "Some delicious Tacos that",
+                    "give {C:money}+$#1#{} for every",
+                    "{C:attention}#2#{} cards in full deck",
+                    "{C:inactive}(Currently {C:money}$#3#{C:inactive})"
+                }
+            },
+            c_fg__c_giga_guacamole = {
+                name = 'Guacamole?',
+                text = {
+                    "Some delicious Guacamole that",
+                    "gives {C:attention}+#1#{} hand size",
+                    "for this round"
+                }
+            },
             c_fg__c_giga_hot_dog = {},
             c_fg__c_giga_caesar_salad = {
                 name = 'Caesar Salad?',
