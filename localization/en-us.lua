@@ -256,10 +256,38 @@ return {
                 }
             },
             c_fg__c_giga_fruit_salad = {},
-            c_fg__c_giga_ramen = {},
-            c_fg__c_giga_chocolate_bar = {},
-            c_fg__c_giga_mac_n_cheese = {},
-            c_fg__c_giga_blueberry_muffin = {},
+            c_fg__c_giga_ramen = {
+                name = 'Ramen?',
+                text = {
+                    "A delicious Ramen that after selecting {C:attention}4{} cards",
+                    "Turns the {C:attention}2 leftmost{} into {V:1}#1#{} suit",
+                    "and the {C:attention}2 rightmost{} into {V:2}#2#{} suit"
+                }
+            },
+            c_fg__c_giga_chocolate_bar = {
+                name = 'Chocolate Bar?',
+                text = {
+                    "A delicious Chocolate Bar that after selecting {C:attention}4{} cards",
+                    "Turns the {C:attention}2 leftmost{} into {V:1}#1#{} suit",
+                    "and the {C:attention}2 rightmost{} into {V:2}#2#{} suit"
+                }
+            },
+            c_fg__c_giga_mac_n_cheese = {
+                name = 'Mack m\' Cheese?',
+                text = {
+                    "Some delicious Mack n\' Cheese that after selecting {C:attention}4{} cards",
+                    "Turns the {C:attention}2 leftmost{} into {V:1}#1#{} suit",
+                    "and the {C:attention}2 rightmost{} into {V:2}#2#{} suit"
+                }
+            },
+            c_fg__c_giga_blueberry_muffin = {
+                name = 'Blueberry Muffin?',
+                text = {
+                    "A delicious Blueberry Muffin that after selecting {C:attention}4{} cards",
+                    "Turns the {C:attention}2 leftmost{} into {V:1}#1#{} suit",
+                    "and the {C:attention}2 rightmost{} into {V:2}#2#{} suit"
+                }
+            },
             c_fg__c_giga_donut = {},
             c_fg__c_giga_cranberry_joice = {},
             c_fg__c_giga_bubble_tea = {},

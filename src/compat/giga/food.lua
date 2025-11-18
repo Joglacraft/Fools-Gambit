@@ -96,6 +96,56 @@ local function suit_use (self, card, area, copier)
     end
 end
 
+local function suit_b_loc (self, info_queue, card)
+    return {vars = {
+        localize(card.ability.extra.target,"suits_plural"),
+        localize(card.ability.extra.other,"suits_plural"),
+        colours = {
+            G.C.SUITS[card.ability.extra.target],
+            G.C.SUITS[card.ability.extra.other]
+        },
+    }}
+end
+local function suit_b_use (self, card, area, copier)
+    local pitch = 0.8
+    table.sort(G.hand.highlighted,function (a, b)
+        return a.T.x < b.T.x
+    end)
+    for _,v in ipairs(G.hand.highlighted) do
+        G.E_MANAGER:add_event(Event{
+            trigger = 'after',
+            delay = 0.2,
+            func = function ()
+                v:flip()
+                play_sound("tarot2",pitch)
+                pitch = pitch + 0.1
+            return true end
+        })
+    end
+    G.E_MANAGER:add_event(Event{
+        func = function ()
+            for i=1, 2 do
+                local _, _ = SMODS.change_base(G.hand.highlighted[i],card.ability.extra.target,nil)
+            end
+            for i=3, 4 do
+                local _, _ = SMODS.change_base(G.hand.highlighted[i],card.ability.extra.other,nil)
+            end
+            pitch = pitch + 0.3
+        return true end
+    })
+    for _,v in ipairs(G.hand.highlighted) do
+        G.E_MANAGER:add_event(Event{
+            trigger = 'after',
+            delay = 0.2,
+            func = function ()
+                v:flip()
+                play_sound("tarot2",pitch)
+                pitch = pitch + 0.1
+            return true end
+        })
+    end
+end
+
 -- Tacos
 SMODS.Consumable{
     key = '_c_giga_tacos',
@@ -117,7 +167,7 @@ SMODS.Consumable{
         return {vars = {
             card.ability.extra.dollars,
             card.ability.extra.cards,
-            G.playing_cards and next(G.playing_cards) and card.ability.extra.dollars*math.floor(#G.playing_cards / card.ability.extra.cards)
+            (G.playing_cards and next(G.playing_cards) and card.ability.extra.dollars*math.floor(#G.playing_cards / card.ability.extra.cards)) or 0
         }}
     end,
     can_use = function (self, card) return true end,
@@ -571,9 +621,89 @@ SMODS.Consumable{
 }
 -- Fruit salad
 -- Ramen
+SMODS.Consumable{
+    key = '_c_giga_ramen',
+    set = 'Giga_Food',
+    atlas = 'giga_Foods',
+    prefix_config = {atlas = false},
+    pos = {x = 0, y = 0},
+    soul_pos = {x = 5, y = 4},
+    fg_data = {
+        is_alternate = true,
+        alternate_key ='c_giga_ramen',
+        crossover_label = 'GIGA'
+    },
+    config = {extra = {
+        target = 'Hearts',
+        other = 'Spades'
+    }},
+    loc_vars = suit_b_loc,
+    can_use = function (self, card) return G.hand and #G.hand.highlighted == 4 end,
+    use = suit_b_use
+}
 -- Chocolate bar
+SMODS.Consumable{
+    key = '_c_giga_chocolate_bar',
+    set = 'Giga_Food',
+    atlas = 'giga_Foods',
+    prefix_config = {atlas = false},
+    pos = {x = 0, y = 0},
+    soul_pos = {x = 6, y = 2},
+    fg_data = {
+        is_alternate = true,
+        alternate_key ='c_giga_chocolateBar',
+        crossover_label = 'GIGA'
+    },
+    config = {extra = {
+        target = 'Spades',
+        other = 'Hearts'
+    }},
+    loc_vars = suit_b_loc,
+    can_use = function (self, card) return G.hand and #G.hand.highlighted == 4 end,
+    use = suit_b_use
+}
 -- Mac n' Cheese
+SMODS.Consumable{
+    key = '_c_giga_mac_n_cheese',
+    set = 'Giga_Food',
+    atlas = 'giga_Foods',
+    prefix_config = {atlas = false},
+    pos = {x = 0, y = 0},
+    soul_pos = {x = 4, y = 2},
+    fg_data = {
+        is_alternate = true,
+        alternate_key ='c_giga_macNCheese',
+        crossover_label = 'GIGA'
+    },
+    config = {extra = {
+        target = 'Diamonds',
+        other = 'Clubs'
+    }},
+    loc_vars = suit_b_loc,
+    can_use = function (self, card) return G.hand and #G.hand.highlighted == 4 end,
+    use = suit_b_use
+}
 -- Blueberry Muffin
+SMODS.Consumable{
+    key = '_c_giga_blueberry_muffin',
+    set = 'Giga_Food',
+    atlas = 'giga_Foods',
+    prefix_config = {atlas = false},
+    pos = {x = 0, y = 0},
+    soul_pos = {x = 0, y = 4},
+    fg_data = {
+        is_alternate = true,
+        alternate_key ='c_giga_blueberryMuffin',
+        crossover_label = 'GIGA'
+    },
+    config = {extra = {
+        target = 'Clubs',
+        other = 'Diamonds'
+    }},
+    loc_vars = suit_b_loc,
+    can_use = function (self, card) return G.hand and #G.hand.highlighted == 4 end,
+    use = suit_b_use
+}
 -- Don't ut
 -- Cramberry Juice
 -- Bubble Tea
