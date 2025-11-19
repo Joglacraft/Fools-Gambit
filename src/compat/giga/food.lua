@@ -720,7 +720,10 @@ SMODS.Consumable{
         is_alternate = true,
         alternate_key ='c_giga_birthdayCake',
         crossover_label = 'GIGA'
-    },    
+    },
+    giga_data = {
+        r_food = true
+    },
     rarity = 4,
     cost = 4,
     hidden = true,
@@ -761,6 +764,9 @@ SMODS.Consumable{
         is_alternate = true,
         alternate_key ='c_giga_turkey',
         crossover_label = 'GIGA'
+    },
+    giga_data = {
+        r_food = true
     },
     rarity = 4,
     cost = 4,

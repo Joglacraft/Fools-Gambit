@@ -1613,7 +1613,8 @@ return {
             fg__c_giga_blue_plus_seal = {
                 name = 'Blue+? Seal',
                 text = {
-                    'Empty consumable tray and fill it'
+                    "Empty consumable tray and fill it",
+                    "with planet cards of the last hand played"
                 }
             },
             fg__c_giga_purple_plus_seal = {
