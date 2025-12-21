@@ -177,8 +177,10 @@ SMODS.Seal{
             for i=1, card.ability.seal.repetitions do
                 if not next(G.consumeables.cards) then return end
                 local c = G.consumeables.cards[pseudorandom('mila',1,#G.consumeables.cards)]
+                local a = pseudorandom_element(get_current_pool('Tarot'),'mila')
+                if not G.P_CENTERS[a] then a = 'c_fool' end
                 G.E_MANAGER:add_event(Event{func = function () c:flip() return true end})
-                G.E_MANAGER:add_event(Event{func = function () c:set_ability(pseudorandom_element(get_current_pool('Tarot'),'mila')) return true end})
+                G.E_MANAGER:add_event(Event{func = function () c:set_ability(a) return true end})
                 G.E_MANAGER:add_event(Event{func = function () c:flip() return true end})
             end
         end
