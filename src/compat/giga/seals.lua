@@ -130,6 +130,7 @@ SMODS.Seal{
     end
 }
 
+--[[
 -- Blue+
 SMODS.Seal{
     key = '_c_giga_blue_plus',
@@ -228,3 +229,4 @@ SMODS.Seal{
         end
     end
 }
+]]
