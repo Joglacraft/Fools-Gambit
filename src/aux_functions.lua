@@ -15,12 +15,12 @@ end
 --- Checks if a card is an alternate or not in the given table.
 --- @param card table
 --- @return boolean
-function FG.FUNCS.is_alternate(card) return card.config.center.fg_data.is_alternate end
+function FG.FUNCS.is_alternate(card) return card.config.center.fg_data and card.config.center.fg_data.is_alternate end
 
 --- Gets the key/value pair associated with the passing data.
 ---@param card table The provided card key.
 ---@return string|nil key The key of the alternate card. Returns `nil` if not found
-function FG.FUNCS.get_alternate(card) return (type(card.config.center.fg_data.alternate_key) == 'string') and card.config.center.fg_data.alternate_key or nil end
+function FG.FUNCS.get_alternate(card) return card.config.center and (type(card.config.center.fg_data.alternate_key) == 'string') and card.config.center.fg_data.alternate_key or nil end
 
 -- Alternates between this card and the associated alternative card.
 ---@param card table|card The card object

@@ -907,17 +907,13 @@ SMODS.Consumable{
             }
         }
     end,
-    can_use = function (self, card) if G.jokers and #G.jokers.cards > 0 and type(FG.FUNCS.get_card_info(G.jokers.cards[1]).rarity) == "number" then return G.jokers.config.card_count - 1 < G.jokers.config.card_limit end end,
+    can_use = function (self, card) if G.jokers and G.jokers.cards[1] and type(FG.FUNCS.get_card_info(G.jokers.cards[1]).rarity) == "number" then return #G.jokers.cards < G.jokers.config.card_limit end end,
     use = function (self, card, area, copier)
-        local function clamp(min,n,max)
-            if n < min then n = min end
-            if n > max then n = max end
-            return n
-        end
+        local function clamp(min,n,max) return math.max(min,math.min(max,n)) end
         local rarity = FG.FUNCS.get_card_info(G.jokers.cards[1]).rarity
         play_sound("tarot2")
         G.jokers.cards[1]:start_dissolve()
-        if FG.FUNCS.random_chance(card.ability.extra.low_chance or 2, card) then
+        if FG.FUNCS.random_chance(card.ability.extra.low_chance or 2) then
             rarity = rarity - 1
             for i=1, math.max(math.min((card.ability.extra.count or 2), G.jokers.config.card_limit-G.jokers.config.card_count)) do
                 SMODS.add_card{

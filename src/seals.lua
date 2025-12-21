@@ -136,36 +136,16 @@ SMODS.Seal{
                         _planet = v.key
                     end
                 end
-                if _planet then
-                    local t = {}
+                for i=1, card.ability.seal.repetitions do
+                    local eligible_cards = {}
                     for _,v in ipairs(G.consumeables.cards) do
-                        if v.config.center.set == 'Planet' then
-                            t[#t+1] = v
-                        end
+                        if v.config.center.key ~= card.config.center.key then eligible_cards[#eligible_cards+1] = v end
                     end
-                    if #G.consumeables.cards >= G.consumeables.config.card_limit then return end
-                    G.E_MANAGER:add_event(Event{
-                        bloccking = true,
-                        trigger = 'after',
-                        delay = 0.4,
-                        func = function ()
-                            if #G.consumeables.cards >= G.consumeables.config.card_limit then return true end
-                            local card = pseudorandom_element(t,'mila')
-                            if card then 
-                                card:start_dissolve() 
-                            end
-                        return true end
-                    })
-                    if #G.consumeables.cards >= G.consumeables.config.card_limit then return end
-                    G.E_MANAGER:add_event(Event{
-                        bloccking = true,
-                        trigger = 'after',
-                        delay = 0.4,
-                        func = function ()
-                            if #G.consumeables.cards >= G.consumeables.config.card_limit then return true end
-                            SMODS.add_card({ key = _planet })
-                        return true end
-                    })
+                    if #eligible_cards == 0 then return end
+                    local c = eligible_cards[pseudorandom('mila',1,#eligible_cards)]
+                    G.E_MANAGER:add_event(Event{func = function () c:flip() return true end})
+                    G.E_MANAGER:add_event(Event{func = function () c:set_ability(_planet) return true end})
+                    G.E_MANAGER:add_event(Event{func = function () c:flip() return true end})
                 end
             end
         end
@@ -194,25 +174,13 @@ SMODS.Seal{
     end,
     calculate = function (self, card, context)
         if context.discard and context.cardarea == G.hand and context.other_card == card then
-            G.E_MANAGER:add_event(Event{
-                bloccking = true,
-                trigger = 'after',
-                delay = 0.4,
-                func = function ()
-                    local card = pseudorandom_element(G.consumeables.cards,'mila')
-                    if card then 
-                        card:start_dissolve() 
-                    end
-                return true end
-            })
-            G.E_MANAGER:add_event(Event{
-                bloccking = true,
-                trigger = 'after',
-                delay = 0.4,
-                func = function ()
-                    SMODS.add_card({ set = 'Tarot' })
-                return true end
-            })
+            for i=1, card.ability.seal.repetitions do
+                if not next(G.consumeables.cards) then return end
+                local c = G.consumeables.cards[pseudorandom('mila',1,#G.consumeables.cards)]
+                G.E_MANAGER:add_event(Event{func = function () c:flip() return true end})
+                G.E_MANAGER:add_event(Event{func = function () c:set_ability(pseudorandom_element(get_current_pool('Tarot'),'mila')) return true end})
+                G.E_MANAGER:add_event(Event{func = function () c:flip() return true end})
+            end
         end
     end
 }
