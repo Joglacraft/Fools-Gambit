@@ -17,7 +17,11 @@ position = "after"
 payload = '''
     if first_pass and FG.config.extended_tooltips and _c.fg_data then
         if _c.fg_data.alternate_key then
-            info_queue[#info_queue+1] = G.P_CENTERS[_c.fg_data.alternate_key]
+            if G.P_CENTERS[_c.fg_data.alternate_key].discovered then
+                info_queue[#info_queue+1] = G.P_CENTERS[_c.fg_data.alternate_key]
+            else
+                info_queue[#info_queue+1] = {set = 'Other', key = 'fg_undiscovered_alternate'}
+            end
         end
         if _c.fg_data.crossover_label then
             info_queue[#info_queue+1] = {set = 'Other', key = 'fg_crossover_label', vars = {_c.fg_data.crossover_label}}

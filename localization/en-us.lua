@@ -1558,6 +1558,20 @@ return {
                     "{C:purple,E:1}#1#{}"
                 }
             },
+            fg_undiscovered_alternate = {
+                name = 'Undiscovered alternate',
+                text = {
+                    '{C:purple}Alternate{} this card to',
+                    'learn what it does'
+                }
+            },
+            fg_undiscovered_alternate_seal = {
+                name = 'Undiscovered alternate',
+                text = {
+                    '{C:purple}Alternate{} this seal to',
+                    'learn what it does'
+                }
+            },
             -- Seals
             fg_gold_seal = {
                 name = 'Gold? Seal',
