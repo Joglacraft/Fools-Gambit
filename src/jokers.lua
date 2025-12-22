@@ -394,20 +394,14 @@ SMODS.Joker{
 	pos = { x = 0, y = 1},
 	rarity = 1,
 	cost = 3,
-		fg_data = {
-			is_alternate = false,
-			alternate_key ="j_fg_oscillator_alt",
-			vars = {
-				chips = 50,
-				y_frame = 1,
-			}
-		},	
+	fg_data = {
+		is_alternate = false,
+		alternate_key ="j_fg_oscillator_alt",
+	},	
 	config = {
-		fg_data = {
-			vars = {
-				chips = 50,
-				y_frame = 1,
-			}
+		fg_vars = {
+			chips = 50,
+			y_frame = 1,
 		},
 		extra = {
 			increase = 25,
@@ -418,10 +412,10 @@ SMODS.Joker{
 	},
 	add_to_deck = function (self, card, from_debuff)
 		local c = pseudorandom('mila',1,100)
-		if c >= 1 and c <= 33 then card.ability.fg_data.vars.y_frame = 1
-		elseif c >= 34 and c <= 66 then card.ability.fg_data.vars.y_frame = 2
-		elseif c >= 67 and c <= 99 then card.ability.fg_data.vars.y_frame = 3
-		else card.ability.fg_data.vars.y_frame = 0 end
+		if c >= 1 and c <= 33 then card.ability.fg_vars.y_frame = 1
+		elseif c >= 34 and c <= 66 then card.ability.fg_vars.y_frame = 2
+		elseif c >= 67 and c <= 99 then card.ability.fg_vars.y_frame = 3
+		else card.ability.fg_vars.y_frame = 0 end
 	end,
 	update = function (self, card, dt)
 		if not card.ability and not card.ability.extra then return end
@@ -429,14 +423,14 @@ SMODS.Joker{
 		if card.ability.extra.delay <= 0 then -- Runs once the frame needs updating
 			if card.ability.extra.frame >= 3 then card.ability.extra.frame = 0 end
 			card.ability.extra.frame = card.ability.extra.frame + 1
-			card.children.center:set_sprite_pos({x = card.ability.extra.frame or 0, y = card.ability.fg_data.vars.y_frame or 1})
+			card.children.center:set_sprite_pos({x = card.ability.extra.frame or 0, y = card.ability.fg_vars.y_frame or 1})
 			card.ability.extra.delay = .5
 		end
 	end,
 	loc_vars = function (self, info_queue, card)
 		return {
 			vars = {
-				card.ability.fg_data.vars.chips,
+				card.ability.fg_vars.chips,
 				card.ability.extra.increase,
 				card.ability.extra.decrease
 			}
@@ -448,7 +442,7 @@ SMODS.Joker{
 	blueprint_compat = true,
 	calculate = function (self, card, context)
 		if context.setting_blind then
-			card.ability.fg_data.vars.chips = card.ability.fg_data.vars.chips + card.ability.extra.increase
+			card.ability.fg_vars.chips = card.ability.fg_vars.chips + card.ability.extra.increase
 			FG.FUNCS.card_eval_status_text{
 				card = card,
 				message = "+"..card.ability.extra.increase,
@@ -457,7 +451,7 @@ SMODS.Joker{
 			}
 		end
 		if context.end_of_round and context.cardarea == G.jokers then
-			if card.ability.fg_data.vars.chips > 0 then
+			if card.ability.fg_vars.chips > 0 then
 					FG.FUNCS.card_eval_status_text{
 					card = card,
 					message = "-"..card.ability.extra.decrease,
@@ -465,10 +459,10 @@ SMODS.Joker{
 					colour = "chips"
 				}
 			end
-			card.ability.fg_data.vars.chips = card.ability.fg_data.vars.chips - card.ability.extra.decrease
-			if card.ability.fg_data.vars.chips <= 0 then card.ability.fg_data.vars.chips = 0 end
+			card.ability.fg_vars.chips = card.ability.fg_vars.chips - card.ability.extra.decrease
+			if card.ability.fg_vars.chips <= 0 then card.ability.fg_vars.chips = 0 end
 		end
-		if context.joker_main and card.ability.fg_data.vars.chips > 0 then return {chips = card.ability.fg_data.vars.chips} end
+		if context.joker_main and card.ability.fg_vars.chips > 0 then return {chips = card.ability.fg_vars.chips} end
 	end
 }
 -- Delinquent
@@ -847,17 +841,11 @@ SMODS.Joker{
 	fg_data = {
 		is_alternate = true,
 		alternate_key ="j_fg_oscillator",
-		vars = {
-			chips = 50,
-			y_frame = 1,
-		}
 	},	
 	config = {
-		fg_data = {
-			vars = {
-				chips = 50,
-				y_frame = 1,
-			}
+		fg_vars = {
+			chips = 50,
+			y_frame = 1,
 		},
 		extra = {
 			increase = 25,
@@ -868,10 +856,10 @@ SMODS.Joker{
 	},
 	add_to_deck = function (self, card, from_debuff)
 		local c = pseudorandom('mila',1,100)
-		if c >= 1 and c <= 33 then card.ability.fg_data.vars.y_frame = 1
-		elseif c >= 34 and c <= 66 then card.ability.fg_data.vars.y_frame = 2
-		elseif c >= 67 and c <= 99 then card.ability.fg_data.vars.y_frame = 3
-		else card.ability.fg_data.vars.y_frame = 0 end
+		if c >= 1 and c <= 33 then card.ability.fg_vars.y_frame = 1
+		elseif c >= 34 and c <= 66 then card.ability.fg_vars.y_frame = 2
+		elseif c >= 67 and c <= 99 then card.ability.fg_vars.y_frame = 3
+		else card.ability.fg_vars.y_frame = 0 end
 	end,
 	update = function (self, card, dt)
 		if not card.ability and not card.ability.extra then return end
@@ -879,14 +867,14 @@ SMODS.Joker{
 		if card.ability.extra.delay <= 0 then -- Runs once the frame needs updating
 			if card.ability.extra.frame >= 3 then card.ability.extra.frame = 0 end
 			card.ability.extra.frame = card.ability.extra.frame + 1
-			card.children.center:set_sprite_pos({x = card.ability.extra.frame or 0, y = card.ability.fg_data.vars.y_frame or 1})
+			card.children.center:set_sprite_pos({x = card.ability.extra.frame or 0, y = card.ability.fg_vars.y_frame or 1})
 			card.ability.extra.delay = .5
 		end
 	end,
 	loc_vars = function (self, info_queue, card)
 		return {
 			vars = {
-				card.ability.fg_data.vars.chips,
+				card.ability.fg_vars.chips,
 				card.ability.extra.increase,
 				card.ability.extra.decrease
 			}
@@ -897,7 +885,7 @@ SMODS.Joker{
 	end,
 	calculate = function (self, card, context)
 		if context.setting_blind then
-			if card.ability.fg_data.vars.chips > 0 then
+			if card.ability.fg_vars.chips > 0 then
 				FG.FUNCS.card_eval_status_text{
 					card = card,
 					message = "-"..card.ability.extra.decrease,
@@ -905,11 +893,11 @@ SMODS.Joker{
 					colour = "chips"
 				}				
 			end
-			card.ability.fg_data.vars.chips = card.ability.fg_data.vars.chips - card.ability.extra.decrease
-			if card.ability.fg_data.vars.chips <= 0 then card.ability.fg_data.vars.chips = 0 end
+			card.ability.fg_vars.chips = card.ability.fg_vars.chips - card.ability.extra.decrease
+			if card.ability.fg_vars.chips <= 0 then card.ability.fg_vars.chips = 0 end
 		end
 		if context.end_of_round and context.cardarea == G.jokers then
-			card.ability.fg_data.vars.chips = card.ability.fg_data.vars.chips + card.ability.extra.increase
+			card.ability.fg_vars.chips = card.ability.fg_vars.chips + card.ability.extra.increase
 			FG.FUNCS.card_eval_status_text{
 				card = card,
 				message = "+"..card.ability.extra.increase,
@@ -917,7 +905,7 @@ SMODS.Joker{
 				colour = "chips"
 			}
 		end
-		if context.joker_main and card.ability.fg_data.vars.chips > 0 then return {chips = card.ability.fg_data.vars.chips} end
+		if context.joker_main and card.ability.fg_vars.chips > 0 then return {chips = card.ability.fg_vars.chips} end
 	end
 }
 -- Delinquent alt

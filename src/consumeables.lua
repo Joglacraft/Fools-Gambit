@@ -78,10 +78,11 @@ local function tonal_use (param,extra)
         func = function()
             for i=1, math.min(math.ceil(card.ability.extra.cards or 1),#G[cardarea].cards) do
                 if not FG.FUNCS.get_card_info(G[cardarea].cards[i]).stickers['fg_unchangeable']
+                and G[cardarea].cards[i].config.center.fg_data
                 and FG.FUNCS.check_exists(G[cardarea].cards[i].config.center.fg_data.alternate_key) then
                     local c = FG.FUNCS.alternate_card(G[cardarea].cards[i])
-                    FG.FUNCS.update_edition(c.original,c.alternate)
-                    FG.FUNCS.update_alternate_values(c.original,c.alternate)
+                    --FG.FUNCS.update_edition(c.original,c.alternate)
+                    --FG.FUNCS.update_alternate_values(c.original,c.alternate)
                     card:juice_up()
                 end
             end
@@ -148,9 +149,9 @@ local function bulk_use (param,extra)
                 and FG.FUNCS.check_exists(G[cardarea].cards[i].config.center.fg_data.alternate_key)
                 and can then
                     local c = FG.FUNCS.alternate_card(G[cardarea].cards[i])
-                    FG.FUNCS.update_edition(c.original,c.alternate)
-                    FG.FUNCS.update_alternate_values(c.original,c.alternate)
-                    card:juice_up()   
+                    --FG.FUNCS.update_edition(c.original,c.alternate)
+                    --FG.FUNCS.update_alternate_values(c.original,c.alternate)
+                    card:juice_up()
                 end
             end
             play_sound("tarot1")

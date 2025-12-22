@@ -1386,7 +1386,7 @@ return {
                 text = {
                     "Aleatoriamente crea {C:attention}#1#{} carta de",
                     "{C:tarot}Tarot{} or de {C:planet}Planet{}",
-                    "{C:inactive}({C:tarot}The Fool?{} excluded)"
+                    "{C:inactive}({C:tarot}¿El loco?{C:inactive} excluded)"
                 }
             },
             c_fg_hanged_man = {

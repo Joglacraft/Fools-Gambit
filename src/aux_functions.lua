@@ -24,23 +24,34 @@ function FG.FUNCS.get_alternate(card) return card.config.center and (type(card.c
 
 -- Alternates between this card and the associated alternative card.
 ---@param card table|card The card object
----@return {old:card,new:card} table A table containing the old card and the new card.
-function FG.FUNCS.alternate_card(card)
+---@param instant? boolean If it should play an animation when alternating
+---@param keep? boolean Weather if the alternate values should be kept or reset.
+---@return Card
+function FG.FUNCS.alternate_card(card,instant,keep)
+	instant = instant or false
+	keep = keep or true
 	local key = FG.FUNCS.get_alternate(card) or "j_joker"
 	local found = FG.FUNCS.check_exists(key)
 
 	if not found then key = "j_joker" end
-
-	local new_card = SMODS.add_card{
-		key = key,
-		skip_materialize = true
-	}
-	card:start_dissolve(nil,true,0)
-
-	return {
-		original = card,
-		alternate = new_card
-	}
+	local old_vars = copy_table(card.ability.fg_vars)
+	if instant then
+		card:set_ability(FG.FUNCS.get_alternate(card))
+		card.ability.fg_vars = old_vars
+	else
+		local should_flip = card.facing == 'front'
+		G.E_MANAGER:add_event(Event{func = function () 
+			if should_flip then card:flip() end
+		return true end})
+		delay(0.4)
+		G.E_MANAGER:add_event(Event{func = function () 
+			card:set_ability(FG.FUNCS.get_alternate(card))
+			card:juice_up()
+			card.ability.fg_vars = old_vars
+			if should_flip then card:flip() end
+		return true end})
+	end
+	return card
 end
 
 ---Iterates through G.P_CENTERS and returns if the key exists.

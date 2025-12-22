@@ -1695,7 +1695,7 @@ return {
                 text = {
                     "Creates {C:attention}#1#{} random",
                     "{C:tarot}Tarot{} or {C:planet}Planet{} card",
-                    "{C:inactive}({C:tarot}The Fool?{} excluded)"
+                    "{C:inactive}({C:tarot}The Fool?{C:inactive} excluded)"
                 }
             },
             c_fg_hanged_man = {
