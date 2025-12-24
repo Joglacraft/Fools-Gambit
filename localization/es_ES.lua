@@ -647,6 +647,14 @@ return {
                     "{C:attention}figura{} jugada"
                 }
             },
+            j_fg_space = {
+                name = '¿Comodín Espacial?',
+                text = {
+                    "{X:mult,C:white}X#3#{} Multi",
+                    "{C:green}#1# en #2#{} probabilidades de {C:attention}bajar de nivel{}",
+                    "la mano de póker jugada"
+                }
+            },
             j_fg_abstract = {
                 name = '¿Comodín abstracto?',
                 text = {

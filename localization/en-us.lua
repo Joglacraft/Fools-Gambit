@@ -890,6 +890,14 @@ return {
                     "played {C:attention}face{} card"
                 }
             },
+            j_fg_space = {
+                name = 'Space Joker?',
+                text = {
+                    "{X:mult,C:white}X#3#{} Mult",
+                    "{C:green}#1# in #2#{} chance to {C:attention}level down{}",
+                    "played poker hand"
+                }
+            },
             j_fg_abstract = {
                 name = 'Abstract Joker?',
                 text = {

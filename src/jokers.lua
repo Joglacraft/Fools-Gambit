@@ -2704,6 +2704,40 @@ SMODS.Joker{
 	end
 }
 -- Space
+SMODS.Joker{
+	key = 'space',
+	atlas = 'Joker',
+	pos = {x=3,y=5},
+	prefix_config = {atlas = false},
+	fg_data = {
+		is_alternate = true,
+		alternate_key = 'j_space'
+	},
+	rarity = 'fg_uncommon_alt',
+	cost = 5,
+	config = {extra = {
+		min = 1,
+		max = 4,
+		xmult = 3,
+		levels = 1,
+	}},
+	loc_vars = function (self, info_queue, card)
+		local num, den = SMODS.get_probability_vars(card,card.ability.extra.min,card.ability.extra.max,'j_fg_space')
+		return {vars = {
+			num,
+			den,
+			card.ability.extra.xmult,
+			card.ability.extra.levels
+		}}
+	end,
+	calculate = function (self, card, context)
+		if context.before and G.GAME.hands[context.scoring_name].level > 1 and
+		SMODS.pseudorandom_probability(card,'mila',card.ability.extra.min,card.ability.extra.max,'j_fg_space') then
+			level_up_hand(card,context.scoring_name,false,-math.floor(card.ability.extra.levels))
+		end
+		if context.joker_main then return {xmult = card.ability.extra.xmult} end
+	end
+}
 -- Egg
 SMODS.Joker {
 	key = 'egg',
