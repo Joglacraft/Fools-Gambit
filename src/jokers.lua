@@ -1616,7 +1616,52 @@ SMODS.Joker {
 	end
 }
 -- Half
--- Stencil
+SMODS.Joker{
+	key = 'half',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
+	pos = {x=7,y=0},
+	pixel_size = { h = 95 / 1.7 },
+	fg_data = {
+		is_alternate = true,
+		alternate_key = 'j_half',
+	},
+	rarity = 'fg_uncommon_alt',
+	cost = 5,
+	calculate = function (self, card, context)
+		local elegible_cards = {}
+		for _,v in ipairs(G.jokers.cards) do
+			if v ~= self or v ~= card then elegible_cards[#elegible_cards+1] = v end
+		end
+		local c = pseudorandom_element(elegible_cards,'mila')
+		if not c or c == self or c == card then return end
+		local ret = c:calculate_joker(context)
+		local function recur(tbl,i)
+			if i >= 2 then return end
+			for k,v in pairs(tbl) do
+				if type(v) == 'number' then tbl[k] = tbl[k]/2
+				elseif type(v) == 'table' then tbl[k] = recur(v,i+1) end
+			end
+			return tbl
+		end
+		if not ret then return end
+		ret = recur(ret,1) or ret
+		if ret.message then ret.message = string.gsub(ret.message,"%d",tostring(tonumber(string.match(ret.message,"%d+"))/2)) end
+		return ret
+	end
+}
+--[[ Stencil
+SMODS.Joker{
+	key = 'stencil',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
+	pos = {x=2,y=5},
+	fg_data = {
+		is_alternate = true,
+		alternate_key = 'j_stencil'
+	},
+	rarity = ''
+}]]
 -- Four fingers
 -- Mime
 -- Credit card
@@ -1625,10 +1670,10 @@ SMODS.Joker{
 	atlas = 'Joker',
 	prefix_config = {atlas = false},
 	pos = {x=5,y=1},
-		fg_data = {
-			is_alternate = true,
-			alternate_key ='j_credit_card'
-		},
+	fg_data = {
+		is_alternate = true,
+		alternate_key ='j_credit_card'
+	},
 	rarity = 'fg_uncommon_alt',
 	cost = 3,
 	calculate = function (self, card, context)

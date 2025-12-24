@@ -724,6 +724,13 @@ return {
                     "a {C:attention}#2#",
                 }
             },
+            j_fg_half = {
+                name = 'Half Joker?',
+                text = {
+                    "Copies ability of a {C:attention}random{} Joker",
+                    "and {C:attention}halves{} all its values"
+                }
+            },
             j_fg_credit_card = {
                 name = 'Credit Card?',
                 text = {
