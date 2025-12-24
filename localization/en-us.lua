@@ -1283,7 +1283,7 @@ return {
                 name = "Flower Pot?",
                 text = {
                     "{C:white,X:mult}X#1#{} Mult if {C:attention}scoring hand{} contains",
-                    "{C:spades}Spades{}, {C:hearts}Hearts{}, {C:clubs}Cubs{}, {C:diamonds}Diamonds{},",
+                    "{C:spades}Spades{}, {C:hearts}Hearts{}, {C:clubs}Clubs{}, {C:diamonds}Diamonds{},",
                     "{C:attention}face{} and {C:attention}number{} cards"
                 }
             },
