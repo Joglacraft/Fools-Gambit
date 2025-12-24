@@ -558,6 +558,13 @@ return {
                     '{C:inactive}Actualmente {C:mult}+#1#{C:inactive} multi{}'
                 }
             },
+            j_fg_chaos = {
+                name = 'Caos el payaso',
+                text = {
+                    "El precio de {C:green}cambiar{} la tienda",
+                    "aumenta cada {C:attention}2{} cambios"
+                }
+            },
             j_fg_fibonacci = {
                 name = '¿Fibonacci?',
                 text = {

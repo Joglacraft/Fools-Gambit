@@ -2123,6 +2123,28 @@ SMODS.Joker {
 	end
 }
 -- Chaos
+SMODS.Joker{
+	key = 'chaos',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
+	pos = {x = 1, y = 0},
+	fg_data = {
+		is_alternate = true,
+		alternate_key = 'j_chaos'
+	},
+	config = {extra = 1},
+	loc_vars = function (self, info_queue, card)
+		local gotten = false
+		if G.jokers then for _,v in ipairs(G.jokers.cards) do if card == v then gotten = true end end end
+		return {vars = {1 + (G.GAME.fg_data and G.GAME.fg_data.chaos_data.max or 0) + (not gotten and card.ability.extra or 0)}}
+	end,
+	add_to_deck = function (self, card, from_debuff)
+		G.GAME.fg_data.chaos_data.max = G.GAME.fg_data.chaos_data.max + card.ability.extra
+	end,
+	remove_from_deck = function (self, card, from_debuff)
+		G.GAME.fg_data.chaos_data.max = G.GAME.fg_data.chaos_data.max - card.ability.extra
+	end
+}
 -- Fibonacci
 SMODS.Joker {
 	key = 'fibonacci',

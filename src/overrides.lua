@@ -53,7 +53,7 @@ function Game:start_run(args,...)
 	local ret = start_run_ref(self,args,...)
 
 	-- Initialize FG's default data table
-	G.GAME.fg_data = {
+	G.GAME.fg_data = G.GAME.fg_data or {
 		original_rarities_multiply = 1,
 		alternate_rarities_multiply = 0,
 		aberration_rate = 200,
@@ -65,6 +65,10 @@ function Game:start_run(args,...)
 		credit_card_data = {
 			active = false,
 			trigger_ante = 4,
+		},
+		chaos_data = {
+			max = 0,
+			current = 0
 		},
 		-- For compatibility with other mods
 		compat = {
@@ -350,5 +354,26 @@ function end_round(...)
 		if G.hand then G.hand.config.card_limit = G.hand.config.card_limit - G.GAME.fg_data.compat.giga.tacos_hand_mod end
 		G.GAME.fg_data.compat.giga.tacos_hand_mod = 0
 	end
+	return ret
+end
+
+
+local ref = G.FUNCS.reroll_shop
+
+function G.FUNCS.reroll_shop(...)
+	local ret = ref(...)
+	G.GAME.fg_data.chaos_data.current = G.GAME.fg_data.chaos_data.current + 1
+	return ret
+end
+
+local ref = calculate_reroll_cost
+function calculate_reroll_cost(skip_increment,...)
+	if G.GAME.fg_data.chaos_data.current < G.GAME.fg_data.chaos_data.max then
+		skip_increment = true
+	else
+		G.GAME.fg_data.chaos_data.current = 0
+	end
+	
+	local ret = ref(skip_increment,...)
 	return ret
 end

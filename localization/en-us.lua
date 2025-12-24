@@ -808,6 +808,13 @@ return {
                     '{C:inactive}(Currently {C:mult}+#1#{C:inactive} Mult){}'
                 }
             },
+            j_fg_chaos = {
+                name = 'Chaos the Clown',
+                text = {
+                    "Reroll prices increase",
+                    "every {C:attention}#1#{C:green} Rerolls{}"
+                }
+            },
             j_fg_fibonacci = {
                 name = 'Fibonacci?',
                 text = {
