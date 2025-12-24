@@ -875,7 +875,12 @@ return {
                 }
             },
             j_fg_supernova = {
-
+                name = 'Supernova?',
+                text = {
+                    "{C:chips}+#1#{} Chips for each poker hand",
+                    "played the same amount as",
+                    "{C:attention}current{} played poker hand"
+                }
             },
             j_fg_ride_the_bus = {
                 name = "Ride the Bus?",

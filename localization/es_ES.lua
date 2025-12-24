@@ -398,7 +398,7 @@ return {
                     "Reactiva las cartas jugadas",
                     "{C:attention}#3#{} vez si la mano contiene",
                     "una {C:attention}#2#",
-               }
+                }
             },
             j_fg_zany = {
                 name = '¿Comodín chiflado?',
@@ -407,7 +407,7 @@ return {
                     "Reactiva las cartas jugadas",
                     "{C:attention}#3#{} vez si la mano contiene",
                     "un {C:attention}#2#",
-               }
+                }
             },
             j_fg_mad = {
                 name = '¿Comodín demente?',
@@ -416,7 +416,7 @@ return {
                     "Reactiva las cartas jugadas",
                     "{C:attention}#3#{} vez si la mano contiene",
                     "una {C:attention}#2#",
-               }
+                }
             },
             j_fg_crazy = {
                 name = '¿Comodín loco?',
@@ -425,7 +425,7 @@ return {
                     "Reactiva las cartas jugadas",
                     "{C:attention}#3#{} vez si la mano contiene",
                     "una {C:attention}#2#",
-               }
+                }
             },
             j_fg_droll = {
                 name = '¿Comodín gracioso?',
@@ -434,7 +434,7 @@ return {
                     "Reactiva las cartas jugadas",
                     "{C:attention}#3#{} vez si la mano contiene",
                     "un {C:attention}#2#",
-               }
+                }
             },
             j_fg_sly = {
                 name = '¿Comodín artero?',
@@ -443,7 +443,7 @@ return {
                     "Reactiva las cartas jugadas",
                     "{C:attention}#3#{} vez si la mano contiene",
                     "una {C:attention}#2#",
-               }
+                }
             },
             j_fg_wily = {
                 name = '¿Comodín taimado?',
@@ -452,7 +452,7 @@ return {
                     "Reactiva las cartas jugadas",
                     "{C:attention}#3#{} vez si la mano contiene",
                     "un {C:attention}#2#",
-               }
+                }
             },
             j_fg_clever = {
                 name = '¿Comodín astuto?',
@@ -461,7 +461,7 @@ return {
                     "Reactiva las cartas jugadas",
                     "{C:attention}#3#{} vez si la mano contiene",
                     "una {C:attention}#2#",
-               }
+                }
             },
             j_fg_devious = {
                 name = '¿Comodín ladino?',
@@ -470,7 +470,7 @@ return {
                     "Reactiva las cartas jugadas",
                     "{C:attention}#3#{} vez si la mano contiene",
                     "una {C:attention}#2#",
-               }
+                }
             },
             j_fg_crafty = {
                 name = '¿Comodín mañoso?',
@@ -479,7 +479,15 @@ return {
                     "Reactiva las cartas jugadas",
                     "{C:attention}#3#{} vez si la mano contiene",
                     "un {C:attention}#2#",
-               }
+                }
+            },
+            j_fg_half = {
+                name = '¿Medio Comodín?',
+                text = {
+                    "Copia la habilidad de un",
+                    "comodín {C:attention}aleatorio{} y {C:attention}divide{}",
+                    "por la mitad sus valores"
+                }
             },
             j_fg_credit_card = {
                 name = '¿Targeta de crédito?',
@@ -559,7 +567,7 @@ return {
                 }
             },
             j_fg_chaos = {
-                name = 'Caos el payaso',
+                name = '¿Caos el payaso?',
                 text = {
                     "El precio de {C:green}cambiar{} la tienda",
                     "aumenta cada {C:attention}2{} cambios"
@@ -624,7 +632,12 @@ return {
                 }
             },
             j_fg_supernova = {
-
+                name = '¿Supernova?',
+                text = {
+                    "{C:chips}+#1#{} Fichas por cada mano de poker",
+                    "jugada tantas veces como",
+                    "la mano {C:attention}actual{}"
+                }
             },
             j_fg_ride_the_bus = {
                 name = "¿Al autobús?",

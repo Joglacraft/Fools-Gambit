@@ -2623,7 +2623,32 @@ SMODS.Joker {
 		end
 	end
 }
--- Supernova TBA
+-- Supernova
+SMODS.Joker{
+	key = 'supernova',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
+	pos = {x = 2, y = 4},
+	fg_data = {
+		is_alternate = true,
+		alternate_key = 'j_supernova'
+	},
+	rarity = 'fg_common_alt',
+	config = {extra = 50},
+	cost = 3,
+	loc_vars = function (self, info_queue, card)
+		return {vars = {card.ability.extra}}
+	end,
+	calculate = function (self, card, context)
+		if context.joker_main then
+			local chips = 0
+			for k,v in pairs(G.GAME.hands) do
+				if v.played == G.GAME.hands[context.scoring_name].played and k ~= context.scoring_name then print("Yes") chips = chips + card.ability.extra end
+			end
+			return {chips = chips}
+		end
+	end
+}
 -- Ride the bus
 SMODS.Joker{
 	key = "ride_the_bus",
