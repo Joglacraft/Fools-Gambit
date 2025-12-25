@@ -5521,6 +5521,54 @@ SMODS.Joker{
 -- Cartomancer
 -- Astronomer
 -- Burnt
+SMODS.Joker{
+	key = 'burnt',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
+	pos = {x = 3, y = 7},
+	fg_data = {
+		is_alternate = true,
+		alternate_key = 'j_burnt',
+	},
+	rarity = 'fg_rare_alt',
+	cost = 7,
+	config = {extra = 1},
+	loc_vars = function (self, info_queue, card)
+		return {vars = {card.ability.extra}}
+	end,
+	calculate = function (self, card, context)
+		if context.before then card.ability.temp_hand_name = context.scoring_name end
+		if context.end_of_round and context.main_eval then
+			update_hand_text(
+				{
+					sound = G.GAME.current_round.current_hand.handname ~= card.ability.temp_hand_name and 'button' or nil, 
+					volume = 0.4, immediate = true, nopulse = nil,
+                	delay = G.GAME.current_round.current_hand.handname ~= card.ability.temp_hand_name and 0.4 or 0
+				},
+				{
+					handname = card.ability.temp_hand_name, 
+					level=G.GAME.hands[card.ability.temp_hand_name].level, 
+					mult = G.GAME.hands[card.ability.temp_hand_name].mult, 
+					chips = G.GAME.hands[card.ability.temp_hand_name].chips
+				})
+			level_up_hand(card,card.ability.temp_hand_name,false,math.floor(card.ability.extra))
+			G.E_MANAGER:add_event(Event{func = function () 
+				update_hand_text({
+					sound = nil, 
+					volume = 0, immediate = true, nopulse = nil,
+					delay = 0
+				},
+				{
+					handname = '',
+					level = '',
+					chips = 0, 
+					mult = 0
+				})			
+			return true end})
+			card.ability.temp_hand_name = nil 	
+		end
+	end
+}
 -- Bootstraps
 SMODS.Joker{
     key = "bootstraps",

@@ -1369,6 +1369,13 @@ return {
                     "contains {C:attention}enhanced{} cards",
                 }
             },
+            j_fg_burnt = {
+                name = 'Burnt Joker?',
+                text = {
+                    "Upgrade played Poker hand",
+                    "when blind {C:attention}defeated{}"
+                }
+            },
             j_fg_bootstraps = {
                 name = "Bootstraps?",
                 text = {

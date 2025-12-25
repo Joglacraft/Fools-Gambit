@@ -1126,6 +1126,13 @@ return {
                     "{C:inactive}(Actualmente probabilidad de {C:green,E:1}X#2#/#1#{C:inactive})"
                 }
             },
+            j_fg_burnt = {
+                name = '¿Comodín Quemado?',
+                text = {
+                    "Aumenta el nivel la mano de póquer",
+                    "jugada al {C:attention}derrotar{} a la ciega"
+                }
+            },
             j_fg_bootstraps = {
                 name = "¿Botas?",
                 text = {
