@@ -921,6 +921,13 @@ return {
                     "{C:mult}#2#{} hand and {C:mult}#3#{} discard"
                 },
             },
+            j_fg_burglar = {
+                name = "Burglar?",
+                text = {
+                    "Sell this Joker to {C:attention}permanently{}",
+                    "replace all discards with hands"
+                }
+            },
             j_fg_ice_cream = {
                 name = "Ice Cream?",
                 text = {

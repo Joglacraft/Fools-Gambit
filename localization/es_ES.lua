@@ -672,6 +672,14 @@ return {
                     "{C:mult}#2#{} mano y {C:mult}#3#{} descarte"
                 },
             },
+            j_fg_burglar = {
+                name = "¿Ladrón?",
+                text = {
+                    "Vende este comodín para",
+                    "reemplazar {C:attention}permanentemente{}",
+                    "todos los descartes por manos"
+                }
+            },
             j_fg_ice_cream = {
                 name = "¿Helado?",
                 text = {

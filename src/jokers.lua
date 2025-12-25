@@ -2779,6 +2779,29 @@ SMODS.Joker {
 	end
 }
 -- Burglar
+SMODS.Joker{
+	key = 'burglar',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
+	pos = {x = 1, y = 10},
+	fg_data = {
+		is_alternate = true,
+		alternate_key = 'j_burglar'
+	},
+	cost = 5,
+	rarity = 'fg_uncommon_alt',
+	calculate = function (self, card, context)
+		if context.selling_card and context.card == card or context.card == self then
+			if not G.GAME.fg_data.burglar_data.active then
+				ease_hands_played(G.GAME.current_round.hands_left,false,false)
+				ease_discard(-G.GAME.current_round.discards_left,false,false)
+				G.GAME.round_resets.hands = G.GAME.round_resets.hands + G.GAME.round_resets.discards
+				G.GAME.round_resets.discards = 0
+			end
+			G.GAME.fg_data.burglar_data.active = true
+		end
+	end
+}
 -- Blackboard
 -- Runner
 -- Ice cream

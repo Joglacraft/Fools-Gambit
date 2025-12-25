@@ -70,6 +70,9 @@ function Game:start_run(args,...)
 			max = 0,
 			current = 0
 		},
+		burglar_data = {
+			active = false,
+		},
 		-- For compatibility with other mods
 		compat = {
 			giga = SMODS and next(SMODS.find_mod('GIGA')) and {
@@ -215,6 +218,10 @@ function Card:update(dt)
 		SMODS.Stickers['fg_alternate_mark']:apply(self,true)
 	else
 		SMODS.Stickers['fg_alternate_mark']:apply(self,false)
+	end
+	if G.GAME and G.GAME.fg_data and G.GAME.fg_data.burglar_data.active and G.GAME.round_resets.discards > 0 then
+		G.GAME.round_resets.hands = G.GAME.round_resets.hands + G.GAME.round_resets.discards
+		G.GAME.round_resets.discards = 0
 	end
 	return ret
 end
@@ -375,5 +382,16 @@ function calculate_reroll_cost(skip_increment,...)
 	end
 	
 	local ret = ref(skip_increment,...)
+	return ret
+end
+
+local ref = ease_discard
+function ease_discard(mod, instant, silent,...)
+	local ret
+	if G.GAME.fg_data.burglar_data.active then
+		ret = ease_hands_played(mod, instant, silent,...)
+	else
+		ret = ref(mod, instant, silent,...)
+	end
 	return ret
 end
