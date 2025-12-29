@@ -1646,7 +1646,7 @@ SMODS.Joker{
 		end
 		if not ret then return end
 		ret = recur(ret,1) or ret
-		if ret.message then ret.message = string.gsub(ret.message,"%d",tostring(tonumber(string.match(ret.message,"%d+"))/2)) end
+		if ret.message then ret.message = string.gsub(ret.message,"%d",tostring(tonumber(string.match(ret.message,"%d+") or 0)/2)) end
 		return ret
 	end
 }
@@ -3446,6 +3446,16 @@ SMODS.Joker{
 				G.hand and (card.ability.extra.hand_size + ((G.GAME.round_resets.hands - G.GAME.current_round.hands_left) * card.ability.extra.extra_size)) or 0
 			}
 		}
+	end,
+	add_to_deck = function (self, card, from_debuff)
+		card.ability.extra.original_limit = G.hand.config.card_limit
+		G.hand.config.card_limit = G.hand.config.card_limit + card.ability.extra.hand_size
+		return {
+			message = '+'..card.ability.extra.hand_size
+		}
+	end,
+	remove_from_deck = function (self, card, from_debuff)
+		G.hand.config.card_limit = card.ability.extra.original_limit
 	end,
 	calculate = function (self, card, context)
 		local original_limit = card.ability.extra.original_limit
@@ -5547,7 +5557,7 @@ SMODS.Joker{
 				},
 				{
 					handname = card.ability.temp_hand_name, 
-					level=G.GAME.hands[card.ability.temp_hand_name].level, 
+					level = G.GAME.hands[card.ability.temp_hand_name].level, 
 					mult = G.GAME.hands[card.ability.temp_hand_name].mult, 
 					chips = G.GAME.hands[card.ability.temp_hand_name].chips
 				})
@@ -5565,7 +5575,7 @@ SMODS.Joker{
 					mult = 0
 				})			
 			return true end})
-			card.ability.temp_hand_name = nil 	
+			--card.ability.temp_hand_name = nil 	
 		end
 	end
 }
