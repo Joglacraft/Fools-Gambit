@@ -1650,7 +1650,7 @@ SMODS.Joker{
 		return ret
 	end
 }
---[[ Stencil
+-- Stencil
 SMODS.Joker{
 	key = 'stencil',
 	atlas = 'Joker',
@@ -1660,8 +1660,19 @@ SMODS.Joker{
 		is_alternate = true,
 		alternate_key = 'j_stencil'
 	},
-	rarity = ''
-}]]
+	rarity = 'fg_uncommon_alt',
+	cost = 5,
+	config = {extra = 4},
+	loc_vars = function (self, info_queue, card)
+		return {vars = {
+			card.ability.extra,
+			G.jokers and card.ability.extra * (G.jokers.config.card_limit - #G.jokers.cards + 1) or 0
+		}}
+	end,
+	calc_dollar_bonus = function (self, card, context)
+		return card.ability.extra * (G.jokers.config.card_limit - #G.jokers.cards + 1)
+	end
+}
 -- Four fingers
 -- Mime
 -- Credit card

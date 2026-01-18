@@ -731,6 +731,15 @@ return {
                     "and {C:attention}halves{} all its values"
                 }
             },
+            j_fg_stencil = {
+                name = 'Joker Stencil',
+                text = {
+                    "{C:gold}+$#1#{} for each empty",
+                    "{C:attention}Joker{} slot",
+                    "{s:0.8}Joker Stencil? included{}",
+                    "{C:inactive}(Currently {C:gold}+$#2#{C:inactive})"
+                }
+            },
             j_fg_credit_card = {
                 name = 'Credit Card?',
                 text = {

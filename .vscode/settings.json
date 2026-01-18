@@ -1,5 +1,13 @@
 {
-    "Lua.diagnostics.globals": [
-        "G"
+    "Lua.workspace.library": [
+        // Base
+        "../smods",
+        "../lovely/dump",
+        // Compat
+        "../Giga-Balatro_Mod",
+        "../JokerDisplay",
+    ],
+    "Lua.diagnostics.disable": [
+        "lowercase-global"
     ]
 }
