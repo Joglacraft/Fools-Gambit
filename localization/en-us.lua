@@ -731,6 +731,13 @@ return {
                     "and {C:attention}halves{} all its values"
                 }
             },
+            j_fg_four_fingers = {
+                name = 'Four Fingers?',
+                text = {
+                    "{C:attention}Four of a Kind{} is considered {C:attention}Five of a Kind",
+                    "{C:attention}Three of a Kind{} is considered {C:attention}Four of a Kind"
+                }
+            },
             j_fg_stencil = {
                 name = 'Joker Stencil',
                 text = {

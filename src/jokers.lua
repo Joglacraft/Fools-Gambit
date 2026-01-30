@@ -1674,6 +1674,18 @@ SMODS.Joker{
 	end
 }
 -- Four fingers
+SMODS.Joker{
+	key = 'four_fingers',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
+	pos = {x = 6, y = 6},
+	fg_data = {
+		is_alternate = true,
+		alternate_key = 'j_four_fingers'
+	},
+	rarity = 'fg_uncommon_alt',
+	cost = 5,
+}
 -- Mime
 -- Credit card
 SMODS.Joker{

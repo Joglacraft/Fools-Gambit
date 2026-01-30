@@ -395,3 +395,17 @@ function ease_discard(mod, instant, silent,...)
 	end
 	return ret
 end
+
+local ref = evaluate_poker_hand
+function evaluate_poker_hand(...)
+	local results = ref(...)
+	if next(SMODS.find_card('j_fg_four_fingers')) then
+		res_test = results
+		if next(results['Four of a Kind']) then
+			results['Five of a Kind'] = results['Four of a Kind']
+		elseif next(results['Three of a Kind']) then
+			results['Four of a Kind'] = results['Three of a Kind']
+		end
+	end
+	return results
+end
