@@ -118,13 +118,12 @@ SMODS.Consumable{
         if G.consumeables.config.card_count <= G.consumeables.config.card_limit then return true else return false end
     end,
     use = function (self, card, area, copier)
-        local elegible_cards = SMODS.merge_lists(get_current_pool('Tarot'),get_current_pool('Planet'))
-        if not next(elegible_cards) then return end
         for i=1, card.ability.extra.amount do
-            if G.consumeables.config.card_count < G.consumeables.config.card_limit then
-                local choosen_card = pseudorandom("mila",1,#elegible_cards)
+            if G.consumeables.config.card_count <= G.consumeables.config.card_limit then
+                local s = {'Tarot','Planet'}
                 SMODS.add_card{
-                    key = elegible_cards[choosen_card]
+                    set = s[pseudorandom('mila',1,#s)],
+                    area = G.consumeables
                 }
             end
         end
