@@ -2992,6 +2992,34 @@ SMODS.Joker{
 }
 -- Green
 -- Superposition
+SMODS.Joker{
+	key = 'superposition',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
+	pos = {x = 3, y = 11},
+	fg_data = {
+		is_alternate = true,
+		alternate_key = 'j_superposition'
+	},
+	config = {extra = 1},
+	loc_vars = function (self, info_queue, card)
+		return {vars = {card.ability.extra}}
+	end,
+	cost = 4,
+	blueprint_compat = true,
+	calculate = function (self, card, context)
+		if context.before and #G.consumeables.cards < G.consumeables.config.card_limit
+		and FG.FUNCS.get_card_info(context.scoring_hand[1]).rank == FG.FUNCS.get_card_info(context.scoring_hand[#context.scoring_hand]).rank
+		and FG.FUNCS.get_card_info(context.scoring_hand[1]).suit ==FG.FUNCS.get_card_info(context.scoring_hand[#context.scoring_hand]).suit then
+			for i=1, card.ability.extra do
+				SMODS.create_card{
+					set = 'Tarot'
+				}
+			end
+		end
+	end
+
+}
 -- To do list
 -- Cavendish
 SMODS.Joker{

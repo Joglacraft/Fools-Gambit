@@ -981,6 +981,14 @@ return {
                     "undebuffs {C:attention}scored cards{}",
                 }
             },
+            j_fg_superposition = {
+                name = 'Superposition',
+                text = {
+                    "Creates {C:attention}#1# {C:purple}Tarot{} cards if",
+                    "first and last card in scored hand",
+                    "share the same {C:attention}rank{} and {C:attention}suit{}"
+                }
+            },
             j_fg_cavendish = {
                 name = "Cavendish?",
                 text = {
