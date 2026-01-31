@@ -989,6 +989,14 @@ return {
                     "share the same {C:attention}rank{} and {C:attention}suit{}"
                 }
             },
+            j_fg_todo_list = {
+                name = 'To Do List',
+                text = {
+                    "Earn {C:money}$#4#{} after playing",
+                    "{V:1}#1#{}, {V:2}#2#{} and {V:3}#3#{}",
+                    "Poker Hands change after {C:attention}boss blind{} defeated"
+                }
+            },
             j_fg_cavendish = {
                 name = "Cavendish?",
                 text = {

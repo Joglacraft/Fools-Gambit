@@ -3005,6 +3005,7 @@ SMODS.Joker{
 	loc_vars = function (self, info_queue, card)
 		return {vars = {card.ability.extra}}
 	end,
+	rarity = 'fg_common_alt',
 	cost = 4,
 	blueprint_compat = true,
 	calculate = function (self, card, context)
@@ -3018,9 +3019,78 @@ SMODS.Joker{
 			end
 		end
 	end
-
 }
 -- To do list
+SMODS.Joker{
+	key = 'todo_list',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
+	pos = {x = 4, y = 11},
+	fg_data = {
+		is_alternate = true,
+		alternate_key = 'j_todo_list'
+	},
+	config = {
+		extra = {
+			hands = {
+				{key = SMODS.PokerHands['High Card'] and SMODS.PokerHands['High Card'].key or next(SMODS.PokerHands).key, played = false},
+				{key = SMODS.PokerHands['Flush'] and SMODS.PokerHands['Flush'].key or next(SMODS.PokerHands).key, played = false},
+				{key = SMODS.PokerHands['Full House'] and SMODS.PokerHands['Full House'].key or next(SMODS.PokerHands).key, played = false},
+			},
+			dollars = 25,
+			payed = false
+		}
+	},
+	loc_vars = function (self, info_queue, card)
+		return {vars = {
+			localize(card.ability.extra.hands[1].key,'poker_hands'),
+			localize(card.ability.extra.hands[2].key,'poker_hands'),
+			localize(card.ability.extra.hands[3].key,'poker_hands'),
+			card.ability.extra.dollars,
+
+			colours = {
+				card.ability.extra.hands[1].played and G.C.GREEN or G.C.RED,
+				card.ability.extra.hands[2].played and G.C.GREEN or G.C.RED,
+				card.ability.extra.hands[3].played and G.C.GREEN or G.C.RED,
+			}
+		}}
+	end,
+	rarity = 'fg_uncommon_alt',
+	cost = 6,
+	calculate = function (self, card, context)
+		if context.before then
+			for _,v in ipairs(card.ability.extra.hands) do
+				if v.key == context.scoring_name then v.played = true end
+			end
+			local should_pay = true
+			if card.ability.extra.payed then --[[print('Already payed')]] should_pay = false end
+			for _,v in ipairs(card.ability.extra.hands) do
+				if not v.played then --[[print(string.format("Hand not played: %s",v.key))]] should_pay = false end
+			end
+			if should_pay then card.ability.extra.payed = true end
+			return {
+				dollars = should_pay and card.ability.extra.dollars or nil
+			}
+		end
+		if context.ante_end then
+			local elligible_hands = {}
+			for _,v in pairs(SMODS.PokerHands) do
+				if v.visible then
+				elligible_hands[#elligible_hands+1] = v.key
+				end
+			end
+			for _,v in ipairs(card.ability.extra.hands) do
+				if next(elligible_hands) then
+					local i = pseudorandom('mila',1,#elligible_hands)
+					v.key = elligible_hands[i]
+					v.played = false
+					table.remove(elligible_hands,i)
+				end
+			end
+			card.ability.extra.payed = false
+		end
+	end
+}
 -- Cavendish
 SMODS.Joker{
 	key = "cavendish",
