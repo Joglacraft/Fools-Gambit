@@ -1981,7 +1981,7 @@ SMODS.Joker {
 	pos = { x = 0, y = 5 },
 		fg_data = {
 			is_alternate = true,
-			alternate_key ="j_8ball"
+			alternate_key ="j_8_ball"
 		},	
 	rarity = "fg_common_alt",
 	cost = 2,
@@ -3332,16 +3332,18 @@ SMODS.Joker{
 	prefix_config = {atlas = false},
 	pos = {x=4,y=12},
 	soul_pos = {x=2, y=9,
-		fg_data = {
-			is_alternate = true,
-			alternate_key ='j_hologram'
-		},	
-        draw = function(card, scale_mod, rotate_mod)
-            card.hover_tilt = card.hover_tilt * 1.5
-            card.children.floating_sprite:draw_shader('hologram', nil, card.ARGS.send_to_shader, nil,
-                card.children.center, 2 * scale_mod, 2 * rotate_mod)
-            card.hover_tilt = card.hover_tilt / 1.5
-        end},
+		draw = function(card, scale_mod, rotate_mod)
+			card.hover_tilt = card.hover_tilt * 1.5
+			card.children.floating_sprite:draw_shader('hologram', nil, card.ARGS.send_to_shader, nil,
+				card.children.center, 2 * scale_mod, 2 * rotate_mod)
+			card.hover_tilt = card.hover_tilt / 1.5
+		end,
+	},
+	fg_data = {
+		is_alternate = true,
+		alternate_key ='j_hologram'
+	},	
+	
 	rarity = 'fg_uncommon_alt',
 	cost = 6,
 	config = {
