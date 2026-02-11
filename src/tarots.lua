@@ -282,13 +282,13 @@ SMODS.Consumable{
 
 SMODS.Consumable{
     set = "Tarot",
-    key = "hierophant",
+    key = "heirophant",
     atlas = "Tarot",
     prefix_config = {atlas = false},
     pos = {x = 5 , y = 0},
         fg_data = {
             is_alternate = true,
-            alternate_key ="c_hierophant"
+            alternate_key ="c_heirophant"
         },    
     config = {
         extra = {

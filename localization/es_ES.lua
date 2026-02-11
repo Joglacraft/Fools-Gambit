@@ -1448,7 +1448,7 @@ return {
                     "{C:inactive}(Máximo de {C:gold}$#2#{C:inactive})"
                 }
             },
-            c_fg_hierophant = {
+            c_fg_heirophant = {
                 name = "¿El hierofante?",
                 text = {
                     "Mejora {C:attention}#1#{} cartas seleccionadas",
