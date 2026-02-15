@@ -59,7 +59,7 @@ local function tonal_can (param,extra)
                 if G[cardarea].highlighted[1] == v then starting_card_index = i end
             end
         end
-        print(string.format("Starting card index: %d",starting_card_index))
+        --print(string.format("Starting card index: %d",starting_card_index))
         for i=starting_card_index, math.min(math.ceil(card.ability.extra.cards+starting_card_index-1),#G[cardarea].cards) do
             local target_card = G[cardarea].cards[i]
             if not target_card then break end
@@ -84,7 +84,7 @@ local function tonal_use (param,extra)
             if G[cardarea].highlighted[1] == v then starting_card_index = i end
         end
     end
-    print(string.format("Starting card index: %d",starting_card_index))
+    --print(string.format("Starting card index: %d",starting_card_index))
     
     G.E_MANAGER:add_event(Event({
         trigger = 'after',
@@ -96,12 +96,12 @@ local function tonal_use (param,extra)
                 and target_card.config.center.fg_data
                 and FG.FUNCS.check_exists(target_card.config.center.fg_data.alternate_key) then
                     local c = FG.FUNCS.alternate_card(target_card)
-                    print(string.format("Alternating: %d",i))
+                    --print(string.format("Alternating: %d",i))
                     --FG.FUNCS.update_edition(c.original,c.alternate)
                     --FG.FUNCS.update_alternate_values(c.original,c.alternate)
                     card:juice_up()
                 else
-                    print(string.format("Failed: %d; %s, %s",i,target_card.config.center.fg_data,FG.FUNCS.check_exists(target_card.config.center.fg_data.alternate_key)))
+                    --print(string.format("Failed: %d; %s, %s",i,target_card.config.center.fg_data,FG.FUNCS.check_exists(target_card.config.center.fg_data.alternate_key)))
                 end
             end
             play_sound("tarot1")
