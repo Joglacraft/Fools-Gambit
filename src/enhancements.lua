@@ -28,15 +28,16 @@ SMODS.Enhancement{
 		}
 	},
 	loc_vars = function (self, info_queue, card)
-		local num, denom = SMODS.get_probability_vars(nil, 1, 1)
+		local grant_min, grant_max = SMODS.get_probability_vars(card, 1, card.ability.extra.grant_max, 'fg_m_bonus_grant')
+		local remove_min, remove_max = SMODS.get_probability_vars(card, 1, card.ability.extra.remove_max, 'fg_m_bonus_remove')
 		card.ability.bonus = 0
 		return {
 			vars = {
-				num,
-				card.ability.extra.grant_max * denom,
+				grant_min,
+				grant_max,
 				card.ability.extra.grant_amount,
-				num,
-				card.ability.extra.remove_max * denom,
+				remove_min,
+				remove_max,
 				card.ability.extra.remove_amount
 			}
 		}
@@ -44,11 +45,11 @@ SMODS.Enhancement{
 	calculate = function (self, card, context)
 		if context.before then
 			card.ability.bonus = 0
-			if FG.FUNCS.random_chance(card.ability.extra.grant_max) then
-				card.ability.bonus = card.ability.extra.grant_amount
+			if SMODS.pseudorandom_probability(card, 'mila', 1, card.ability.extra.grant_max, 'fg_m_bonus_grant') then
+				card.ability.bonus = card.ability.bonus + card.ability.extra.grant_amount
 			end
-			if FG.FUNCS.random_chance(card.ability.extra.remove_max) then
-				card.ability.bonus = -card.ability.extra.remove_amount
+			if SMODS.pseudorandom_probability(card, 'mila', 1, card.ability.extra.remove_max, 'fg_m_bonus_remove') then
+				card.ability.bonus = card.ability.bonus - card.ability.extra.remove_amount
 				if to_number(hand_chips) - card.ability.extra.remove_amount < 1 then card.ability.chips = -hand_chips end
 			end
 		end
