@@ -78,14 +78,15 @@ SMODS.Enhancement{
 		}
 	},
 	loc_vars = function (self, info_queue, card)
-		local num, denom = SMODS.get_probability_vars(nil, 1, 1)
+		local grant_min, grant_max = SMODS.get_probability_vars(card, 1, card.ability.extra.grant_max, 'fg_m_mult_grant')
+		local remove_min, remove_max = SMODS.get_probability_vars(card, 1, card.ability.extra.remove_max, 'fg_m_mult_remove')
 		return {
 			vars = {
-				num,
-				card.ability.extra.grant_max * denom,
+				grant_min,
+				grant_max,
 				card.ability.extra.grant_amount,
-				num,
-				card.ability.extra.remove_max * denom,
+				remove_min,
+				remove_max,
 				card.ability.extra.remove_amount
 			}
 		}
@@ -93,12 +94,12 @@ SMODS.Enhancement{
 	calculate = function (self, card, context)
 		if context.before then
 			card.ability.mult = 0
-			if FG.FUNCS.random_chance(card.ability.extra.grant_max) then
-				card.ability.mult = card.ability.extra.grant_amount
+			if SMODS.pseudorandom_probability(card, 'mila', 1, card.ability.extra.grant_max, 'fg_m_mult_grant') then
+				card.ability.mult = card.ability.mult + card.ability.extra.grant_amount
 			end
-			if FG.FUNCS.random_chance(card.ability.extra.remove_max) then
-				card.ability.mult = -card.ability.extra.remove_amount
-				if to_number(mult) - card.ability.extra.remove_amount < 1 then card.ability.mult = -mult + 1 end
+			if SMODS.pseudorandom_probability(card, 'mila', 1, card.ability.extra.remove_max, 'fg_m_mult_remove') then
+				card.ability.mult = card.ability.mult - card.ability.extra.remove_amount
+				if to_number(hand_chips) - card.ability.extra.remove_amount < 1 then card.ability.chips = -hand_chips end
 			end
 		end
 		if context.after then
@@ -344,6 +345,7 @@ SMODS.Enhancement:take_ownership('lucky',
 	prefix_config = {atlas = false},
 	pos = {x = 4, y = 1},
 	config = {
+		mult = 0,
 		extra = {
 			mult_max = 5,
 			mult = 20,
@@ -352,22 +354,24 @@ SMODS.Enhancement:take_ownership('lucky',
 		}
 	},
 	loc_vars = function (self, info_queue, card)
-		local num, denom = SMODS.get_probability_vars(nil, 1, 1)
+		local mult_min, mult_max = SMODS.get_probability_vars(nil, 1, card.ability.extra.mult_max, 'fg_m_lucky_override_mult')
+		local money_min, money_max = SMODS.get_probability_vars(nil, 1, card.ability.extra.money_max, 'fg_m_lucky_override_money')
 		return { vars = {
-			num,
-			card.ability.extra.mult_max * denom,
+			mult_min,
+			mult_max,
 			card.ability.extra.mult,
-			num,
-			card.ability.extra.money_max * denom,
+			money_min,
+			money_max,
 			card.ability.extra.money
 		}}
 	end,
 	calculate = function (self, card, context)
-		card.ability.bonus = 0
-		if FG.FUNCS.random_chance(card.ability.extra.mult_max, card) then
+		if SMODS.pseudorandom_probability(nil, 1, card.ability.extra.mult_max, 'fg_m_lucky_override_mult') then
 			card.ability.mult = card.ability.extra.mult
+		else
+			card.ability.mult = 0
 		end
-		if FG.FUNCS.random_chance(card.ability.extra.money_max, card) then
+		if SMODS.pseudorandom_probability(nil, 1, card.ability.extra.mult_max, 'fg_m_lucky_override_money') then
 			card.ability.p_dollars = card.ability.extra.money
 		else
 			card.ability.p_dollars = 0
@@ -387,6 +391,7 @@ SMODS.Enhancement{
 			base_enhancement = true,
 		},	
 	config = {
+		chips = 0,
 		extra = {
 			chips_max = 3,
 			chips = 30,
@@ -395,22 +400,24 @@ SMODS.Enhancement{
 		}
 	},
 	loc_vars = function (self, info_queue, card)
-		local num, denom = SMODS.get_probability_vars(nil, 1, 1)
+		local mult_min, mult_max = SMODS.get_probability_vars(nil, 1, card.ability.extra.mult_max, 'fg_m_lucky_mult')
+		local money_min, money_max = SMODS.get_probability_vars(nil, 1, card.ability.extra.money_max, 'fg_m_lucky_money')
 		return { vars = {
-			num,
-			card.ability.extra.chips_max * denom,
-			card.ability.extra.chips,
-			num,
-			card.ability.extra.money_max * denom,
+			mult_min,
+			mult_max,
+			card.ability.extra.mult,
+			money_min,
+			money_max,
 			card.ability.extra.money
 		}}
 	end,
 	calculate = function (self, card, context)
-		card.ability.bonus = 0
-		if FG.FUNCS.random_chance(card.ability.extra.chips_max, card) then
-			card.ability.bonus = card.ability.extra.chips
+		if SMODS.pseudorandom_probability(nil, 1, card.ability.extra.mult_max, 'fg_m_lucky_mult') then
+			card.ability.extra.chips = card.ability.extra.mult
+		else
+			card.ability.extra.chips = 0
 		end
-		if FG.FUNCS.random_chance(card.ability.extra.money_max, card) then
+		if SMODS.pseudorandom_probability(nil, 1, card.ability.extra.mult_max, 'fg_m_lucky_money') then
 			card.ability.p_dollars = card.ability.extra.money
 		else
 			card.ability.p_dollars = 0

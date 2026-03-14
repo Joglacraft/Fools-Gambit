@@ -221,6 +221,7 @@ end
 
 
 ---Simple function to check for any given chance.
+---@deprecated
 ---@param max number 1 in N chance, where N is `max`
 ---@return boolean success If the random chance succeeds
 function FG.FUNCS.random_chance(max)

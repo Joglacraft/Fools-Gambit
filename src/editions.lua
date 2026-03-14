@@ -70,28 +70,28 @@ SMODS.Edition({
     weight = 8,
     extra_cost = 2,
     apply_to_float = false,
-    loc_vars = function(self)
-		local num, denom = SMODS.get_probability_vars(nil, 1, 1)
+    loc_vars = function (self, info_queue, card)
+		local num, denom = SMODS.get_probability_vars(card, 1, card.ability.extra.odds, 'fg_e_foil')
         return {
             vars = {
-                self.config.extra.chips,
+                card.config.extra.chips,
                 num,
-                self.config.extra.odds * denom
+                denom
             }
         }
     end,
     calculate = function(self, card, context)
         local chips_total = 0
         if context.post_joker or (context.main_scoring and context.cardarea == G.play) then
-            repeat
-                chips_total = chips_total + self.config.extra.chips
-                if FG.random_chance(self.config.extra.odds) then
+            while true do
+                chips_total = chips_total + card.config.extra.chips
+                if SMODS.pseudorandom_probability(card, 1, card.ability.extra.odds, 'fg_e_foil') then
                     card_eval_status_text(card, 'extra', nil, nil, nil, { message = "+"..tostring(self.config.extra.chips).." "..localize("k_chip")})
                     card_eval_status_text(card, 'extra', nil, nil, nil, { message = localize("k_again_ex")})
                 else
                     break
                 end
-            until false
+            end
             return { chips_mod = chips_total }
         end
     end
@@ -124,28 +124,28 @@ SMODS.Edition({
     weight = 8,
     extra_cost = 3,
     apply_to_float = false,
-    loc_vars = function(self)
-		local num, denom = SMODS.get_probability_vars(nil, 1, 1)
+    loc_vars = function(self, info_queue, card)
+		local num, denom = SMODS.get_probability_vars(card, 1, card.ability.extra.odds, 'fg_e_holo')
         return {
             vars = {
-                self.config.extra.mult,
+                card.config.extra.mult,
                 num,
-                self.config.extra.odds * denom
+                denom
             }
         }
     end,
     calculate = function(self, card, context)
         local mult_total = 0
         if context.post_joker or (context.main_scoring and context.cardarea == G.play) then
-            repeat
-                mult_total = mult_total + self.config.extra.mult
-                if FG.random_chance(self.config.extra.odds) then
+            while true do
+                mult_total = mult_total + card.config.extra.mult
+                if SMODS.pseudorandom_probability(card, 1, card.ability.extra.odds, 'fg_e_holo') then
                     card_eval_status_text(card, 'extra', nil, nil, nil, { message = "+"..tostring(self.config.extra.mult).." "..localize("k_mult")})
                     card_eval_status_text(card, 'extra', nil, nil, nil, { message = localize("k_again_ex")})
                 else
                     break
                 end
-            until false
+            end
             return { mult_mod = mult_total }
         end
     end
@@ -178,14 +178,14 @@ SMODS.Edition({
     weight = 8,
     extra_cost = 5,
     apply_to_float = false,
-	loc_vars = function(self)
-		local num, denom = SMODS.get_probability_vars(nil, 1, 1)
-        return { vars = { self.config.extra.xmult, num, self.config.extra.odds * denom } }
+	loc_vars = function(self, info_queue, card)
+		local num, denom = SMODS.get_probability_vars(card, 1, card.ability.extra.odds, 'fg_e_poly')
+        return { vars = { card.config.extra.xmult, num, denom } }
     end,
 	calculate = function(self, card, context)
 		if context.post_joker or (context.main_scoring and context.cardarea == G.play) then
-            if FG.random_chance(self.config.extra.odds) then
-                return {repetitions = 1, Xmult_mod = self.config.extra.xmult}
+            if SMODS.pseudorandom_probability(card, 1, card.ability.extra.odds, 'fg_e_poly') then
+                return {repetitions = 1, Xmult_mod = card.config.extra.xmult}
             end
         end
         if (context.repetition or context.retrigger_joker_check) and context.other_card == card then

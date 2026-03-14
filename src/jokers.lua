@@ -2442,12 +2442,12 @@ SMODS.Joker{
 		}
 	},
 	loc_vars = function (self, info_queue, card)
-		local num, denom = SMODS.get_probability_vars(nil, 1, 1)
+		local num, denom = SMODS.get_probability_vars(card, 1, card.ability.extra.max_chance, 'j_fg_gross_michel')
 		return {
 			vars = {
 				card.ability.extra.xmult,
 				num,
-				card.ability.extra.max_chance * denom
+				denom
 			}
 		}
 	end,
@@ -2456,13 +2456,13 @@ SMODS.Joker{
 	calculate = function (self, card, context)
 		if context.joker_main then return {xmult = card.ability.extra.xmult} end
 		if context.end_of_round and context.cardarea == G.jokers then
-			if FG.FUNCS.random_chance(card.ability.extra.max_chance, card) then
-			play_sound("tarot2",1.5,1)
-			card:start_dissolve()
-			G.GAME.pool_flags.fg_gros_michel_extinct = true
-			return {
-				message = "Extint?!"
-			}
+			if SMODS.pseudorandom_probability(card, 1, card.ability.extra.max_chance, 'j_fg_gross_michel') then
+				play_sound("tarot2",1.5,1)
+				card:start_dissolve()
+				G.GAME.pool_flags.fg_gros_michel_extinct = true
+				return {
+					message = "Extint?!"
+				}
 			end
 			return {
 				message = "Safe!?"
@@ -2614,11 +2614,11 @@ SMODS.Joker {
 		}
 	},
 	loc_vars = function (self, info_queue, card)
-		local num, denom = SMODS.get_probability_vars(nil, 1, 1)
+		local num, denom = SMODS.get_probability_vars(card, 1, card.ability.extra.max_chance, 'j_fg_business')
 		return {
 			vars = {
 				num,
-				card.ability.extra.max_chance * denom
+				denom
 			}
 		}
 	end,
@@ -2626,7 +2626,7 @@ SMODS.Joker {
 	calculate = function (self, card, context)
 		if context.after then
 			for _,v in ipairs(context.scoring_hand) do
-				if FG.FUNCS.get_card_info(v).is_face and FG.FUNCS.random_chance(card.ability.extra.max_chance, card) and FG.FUNCS.get_card_info(v).key == "c_base" then
+				if FG.FUNCS.get_card_info(v).is_face and SMODS.pseudorandom_probability(card, 1, card.ability.extra.max_chance, 'j_fg_business') and FG.FUNCS.get_card_info(v).key == "c_base" then
 					G.E_MANAGER:add_event(Event({
 						trigger = "after",
 						delay = 0.2,
@@ -3111,7 +3111,7 @@ SMODS.Joker{
 		}
 	},
 	loc_vars = function (self, info_queue, card)
-		local num, denom = SMODS.get_probability_vars(nil, 1, 1)
+		local num, denom = SMODS.get_probability_vars(nil, 1, card.ability.extra.xmult_c, 'j_fg_cavendish')
 		return {
 			vars = {
 				card.ability.extra.xmult,
@@ -3125,7 +3125,7 @@ SMODS.Joker{
 	calculate = function (self, card, context)
 		if context.joker_main then return {xmult = card.ability.extra.xmult} end
 		if context.end_of_round and context.cardarea == G.jokers then
-			if FG.FUNCS.random_chance(card.ability.extra.xmult_c) then
+			if FSMODS.pseudorandom_probability(nil, 1, card.ability.extra.xmult_c, 'j_fg_cavendish') then
 				card.ability.extra.xmult = card.ability.extra.xmult - card.ability.extra.xmult_r
 				FG.FUNCS.card_eval_status_text{
 					card = card,
@@ -3253,20 +3253,22 @@ SMODS.Joker{
 		}
     },
     loc_vars = function (self, info_queue, card)
-		local num, denom = SMODS.get_probability_vars(nil, 1, 1)
+		local nun_uncommon, den_uncommon = SMODS.get_probability_vars(card, 1, card.ability.extra.uncommon_chance, 'j_fg_riff_raff_uncommon')
+		local num_rare, num_rare = SMODS.get_probability_vars(card, 1, card.ability.extra.rare_chance, 'j_fg_riff_raff_rare')
         return {
             vars = {
-				num,
-				card.ability.extra.uncommon_chance * denom,
-				card.ability.extra.rare_chance * denom
+				num_uncommon,
+				num_rare,
+				denom_uncommon,
+				denom_rare
 			}
         }
     end,
     blueprint_compat = true,
     calculate = function (self, card, context)
 		if context.setting_blind then
-			if FG.FUNCS.random_chance(card.ability.extra.uncommon_chance) then SMODS.add_card{ set = "Joker", rarity = .9} end
-			if FG.FUNCS.random_chance(card.ability.extra.rare_chance) then SMODS.add_card{ set = "Joker", rarity = "fg_common_alt"} end
+			if SMODS.pseudorandom_probability(card, 1, card.ability.extra.uncommon_chance, 'j_fg_riff_raff_uncommon') then SMODS.add_card{ set = "Joker", rarity = .9} end
+			if SMODS.pseudorandom_probability(card, 1, card.ability.extra.rare_chance, 'j_fg_riff_raff_rare') then SMODS.add_card{ set = "Joker", rarity = "fg_common_alt"} end
 		end
     end
 }
@@ -3763,14 +3765,14 @@ SMODS.Joker{
 		}
 	},
 	loc_vars = function (self, info_queue, card)
-		local num, denom = SMODS.get_probability_vars(nil, 1, 1)
+		local num, denom = SMODS.get_probability_vars(card, 1, card.ability.extra.chancemax, 'j_fg_lucky_cat')
 		return {
 			vars = {
 				card.ability.extra.pluschips,
 				card.ability.extra.plusmult,
 				card.ability.extra.plusmoney,
 				num,
-				card.ability.extra.chancemax * denom
+				denom
 			}
 		}		
 	end,
@@ -3779,7 +3781,7 @@ SMODS.Joker{
 	calculate = function (self, card, context)
 		if context.individual and context.cardarea == G.play then	
 			if FG.FUNCS.get_card_info(context.other_card).key == "m_fg_lucky" then
-				if FG.FUNCS.random_chance(card.ability.extra.chancemax, card) then
+				if SMODS.pseudorandom_probability(card, 1, card.ability.extra.chancemax, 'j_fg_lucky_cat') then
 					context.other_card.ability.extra.chips = context.other_card.ability.extra.chips + card.ability.extra.pluschips
 					context.other_card.ability.extra.money = context.other_card.ability.extra.money + card.ability.extra.plusmoney
 					return{
@@ -3799,7 +3801,7 @@ SMODS.Joker{
 				end
 			end
 			if FG.FUNCS.get_card_info(context.other_card).key == "m_lucky" then
-				if FG.FUNCS.random_chance(card.ability.extra.chancemax, card) then
+				if SMODS.pseudorandom_probability(card, 1, card.ability.extra.chancemax, 'j_fg_lucky_cat') then
 					context.other_card.ability.extra.mult = context.other_card.ability.extra.mult + card.ability.extra.plusmult
 					context.other_card.ability.extra.money = context.other_card.ability.extra.money + card.ability.extra.plusmoney
 					return{
@@ -4585,15 +4587,15 @@ SMODS.Joker{
 	},
 	blueprint_compat = false,
 	loc_vars = function (self, info_queue, card)
-		local num, denom = SMODS.get_probability_vars(nil, 1, 1)
+		local num_en, den_en = SMODS.get_probability_vars(card, 1, card.ability.extra.enhancement_max,'j_fg_hanging_chad_enhancement')
+		local num_se, den_se = SMODS.get_probability_vars(card, 1, card.ability.extra.seal_max,'j_fg_hanging_chad_seal')
+		local num_ed, den_ed = SMODS.get_probability_vars(card, 1, card.ability.extra.edition_max,'j_fg_hanging_chad_edition')
+		
 		return {
 			vars = {
-				num,
-				card.ability.extra.enhancement_max * denom,
-				num,
-				card.ability.extra.seal_max * denom,
-				num,
-				card.ability.extra.edition_max * denom
+				num_en, den_en,
+				num_se, den_se,
+				num_ed, den_ed,
 			}
 		}
 	end,
@@ -4601,7 +4603,7 @@ SMODS.Joker{
 		if context.after and not context.blueprint then
 			for i,v in ipairs(context.scoring_hand) do
 				if FG.FUNCS.get_card_info(v).key == "c_base" then
-					if FG.FUNCS.random_chance(card.ability.extra.enhancement_max, card) then
+					if SMODS.pseudorandom_probability(card, 1, card.ability.extra.enhancement_max,'j_fg_hanging_chad_enhancement') then
 						G.E_MANAGER:add_event(Event({
 							trigger = "after",
 							delay = 0.2,
@@ -4616,7 +4618,7 @@ SMODS.Joker{
 						FG.FUNCS.card_eval_status_text{card = card, message = "Enhanced!", mode = "literal"}	
 					end
 				elseif not FG.FUNCS.get_card_info(v).seal then	
-					if FG.FUNCS.random_chance(card.ability.extra.seal_max, card) then	
+					if SMODS.pseudorandom_probability(card, 1, card.ability.extra.seal_max,'j_fg_hanging_chad_seal') then	
 						G.E_MANAGER:add_event(Event({
 							trigger = "after",
 							delay = 0.2,
@@ -4630,7 +4632,7 @@ SMODS.Joker{
 						FG.FUNCS.card_eval_status_text{card = card, message = "Seal!", mode = "literal"}
 					end
 				elseif not FG.FUNCS.get_card_info(v).edition then
-					if FG.FUNCS.random_chance(card.ability.extra.edition_max, card) then
+					if SMODS.pseudorandom_probability(card, 1, card.ability.extra.edition_max,'j_fg_hanging_edition') then
 						G.E_MANAGER:add_event(Event({
 							trigger = "after",
 							delay = 0,2,
@@ -6409,11 +6411,11 @@ SMODS.Joker{
 		}
 	},
 	loc_vars = function (self, info_queue, card)
-		local num, denom = SMODS.get_probability_vars(nil, 1, 1)
+		local num, denom = SMODS.get_probability_vars(card, 1, card.ability.extra.max_chance, 'j_fg_samuran')
 		return {
 			vars = {
 				num,
-				card.ability.extra.max_chance * denom,
+				denom,
 			}
 		}
 	end,
@@ -6422,7 +6424,7 @@ SMODS.Joker{
 		if context.using_consumeable
 		and 
 		  ((FG.FUNCS.get_card_info(context.consumeable).edition ~= 'e_negative'
-		  and FG.FUNCS.random_chance(card.ability.extra.max_chance))
+		  and SMODS.pseudorandom_probability(card, 1, card.ability.extra.max_chance, 'j_fg_samuran'))
 		or FG.test.samuran_is_copy_paste) then
 			local c = SMODS.add_card{
 				key = FG.FUNCS.get_card_info(context.consumeable).key
