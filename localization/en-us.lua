@@ -1401,6 +1401,13 @@ return {
                     "contains {C:attention}enhanced{} cards",
                 }
             },
+            j_fg_cartomancer = {
+                name = 'Cartomancer',
+                text = {
+                    "Creates {C:attention}#1#{} {C:tarot}Tarot{} card for",
+                    "every {C:attention}#3#{} {C:inactive}(#2#){} played hand"
+                }
+            },
             j_fg_burnt = {
                 name = 'Burnt Joker?',
                 text = {

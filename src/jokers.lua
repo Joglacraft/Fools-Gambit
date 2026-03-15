@@ -5654,6 +5654,53 @@ SMODS.Joker{
     end
 }
 -- Cartomancer
+SMODS.Joker{
+	key = 'cartomancer',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
+	pos = {x = 7, y = 3},
+	fg_data = {
+		is_alternate = true,
+		alternate_key = 'j_cartomancer'
+	},
+	rarity = 'fg_uncommon_alt',
+	cost = 4,
+	config = {extra = {
+		amount = 1,
+		cur = 0,
+		max = 3
+	}},
+	loc_vars = function (self, info_queue, card)
+		return {vars = {
+			card.ability.extra.amount,
+			card.ability.extra.cur,
+			card.ability.extra.max
+		}}
+	end,
+	calculate = function (self, card, context)
+		if context.before then
+			if not context.blueprint then
+				card.ability.extra.cur = card.ability.extra.cur + 1
+			end
+			if card.ability.extra.cur == card.ability.extra.max then
+				for i=1, card.ability.extra.amount do
+					if G.consumeables and #G.consumeables.cards < G.consumeables.config.card_limit then
+						SMODS.create_card{
+							set = 'Tarot'
+						}
+						FG.FUNCS.card_eval_status_text{
+							card = card,
+							mode = "literal",
+							message = string.format("+%d %s",card.ability.extra.amount, 'Tarot')
+						}
+					end
+				end
+			end
+			card.ability.extra.cur = card.ability.extra.cur % card.ability.extra.max
+		end
+		
+	end
+}
 -- Astronomer
 -- Burnt
 SMODS.Joker{

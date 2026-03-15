@@ -1122,8 +1122,15 @@ return {
                 text = {
                     "Cuando ocurra una {C:green,E:1}probabilidad{},",
                     "{X:green,C:white,E:1}X#4#{} el {C:green,E:1}numerador{} y",
-                    "{X:green,C:white,E:1}X#3#{} thel {C:green,E:1}denominador",
+                    "{X:green,C:white,E:1}X#3#{} el {C:green,E:1}denominador",
                     "{C:inactive}(Actualmente probabilidad de {C:green,E:1}X#2#/#1#{C:inactive})"
+                }
+            },
+            j_fg_cartomancer = {
+                name = '¿Cartomante?',
+                text = {
+                    "Crea {C:attention}#1#{} carta de {C:tarot}Tarot{}",
+                    "cada {C:attention}#3#{} {C:inactive}(#2#){} manos jugadas"
                 }
             },
             j_fg_burnt = {
