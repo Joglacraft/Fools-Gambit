@@ -3650,6 +3650,23 @@ SMODS.Joker{
 -- Mail
 -- To the moon
 -- Hallucination
+SMODS.Joker{
+	key = 'hallucination',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
+	pos = {x = 9, y = 13},
+	fg_data = {
+		is_alternate = true,
+		alternate_key = 'j_hallucination'
+	},
+	rarity = 'fg_common_alt',
+	cost = 4,
+	calculate = function (self, card, context)
+		if context.open_booster and context.card.config.center.kind == 'Spectral' then
+			SMODS.create_card{set = 'Tarot'}
+		end
+	end
+}
 -- Fortune teller
 -- Juggler
 SMODS.Joker{

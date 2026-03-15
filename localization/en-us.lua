@@ -1286,6 +1286,13 @@ return {
                     "{C:money}$#2#{} when scored",
                 },
             },
+            j_fg_hallucination = {
+                name = 'Hallucination?',
+                text = {
+                    "Creates a {C:tarot}Tarot{} card when",
+                    "a {C:spectral}Spectral{} pack is opened"
+                }
+            },
             j_fg_juggler = {
                 name = "Juggler?",
                 text = {

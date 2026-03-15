@@ -980,7 +980,7 @@ return {
                     "{C:inactive,s:0.8}(Se aplica tras jugar las cartas){}"
                 }
             },
-			 j_fg_rough_gem = {
+			j_fg_rough_gem = {
                 name = "¿Gema en bruto?",
                 text = {
                     "Si la mano de poker contiene un {C:attention}#1#{}",
@@ -988,6 +988,13 @@ return {
                     "gana {C:money}$#2#{} al puntuar"
                 },
 			},
+            j_fg_hallucination = {
+                name = '¿Alucinación?',
+                text = {
+                    "Crea una carta de {C:tarot}tarot{}",
+                    "al abrir un paquete {C:spectral}espectral{}"
+                }
+            },
             j_fg_juggler = {
                 name = "¿Malabarista?",
                 text = {
