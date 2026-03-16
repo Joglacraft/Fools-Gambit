@@ -714,7 +714,7 @@ return {
             j_fg_splash = {
                 name = "Salpicadura?",
                 text = {
-                    "Rehabilita las {C:attention}cartas jugadas{}",
+                    "Rehabilita las {C:attention}cartas{} jugadas",
                 }
             },
             j_fg_cavendish = {

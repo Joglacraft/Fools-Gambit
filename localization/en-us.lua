@@ -978,7 +978,7 @@ return {
             j_fg_splash = {
                 name = "Splash?",
                 text = {
-                    "undebuffs {C:attention}scored cards{}",
+                    "Undebuffs {C:attention}scored{} cards",
                 }
             },
             j_fg_superposition = {

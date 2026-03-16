@@ -2883,6 +2883,34 @@ SMODS.Joker{
 }
 -- DNA
 -- Splash
+SMODS.Joker{
+	key = 'splash',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
+	pos = {x = 6, y = 10},
+	fg_data = {
+		is_alternate = true,
+		alternate_key = 'j_splash'
+	},
+	cost = 6,
+	rarity = 'fg_uncommon_alt',
+	calculate = function (self, card, context)
+		if context.before then
+			for i,v in ipairs(context.scoring_hand) do
+				--printt(v)
+				SMODS.debuff_card(v,'prevent_debuff','')
+			end
+		end
+		if context.after then
+			G.E_MANAGER:add_event(Event{func = function ()
+				for i,v in ipairs(context.scoring_hand) do
+					--printt(v)
+					SMODS.debuff_card(v,true,'')
+				end
+			return true end})
+		end
+	end
+}
 -- Blue
 SMODS.Joker{
 	key = 'blue_joker',
