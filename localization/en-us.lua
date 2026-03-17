@@ -1415,6 +1415,14 @@ return {
                     "every {C:attention}#3#{} {C:inactive}(#2#){} played hand"
                 }
             },
+            j_fg_astronomer = {
+                name = 'Astronomer?',
+                text = {
+                    "Every even round {C:attention}replaces{}",
+                    "{C:attention}shop's{} cards with {C:planet}Planet{} cards",
+                    "and packs with {C:planet}Celestial Packs{}",
+                }
+            },
             j_fg_burnt = {
                 name = 'Burnt Joker?',
                 text = {

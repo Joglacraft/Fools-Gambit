@@ -5747,6 +5747,46 @@ SMODS.Joker{
 	end
 }
 -- Astronomer
+SMODS.Joker{
+	key = 'astronomer',
+	atlas = 'Joker',
+	prefix_config = {atlas= false},
+	pos = {x = 2, y = 7},
+	fg_data = {
+		is_alternate = true,
+		alternate_key = 'j_astronomer'
+	},
+	cost = 5,
+	rarity = 'fg_uncommon_alt',
+	blueprint_compat = false,
+	calculate = function (self, card, context)
+		if G.GAME.round % 2 == 0 then
+			if context.starting_shop or context.reroll_shop then
+				card:juice_up()
+				for i,v in ipairs(G.shop_jokers.cards) do
+					if v.config.center.set ~= 'Planet' then
+						v:start_dissolve()
+						local c = SMODS.add_card{
+							area = G.shop_jokers,
+							set = 'Planet'
+						}
+						create_shop_card_ui(c)
+					end
+				end
+				for i,v in ipairs(G.shop_booster.cards) do
+					if v.config.center.kind ~= 'Celestial' then
+						v:start_dissolve()
+						local choices = {}
+						for i,v in ipairs(G.P_CENTER_POOLS.Booster) do
+							if v.kind == 'Celestial' then choices[#choices+1] = v.key end
+						end
+						SMODS.add_booster_to_shop(choices[pseudorandom('mila',1,#choices)])
+					end
+				end
+			end
+		end
+	end
+}
 -- Burnt
 SMODS.Joker{
 	key = 'burnt',

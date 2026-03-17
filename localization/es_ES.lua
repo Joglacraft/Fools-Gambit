@@ -1140,6 +1140,14 @@ return {
                     "cada {C:attention}#3#{} {C:inactive}(#2#){} manos jugadas"
                 }
             },
+            j_fg_astronomer = {
+                name = '¿Astrónomo?',
+                text = {
+                    "Cada ronda par {C:attention}reemplaza{} las cartas",
+                    "de la {C:attention}tienda{} por cartas de {C:planet}planeta{}",
+                    "y los paquetes por {C:planet}paquetes celestiales{}",
+                }
+            },
             j_fg_burnt = {
                 name = '¿Comodín Quemado?',
                 text = {
