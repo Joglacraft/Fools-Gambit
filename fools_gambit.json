@@ -9,5 +9,8 @@
 	"priority": 0,
 	"badge_colour": "6fa0e8",
 	"badge_text_colour": "e6eaf0",
-	"version": "0.3.3"
+	"version": "0.3.3",
+	"dependencies": [
+		"Steamodded (>=1.0.0*)"
+	]
 }
