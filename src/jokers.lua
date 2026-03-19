@@ -269,9 +269,6 @@ SMODS.Joker {
 	pos = { x = 0, y = 0 },
 	cost = 6,
 	no_pool_flag = 'alternate_spawn',
-	in_pool = function (self, args)
-		if FG.config.extra_jokers and FG.FUNCS.allow_duplicate(self) and not G.GAME.pool_flags.alternate_spawn then return true else return false end
-	end,
 	calculate = function(self, card, context)
 		if context.buying_card then
 			card.ability.extra.item_amount2 = (card.ability.extra.item_amount2 + context.card.cost)
@@ -3467,12 +3464,12 @@ SMODS.Joker{
 			is_alternate = true,
 			alternate_key ="j_cloud_9"
 		},
-    rarity = "fg_common_alt",
+    rarity = "fg_uncommon_alt",
     cost = 2,
     config = {
         fg_alternate = {}, -- Kept between alternations
         extra = {
-			dollars = 4
+			dollars = 2
 		}
     },
     loc_vars = function (self, info_queue, card)
@@ -3482,12 +3479,19 @@ SMODS.Joker{
 			}
         }
     end,
-    blueprint_compat = false,
+    blueprint_compat = true,
     calculate = function (self, card, context)
+		if context.individual and context.cardarea == G.play and FG.FUNCS.get_card_info(context.other_card).rank == "9" then
+			ease_dollars(card.ability.extra.dollars)
+			G.E_MANAGER:add_event(Event{func = function () card:juice_up() return true end})
+			FG.FUNCS.card_eval_status_text{
+				card = context.other_card,
+				mode = 'literal',
+				colour = G.C.MONEY,
+				message = string.format("$%d",card.ability.extra.dollars)
+			}
+		end
     end,
-	calc_dollar_bonus = function (self, card)
-		return card.ability.extra.dollars
-	end
 }
 -- Rocket
 SMODS.Joker{
@@ -4511,7 +4515,7 @@ SMODS.Joker{
 		}
 	},
     loc_vars = function(self, info_queue, card)
-        return { vars = { card.ability.extra.sell_value } }
+        return { vars = { card.ability.extra.sell_value, card.sell_cost } }
     end,
     calculate = function(self, card, context)
 		card.ability.extra.sell_value = card.sell_cost
@@ -5055,6 +5059,9 @@ SMODS.Joker {
 			num_rate = 9
 		}
 	},
+	in_pool = function (self, args)
+		return false -- temporarely removed
+	end,
 	loc_vars = function(self, info_queue, card)
 		return { vars = { card.ability.extra.den_gain, card.ability.extra.num_gain, card.ability.extra.den_rate, card.ability.extra.num_rate } }
 	end,
@@ -5582,7 +5589,7 @@ SMODS.Joker{
 		extra = 1,
 	},
 	cost = 7,
-	rarity = 'fg_uncommon_alt',
+	rarity = 'fg_rare_alt',
 	loc_vars = function (self, info_queue, card)
 		return {vars = {
 			card.ability.extra

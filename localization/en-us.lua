@@ -319,9 +319,9 @@ return {
                 name = "Glass? Card",
                 text = {
                     "Gains {C:white,X:red}X1{} Mult for each scoring card",
-                    "with this enhancement in playing hand",
-                    "destroys after use",
-                    "no rank or suit",
+                    "with this enhancement in played hand",
+                    "{C:red}Destroys{} after use",
+                    "Has no {C:attention}rank{} or {C:attention}suit{}",
                 }
             },
             m_fg_steel = {
@@ -1464,9 +1464,10 @@ return {
             j_fg_swashbuckler = {
                 name = "Swashbuckler?",
                 text = {
+                    "Gains {C:gold}+$#2#{} sell value at end of round",
                     "Adds the {C:attention}sell value{} of this Joker",
                     "to all other owned Jokers when {C:attention}sold",
-                    "{C:inactive}(Currently {C:gold}+#1#{C:inactive} sell value)"
+                    "{C:inactive}(Currently {C:gold}+$#1#{C:inactive} sell value)"
                 }
             },
             j_fg_lucky_cat = {
@@ -1769,7 +1770,8 @@ return {
                 name = "Death?",
                 text = {
                     "Select up to {C:attention}#1#{} cards",
-                    "Convert all cards into the {C:attention}rightmost card",
+                    "Convert all selected cards into",
+                    "the selected {C:attention}rightmost card",
                     "{C:inactive}(Only copies {C:attention}suit{C:inactive} and {C:attention}rank{C:inactive}){}",
                     "{C:inactive}(Drag to rearrange){}"
                 }

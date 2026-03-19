@@ -142,12 +142,12 @@ FG.FUNCS.duplicate_playing_card = function (card)
 end
 
 --- Wrapper function to not use card_eval_status_text (scroll down  [vvv])<br>
---- @param args {card:table,type?:string|"extra",category?:string|"FG",message?:string|"ERROR",mode?:"localize"|"literal",colour?:string,color?:string}
+--- @param args {card:table,type?:string|"extra",category?:string|"FG",message?:string|"ERROR",mode?:"localize"|"literal",colour?:table|string,color?:table|string}
 --- `card` table|card The card instance.<br>
 --- `message` string The message. Can be literal or a key for translation.<br>
 --- `category?` string Defaults to `FG`.<br>
 --- `mode` string `literal` Display the raw text in `args.message`. `localize` Use `args.message` as a localization entry<br>
---- `colour|color` string Refer to `G.C.<colours>` for all available colours.<br>
+--- `colour|color` Table of a colour, akin to G.C[...] or a string Refer to `G.C.<colours>` for all available colours.<br>
 function FG.FUNCS.card_eval_status_text (args)
 	if not type(args) == "table" then return end
 	local args = args or {}
@@ -157,16 +157,20 @@ function FG.FUNCS.card_eval_status_text (args)
 	local message = args.message or "ERROR"
 	local mode = args.mode or "localize"
 	local colour = args.colour or args.color or string.upper("orange") -- The color of the square background.
-	colour = string.upper(colour)
 	
+	if type(colour) == "string" then
+		colour = string.upper(colour)
+		colour = G.C[colour]
+	end
+
 	if not card then error("No target card selected!\nMake sure you specify the target card in the function arguments") return end
 
 	if mode == "literal" then
 		card_eval_status_text(card, eval_type, nil, nil, nil,
-		{ message = message, colour = G.C[colour], delay = args.delay})
+		{ message = message, colour = colour, delay = args.delay})
 	elseif mode == "localize" then
 		card_eval_status_text(card, eval_type, nil, nil, nil,
-		{ message = localize(message,misc_cat), colour = G.C[colour], delay = args.delay})
+		{ message = localize(message,misc_cat), colour = colour, delay = args.delay})
 	end
 end
 --- Retrieves useful data for the specified card
