@@ -1708,7 +1708,7 @@ SMODS.Joker{
 				end
 			end
 		end
-		if context.end_of_round and context.cardarea == G.jokers and 
+		if context.setting_blind and G.GAME.blind.boss and context.cardarea == G.jokers and 
 		G.GAME.fg_data and G.GAME.round_resets.ante % G.GAME.fg_data.credit_card_data.trigger_ante == 0 and
 		G.GAME.dollars < 0 then
 			for _,v in ipairs(G.jokers.cards) do
