@@ -3443,12 +3443,12 @@ SMODS.Joker{
 			is_alternate = true,
 			alternate_key ="j_cloud_9"
 		},
-    rarity = "fg_common_alt",
+    rarity = "fg_uncommon_alt",
     cost = 2,
     config = {
         fg_alternate = {}, -- Kept between alternations
         extra = {
-			dollars = 4
+			dollars = 2
 		}
     },
     loc_vars = function (self, info_queue, card)
@@ -3460,10 +3460,17 @@ SMODS.Joker{
     end,
     blueprint_compat = false,
     calculate = function (self, card, context)
+		if context.individual and context.cardarea == G.play and FG.FUNCS.get_card_info(context.other_card).rank == "9" then
+			ease_dollars(card.ability.extra.dollars)
+			G.E_MANAGER:add_event(Event{func = function () card:juice_up() return true end})
+			FG.FUNCS.card_eval_status_text{
+				card = context.other_card,
+				mode = 'literal',
+				colour = G.C.MONEY,
+				message = string.format("$%d",card.ability.extra.dollars)
+			}
+		end
     end,
-	calc_dollar_bonus = function (self, card)
-		return card.ability.extra.dollars
-	end
 }
 -- Rocket
 SMODS.Joker{

@@ -157,16 +157,20 @@ function FG.FUNCS.card_eval_status_text (args)
 	local message = args.message or "ERROR"
 	local mode = args.mode or "localize"
 	local colour = args.colour or args.color or string.upper("orange") -- The color of the square background.
-	colour = string.upper(colour)
 	
+	if type(colour) == "string" then
+		colour = string.upper(colour)
+		colour = G.C[colour]
+	end
+
 	if not card then error("No target card selected!\nMake sure you specify the target card in the function arguments") return end
 
 	if mode == "literal" then
 		card_eval_status_text(card, eval_type, nil, nil, nil,
-		{ message = message, colour = G.C[colour], delay = args.delay})
+		{ message = message, colour = colour, delay = args.delay})
 	elseif mode == "localize" then
 		card_eval_status_text(card, eval_type, nil, nil, nil,
-		{ message = localize(message,misc_cat), colour = G.C[colour], delay = args.delay})
+		{ message = localize(message,misc_cat), colour = colour, delay = args.delay})
 	end
 end
 --- Retrieves useful data for the specified card
