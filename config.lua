@@ -6,8 +6,7 @@ return {
     extended_tooltips = true,
     additional_title = true,
     s_version = {
-        options = {"None", "2025 April Fools"},
-        active = "None",
+        active = "",
         selected = 1
     }
 }

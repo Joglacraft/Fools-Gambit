@@ -5,7 +5,22 @@ FG = {
 	rarities = {
 		original = {},
 		alternate = {}
-	}
+	},
+	special_edition_options = {
+		{title = "None",
+		description = {"","",""}},
+		{title = "2025 April Fools",
+		description = {
+			"Meant for April first, 2025",
+			"Replaces all text with 'mila'",
+			""}},
+		{title = "Murphys madness",
+		description = {
+			"Modifies certain game aspects",
+			"to catter towards MurphyObv",
+			""
+		}},
+	},
 }
 FG.config = SMODS.current_mod.config
 
@@ -44,6 +59,7 @@ local mod_contents = {
 	{path = 'UI_definitions', deps = {}},
 	{path = 'test', deps = {}},
 	{path = 'special_editions/mila', deps = {}},
+	{path = 'special_editions/murphy', deps = {}},
 	{path = 'spectral', deps = {}},
 	{path = 'tarots', deps = {}},
 	{path = 'seals', deps = {}},

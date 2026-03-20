@@ -33,6 +33,12 @@ SMODS.current_mod.config_tab = function()
 		--create_tab_button{label = {'Compatibility'}, target = 'compat'},
 		create_tab_button{label = 'misc', target = 'misc'},
 	}
+
+	local special_edition = {titles = {}, descriptions = {}}
+	for i,v in ipairs(FG.special_edition_options) do
+		table.insert(special_edition.titles,v.title)
+	end
+
 	local contents = {
 		['content'] = {
 			-- Set 1
@@ -111,17 +117,22 @@ SMODS.current_mod.config_tab = function()
 		['compat'] = {},
 		['misc'] = {
 			-- Set 3
-			--[[{n = G.UIT.R, config = {align = "cm"}, nodes = {
+			{n = G.UIT.R, config = {align = "cm"}, nodes = {
 				{n = G.UIT.R, config = {align = "cm"}, nodes = {{n = G.UIT.T, config = {text = FG.FUNCS.localize{"FG","config","special_edition"}, colour = G.C.WHITE, scale = .4, minw = 2, minh = 6, padding = 0.4}}}},
 				create_option_cycle{
-					options = FG.config.s_version.options,
+					options = special_edition.titles,
 					current_option = FG.config.s_version.selected,
 					opt_callback = 'FG_s_version',
 					ref_table = FG.config.s_version,
 					ref_value = "selected",
 					w = 5.5
 				},
-			}},]]
+			}},
+			--{n = G.UIT.R, config = {align = "cm"}, nodes = {{n = G.UIT.T, config = {ref_table = G.GAME, ref_value = "", scale = 0.4, colour = G.C.GOLD}},}},
+			{n = G.UIT.R, config = {align = "cm"}, nodes = {
+				{n = G.UIT.T, config = {text = FG.FUNCS.localize{"FG","config","misc","require_restart"}, colour = G.C.GREY, scale = .4, minw = 2, minh = 6, padding = 0.4}},
+			}},
+			
 			--set 4
 			{n = G.UIT.R, config = {align = "cm"}, nodes = {
 				{n = G.UIT.R, nodes = {
