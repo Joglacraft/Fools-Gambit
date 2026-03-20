@@ -3365,7 +3365,11 @@ SMODS.Joker{
 	blueprint_compat = true,
 	calculate = function (self, card, context)
 		if context.remove_playing_cards and not context.blueprint then
-			local increase = card.ability.extra.xmult_i * table.size(context.removed)
+			local t_size = 0
+			for _,_ in pairs(context.removed) do
+				t_size = t_size + 1
+			end
+			local increase = card.ability.extra.xmult_i * t_size
 			card.ability.extra.xmult = card.ability.extra.xmult + increase
 			FG.FUNCS.card_eval_status_text{
 				card = card,
