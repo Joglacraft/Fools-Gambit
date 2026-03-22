@@ -1157,6 +1157,13 @@ return {
                     "{C:inactive}(Currently {C:chips}+#1#{C:inactive} Chips)"
                 }
             },
+            j_fg_diet_cola = {
+                name = 'Diet Cola?',
+                text = {
+                    "Creates {C:attention}#1#{} random tag",
+                    "when blind is {C:attention}skipped{}"
+                }
+            },
             j_fg_trading = {
                 name = 'Trading Card?',
                 text = {
@@ -2143,7 +2150,8 @@ return {
             k_unchangeable_warning = "This card can't be alternated",
             k_fg_active = "Active!",
             k_fg_none = "None",
-            k_fg_aberration2 = { group_name = "fuck" }
+            k_fg_aberration2 = { group_name = "fuck" },
+            k_fg_tagged = 'Tagged!',
         },
         high_scores = {},
         labels = {

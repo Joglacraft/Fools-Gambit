@@ -3924,6 +3924,43 @@ SMODS.Joker{
 	end
 }
 -- Cola
+SMODS.Joker{
+	key = 'diet_cola',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
+	pos = {x = 8, y = 14},
+	fg_data = {
+		is_alternate = true,
+		alternate_key = 'j_diet_cola'
+	},
+	config = {extra = 1},
+	loc_vars = function (self, info_queue, card)
+		return {vars = {card.ability.extra}}
+	end,
+	rarity = 'fg_uncommon_alt',
+	cost = 5,
+	blueprint_compat = true,
+	calculate = function (self, card, context)
+		if context.skip_blind then
+			local tags = {}
+			for tag in pairs(G.P_TAGS) do
+				tags[#tags+1] = tag
+			end
+			G.E_MANAGER:add_event(Event({
+				trigger = 'after',
+				delay = 0.2,
+				func = (function()
+					FG.FUNCS.card_eval_status_text{
+						card = card,
+						message = 'k_fg_tagged',
+					}
+					add_tag(Tag(pseudorandom_element(tags)))
+					return true
+				end)
+			}))
+		end
+	end
+}
 -- Trading card
 SMODS.Joker{
 	key = 'trading',
