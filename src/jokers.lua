@@ -4019,7 +4019,7 @@ SMODS.Joker{
     end
 }
 -- Trouses
---[[ Ancient
+--Ancient
 SMODS.Joker{
 	key = "ancient",
 	atlas = 'Joker',
@@ -4027,11 +4027,11 @@ SMODS.Joker{
 	pos = {x = 7, y = 15},
 	rarity = "fg_rare_alt",
 	cost = 8,
+	fg_data = {
+		is_alternate = true,
+		alternate_key ="j_ancient"
+	},
 	config = {
-		fg_data = {
-			is_alternate = true,
-			alternate_key ="j_ancient"
-		},
 		extra = {
 			suit = nil,
 			xmult = 1,
@@ -4039,38 +4039,48 @@ SMODS.Joker{
 		}
 	},
 	loc_vars = function (self, info_queue, card)
-		local suit = card.ability.extra.suit or SMODS.Suits.Spades
+		local suit = card.ability.extra.suit or pseudorandom_element(SMODS.Suits).key
 		return {vars = {
-			(suit and suit.name) or "Spades",
-			colours = { 
-				G.C.SUITS[suit.key] or G.C.SUITS.Spades,
+			localize(suit or "Spades", 'suits_plural'),
+			colours = {
+				G.C.SUITS[suit] or G.C.SUITS.Spades,
 			},
 			card.ability.extra.xmult,
 			card.ability.extra.xmult_i
 		}}
 	end,
-	set_ability = function (self, card, initial, delay_sprites)
-		if card.ability.extra.suit then return end
-		card.ability.extra.suit = pseudorandom_element(SMODS.Suits)
-		t_suit = card.ability.extra.suit
+	add_to_deck = function (self, card)
+		card.ability.extra.suit = pseudorandom_element(SMODS.Suits).key
 	end,
 	blueprint_compat = true,
 	calculate = function (self, card, context)
 		local give = true
 		if context.before then
 			for _,v in ipairs(G.play.cards) do
-				if FG.FUNCS.get_card_info(v).suit ~= card.ability.extra.suit.key then 
-					print(FG.FUNCS.get_card_info(v).suit.. " | "..tostring(card.ability.extra.suit.key))
-					print("fail")
+				if not v:is_suit(card.ability.extra.suit) then 
 					give = false
 				end
 			end
-			if give then card.ability.extra.xmult = card.ability.extra.xmult + card.ability.extra.xmult_i end
+			if give then
+				card.ability.extra.xmult = card.ability.extra.xmult + card.ability.extra.xmult_i
+				FG.FUNCS.card_eval_status_text{
+					card = card,
+					message = 'k_upgrade_ex'
+				}
+			end
 		end
 		if context.joker_main then return {xmult = card.ability.extra.xmult} end
-		if context.end_of_round then card.ability.extra.suit = pseudorandom_element(SMODS.Suits) end
+		if context.end_of_round then
+			local suits = {}
+			for _, suit in pairs(SMODS.Suits) do
+				if suit.key ~= card.ability.extra.suit then
+					suits[#suits+1] = suit.key
+				end
+			end
+			card.ability.extra.suit = pseudorandom_element(suits)
+		end
 	end
-}]]
+}
 -- Ramen
 SMODS.Joker{
     key = "ramen",

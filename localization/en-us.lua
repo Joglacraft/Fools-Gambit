@@ -1218,7 +1218,7 @@ return {
                     "Gains {C:white,X:mult}X#3#{} Mult when all",
                     "playing cards are {V:1}#1#",
                     "Suit changes every round",
-                    "{C:inactive}(Currently{C:white,X:mult}X#2#{C:inactive} Mult)",
+                    "{C:inactive}(Currently {C:white,X:mult}X#2#{C:inactive} Mult)",
                 }
             },
             j_fg_campfire = {
