@@ -13,17 +13,17 @@ end
 
 
 --- Checks if a card is an alternate or not in the given table.
---- @param card table
+--- @param card Card|table
 --- @return boolean
 function FG.FUNCS.is_alternate(card) return card.config.center.fg_data and card.config.center.fg_data.is_alternate end
 
 --- Gets the key/value pair associated with the passing data.
----@param card table The provided card key.
+---@param card Card|table The provided card key.
 ---@return string|nil key The key of the alternate card. Returns `nil` if not found
 function FG.FUNCS.get_alternate(card) return card.config.center and (type(card.config.center.fg_data.alternate_key) == 'string') and card.config.center.fg_data.alternate_key or nil end
 
 -- Alternates between this card and the associated alternative card.
----@param card table|card The card object
+---@param card Card|table
 ---@param instant? boolean If it should play an animation when alternating
 ---@param keep? boolean Weather if the alternate values should be kept or reset.
 ---@return Card
@@ -65,8 +65,8 @@ function FG.FUNCS.check_exists (key)
 end
 
 --- Transfers the edition from the old card to the new card.
----@param source table|card The card to be altered.
----@param target? table|card - The card to be created. If not provided, it will be the same as source.
+---@param source Card|table The card to be altered.
+---@param target? Card|table - The card to be created. If not provided, it will be the same as source.
 function FG.FUNCS.update_edition(source,target)
 	target = target or source
 	if source.edition then
@@ -77,8 +77,8 @@ function FG.FUNCS.update_edition(source,target)
 end
 
 --- Alternate card's editions.
----@param source table|card The card to be altered.
----@param target? table|card The card to be created. If not provided, it will be the same as source.
+---@param source Card|table The card to be altered.
+---@param target? Card|table The card to be created. If not provided, it will be the same as source.
 function FG.FUNCS.alternate_edition(source,target)
 	target = target or source
 	if source.edition then
@@ -89,8 +89,8 @@ function FG.FUNCS.alternate_edition(source,target)
 end
 
 --- Update enhancement
----@param source table|card The card to be altered.
----@param target? table|card The card to be created. If not provided, it will be the same as source.
+---@param source Card|table The card to be altered.
+---@param target? Card|table The card to be created. If not provided, it will be the same as source.
 function FG.FUNCS.update_enhancement(source,target)
 	target = target or source
 	local enhancement = nil
@@ -101,8 +101,8 @@ function FG.FUNCS.update_enhancement(source,target)
 end
 
 --- Alternate a card's enhancement
----@param source table|card The card to be altered.
----@param target? table|card The card to be created. If not provided, it will be the same as source.
+---@param source Card|table The card to be altered.
+---@param target? Card|table The card to be created. If not provided, it will be the same as source.
 function FG.FUNCS.alternate_enhancement(source,target)
 	target = target or source
 	local enhancement = source.config.center.fg_data.alternate_key
@@ -118,16 +118,16 @@ function FG.FUNCS.alternate_seal(source,target)
 end
 
 --- Transfers and updates the values from any given card to any other card.
----@param source table|card is the old card, that is being deleted
----@param target table|card is the new card created for alternating.
+---@param source Card|table is the old card, that is being deleted
+---@param target Card|table is the new card created for alternating.
 function FG.FUNCS.update_alternate_values(source,target,mode)
 	target.config.center.fg_data = target.config.center.fg_data or {}
 	target.config.center.fg_data.vars = source.config.center.fg_data and source.config.center.fg_data.vars or {}
 end
 
 --- Allows to duplicate any given card and insert it into playing hand. Return value is the new card. Sourced from 'cryptid' (Spectral).
----@param card card The card that is being duplicated.
----@return card card The newly created card.
+---@param card Card|table The card that is being duplicated.
+---@return Card|table card The newly created card.
 FG.FUNCS.duplicate_playing_card = function (card)
 	local _first_dissolve = nil
 	G.playing_card = (G.playing_card and G.playing_card + 1) or 1
@@ -142,7 +142,7 @@ FG.FUNCS.duplicate_playing_card = function (card)
 end
 
 --- Wrapper function to not use card_eval_status_text (scroll down  [vvv])<br>
---- @param args {card:table,type?:string|"extra",category?:string|"FG",message?:string|"ERROR",mode?:"localize"|"literal",colour?:table|string,color?:table|string}
+--- @param args {card:Card,type?:string|"extra",category?:string|"FG",message?:string|"ERROR",mode?:"localize"|"literal",colour?:table|string,color?:table|string}
 --- `card` table|card The card instance.<br>
 --- `message` string The message. Can be literal or a key for translation.<br>
 --- `category?` string Defaults to `FG`.<br>
@@ -174,7 +174,7 @@ function FG.FUNCS.card_eval_status_text (args)
 	end
 end
 --- Retrieves useful data for the specified card
----@param card table|card  The target card to evaluate
+---@param card Card|table  The target card to evaluate
 ---@return {id:boolean|number,rank:false|string,suit:false|string,is_face:boolean,key:false|string,edition:false|string,seal:false|string,stickers:{},base_cost:number,cost:number,mod_cost:number,sell_cost:number,rarity:number|string,raw:table|nil}|nil
 --- Returns the card's `id`, `rank`, `suit`, if it's a face card, `key` (or enhancement), `edition`, `seal` 
 --- and if it's `eternal`, `perishable` and how many rounds it has left, `rental`, buy and sell cost and
