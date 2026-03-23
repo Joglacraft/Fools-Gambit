@@ -1454,6 +1454,14 @@ return {
                     "{C:inactive}(Currently {C:green,E:1}X#2#/#1#{C:inactive} probability)"
                 }
             },
+            j_fg_idol = {
+                name = 'The Idol?',
+                text = {
+                    "Each {C:attention}#1#{} of {V:1}#2#{} held in {C:attention}hand{} is",
+                    "converted into a random scoring card",
+                    "{s:0.85}Card changes every round",
+                }
+            },
             j_fg_drunkard = {
                 name = "Drunkard?",
                 text = {

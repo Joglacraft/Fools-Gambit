@@ -412,5 +412,5 @@ end
 function Card:is_rank(rank)
 	if self.ability.key == 'm_stone' then return false end
 	
-	return SMODS.Ranks[rank].key == rank
+	return self.base.value == rank
 end

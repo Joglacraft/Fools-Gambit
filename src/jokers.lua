@@ -5137,6 +5137,96 @@ SMODS.Joker {
 	end
 }
 -- Idol
+SMODS.Joker{
+	key = 'idol',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
+	pos = {x = 6, y = 7},
+	fg_data = {
+		is_alternate = true,
+		alternate_key = 'j_idol'
+	},
+	config = {extra = {
+		rank = nil,
+		suit = nil
+	}},
+	loc_vars =function (self, info_queue, card)
+		local ranks, suits = {}, {}
+		for i, rank in pairs(SMODS.Ranks) do
+			ranks[#ranks+1] = rank.key
+		end
+		for _, suit in pairs(SMODS.Suits) do
+			suits[#suits+1] = suit.key
+		end
+		local rank, suit = card.ability.extra.rank or pseudorandom_element(ranks), card.ability.extra.suit or pseudorandom_element(suits)
+		return {vars = {
+			rank,
+			localize(suit or "Spades", 'suits_plural'),
+			colours = {
+				G.C.SUITS[suit] or G.C.SUITS.Spades,
+			},
+		}}
+	end,
+	rarity = 'fg_uncommon_alt',
+	cost = 5,
+	add_to_deck = function (self, card, from_debuff)
+		local ranks, suits, seen = {}, {}, {}
+		for _, v in ipairs(G.playing_cards) do
+			local can = true
+			for _, vv in ipairs(seen) do
+				if vv.rank == v.base.value and vv.suit == v.base.suit then
+					can = false
+				end
+			end
+			if can then
+				ranks[#ranks+1] = v.base.value
+				suits[#suits+1] = v.base.suit
+				seen[#seen+1] = {rank = v.base.value, suit = v.base.suit}
+			end
+		end
+		card.ability.extra.rank = pseudorandom_element(ranks)
+		card.ability.extra.suit = pseudorandom_element(suits)
+	end,
+	calculate = function (self, card, context)
+		if context.blueprint then return end
+		if context.after then
+			local changed = 0
+			for _,v in ipairs(G.hand.cards) do
+				if v:is_rank(card.ability.extra.rank) and v:is_suit(card.ability.extra.suit) then
+					changed = changed + 1
+					G.E_MANAGER:add_event(Event({
+						trigger = "after",
+						delay = 0.2,
+						func = function ()
+							copy_card(pseudorandom_element(context.scoring_hand), v)
+							v:juice_up()
+							card:juice_up()
+						return true end
+					}))
+				end
+			end
+			if changed > 0 then FG.FUNCS.card_eval_status_text{card = card, message = "Enhanced!", mode = "literal"} end
+		end
+		if context.end_of_round then
+			local ranks, suits, seen = {}, {}, {}
+			for _, v in ipairs(G.playing_cards) do
+				local can = true
+				for _, vv in ipairs(seen) do
+					if vv.rank == v.base.value and vv.suit == v.base.suit then
+						can = false
+					end
+				end
+				if can then
+					ranks[#ranks+1] = v.base.value
+					suits[#suits+1] = v.base.suit
+					seen[#seen+1] = {rank = v.base.value, suit = v.base.suit}
+				end
+			end
+			card.ability.extra.rank = pseudorandom_element(ranks)
+			card.ability.extra.suit = pseudorandom_element(suits)
+		end
+	end
+}
 -- Seeing double
 SMODS.Joker{
     key = "seeing_double",
