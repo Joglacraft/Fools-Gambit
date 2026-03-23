@@ -5087,6 +5087,52 @@ SMODS.Joker{
     end
 }
 -- Wee
+SMODS.Joker{
+	key = 'wee',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
+	pos = { x = 0, y = 0},
+	fg_data = {
+		is_alternate = false,
+		alternate_key = 'j_wee'
+	},
+	config = {
+		extra = {
+			chips = 0,
+			gain = 4,
+		},
+	},
+	loc_vars = function (self, info_queue, card)
+		return {vars = {card.ability.extra.gain, card.ability.extra.chips}}
+	end,
+	cost = 8,
+	rarity = 'fg_rare_alt',
+	display_size = { w = 71 * 0.7, h = 95 * 0.7 },
+	blueprint_compat = true,
+	calculate = function (self, card, context)
+		if context.before and not context.blueprint then
+			local tot = 0
+			for _,v in ipairs(context.scoring_hand) do
+				if v:is_rank("2") == false and FG.FUNCS.get_card_info(v).key ~= 'm_stone' then
+					SMODS.change_base(v,nil,"2")
+					G.E_MANAGER:add_event(Event{
+						func = function()
+							v:juice_up()
+							card:juice_up()
+						return true end
+					})
+					card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.gain
+					tot = tot + 1
+				end
+			end
+			if tot > 0 then FG.FUNCS.card_eval_status_text{
+				card = card,
+				message = 'k_upgrade_ex'
+			} end
+		end
+		if context.joker_main then return {chips = card.ability.extra.chips} end
+	end
+}
 -- Merry Andy
 -- oops all 6s
 SMODS.Joker {

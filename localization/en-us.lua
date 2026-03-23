@@ -1273,6 +1273,14 @@ return {
                     "{C:inactive}(Marked card can't be eternal)",
                 }
             },
+            j_fg_wee = {
+                name = 'Wee Joker?',
+                text = {
+                    "Turns all playing cards into {C:attention}2s{}",
+                    "Gains {C:chips}+#1#{} Chips per conversion",
+                    "{C:inactive}(Currently {C:chips}+#2#{C:inactive} Chips)"
+                }
+            },
             j_fg_hanging_chad = {
                 name = "Hanging Chad?",
                 text = {
