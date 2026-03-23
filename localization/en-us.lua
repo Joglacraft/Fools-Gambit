@@ -1453,6 +1453,14 @@ return {
                     "{C:inactive}(Currently {C:mult}+#1#{C:inactive} Mult)"
                 }
             },
+            j_fg_merry_andy = {
+                name = 'Merry Andy?',
+                text = {
+                    "{C:red}+#2# {}discards",
+                    "{C:red}#1# {}hands",
+                    "each round"
+                }
+            },
             j_fg_oops = {
                 name = "Oops all 6s?",
                 text = {

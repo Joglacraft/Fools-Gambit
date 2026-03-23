@@ -5134,6 +5134,41 @@ SMODS.Joker{
 	end
 }
 -- Merry Andy
+SMODS.Joker{
+	key = 'merry_andy',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
+	pos = { x = 8 , y = 0 },
+	fg_data = {
+		is_alternate = true,
+		alternate_key = 'j_merry_andy',
+	},
+	config = {extra = {
+		hands = -2,
+		discards = 5,
+	}},
+	loc_vars = function (self, info_queue, card)
+		return {vars = {
+			card.ability.extra.hands,
+			card.ability.extra.discards
+		}}
+	end,
+	cost = 5,
+	rarity = 'fg_uncommon_alt',
+	blueprint_compat = false,
+	add_to_deck = function (self, card, from_debuff)
+		G.GAME.round_resets.hands = G.GAME.round_resets.hands + card.ability.extra.hands
+		G.GAME.round_resets.discards = G.GAME.round_resets.discards + card.ability.extra.discards
+		ease_hands_played(card.ability.extra.hands)
+		ease_discard(card.ability.extra.discards)
+	end,
+	remove_from_deck = function (self, card, from_debuff)
+		G.GAME.round_resets.hands = G.GAME.round_resets.hands - card.ability.extra.hands
+		G.GAME.round_resets.discards = G.GAME.round_resets.discards - card.ability.extra.discards
+		ease_hands_played(-card.ability.extra.hands)
+		ease_discard(-card.ability.extra.discards)
+	end,
+}
 -- oops all 6s
 SMODS.Joker {
 	key = 'oops',
