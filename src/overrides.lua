@@ -249,7 +249,7 @@ function end_round(...)
 		eval = v:calculate_joker({end_of_round = true})
 		if eval then
 			if eval.fg_game_over == 'mr_bones' then
-				if SMODS.pseudorandom_probability(v, 1, v.ability.extra.max_chance, 'j_fg_mr_bones') then
+				if SMODS.pseudorandom_probability(v, 'mila', 1, v.ability.extra.max_chance, 'j_fg_mr_bones') then
 					v:start_dissolve()
 				end
 

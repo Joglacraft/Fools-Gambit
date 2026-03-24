@@ -85,7 +85,7 @@ SMODS.Edition({
         if context.post_joker or (context.main_scoring and context.cardarea == G.play) then
             while true do
                 chips_total = chips_total + card.config.extra.chips
-                if SMODS.pseudorandom_probability(card, 1, card.ability.extra.odds, 'fg_e_foil') then
+                if SMODS.pseudorandom_probability(card, 'mila', 1, card.ability.extra.odds, 'fg_e_foil') then
                     card_eval_status_text(card, 'extra', nil, nil, nil, { message = "+"..tostring(self.config.extra.chips).." "..localize("k_chip")})
                     card_eval_status_text(card, 'extra', nil, nil, nil, { message = localize("k_again_ex")})
                 else
@@ -139,7 +139,7 @@ SMODS.Edition({
         if context.post_joker or (context.main_scoring and context.cardarea == G.play) then
             while true do
                 mult_total = mult_total + card.config.extra.mult
-                if SMODS.pseudorandom_probability(card, 1, card.ability.extra.odds, 'fg_e_holo') then
+                if SMODS.pseudorandom_probability(card, 'mila', 1, card.ability.extra.odds, 'fg_e_holo') then
                     card_eval_status_text(card, 'extra', nil, nil, nil, { message = "+"..tostring(self.config.extra.mult).." "..localize("k_mult")})
                     card_eval_status_text(card, 'extra', nil, nil, nil, { message = localize("k_again_ex")})
                 else
@@ -184,7 +184,7 @@ SMODS.Edition({
     end,
 	calculate = function(self, card, context)
 		if context.post_joker or (context.main_scoring and context.cardarea == G.play) then
-            if SMODS.pseudorandom_probability(card, 1, card.ability.extra.odds, 'fg_e_poly') then
+            if SMODS.pseudorandom_probability(card, 'mila', 1, card.ability.extra.odds, 'fg_e_poly') then
                 return {repetitions = 1, Xmult_mod = card.config.extra.xmult}
             end
         end

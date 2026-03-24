@@ -366,12 +366,12 @@ SMODS.Enhancement:take_ownership('lucky',
 		}}
 	end,
 	calculate = function (self, card, context)
-		if SMODS.pseudorandom_probability(nil, 1, card.ability.extra.mult_max, 'fg_m_lucky_override_mult') then
+		if SMODS.pseudorandom_probability(nil,'mila', 1, card.ability.extra.mult_max, 'fg_m_lucky_override_mult') then
 			card.ability.mult = card.ability.extra.mult
 		else
 			card.ability.mult = 0
 		end
-		if SMODS.pseudorandom_probability(nil, 1, card.ability.extra.mult_max, 'fg_m_lucky_override_money') then
+		if SMODS.pseudorandom_probability(nil,'mila', 1, card.ability.extra.mult_max, 'fg_m_lucky_override_money') then
 			card.ability.p_dollars = card.ability.extra.money
 		else
 			card.ability.p_dollars = 0
@@ -412,12 +412,12 @@ SMODS.Enhancement{
 		}}
 	end,
 	calculate = function (self, card, context)
-		if SMODS.pseudorandom_probability(nil, 1, card.ability.extra.mult_max, 'fg_m_lucky_mult') then
+		if SMODS.pseudorandom_probability(nil, 'mila', 1, card.ability.extra.mult_max, 'fg_m_lucky_mult') then
 			card.ability.extra.chips = card.ability.extra.mult
 		else
 			card.ability.extra.chips = 0
 		end
-		if SMODS.pseudorandom_probability(nil, 1, card.ability.extra.mult_max, 'fg_m_lucky_money') then
+		if SMODS.pseudorandom_probability(nil, 'mila', 1, card.ability.extra.mult_max, 'fg_m_lucky_money') then
 			card.ability.p_dollars = card.ability.extra.money
 		else
 			card.ability.p_dollars = 0
