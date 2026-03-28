@@ -33,8 +33,15 @@ local function tonal_loc_vars (params,extra)
     local jk_txt = FG.FUNCS.localize{"FG","language_adaptations",extra.loc[1]}
     if card.ability.extra.cards == 1 then jk_txt = FG.FUNCS.localize{"FG","language_adaptations",extra.loc[1]} else jk_txt = FG.FUNCS.localize{"FG","language_adaptations",extra.loc[2]} end
 
+    local starting_card_index = 1
+    if next(G[cardarea].highlighted) then
+        for i,v in ipairs(G[cardarea].cards) do
+            if G[cardarea].highlighted[1] == v and card ~= v then starting_card_index = i end
+        end
+    end
+
     if not G[cardarea] then return {vars = {math.ceil(card.ability.extra.cards),jk_txt}} end
-    for i=1, math.min(math.ceil(card.ability.extra.cards),#G[cardarea].cards) do
+    for i=starting_card_index, math.min(math.ceil(card.ability.extra.cards+starting_card_index-1),#G[cardarea].cards) do
         if not card.fake_card and #G[cardarea].cards >= 1
         and G[cardarea].cards[i].config.center.fg_data
         and not FG.FUNCS.get_card_info(G[cardarea].cards[i]).stickers['fg_unchangeable'] then
@@ -56,7 +63,7 @@ local function tonal_can (param,extra)
         local starting_card_index = 1
         if next(G[cardarea].highlighted) then
             for i,v in ipairs(G[cardarea].cards) do
-                if G[cardarea].highlighted[1] == v then starting_card_index = i end
+                if G[cardarea].highlighted[1] == v and card ~= v then starting_card_index = i end
             end
         end
         --print(string.format("Starting card index: %d",starting_card_index))
@@ -210,16 +217,22 @@ SMODS.Consumable{
         },
         extra = {cards = 1
     }},
-    loc_vars = function (self, info_queue, card) return tonal_loc_vars({self,info_queue,card},{area = "consumeables", loc = {"w_consumable_singular","w_consumable_plural"}}) end,
+    loc_vars = function (self, info_queue, card) 
+        if G.pack_cards and next(G.pack_cards.highlighted) then
+            return tonal_loc_vars({self,info_queue,card},{area = "pack_cards", loc = {"w_consumable_singular","w_consumable_plural"}})
+        else
+            return tonal_loc_vars({self,info_queue,card},{area = "consumeables", loc = {"w_consumable_singular","w_consumable_plural"}})
+        end
+    end,
     can_use = function(self, card) 
         if G.pack_cards and next(G.pack_cards.highlighted) then
             return tonal_can({self,card},{area = "pack_cards"})
         else
             return tonal_can({self,card},{area = "consumeables"})
         end
-        end,
+    end,
     use = function(self, card, area, copier)
-        if next(G.pack_cards.highlighted) then
+        if G.pack_cards and next(G.pack_cards.highlighted) then
             return tonal_use({self,card,area,copier},{area = "pack_cards"})
         else
             return tonal_use({self,card,area,copier},{area = "consumeables"})
