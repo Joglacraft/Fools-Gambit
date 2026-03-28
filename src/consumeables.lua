@@ -34,7 +34,7 @@ local function tonal_loc_vars (params,extra)
     if card.ability.extra.cards == 1 then jk_txt = FG.FUNCS.localize{"FG","language_adaptations",extra.loc[1]} else jk_txt = FG.FUNCS.localize{"FG","language_adaptations",extra.loc[2]} end
 
     local starting_card_index = 1
-    if next(G[cardarea].highlighted) then
+    if G[cardarea] and next(G[cardarea].highlighted) then
         for i,v in ipairs(G[cardarea].cards) do
             if G[cardarea].highlighted[1] == v and card ~= v then starting_card_index = i end
         end
