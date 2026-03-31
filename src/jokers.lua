@@ -5816,7 +5816,7 @@ SMODS.Joker{
 	blueprint_compat = false,
 	calculate = function (self, card, context)
 		if context.blueprint then return end
-		if G.jokers and G.jokers.cards[card.ability.extra] ~= card then
+		if G.jokers and G.jokers.cards[card.ability.extra] and G.jokers.cards[card.ability.extra] ~= card then
 			local other_joker_ret = G.jokers.cards[card.ability.extra]:calculate_joker(context)
 			if other_joker_ret then
 				other_joker_ret.card = context.blueprint_card or card
