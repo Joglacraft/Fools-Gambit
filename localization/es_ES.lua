@@ -1127,10 +1127,8 @@ return {
             j_fg_oops = {
                 name = "¿Solo seises?",
                 text = {
-                    "Cuando ocurra una {C:green,E:1}probabilidad{},",
-                    "{X:green,C:white,E:1}X#4#{} el {C:green,E:1}numerador{} y",
-                    "{X:green,C:white,E:1}X#3#{} el {C:green,E:1}denominador",
-                    "{C:inactive}(Actualmente probabilidad de {C:green,E:1}X#2#/#1#{C:inactive})"
+                    "{C:attention}Garantiza{} las {C:green}probabilidades{}",
+                    "de los comodines {C:attention}adyacentes{}"
                 }
             },
             j_fg_cartomancer = {

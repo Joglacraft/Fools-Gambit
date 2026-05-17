@@ -5199,22 +5199,15 @@ SMODS.Joker {
 	cost = 2,
 	blueprint_compat = true,
 	calculate = function(self, card, context)
-		if context.pseudorandom_result and context.result then
-            card.ability.extra.num_gain = card.ability.extra.num_gain * card.ability.extra.num_rate
-            card.ability.extra.den_gain = card.ability.extra.den_gain * card.ability.extra.den_rate
-			return{
-				extra = {
-					message = "Multiplied!",
-					focus = card
+		if context.fix_probability then
+			local card_index
+			for i, v in ipairs(G.jokers.cards) do if v == card then card_index = i break end end
+			if context.trigger_obj == G.jokers.cards[card_index-1] or context.trigger_obj == G.jokers.cards[card_index+1] then
+				return {
+					numerator = context.denominator
 				}
-			}
+			end
 		end
-		if context.mod_probability and not context.blueprint then
-            return {
-                numerator = context.numerator * card.ability.extra.num_gain,
-                denominator = context.denominator * card.ability.extra.den_gain
-            }
-        end
 	end
 }
 -- Idol
