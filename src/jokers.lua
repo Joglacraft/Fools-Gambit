@@ -3150,7 +3150,7 @@ SMODS.Joker{
 	calculate = function (self, card, context)
 		if context.joker_main then return {xmult = card.ability.extra.xmult} end
 		if context.end_of_round and context.cardarea == G.jokers then
-			if SMODS.pseudorandom_probability(nil, 'mila', 1, card.ability.extra.xmult_c, 'j_fg_cavendish') then
+			if SMODS.pseudorandom_probability(card, 'mila', 1, card.ability.extra.xmult_c, 'j_fg_cavendish') then
 				card.ability.extra.xmult = card.ability.extra.xmult - card.ability.extra.xmult_r
 				FG.FUNCS.card_eval_status_text{
 					card = card,
@@ -4092,7 +4092,7 @@ SMODS.Joker{
 	blueprint_compat = true,
 	calculate = function (self, card, context)
 		local give = true
-		if context.before then
+		if context.before and not context.blueprint then
 			for _,v in ipairs(G.play.cards) do
 				if not v:is_suit(card.ability.extra.suit) then 
 					give = false
