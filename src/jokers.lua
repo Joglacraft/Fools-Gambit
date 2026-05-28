@@ -4616,6 +4616,35 @@ SMODS.Joker{
 }
 -- Certificate
 -- Smeared
+SMODS.Joker{
+	key = 'smeared',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
+	pos = {x = 0, y = 0},
+	fg_data = {
+		is_alternate = true,
+		alternate_key = 'j_smeared'
+	},
+	rarity = 'fg_common_alt',
+	cost = 6,
+	blueprint_compat = false,
+	calculate = function (self, card, context)
+		if context.blueprint then return end
+		if context.individual and context.cardarea == G.play then
+			for i, v in ipairs(context.scoring_hand) do
+				if v == context.other_card then
+					for ii in ipairs(context.full_hand) do
+						if ii == i then
+							return {
+								chips = (context.full_hand[i-1] and math.ceil(context.full_hand[i-1].base.nominal/2) or 0) + (context.full_hand[i+1] and math.ceil(context.full_hand[i+1].base.nominal/2) or 0)
+							}
+						end
+					end
+				end
+			end
+		end
+	end
+}
 -- Throwback
 SMODS.Joker{
 	key = "throwback",

@@ -1253,6 +1253,13 @@ return {
                     "{C:inactive}(Currently {C:white,X:mult}X#1#{C:inactive} Mult)"
                 }
             },
+            j_fg_smeared = {
+                name = 'Smeared Joker?',
+                text = {
+                    "Scored cards give {C:attention}one half{} of",
+                    "adjacent playing cards's {C:attention}base{} {C:chips}Chips{}"
+                }
+            },
             j_fg_throwback = {
                 name = "Throwback?",
                 text = {
