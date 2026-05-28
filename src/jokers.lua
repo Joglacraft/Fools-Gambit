@@ -6818,7 +6818,9 @@ SMODS.Joker {
 -- Samuran
 SMODS.Joker{
 	key = 'samuran',
-	-- missing atlas ke
+	atlas = "collective",
+	pos = {x = 6, y = 0},
+	soul_pos = {x = 6, y = 1},
 		fg_data = {
 			is_alternate = false,
 			alternate_key ='j_fg_samuran_alt'
@@ -6860,7 +6862,9 @@ SMODS.Joker{
 }
 SMODS.Joker{
 	key = 'samuran_alt',
-	-- Missing atlas data
+	atlas = "collective",
+	pos = {x = 6, y = 0},
+	soul_pos = {x = 6, y = 1},
 		fg_data = {
 			is_alternate = true,
 			alternate_key ='j_fg_samuran'
