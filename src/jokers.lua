@@ -4947,6 +4947,47 @@ SMODS.Joker {
 	end
 }
 -- Glass
+SMODS.Joker{
+	key = 'glass',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
+	pos = {x = 1, y = 3},
+	fg_data = {
+		is_alternate = true,
+		alternate_key = 'j_glass',
+	},
+	config = {extra = {xmult = 0.5}},
+	rarity = 'fg_uncommon_alt',
+	cost = 6,
+	loc_vars = function (self, info_queue, card)
+		info_queue[#info_queue+1] = G.P_CENTERS['m_fg_glass']
+		local c = 0
+		for _, v in ipairs(G.playing_cards or {}) do
+			if FG.FUNCS.get_card_info(v).key == 'm_fg_glass' then
+				c = c + 1;
+			end
+		end
+		return {
+			vars = {
+				card.ability.extra.xmult,
+				1 + card.ability.extra.xmult * c
+			}
+		}
+	end,
+	calculate = function (self, card, context)
+		if context.joker_main then
+			local c = 0
+			for _, v in ipairs(G.playing_cards or {}) do
+				if FG.FUNCS.get_card_info(v).key == 'm_fg_glass' then
+					c = c + 1;
+				end
+			end
+			return {
+				xmult = 1 + card.ability.extra.xmult * c
+			}
+		end
+	end
+}
 -- Showman
 -- Flower pot
 SMODS.Joker{

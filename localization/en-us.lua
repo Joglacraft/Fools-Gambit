@@ -1348,6 +1348,14 @@ return {
                     "{C:inactive}(Currently {C:mult}+#3#{}{C:inactive} Mult)",
                 },
             },
+            j_fg_glass = {
+                name = 'Glass Joker?',
+                text = {
+                    "Gains {C:white,X:mult}X#1#{} Mult for each",
+                    "{C:attention}Glass? Card{} in {C:attention}full deck{}",
+                    "{C:inactive}(Currently {C:white,X:mult}X#2#{C:inactive} Mult)"
+                }
+            },
             j_fg_flower_pot = {
                 name = "Flower Pot?",
                 text = {
