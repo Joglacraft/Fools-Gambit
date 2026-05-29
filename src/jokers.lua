@@ -4636,7 +4636,7 @@ SMODS.Joker{
 					for ii in ipairs(context.full_hand) do
 						if ii == i then
 							return {
-								chips = (context.full_hand[i-1] and math.ceil(context.full_hand[i-1].base.nominal/2) or 0) + (context.full_hand[i+1] and math.ceil(context.full_hand[i+1].base.nominal/2) or 0)
+								chips = (context.full_hand[i-1] and math.ceil(context.full_hand[i-1].base.nominal) or 0) + (context.full_hand[i+1] and math.ceil(context.full_hand[i+1].base.nominal) or 0)
 							}
 						end
 					end

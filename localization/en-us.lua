@@ -1256,8 +1256,8 @@ return {
             j_fg_smeared = {
                 name = 'Smeared Joker?',
                 text = {
-                    "Scored cards give {C:attention}one half{} of",
-                    "adjacent playing cards's {C:attention}base{} {C:chips}Chips{}"
+                    "Scored cards give adjacent",
+                    "playing cards's {C:attention}base{} {C:chips}Chips{}"
                 }
             },
             j_fg_throwback = {
