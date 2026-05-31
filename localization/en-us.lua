@@ -1205,9 +1205,10 @@ return {
                 }
             },
             j_fg_castle = {
-                name = "Castle",
+                name = "Castle?",
                 text = {
-
+                    "Each scored {C:attention}#1#{} gain {C:chips}+#2#{} Chips",
+                    "{C:inactive}(Rank changes at end of round)"
                 }
             },
             j_fg_smiley = {

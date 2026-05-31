@@ -4310,7 +4310,7 @@ SMODS.Joker{
 		end
     end
 }
---[[ castle
+--castle
 SMODS.Joker{
     key = "castle",
     atlas = 'Joker',
@@ -4318,41 +4318,40 @@ SMODS.Joker{
     pos = { x = 9, y = 15},
     rarity = "fg_common_alt",
     cost = 4,
-      
-     -- Custom logic for spawning
-    config = {
-		fg_data = {
+    fg_data = {
 			is_alternate = true,
 			alternate_key ="j_castle"
 		},
-        fg_alternate = {}, -- Kept between alternations
-        extra = {
-			chips = 0,
-			chips_i = 20,
-			rank = "Ace"
+    -- Custom logic for spawning
+    config = {
+		extra = {
+			chips = 10,
+			rank = 'Ace'
 		}
     },
     loc_vars = function (self, info_queue, card)
         return {
             vars = {
-				card.ability.extra.chips,
-				card.ability.extra.chips_i,
-				card.ability.extra.rank
+				localize(card.ability.extra.rank, 'ranks'),
+				card.ability.extra.chips
 			}
         }
     end,
     blueprint_compat = true,
     calculate = function (self, card, context)
+		if context.individual and context.cardarea == G.play and context.other_card.base.value == card.ability.extra.rank then
+            context.other_card.ability.perma_bonus = (context.other_card.ability.perma_bonus or 0) +
+                card.ability.extra.chips
+            return {
+                message = localize('k_upgrade_ex'),
+                colour = G.C.CHIPS
+            }
+        end
 		if context.end_of_round then
-			local ranks = {}
-			for _,rank in ipairs(SMODS.Ranks) do
-				table.insert(ranks,rank.key)
-			end
-			card.ability.extra.rank = ranks[pseudorandom("mila",1,#ranks)]
+			card.ability.extra.rank = pseudorandom_element(SMODS.Ranks,'mila').key
 		end
     end
 }
-]]
 -- Smiley
 SMODS.Joker{
     key = "smiley",
