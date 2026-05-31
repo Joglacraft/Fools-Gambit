@@ -1253,6 +1253,14 @@ return {
                     "{C:inactive}(Currently {C:white,X:mult}X#1#{C:inactive} Mult)"
                 }
             },
+            j_fg_certificate = {
+                name = 'Certificate',
+                text = {
+                    "If {C:attention}played hand{} contains only",
+                    "a {C:attention}single{} card, add a",
+                    "random {C:attention}seal{} to it"
+                }
+            },
             j_fg_smeared = {
                 name = 'Smeared Joker?',
                 text = {

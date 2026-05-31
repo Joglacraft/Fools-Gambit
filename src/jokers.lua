@@ -4615,6 +4615,26 @@ SMODS.Joker{
     end
 }
 -- Certificate
+SMODS.Joker{
+	key = 'certificate',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
+	pos = {x = 8, y = 8},
+	fg_data = {
+		is_alternate = true,
+		alternate_key = 'j_certificate'
+	},
+	blueprint_compat = false,
+	calculate = function (self, card, context)
+		if context.blueprint then return end
+		if context.before and #context.full_hand == 1 and not context.scoring_hand[1].seal then
+			context.scoring_hand[1]:set_seal(pseudorandom_element(SMODS.Seals,'mila').key)
+			return {
+				message = "Seal!"
+			}
+		end
+	end
+}
 -- Smeared
 SMODS.Joker{
 	key = 'smeared',
@@ -4636,7 +4656,7 @@ SMODS.Joker{
 					for ii in ipairs(context.full_hand) do
 						if ii == i then
 							return {
-								chips = (context.full_hand[i-1] and math.ceil(context.full_hand[i-1].base.nominal) or 0) + (context.full_hand[i+1] and math.ceil(context.full_hand[i+1].base.nominal) or 0)
+								chips = (context.full_hand[i-1] and math.ceil(context.full_hand[i-1].base.nominal) or 0) + (context.full_hand[i+1] and math.ceil(context.full_hand[i+1].base.nominal) or 0),
 							}
 						end
 					end
