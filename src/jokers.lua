@@ -4055,7 +4055,29 @@ SMODS.Joker{
 		end
     end
 }
--- Trouses
+-- Trousers
+SMODS.Joker{
+	key = 'trousers',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
+	pos = {x = 4, y = 15},
+	fg_data = {
+		is_alternate = true,
+		alternate_key = 'j_trousers',
+	},
+	config = {extra = 20},
+	loc_vars = function (self, info_queue, card)
+		return {vars = {card.ability.extra}}
+	end,
+	rarity = 'fg_common_alt',
+	cost = 5,
+	blueprint_compat = true,
+	calculate = function (self, card, context)
+		if context.joker_main and next(context.poker_hands['Two Pair']) then
+			return {mult = card.ability.extra}
+		end
+	end
+}
 --Ancient
 SMODS.Joker{
 	key = "ancient",

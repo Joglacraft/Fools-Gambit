@@ -1219,7 +1219,13 @@ return {
                     "{C:inactive}(Currently {C:mult}+#1#{C:inactive} Mult)"
                 }
             },
-            j_fg_trouses = {},
+            j_fg_trousers = {
+                name = 'Spare Trousers?',
+                text = {
+                    "{C:mult}+#1#{} Mult if played hand",
+                    "contains a {C:attention}Two Pair{}"
+                }
+            },
             j_fg_ancient = {
                 name = "Ancient Joker",
                 text = {
