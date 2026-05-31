@@ -1254,7 +1254,7 @@ return {
                 }
             },
             j_fg_certificate = {
-                name = 'Certificate',
+                name = 'Certificate?',
                 text = {
                     "If {C:attention}played hand{} contains only",
                     "a {C:attention}single{} card, add a",
@@ -1511,6 +1511,13 @@ return {
                 text = {
                     "{C:attention}#1#{} hand size,",
                     "{C:blue}+#2#{} hand each round",
+                }
+            },
+            j_fg_sock_and_buskin = {
+                name = 'Sock and Buskin?',
+                text = {
+                    "On {C:attention}last hand{} turn all",
+                    "{C:attention}unscored{} cards into {C:attention}Jacks{}"
                 }
             },
             j_fg_swashbuckler = {

@@ -4544,6 +4544,65 @@ SMODS.Joker{
     end
 }
 -- Sock and Buskin
+SMODS.Joker{
+	key = 'sock_and_buskin',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
+	pos = {x = 3, y = 1},
+	fg_data = {
+		is_alternate = true,
+		alternate_key = 'j_sock_and_buskin'
+	},
+	rarity = 'fg_uncommon_alt',
+	cost = 7,
+	blueprint_compat = false,
+	calculate = function (self, card, context)
+		if context.blueprint then return end
+		if G.GAME.current_round.hands_left == 0 and context.after then
+			local unscored_cards = {}
+			for _, v in pairs(context.full_hand) do
+				if not SMODS.in_scoring(v, context.scoring_hand) then
+					if v:get_id() ~= 10 then
+						table.insert(unscored_cards, v)
+					end
+				end
+			end
+			for _, v in ipairs(unscored_cards) do
+				G.E_MANAGER:add_event(Event{
+					trigger = 'after', delay = 0.2,
+					func = function ()
+						v:flip()
+					return true end
+				})
+			end
+			if next(unscored_cards) then
+				delay(0.2)
+				G.E_MANAGER:add_event(Event{
+					func = function ()
+						for _, v in ipairs(unscored_cards) do
+							local _ = SMODS.change_base(v,nil,'Jack')
+						end
+					return true end
+				})
+				FG.FUNCS.card_eval_status_text{
+					card = card,
+					message = 'Jacks!',
+					mode = 'literal'
+				}
+			end
+			delay(0.4)
+			for _, v in ipairs(unscored_cards) do
+				G.E_MANAGER:add_event(Event{
+					trigger = 'after', delay = 0.2,
+					func = function ()
+						v:flip()
+					return true end
+				})
+			end
+			delay(0.4)
+		end
+	end
+}
 -- swashbuckler
 SMODS.Joker{
 	key = "swashbuckler",
@@ -4624,6 +4683,8 @@ SMODS.Joker{
 		is_alternate = true,
 		alternate_key = 'j_certificate'
 	},
+	rarity = 'fg_uncommon_alt',
+	cost = 6,
 	blueprint_compat = false,
 	calculate = function (self, card, context)
 		if context.blueprint then return end
