@@ -1171,6 +1171,14 @@ return {
                     "card destroyed"
                 }
             },
+            j_fg_flash = {
+                name = 'Flash Card?',
+                text = {
+                    "Reduce price of {C:attention}first{} reroll by the amount",
+                    "of rerolls in previous {C:attention}shop{}",
+                    "{C:inactive}(Reroll price can't be negative, currently {C:attention}#1#{C:inactive})"
+                }
+            },
             j_fg_popcorn = {
                 name = "Popcorn?",
                 text = {

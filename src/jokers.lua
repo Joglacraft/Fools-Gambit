@@ -4002,6 +4002,50 @@ SMODS.Joker{
 	end
 }
 -- Flash card
+SMODS.Joker{
+	key = 'flash',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
+	pos = {x = 0, y = 15},
+	fg_data = {
+		is_alternate = true,
+		alternate_key = 'j_flash'
+	},
+	config = {
+		extra = {
+			val = 0,
+			is_first = false,
+		}
+	},
+	loc_vars = function (self, info_queue, card)
+		return {vars = { card.ability.extra.val }}
+	end,
+	rarity = 'fg_common_alt',
+	cost = 6,
+	blueprint_compat = false,
+	calculate = function (self, card, context)
+		if context.blueprint then return end
+		if context.starting_shop or context.reroll_shop then
+			if context.starting_shop then card.ability.extra.is_first = true end
+			if G.GAME.current_round.free_rerolls > 0 then return end
+			if card.ability.extra.is_first then
+				G.GAME.current_round.reroll_cost = math.max(0,G.GAME.current_round.reroll_cost - card.ability.extra.val)
+				card.ability.extra.val = 0
+			end
+			if context.reroll_shop then
+				card.ability.extra.val = card.ability.extra.val + 1
+				card.ability.extra.is_first = false
+			end
+			if card.ability.extra.is_first then
+				FG.FUNCS.card_eval_status_text{
+					card = card,
+					message = 'Active!',
+					mode = 'literal'
+				}
+			end
+		end
+	end
+}
 -- Popcorn
 SMODS.Joker{
     key = "popcorn",
