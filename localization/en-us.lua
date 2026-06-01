@@ -747,6 +747,13 @@ return {
                     "{C:inactive}(Currently {C:gold}+$#2#{C:inactive})"
                 }
             },
+            j_fg_mime = {
+                name = 'Mime?',
+                text = {
+                    "Each {C:attention}unscored{} card",
+                    "gives {C:white,X:mult}X#1#{} Mult"
+                }
+            },
             j_fg_credit_card = {
                 name = 'Credit Card?',
                 text = {

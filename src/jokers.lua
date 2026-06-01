@@ -1684,6 +1684,28 @@ SMODS.Joker{
 	cost = 5,
 }
 -- Mime
+SMODS.Joker{
+	key = 'mime',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
+	pos = {x = 4, y = 1},
+	fg_data = {
+		is_alternate = true,
+		alternate_key = 'j_mime'
+	},
+	config = {extra = 2},
+	loc_vars = function (self, info_queue, card)
+		return {vars = {card.ability.extra}}
+	end,
+	rarity = 'fg_uncommon_alt',
+	cost = 6,
+	blueprint_compat = true,
+	calculate = function (self, card, context)
+		if context.individual and context.cardarea == 'unscored' then
+			return {xmult = card.ability.extra}
+		end
+	end
+}
 -- Credit card
 SMODS.Joker{
 	key ='credit_card',
