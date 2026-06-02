@@ -847,6 +847,13 @@ return {
                     "{C:inactive}(ex: Ace to 2, 8 to King, King to Ace){}",
                 },
             },
+            j_fg_steel_joker = {
+                name = 'Steel Joker?',
+                text = {
+                    "Played {C:attention}Steel? Cards{} also",
+                    "trigger their effect"
+                }
+            },
             j_fg_scary_face = {
                 name = 'Scary Face?',
                 text = {

@@ -2321,6 +2321,30 @@ SMODS.Joker {
 	end
 }
 -- Steel
+SMODS.Joker{
+	key = 'steel_joker',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
+	pos = { x = 7, y = 2},
+	fg_data = {
+		is_alternate = true,
+		alternate_key = 'j_steel_joker'
+	},
+	loc_vars = function (self, info_queue, card)
+		info_queue[#info_queue+1] = G.P_CENTERS['m_fg_steel']
+	end,
+	rarity = 'fg_uncommon_alt',
+	cost = 5,
+	blueprint_compat = true,
+	calculate = function (self, card, context)
+		if context.individual and context.cardarea == G.play and FG.FUNCS.get_card_info(context.other_card).key == 'm_fg_steel' then
+			return
+			{
+				xmult = context.other_card.ability.h_x_mult
+			}
+		end
+	end
+}
 -- Scary face
 SMODS.Joker {
 	key = 'scary_face',

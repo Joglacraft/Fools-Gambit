@@ -193,6 +193,18 @@ SMODS.Enhancement{
 }
 
 --display is broken please fix
+local function en_steel_calc(card)
+	if G.playing_cards then
+		FG.cards.steel.mult = 1
+		card.ability.extra.card_mult = FG.cards.steel.mult
+		for _,v in pairs(G.playing_cards) do
+			if tostring(FG.FUNCS.get_card_info(v).key) == "m_fg_steel" then
+				FG.cards.steel.mult = FG.cards.steel.mult + card.ability.extra.card_gain
+			end
+		end
+	end
+	card.ability.extra.card_mult = FG.cards.steel.mult
+end
 
 SMODS.Enhancement{
 	key = "steel",
@@ -211,16 +223,7 @@ SMODS.Enhancement{
 		}
 	},
 	loc_vars = function (self, info_queue, card)
-		if G.playing_cards then
-			FG.cards.steel.mult = 1
-			card.ability.extra.card_mult = FG.cards.steel.mult
-			for _,v in pairs(G.playing_cards) do
-				if tostring(FG.FUNCS.get_card_info(v).key) == "m_fg_steel" then
-					FG.cards.steel.mult = FG.cards.steel.mult + card.ability.extra.card_gain
-				end
-			end
-		end
-		card.ability.extra.card_mult = FG.cards.steel.mult
+		en_steel_calc(card)
 		return {
 			vars = {
 				card.ability.extra.card_gain,
@@ -229,6 +232,7 @@ SMODS.Enhancement{
 		}
 	end,
 	calculate = function (self, card, context)
+		en_steel_calc(card)
 		card.ability.h_x_mult = FG.cards.steel.mult
 	end
 }

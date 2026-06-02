@@ -7,8 +7,8 @@ to_number = to_number or function (x) return x end
 
 local main_menu_ref = Game.main_menu
 
-function Game:main_menu(change_context)
-	local ret = main_menu_ref(self,change_context)
+function Game:main_menu(change_context,...)
+	local ret = main_menu_ref(self,change_context,...)
 	local SC_scale = 1.1*(G.debug_splash_size_toggle and 0.8 or 1)
 	local CAI = {
         TITLE_TOP_W = G.CARD_W,
@@ -228,9 +228,9 @@ end
 
 local ref = Game.init_game_object
 
-function Game:init_game_object()
+function Game:init_game_object(...)
 	-- Dealing with edge_cases
-	local ret = ref(self)
+	local ret = ref(self,...)
 	self.P_CENTERS['m_lucky'].fg_data = {
 		is_alternate = false,
 		alternate_key ='m_fg_lucky',
@@ -283,8 +283,8 @@ end
 
 local ref = G.FUNCS.can_buy
 
-function G.FUNCS.can_buy(e)
-	local ret = ref(e)
+function G.FUNCS.can_buy(e,...)
+	local ret = ref(e,...)
 	if G.GAME.fg_data and G.GAME.fg_data.credit_card_data.active then
         e.config.colour = G.C.ORANGE
         e.config.button = 'buy_from_shop'
@@ -294,8 +294,8 @@ end
 
 local ref = G.FUNCS.can_buy_and_use
 
-function G.FUNCS.can_buy_and_use(e)
-	local ret = ref(e)
+function G.FUNCS.can_buy_and_use(e,...)
+	local ret = ref(e,...)
 	if G.GAME.fg_data and G.GAME.fg_data.credit_card_data.active then
         e.config.colour = G.C.SECONDARY_SET.Voucher
         e.config.button = 'buy_from_shop'
@@ -305,8 +305,8 @@ end
 
 local ref = G.FUNCS.can_redeem
 
-function G.FUNCS.can_redeem(e)
-	local ret = ref(e)
+function G.FUNCS.can_redeem(e,...)
+	local ret = ref(e,...)
 	if G.GAME.fg_data and G.GAME.fg_data.credit_card_data.active then
 		e.config.colour = G.C.GREEN
 		e.config.button = 'use_card'
@@ -316,8 +316,8 @@ end
 
 local ref = G.FUNCS.can_open
 
-function G.FUNCS.can_open(e)
-	local ret = ref(e)
+function G.FUNCS.can_open(e,...)
+	local ret = ref(e,...)
 	if G.GAME.fg_data and G.GAME.fg_data.credit_card_data.active then
 		e.config.colour = G.C.GREEN
 		e.config.button = 'use_card'
@@ -327,8 +327,8 @@ end
 
 local ref = G.FUNCS.can_reroll
 
-function G.FUNCS.can_reroll(e)
-	local ret = ref(e)
+function G.FUNCS.can_reroll(e,...)
+	local ret = ref(e,...)
 	if G.GAME.fg_data and G.GAME.fg_data.credit_card_data.active then
         e.config.colour = G.C.GREEN
         e.config.button = 'reroll_shop'
@@ -338,8 +338,8 @@ end
 
 local ref = G.FUNCS.reroll_boss_button
 
-function G.FUNCS.reroll_boss_button(e)
-	local ret = ref(e)
+function G.FUNCS.reroll_boss_button(e,...)
+	local ret = ref(e,...)
 	if G.GAME.fg_data and G.GAME.fg_data.credit_card_data.active then
 		if (G.GAME.used_vouchers["v_retcon"] or
 		(G.GAME.used_vouchers["v_directors_cut"] and not G.GAME.round_resets.boss_rerolled)) then 
@@ -347,7 +347,7 @@ function G.FUNCS.reroll_boss_button(e)
 			e.config.button = 'reroll_boss'
 			e.children[1].children[1].config.shadow = true
 			if e.children[2] then e.children[2].children[1].config.shadow = true end 
-	  	end
+		end
 	end
 	return ret
 end
