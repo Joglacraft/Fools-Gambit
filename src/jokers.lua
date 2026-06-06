@@ -2869,6 +2869,32 @@ SMODS.Joker{
 	end
 }
 -- Blackboard
+SMODS.Joker{
+	key = 'blackboard',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
+	pos = {x = 2, y = 10},
+	fg_data = {
+		is_alternate = true,
+		alternate_key = 'j_blackboard',
+	},
+	config = {extra = 2},
+	rarity = 'fg_uncommon_alt',
+	cost = 5,
+	blueprint_compat = true,
+	loc_vars = function (self, info_queue, card)
+		return {vars = {card.ability.extra}}
+	end,
+	calculate = function (self, card, context)
+		if context.joker_main then
+			local give = true
+			for _,v in ipairs(context.full_hand) do
+				if not v:is_suit("Spades") and not v:is_suit("Clubs") then give = false end
+			end
+			if give then return {xmult = card.ability.extra} end
+		end
+	end
+}
 -- Runner
 -- Ice cream
 SMODS.Joker{

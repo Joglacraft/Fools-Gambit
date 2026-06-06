@@ -958,6 +958,14 @@ return {
                     "replace all discards with hands"
                 }
             },
+            j_fg_blackboard = {
+                name = 'Blackboard?',
+                text = {
+                    "{C:white,X:mult}X#1#{} Mult if all",
+                    "{C:attention}played{} cards are",
+                    "{C:spades}Spades{} or {C:clubs}Clubs{}"
+                }
+            },
             j_fg_ice_cream = {
                 name = "Ice Cream?",
                 text = {
