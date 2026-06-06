@@ -3047,6 +3047,33 @@ SMODS.Joker{
 	end
 }
 -- Sixth sense
+SMODS.Joker{
+	key = 'sixth_sense',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
+	pos = {x = 8, y = 10},
+	fg_data = {
+		is_alternate = true,
+		alternate_key = 'j_sixth_sense'
+	},
+	loc_vars = function (self, info_queue, card)
+		info_queue[#info_queue+1] = G.P_TAGS['tag_ethereal']
+	end,
+	rarity = 'fg_uncommon_alt',
+	cost = 6,
+	blueprint_compat = true,
+	calculate = function (self, card, context)
+		if context.after and G.GAME.current_round.hands_left <= 0
+		and #context.scoring_hand == 1 and context.scoring_hand[1]:get_id() == 6 then
+			G.E_MANAGER:add_event(Event{
+				func = function ()
+					context.scoring_hand[1]:start_dissolve()
+				return true end
+			})
+			add_tag(Tag('tag_ethereal'))
+		end
+	end
+}
 -- Constellation
 SMODS.Joker{
 	key = 'constellation',

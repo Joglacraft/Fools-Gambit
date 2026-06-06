@@ -990,6 +990,13 @@ return {
                     "{C:inactive}(Currently {C:chips}+#2#{C:inactive} Chips){}"
                 }
             },
+            j_fg_sixth_sense = {
+                name = 'Sixth Sense?',
+                text = {
+                    "If {C:attention}last scored hand{} is a single {C:attention}6{}",
+                    "destroy it and create a {C:attention}Ethereal Tag{}"
+                }
+            },
             j_fg_constellation = {
                 name = 'Constellation',
                 text = {
