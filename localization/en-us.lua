@@ -966,6 +966,14 @@ return {
                     "{C:spades}Spades{} or {C:clubs}Clubs{}"
                 }
             },
+            j_fg_runner = {
+                name = 'Runner?',
+                text = {
+                    "Gains {C:chips}+#1#{} Chips for each",
+                    "consecutive {C:attention}Straight{}",
+                    "{C:inactive}(Currently {C:chips}+#2#{C:inactive} Chips)"
+                }
+            },
             j_fg_ice_cream = {
                 name = "Ice Cream?",
                 text = {

@@ -2896,6 +2896,41 @@ SMODS.Joker{
 	end
 }
 -- Runner
+SMODS.Joker{
+	key = 'runner',
+	atlas = 'Joker',
+	prefix_config = {atlas = false},
+	pos = { x = 3, y = 10},
+	fg_data = {
+		is_alternate = true,
+		alternate_key = 'j_runner'
+	},
+	config = {extra = {
+		total = 0,
+		gain = 30,
+	}},
+	loc_vars = function (self, info_queue, card)
+		return {vars = {
+			card.ability.extra.gain,
+			card.ability.extra.total
+		}}
+	end,
+	rarity = 'fg_common_alt',
+	cost = 3,
+	blueprint_compat = true,
+	calculate = function (self, card, context)
+		if not context.blueprint and context.before then
+			if next(context.poker_hands['Straight']) then
+				card.ability.extra.total = card.ability.extra.total + card.ability.extra.gain
+				return {message = localize('k_upgrade_ex')}
+			else
+				card.ability.extra.total = 0
+				return {message = localize('k_reset')}
+			end
+		end
+		if context.joker_main then return {chips = card.ability.extra.total} end
+	end
+}
 -- Ice cream
 SMODS.Joker{
     key = "ice_cream",
